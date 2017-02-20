@@ -10,6 +10,11 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import Router from './Router';
 
 export default class App extends Component {
+
+  componentWillMount() {
+
+  }
+
   render() {
     return <Router />;
   }
