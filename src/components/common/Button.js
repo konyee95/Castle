@@ -21,12 +21,13 @@ const styles = {
   buttonStyle: {
     backgroundColor: '#FFF',
     height: 40,
-    width: deviceWidth*0.8,
+    width: deviceWidth*0.75,
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonTextStyle: {
-    color: '#000'
+    color: '#000',
+    fontWeight: 'bold'
   }
 }
 

@@ -16,11 +16,14 @@ class SplashScreen extends Component {
   }
 
   render() {
-    const { container, appTitle } = styles;
+    const { container, appTitle, italicFont } = styles;
     return (
       <View style={container}>
         <Text style={appTitle}>
-          Castle
+          CASTLE
+        </Text>
+        <Text style={italicFont}>
+          Its smart, its great, its awesome
         </Text>
         <Spinner size="small" />
       </View>
@@ -39,7 +42,12 @@ const styles = {
     color: '#FFF',
     fontSize: 28,
     paddingBottom: 10,
-    letterSpacing: 5
+    letterSpacing: 10
+  },
+  italicFont: {
+    color: '#FFF',
+    fontStyle: 'italic',
+    paddingBottom: 10
   }
 }
 

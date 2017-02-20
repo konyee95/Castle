@@ -9,12 +9,12 @@ import {
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const Input = ({ placeholder, placeholderTextColor, secureTextEntry, onChangeText, value, propHeight, propWidth, multiline}) => {
+const Input = ({ inputPadding, placeholder, placeholderTextColor, secureTextEntry, onChangeText, value, propHeight, propWidth, multiline}) => {
 
   const { inputStyle } = styles;
 
   return(
-    <View style={{ padding: 3 }}>
+    <View style={inputPadding}>
       <TextInput
         style={[inputStyle, propHeight, propWidth]}
         autoCapitalize={'none'}
@@ -33,7 +33,7 @@ const Input = ({ placeholder, placeholderTextColor, secureTextEntry, onChangeTex
 const styles = {
   inputStyle: {
     height: 40,
-    width: deviceWidth*0.8,
+    width: deviceWidth*0.75,
     color: 'white',
     borderColor: 'white',
     borderWidth: 1,

@@ -3,8 +3,12 @@ import {
   Alert,
   View,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback
 } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 import { Spinner, Input, Button } from './../../components/common/';
 
@@ -20,7 +24,7 @@ class Register extends Component {
   }
 
   render() {
-    const { centerEverything, container, appTitle, appTitleContainer, credentialsContainer, buttonContainer } = styles;
+    const { testShit, centerEverything, container, appTitle, appTitleContainer, credentialsContainer, buttonContainer, additionalBox, fontColorWhite, fontBold } = styles;
     return (
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={[container]}>
@@ -28,29 +32,35 @@ class Register extends Component {
             <View style={centerEverything}>
               <Text style={appTitle}>CASTLE</Text>
               <Input
+                inputPadding={{ padding: 3 }}
                 placeholder="john@gmail.com"
                 placeholderTextColor="white"
               />
               <Input
+                inputPadding={{ padding: 3 }}
                 placeholder="password"
                 placeholderTextColor="white"
                 secureTextEntry
               />
               <Input
-                placeholder="password again"
+                inputPadding={{ padding: 3 }}
+                placeholder="password confirmation"
                 placeholderTextColor="white"
                 secureTextEntry
               />
               <Button
-                buttonPadding={{ paddingTop: 20 }}
-                buttonText="REGISTER"
+                buttonPadding={{ paddingTop: 25 }}
+                buttonText="REGISTER FREE"
                 onPress={this.onRegisterPress}
               />
-              <Button
-                buttonPadding={{ padding: 3}}
-                buttonText="GO BACK"
-                onPress={this.onRegisterPress}
-              />
+              <View style={[additionalBox]}>
+                <Text style={fontColorWhite}>Already have an account? </Text>
+                <TouchableOpacity onPress={() => Actions.login()}>
+                  <Text style={[fontColorWhite, fontBold]}>
+                    Login here
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
@@ -60,19 +70,24 @@ class Register extends Component {
 }
 
 const styles = {
+  testShit: {
+    borderColor: 'red',
+    borderWidth: 2
+  },
   centerEverything: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   container: {
     flex: 1,
-    backgroundColor: '#212121',
+    backgroundColor: '#202020',
   },
   appTitle: {
     color: '#FFF',
     fontSize: 28,
+    fontFamily: 'HelveticaNeue-Medium',
     paddingBottom: 20,
-    letterSpacing: 5
+    letterSpacing: 7,
   },
   credentialsContainer: {
     flex: 6,
@@ -80,6 +95,19 @@ const styles = {
   buttonContainer: {
     flex: 4,
   },
+  additionalBox: {
+    width: deviceWidth*0.75,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 16
+  },
+  fontColorWhite: {
+    color: '#FFF'
+  },
+  fontBold: {
+    fontWeight: 'bold'
+  }
 }
 
 export default Register;
