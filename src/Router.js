@@ -10,6 +10,7 @@ import Register from './containers/auth/Register';
 import Login from './containers/auth/Login';
 
 import Home from './containers/tabContainers/Home';
+import Account from './containers/tabContainers/Account';
 
 class RouterComponent extends Component {
 
@@ -27,7 +28,8 @@ class RouterComponent extends Component {
           <Scene key="register" component={Register}  />
         </Scene>
         <Scene key="main">
-          <Scene key="home" component={Home} />
+          <Scene key="home" component={Home} initial />
+          <Scene key="account" component={Account} />
         </Scene>
       </Router>
     )

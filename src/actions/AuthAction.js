@@ -4,6 +4,7 @@ import {
   REGISTER_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   AUTH_FAIL,
+  LOGOUT_USER
 } from './types';
 
 const registerUserSuccess = (dispatch, user) => {
@@ -55,5 +56,12 @@ export function loginUser(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(error => authFail(dispatch, error));
+  };
+};
+
+export function logoutUser() {
+  firebase.auth().signOut();
+  return {
+    type: LOGOUT_USER
   };
 };

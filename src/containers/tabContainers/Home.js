@@ -3,6 +3,8 @@ import { Animated, View, Text, StyleSheet } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import Account from './Account';
+
 export default class Home extends Component {
 
   static propTypes = {
@@ -77,7 +79,7 @@ export default class Home extends Component {
     case '2':
       return <View style={[ styles.page, { backgroundColor: '#F5F5F5' } ]} />;
     case '3':
-      return <View style={[ styles.page, { backgroundColor: '#F5F5F5' } ]} />;
+      return <Account />
     default:
       return null;
     }
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    backgroundColor: '#212121',
+    backgroundColor: '#202020',
   },
   tab: {
     padding: 12,

@@ -4,7 +4,8 @@ import {
   LISTEN_TO_USER,
   REGISTER_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
-  AUTH_FAIL
+  AUTH_FAIL,
+  LOGOUT_USER
 } from './../actions/types';
 
 const INITIAL_STATE = { user: null, error: null };
@@ -37,6 +38,8 @@ export default (state = INITIAL_STATE, action) => {
       return {
         error: action.payload.error
       }
+    case LOGOUT_USER:
+      return INITIAL_STATE;
     default:
       return state;
   }
