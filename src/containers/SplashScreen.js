@@ -33,7 +33,7 @@ class SplashScreen extends Component {
       if (props.auth.user.uid) {
         Actions.main({ type: 'reset' });
       } else {
-        this.wait(1000);
+        this.wait(750);
         Actions.register({ type: 'reset' });
       }
     }

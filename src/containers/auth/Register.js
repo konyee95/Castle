@@ -9,6 +9,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import * as actions from './../../actions';
 
 import { Spinner, Input, Button } from './../../components/common/';
 
@@ -19,12 +20,25 @@ const deviceHeight = require('Dimensions').get('window').height;
 
 class Register extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
+
+  validateEmail = (email) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+  };
+
   onRegisterPress() {
     Alert.alert('Alert', 'button clicked');
   }
 
   render() {
-    const { testShit, centerEverything, container, appTitle, appTitleContainer, credentialsContainer, buttonContainer, additionalBox, fontColorWhite, fontBold } = styles;
+    const { centerEverything, container, appTitle, appTitleContainer, credentialsContainer, buttonContainer, additionalBox, fontColorWhite, fontBold } = styles;
     return (
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={[container]}>
@@ -35,19 +49,23 @@ class Register extends Component {
                 inputPadding={{ padding: 3 }}
                 placeholder="john@gmail.com"
                 placeholderTextColor="white"
+                onChangeText={(email) => this.setState({ email })}
+                value={this.state.email}
               />
               <Input
                 inputPadding={{ padding: 3 }}
                 placeholder="password"
                 placeholderTextColor="white"
+                onChangeText={(password) => this.setState({ password })}
+                value={this.state.password}
                 secureTextEntry
               />
-              <Input
+              {/* <Input
                 inputPadding={{ padding: 3 }}
                 placeholder="password confirmation"
                 placeholderTextColor="white"
                 secureTextEntry
-              />
+              /> */}
               <Button
                 buttonPadding={{ paddingTop: 25 }}
                 buttonText="REGISTER FREE"
@@ -70,10 +88,6 @@ class Register extends Component {
 }
 
 const styles = {
-  testShit: {
-    borderColor: 'red',
-    borderWidth: 2
-  },
   centerEverything: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -110,4 +124,10 @@ const styles = {
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps, actions)(Register);
