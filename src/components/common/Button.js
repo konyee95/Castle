@@ -27,7 +27,8 @@ const styles = {
   },
   buttonTextStyle: {
     color: '#000',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    letterSpacing: 5
   }
 }
 

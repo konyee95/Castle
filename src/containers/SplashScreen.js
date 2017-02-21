@@ -15,6 +15,38 @@ class SplashScreen extends Component {
     super(props);
   }
 
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
+  componentDidMount() {
+    this.processAuth(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.processAuth(nextProps)
+  }
+
+  processAuth(props) {
+    if (props.auth.user != null) {
+      console.log(props);
+      if (props.auth.user.uid) {
+        Actions.main({ type: 'reset' });
+      } else {
+        this.wait(1000);
+        Actions.register({ type: 'reset' });
+      }
+    }
+  }
+
+  wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
+
   render() {
     const { container, appTitle, italicFont } = styles;
     return (
@@ -51,4 +83,10 @@ const styles = {
   }
 }
 
-export default SplashScreen;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(SplashScreen);

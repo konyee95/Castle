@@ -3,8 +3,12 @@ import {
   Alert,
   View,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback
 } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 import { Spinner, Input, Button } from './../../components/common/';
 
@@ -54,13 +58,13 @@ class Login extends Component {
   }
 
   render() {
-    const { centerEverything, container, textColorWhite, appTitle, appTitleContainer, credentialsContainer, buttonContainer } = styles;
+    const { centerEverything, container, appTitle, appTitleContainer, credentialsContainer, buttonContainer, additionalBox, fontColorWhite, fontBold } = styles;
     return (
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={[container]}>
           <View style={[[centerEverything, credentialsContainer]]}>
             <View style={[centerEverything]}>
-              <Text style={[appTitle, textColorWhite]}>CASTLE</Text>
+              <Text style={[appTitle, fontColorWhite]}>CASTLE</Text>
               <Input
                 inputPadding={{ padding: 3 }}
                 placeholder="john@gmail.com"
@@ -77,6 +81,14 @@ class Login extends Component {
                 buttonText="LOGIN"
                 onPress={this.onRegisterPress}
               />
+              <View style={[additionalBox]}>
+                <Text style={fontColorWhite}>No account? </Text>
+                <TouchableOpacity onPress={() => Actions.pop()}>
+                  <Text style={[fontColorWhite, fontBold]}>
+                    Register here
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
@@ -98,9 +110,6 @@ const styles = {
     flex: 1,
     backgroundColor: '#212121',
   },
-  textColorWhite: {
-    color: '#FFF'
-  },
   appTitle: {
     fontSize: 28,
     paddingBottom: 20,
@@ -112,6 +121,19 @@ const styles = {
   buttonContainer: {
     flex: 4,
   },
+  additionalBox: {
+    width: deviceWidth*0.75,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 16
+  },
+  fontColorWhite: {
+    color: '#FFF'
+  },
+  fontBold: {
+    fontWeight: 'bold'
+  }
 }
 
 export default Login;
