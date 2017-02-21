@@ -7,6 +7,8 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
+import * as Progress from 'react-native-progress';
+
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -24,21 +26,9 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      buttonState: 'signIn',
-      error: null
-    }
-
-    this.buttonStates = {
-      signIn: {
-        text:'SIGN IN',
-        onPress: () => {
-          this.loginUser();
-        }
-      },
-      loading: {
-        spinner: true,
-
-      }
+      toggleMode: false,
+      progress: 0,
+      indeterminate: true
     }
   }
 
@@ -47,13 +37,55 @@ class Login extends Component {
       return re.test(email);
   };
 
-  loginUser() {
+  animateProgressBar() {
+    let progress = 0;
+    this.setState({ progress });
+    setTimeout(() => {
+      this.setState({ indeterminate: false });
+      setInterval(() => {
+        progress += Math.random() / 3;
+        if (progress > 1) {
+          progress = 1;
+        }
+        this.setState({ progress });
+      }, 500);
+    }, 1500);
+  }
+
+  onLoginPress() {
     const { email, password } = this.state;
-    if (!this.validateEmail(email)) {
-      Alert.alert('Message', 'Please enter a valid email type')
+    if (email === '' || password === '') {
+      Alert.alert('Alert', 'Please enter your credentials')
     } else {
-      this.setState({ buttonState: 'loading' });
-      // this.props.loginUser(email, password);
+      if (!this.validateEmail(email)) {
+        Alert.alert('Message', 'Please enter a valid email address')
+      } else {
+        this.setState({
+          toggleMode: true
+        })
+      }
+    }
+  }
+
+  toggleMode() {
+    if (!this.state.toggleMode) {
+      return (
+        <Button
+          buttonPadding={{ paddingTop: 25 }}
+          buttonText="LOGIN"
+          onPress={() => this.onLoginPress()}
+        />
+      )
+    } else {
+      return (
+        <Progress.Bar
+          style={{ marginTop: 25}}
+          color="#FFF"
+          animated={true}
+          progress={this.state.progress}
+          indeterminate={this.state.indeterminate}
+        />
+      )
     }
   }
 
@@ -69,18 +101,18 @@ class Login extends Component {
                 inputPadding={{ padding: 3 }}
                 placeholder="john@gmail.com"
                 placeholderTextColor="white"
+                onChangeText={(email) => this.setState({ email })}
+                value={this.state.email}
               />
               <Input
                 inputPadding={{ padding: 3 }}
                 placeholder="password"
                 placeholderTextColor="white"
+                onChangeText={(password) => this.setState({ password })}
+                value={this.state.password}
                 secureTextEntry
               />
-              <Button
-                buttonPadding={{ paddingTop: 25 }}
-                buttonText="LOGIN"
-                onPress={this.onRegisterPress}
-              />
+              {this.toggleMode()}
               <View style={[additionalBox]}>
                 <Text style={fontColorWhite}>No account? </Text>
                 <TouchableOpacity onPress={() => Actions.pop()}>
@@ -108,12 +140,14 @@ const styles = {
   },
   container: {
     flex: 1,
-    backgroundColor: '#212121',
+    backgroundColor: '#202020',
   },
   appTitle: {
+    color: '#FFF',
     fontSize: 28,
+    fontFamily: 'HelveticaNeue-Medium',
     paddingBottom: 20,
-    letterSpacing: 5
+    letterSpacing: 7,
   },
   credentialsContainer: {
     flex: 6,

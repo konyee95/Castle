@@ -7,6 +7,8 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
+import * as Progress from 'react-native-progress';
+
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
@@ -24,8 +26,11 @@ class Register extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
-    }
+      password: '',
+      toggleMode: false,
+      progress: 0,
+      indeterminate: true
+    };
   }
 
   validateEmail = (email) => {
@@ -33,8 +38,56 @@ class Register extends Component {
       return re.test(email);
   };
 
+  animateProgressBar() {
+    let progress = 0;
+    this.setState({ progress });
+    setTimeout(() => {
+      this.setState({ indeterminate: false });
+      setInterval(() => {
+        progress += Math.random() / 3;
+        if (progress > 1) {
+          progress = 1;
+        }
+        this.setState({ progress });
+      }, 500);
+    }, 1500);
+  }
+
   onRegisterPress() {
-    Alert.alert('Alert', 'button clicked');
+    const { email, password } = this.state;
+    if (email === '' || password === '') {
+      Alert.alert('Alert', 'Please enter your credentials')
+    } else {
+      if (!this.validateEmail(email)) {
+        Alert.alert('Message', 'Please enter a valid email address')
+      } else {
+        this.setState({
+          toggleMode: true
+        })
+      }
+    }
+  }
+
+  toggleMode() {
+    if (!this.state.toggleMode) {
+      return (
+        <Button
+          buttonPadding={{ paddingTop: 25 }}
+          buttonText="REGISTER FREE"
+          onPress={() => this.onRegisterPress()}
+        />
+      )
+    } else {
+      return (
+        <Progress.Bar
+          style={{ marginTop: 25}}
+          color="#FFF"
+          animated={true}
+          progress={this.state.progress}
+          indeterminate={this.state.indeterminate}
+        />
+      )
+    }
   }
 
   render() {
@@ -66,11 +119,7 @@ class Register extends Component {
                 placeholderTextColor="white"
                 secureTextEntry
               /> */}
-              <Button
-                buttonPadding={{ paddingTop: 25 }}
-                buttonText="REGISTER FREE"
-                onPress={this.onRegisterPress}
-              />
+              {this.toggleMode()}
               <View style={[additionalBox]}>
                 <Text style={fontColorWhite}>Already have an account? </Text>
                 <TouchableOpacity onPress={() => Actions.login()}>
@@ -79,6 +128,7 @@ class Register extends Component {
                   </Text>
                 </TouchableOpacity>
               </View>
+
             </View>
           </View>
         </View>
