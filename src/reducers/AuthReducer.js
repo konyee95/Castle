@@ -4,6 +4,7 @@ import {
   LISTEN_TO_USER,
   REGISTER_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
+  AUTH_FAIL
 } from './../actions/types';
 
 const INITIAL_STATE = { user: null, error: null };
@@ -24,6 +25,18 @@ export default (state = INITIAL_STATE, action) => {
       };
     case REGISTER_USER_SUCCESS:
       return EXIST_STATE;
+    case LOGIN_USER_SUCCESS:
+      return {
+        user: {
+          email: action.payload.email,
+          uid: action.payload.uid
+        },
+        error: null
+      };
+    case AUTH_FAIL:
+      return {
+        error: action.payload.error
+      }
     default:
       return state;
   }

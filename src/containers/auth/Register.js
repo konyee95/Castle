@@ -33,6 +33,10 @@ class Register extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.processAuth(nextProps)
+  }
+
   validateEmail = (email) => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
@@ -63,7 +67,8 @@ class Register extends Component {
       } else {
         this.setState({
           toggleMode: true
-        })
+        });
+        this.props.registerUser(email, password);
       }
     }
   }
@@ -87,6 +92,22 @@ class Register extends Component {
           indeterminate={this.state.indeterminate}
         />
       )
+    }
+  }
+
+  processAuth(props) {
+    if (props.auth.user != null) {
+      if (props.auth.user.uid) {
+        this.setState({ toggleMode: false });
+        Alert.alert('Welcome!', 'Good to see you here!' [{text: 'OK', onPress: () => Actions.main({ type: 'reset' })}]);
+      }
+    }
+    if (props.auth.error) {
+      this.setState({
+        email: '',
+        password: '',
+        toggleMode: false
+      });
     }
   }
 

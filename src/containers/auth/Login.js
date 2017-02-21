@@ -11,6 +11,7 @@ import * as Progress from 'react-native-progress';
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import * as actions from './../../actions';
 
 import { Spinner, Input, Button } from './../../components/common/';
 
@@ -30,6 +31,10 @@ class Login extends Component {
       progress: 0,
       indeterminate: true
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.processAuth(nextProps)
   }
 
   validateEmail = (email) => {
@@ -62,7 +67,8 @@ class Login extends Component {
       } else {
         this.setState({
           toggleMode: true
-        })
+        });
+        this.props.loginUser(email, password);
       }
     }
   }
@@ -86,6 +92,21 @@ class Login extends Component {
           indeterminate={this.state.indeterminate}
         />
       )
+    }
+  }
+
+  processAuth(props) {
+    if (props.auth.user != null) {
+      if (props.auth.user.uid) {
+        Actions.main({ type: 'reset' });
+      }
+    }
+    if (props.auth.error) {
+      Alert.alert('Error', props.auth.error)
+      this.setState({
+        password: '',
+        toggleMode: false
+      })
     }
   }
 
@@ -170,4 +191,10 @@ const styles = {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps, actions)(Login);
