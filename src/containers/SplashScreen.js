@@ -73,6 +73,7 @@ const styles = {
   appTitle: {
     color: '#FFF',
     fontSize: 28,
+    fontFamily: 'HelveticaNeue-Medium',
     paddingBottom: 10,
     letterSpacing: 10
   },

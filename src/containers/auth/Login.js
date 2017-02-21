@@ -165,9 +165,9 @@ const styles = {
   },
   appTitle: {
     color: '#FFF',
-    fontSize: 28,
+    fontSize: 36,
     fontFamily: 'HelveticaNeue-Medium',
-    paddingBottom: 20,
+    paddingBottom: 60,
     letterSpacing: 7,
   },
   credentialsContainer: {
