@@ -8,6 +8,8 @@ import {
   LOGOUT_USER
 } from './../actions/types';
 
+import { REHYDRATE } from 'redux-persist/constants'
+
 const INITIAL_STATE = { user: null, error: null };
 const EXIST_STATE = { user: {}, error: null };
 

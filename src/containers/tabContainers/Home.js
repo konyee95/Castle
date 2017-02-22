@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    backgroundColor: '#333333',
+    backgroundColor: '#202020',
   },
   tab: {
     padding: 12,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   indicator: {
     flex: 1,
-    backgroundColor: '#202020',
+    backgroundColor: '#000',
     // margin: 4,
   },
   badge: {

@@ -35,15 +35,15 @@ const styles = {
     height: 80,
     width: 0.18*deviceWidth,
     fontSize: 0.10*deviceWidth,
-    color: '#FFF',
+    color: '#202020',
     paddingLeft: 19,
     marginLeft: 10,
     marginBottom: 0,
   },
   underlineStyle: {
     width: 0.18*deviceWidth,
-    height: 4,
-    backgroundColor: '#FFF',
+    height: 3,
+    backgroundColor: '#202020',
     marginLeft: 10,
     borderRadius: 10
   }

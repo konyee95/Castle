@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, TextInput, View, Text } from 'react-native';
-import { PasscodeComponent } from './../components/common';
+import { PasscodeComponent } from './../../components/common';
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
@@ -80,7 +80,7 @@ const styles = {
   },
   container: {
     flex: 1,
-    backgroundColor: '#333333',
+    backgroundColor: '#F5F5F5',
     // top: 100
   },
   innerContainer: {
@@ -92,7 +92,7 @@ const styles = {
   titleStyle: {
     fontSize: 0.08*deviceWidth,
     fontFamily: 'HelveticaNeue-Medium',
-    color: '#FFF'
+    color: '#202020'
   },
   passcodeContainer: {
     top: 0,

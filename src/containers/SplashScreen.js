@@ -31,8 +31,8 @@ class SplashScreen extends Component {
     if (props.auth.user != null) {
       console.log(props);
       if (props.auth.user.uid) {
-        Actions.main({ type: 'reset' });
-        // Actions.lock();
+        // Actions.main({ type: 'reset' });
+        Actions.lock();
       } else {
         this.wait(1000);
         Actions.register({ type: 'reset' });
@@ -69,7 +69,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#333333',
+    backgroundColor: '#202020',
   },
   appTitle: {
     color: '#FFF',

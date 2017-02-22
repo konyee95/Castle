@@ -31,8 +31,11 @@ class Account extends Component {
     return(
       <View style={[centerEverything, container]}>
         <Button
-          // buttonPadding={{ paddingTop: 25 }}
           buttonText="SIGN OUT"
+          onPress={() => this.onLogout()}
+        />
+        <Button
+          buttonText="MANAGE PASSCODE"
           onPress={() => this.onLogout()}
         />
       </View>
