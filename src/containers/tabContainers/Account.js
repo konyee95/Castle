@@ -36,7 +36,7 @@ class Account extends Component {
         />
         <Button
           buttonText="MANAGE PASSCODE"
-          onPress={() => this.onLogout()}
+          onPress={() => Actions.managePasscode()}
         />
       </View>
     )

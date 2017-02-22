@@ -4,14 +4,14 @@ import { View, Text, TouchableOpacity  } from 'react-native';
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const Button = ({ buttonPadding, buttonText, onPress }) => {
-  const { buttonStyle, buttonTextStyle} = styles;
+const Button = ({ buttonPadding, buttonText, propWidth, propTextStyle, onPress }) => {
+  const { buttonStyle, buttonTextStyle } = styles;
   return(
     <View style={buttonPadding}>
       <TouchableOpacity
-        style={styles.buttonStyle}
+        style={[buttonStyle, propWidth]}
         onPress={onPress}>
-        <Text style={buttonTextStyle}>{buttonText}</Text>
+        <Text style={[buttonTextStyle || propTextStyle]}>{buttonText}</Text>
       </TouchableOpacity>
     </View>
   )
@@ -29,7 +29,7 @@ const styles = {
     color: '#000',
     fontWeight: 'bold',
     letterSpacing: 5
-  }
+  },
 }
 
 export { Button };

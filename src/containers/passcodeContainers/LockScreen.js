@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, View, Text } from 'react-native';
+import { Alert, TextInput, View, Text } from 'react-native';
 import { PasscodeComponent } from './../../components/common';
+
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import * as actions from './../../actions';
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-export default class LockScreen extends Component {
+class LockScreen extends Component {
 
   constructor() {
     super()
@@ -17,10 +21,29 @@ export default class LockScreen extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log(this.props.auth);
+  }
+
   onUnlock(){
     const { accessCode1, accessCode2, accessCode3, accessCode4 } = this.state;
-    accessCode = accessCode1 + accessCode2 + accessCode3 + accessCode4;
+    passcode = accessCode1 + accessCode2 + accessCode3 + accessCode4;
     //unlock here
+    if (this.props.auth.passcode === null) {
+      Actions.main({ type: 'reset'}); //means its a new user
+    } else {
+      if (this.props.auth.passcode === passcode) {
+        Actions.main({ type: 'reset'});
+      } else {
+        Alert.alert('Error', 'Incorrect passcode!');
+        this.setState({
+          accessCode1: '',
+          accessCode2: '',
+          accessCode3: '',
+          accessCode4: '',
+        });
+      }
+    }
   }
 
   render() {
@@ -99,3 +122,11 @@ const styles = {
     flexDirection: 'row',
   },
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps, actions)(LockScreen);

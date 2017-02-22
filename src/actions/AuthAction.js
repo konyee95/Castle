@@ -4,7 +4,8 @@ import {
   REGISTER_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   AUTH_FAIL,
-  LOGOUT_USER
+  LOGOUT_USER,
+  SET_PASSCODE
 } from './types';
 
 const registerUserSuccess = (dispatch, user) => {
@@ -63,5 +64,12 @@ export function logoutUser() {
   firebase.auth().signOut();
   return {
     type: LOGOUT_USER
+  };
+};
+
+export function setPasscode(passcode) {
+  return {
+    type: SET_PASSCODE,
+    payload: passcode
   };
 };
