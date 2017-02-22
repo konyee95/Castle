@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions';
 
 import SplashScreen from './containers/SplashScreen';
+import LockScreen from './containers/LockScreen';
 import Register from './containers/auth/Register';
 import Login from './containers/auth/Login';
 
@@ -26,6 +27,9 @@ class RouterComponent extends Component {
           <Scene key="splash" component={SplashScreen} initial />
           <Scene key="login" component={Login} />
           <Scene key="register" component={Register}  />
+          <Scene key="lock" direction="vertical">
+            <Scene key="lockScreen" schema="modal" component={LockScreen} />
+          </Scene>
         </Scene>
         <Scene key="main">
           <Scene key="home" component={Home} initial />
