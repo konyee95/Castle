@@ -99,7 +99,7 @@ class Register extends Component {
     if (props.auth.user != null) {
       if (props.auth.user.uid) {
         this.setState({ toggleMode: false });
-        Alert.alert('Welcome!', 'Good to see you here!' [{text: 'OK', onPress: () => Actions.main({ type: 'reset' })}]);
+        Alert.alert('Welcome!', 'Good to see you here!', [{text: 'OK', onPress: () => Actions.main({ type: 'reset' })}]);
       }
     }
     if (props.auth.error) {
