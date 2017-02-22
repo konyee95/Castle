@@ -6,6 +6,8 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
@@ -53,12 +55,12 @@ class ManagePasscode extends Component {
     return (
       <View style={[container]}>
         <View style={[controlContainer]}>
-          <Button
-            buttonText="Cancel"
-            propWidth={propWidth}
-            propTextStyle={propTextStyle}
+          <Ionicons
+            name="ios-arrow-round-back"
+            size={50}
+            style={{ color: '#202020', paddingLeft: 20 }}
             onPress={() => Actions.pop()}
-           />
+          />
         </View>
         <View style={[centerEverything, innerContainer]}>
           <View style={[titleContainer]}>
