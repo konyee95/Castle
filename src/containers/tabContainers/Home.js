@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, View, Text, StyleSheet } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -12,7 +14,7 @@ export default class Home extends Component {
   };
 
   state = {
-    index: 1,
+    index: 2,
     routes: [
       { key: '1', icon: 'ios-navigate' },
       { key: '2', icon: 'md-add' },
@@ -86,8 +88,6 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log(this.state);
-    console.log(this.props);
     return (
       <TabViewAnimated
         style={[ styles.container, this.props.style ]}
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabbar: {
-    backgroundColor: '#202020',
+    backgroundColor: '#333333',
   },
   tab: {
     padding: 12,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   indicator: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#202020',
     // margin: 4,
   },
   badge: {

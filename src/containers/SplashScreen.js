@@ -69,7 +69,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#212121',
+    backgroundColor: '#333333',
   },
   appTitle: {
     color: '#FFF',

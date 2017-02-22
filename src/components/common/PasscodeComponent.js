@@ -35,7 +35,7 @@ const styles = {
     height: 80,
     width: 0.18*deviceWidth,
     fontSize: 0.10*deviceWidth,
-    color: '#212121',
+    color: '#FFF',
     paddingLeft: 19,
     marginLeft: 10,
     marginBottom: 0,
@@ -43,7 +43,7 @@ const styles = {
   underlineStyle: {
     width: 0.18*deviceWidth,
     height: 4,
-    backgroundColor: '#202020',
+    backgroundColor: '#FFF',
     marginLeft: 10,
     borderRadius: 10
   }

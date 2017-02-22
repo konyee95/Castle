@@ -80,7 +80,7 @@ const styles = {
   },
   container: {
     flex: 1,
-    backgroundColor: '#E7DDD3',
+    backgroundColor: '#333333',
     // top: 100
   },
   innerContainer: {
@@ -90,7 +90,9 @@ const styles = {
     marginBottom: 0.05*deviceWidth
   },
   titleStyle: {
-    fontSize: 0.08*deviceWidth
+    fontSize: 0.08*deviceWidth,
+    fontFamily: 'HelveticaNeue-Medium',
+    color: '#FFF'
   },
   passcodeContainer: {
     top: 0,

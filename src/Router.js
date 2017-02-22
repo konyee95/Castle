@@ -27,8 +27,8 @@ class RouterComponent extends Component {
           <Scene key="splash" component={SplashScreen} initial />
           <Scene key="login" component={Login} />
           <Scene key="register" component={Register}  />
-          <Scene key="lock" direction="vertical">
-            <Scene key="lockScreen" schema="modal" component={LockScreen} />
+          <Scene key="lock" direction="vertical" >
+            <Scene key="lockScreen" schema="modal" component={LockScreen} panHandlers={null} />
           </Scene>
         </Scene>
         <Scene key="main">
