@@ -14,11 +14,10 @@ export default class Home extends Component {
   };
 
   state = {
-    index: 2,
+    index: 1,
     routes: [
       { key: '1', icon: 'ios-navigate' },
-      { key: '2', icon: 'md-add' },
-      { key: '3', icon: 'ios-person' },
+      { key: '2', icon: 'ios-person' },
     ],
   };
 
@@ -79,8 +78,6 @@ export default class Home extends Component {
     case '1':
       return <View style={[ styles.page, { backgroundColor: '#F5F5F5' } ]} />;
     case '2':
-      return <View style={[ styles.page, { backgroundColor: '#F5F5F5' } ]} />;
-    case '3':
       return <Account />
     default:
       return null;
