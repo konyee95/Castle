@@ -39,7 +39,7 @@ class ManagePasscode extends Component {
       'Save passcode',
       'Confirm?',
       [
-        {text: "Cancel", onPress: () => Actions.pop() },
+        {text: "Cancel", onPress: () => Actions.pop(), style: 'cancel' },
         {text: "Save", onPress: () => {
           this.props.setPasscode(passcode);
           Alert.alert('Alert', 'Passcode has been updated!');
@@ -48,6 +48,21 @@ class ManagePasscode extends Component {
       ]
     )
   }
+
+  removePasscode() {
+    Alert.alert(
+      'Remove Passcode',
+      'Your information will stay secure with Passcode-enabled',
+      [
+        {text: 'Cancel', onPress: () => console.log('Remove password cancel'), style: 'cancel'},
+        {text: 'Remove', onPress: () => {
+          this.props.removePasscode();
+          Alert.alert('Alert', 'Passcode has been removed!');
+          Actions.pop();
+        }},
+      ]
+    );
+  };
 
   render() {
     const { centerEverything, container, controlContainer, innerContainer, titleContainer, titleStyle,
@@ -61,10 +76,16 @@ class ManagePasscode extends Component {
             style={{ color: '#202020', paddingLeft: 20 }}
             onPress={() => Actions.pop()}
           />
+          <Ionicons
+            name="ios-cog"
+            size={35}
+            style={{ color: '#202020', paddingRight: 20, paddingTop: 10 }}
+            onPress={() => this.removePasscode()}
+          />
         </View>
         <View style={[centerEverything, innerContainer]}>
           <View style={[titleContainer]}>
-            <Text style={titleStyle}>Enter Passcode</Text>
+            <Text style={[titleStyle]}>Enter Passcode</Text>
           </View>
           <View style={[passcodeContainer]}>
             <PasscodeComponent

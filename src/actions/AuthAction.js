@@ -5,7 +5,8 @@ import {
   LOGIN_USER_SUCCESS,
   AUTH_FAIL,
   LOGOUT_USER,
-  SET_PASSCODE
+  SET_PASSCODE,
+  REMOVE_PASSCODE
 } from './types';
 
 const registerUserSuccess = (dispatch, user) => {
@@ -71,5 +72,11 @@ export function setPasscode(passcode) {
   return {
     type: SET_PASSCODE,
     payload: passcode
+  };
+};
+
+export function removePasscode() {
+  return {
+    type: REMOVE_PASSCODE
   };
 };

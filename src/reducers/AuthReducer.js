@@ -6,7 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   AUTH_FAIL,
   LOGOUT_USER,
-  SET_PASSCODE
+  SET_PASSCODE,
+  REMOVE_PASSCODE
 } from './../actions/types';
 
 import { REHYDRATE } from 'redux-persist/constants'
@@ -48,6 +49,8 @@ export default (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case SET_PASSCODE:
       return { ...state, passcode: action.payload }
+    case REMOVE_PASSCODE:
+      return { ...state, passcode: null }
     case REHYDRATE:
       var incoming = action.payload.auth;
       console.log(incoming);

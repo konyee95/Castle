@@ -29,10 +29,10 @@ class SplashScreen extends Component {
 
   processAuth(props) {
     if (props.auth.user != null) {
-      console.log(props);
-      if (props.auth.user.uid) {
-        // Actions.main({ type: 'reset' });
+      if (props.auth.user.uid && props.auth.passcode != null) {
         Actions.lock();
+      } else if (props.auth.user.uid && props.auth.passcode == null) {
+        Actions.main({ type: 'reset' });
       } else {
         this.wait(1000);
         Actions.register({ type: 'reset' });

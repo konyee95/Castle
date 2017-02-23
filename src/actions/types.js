@@ -4,3 +4,4 @@ export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const AUTH_FAIL = 'auth_fail';
 export const LOGOUT_USER = 'logout_user';
 export const SET_PASSCODE = 'set_passcode';
+export const REMOVE_PASSCODE = 'remove_passcode';
