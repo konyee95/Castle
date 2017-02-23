@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import Calculator from './Calculator';
 import Account from './Account';
 
 export default class Home extends Component {
@@ -17,7 +18,8 @@ export default class Home extends Component {
     index: 1,
     routes: [
       { key: '1', icon: 'ios-navigate' },
-      { key: '2', icon: 'ios-person' },
+      { key: '2', icon: 'ios-calculator' },
+      { key: '3', icon: 'ios-person' },
     ],
   };
 
@@ -78,6 +80,8 @@ export default class Home extends Component {
     case '1':
       return <View style={[ styles.page, { backgroundColor: '#F5F5F5' } ]} />;
     case '2':
+      return <Calculator />
+    case '3':
       return <Account />
     default:
       return null;
