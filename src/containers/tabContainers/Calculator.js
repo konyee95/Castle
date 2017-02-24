@@ -8,15 +8,37 @@ import {
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
+const cellKeys = [
+  ['AC', '±', '﹪', '÷'],
+  [7, 8, 9, '×'],
+  [4, 5, 6, '-'],
+  [1, 2, 3, '+'],
+  [0, '', '.', '=']
+]
+
 class Calculator extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+
+    this.initialState = {
       previousInputValue: 0,
-      result: 0
-    }
+      inputValue: 0,
+      selectedSymbol: null
+    };
+
+    this.state = this.initialState;
   }
+
+  // renderCells() {
+  //   let cells = cellKeys.map((row, id) => {
+  //     let cellRow = row.map(cellVal, columnId) => {
+  //       return <Cell
+  //                 value={cellVal}
+  //
+  //     }
+  //   })
+  // }
 
   onButtonPressed(input) {
     switch (typeof input) {
@@ -28,7 +50,8 @@ class Calculator extends Component {
   }
 
   onNumber(input) {
-    console.log('its a number');
+    let inputValue = (this.state.inputValue * 10) + input;
+    this.setState({ inputValue });
   }
 
   onString(input) {
@@ -37,20 +60,42 @@ class Calculator extends Component {
         console.log('do nothing');
         break;
       case "AC":
-        this.setState({ result: 0 });
+        this.setState({ inputValue: 0 });
         break;
       case "±":
-        console.log('±');
+        let flipValue = this.state.inputValue * -1;
+        this.setState({ inputValue: flipValue });
         break;
-      default:
+      case '%':
+        let value = this.state.inputValue / 100;
+        this.setState({ inputValue: value });
+        break;
+      case '/':
+      case '*':
+      case '-':
+      case '+':
+        this.setState({
+          selectedSymbol: input,
+          previousInputValue: this.state.inputValue,
+          inputValue: 0
+        });
+        break;
+      case '=':
+        let symbol = this.state.selectedSymbol,
+          inputValue = this.state.inputValue,
+          previousInputValue = this.state.previousInputValue;
 
+        if (!symbol) {
+          return;
+        }
+
+        this.setState({
+          previousInputValue: 0,
+          inputValue: eval(previousInputValue + symbol + inputValue),
+          selectedSymbol: null
+        });
+        break;
     }
-  }
-
-  clearResult() {
-    this.setState({
-      result: 0
-    })
   }
 
   render() {
@@ -59,7 +104,7 @@ class Calculator extends Component {
       <View style={[container]}>
         <View style={upperContainer}>
           <View style={[resultLabel]}>
-            <Text style={resultLabelText}>{this.state.result}</Text>
+            <Text style={resultLabelText}>{this.state.inputValue}</Text>
           </View>
         </View>
         <View style={[bottomContainer]}>
@@ -67,7 +112,7 @@ class Calculator extends Component {
             <View style={rows}>
               <Cell keyValue="AC" onPress={() => this.onButtonPressed("AC")} />
               <Cell keyValue="±" onPress={() => this.onButtonPressed("±")} />
-              <Cell keyValue="﹪" onPress={() => this.onButtonPressed("﹪")} />
+              <Cell keyValue="﹪" onPress={() => this.onButtonPressed("%")} />
             </View>
             <View style={rows}>
               <Cell keyValue="7" onPress={() => this.onButtonPressed(7)} />
@@ -91,8 +136,8 @@ class Calculator extends Component {
             </View>
           </View>
           <View style={rightPane}>
-            <Cell keyValue="÷" onPress={() => this.onButtonPressed("÷")}/>
-            <Cell keyValue="×" onPress={() => this.onButtonPressed("×")}/>
+            <Cell keyValue="÷" onPress={() => this.onButtonPressed("/")}/>
+            <Cell keyValue="×" onPress={() => this.onButtonPressed("*")}/>
             <Cell keyValue="-" onPress={() => this.onButtonPressed("-")}/>
             <Cell keyValue="+" onPress={() => this.onButtonPressed("+")}/>
             <Cell keyValue="=" onPress={() => this.onButtonPressed("=")}/>
@@ -109,8 +154,8 @@ class Cell extends Component {
     return(
       <TouchableHighlight
         onPress={this.props.onPress}
-        underlayColor="transparent"
-        activeOpacity={0.5}>
+        underlayColor="#202020"
+        activeOpacity={0.2}>
         <View style={[centerEverything, cellStyle]}>
           <Text style={keyValueStyle}>{this.props.keyValue}</Text>
         </View>
@@ -141,14 +186,15 @@ const styles = {
   },
   resultLabel: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignSelf: 'flex-end',
+    justifyContent: 'center',
     padding: 10
   },
   resultLabelText: {
     fontSize: 80,
     fontFamily: 'Helvetica Neue',
+    textAlign: 'right',
     color: '#202020',
+    padding: 20
   },
   leftPane: {
     flex: .75,
