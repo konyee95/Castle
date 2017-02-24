@@ -12,6 +12,7 @@ import Login from './containers/auth/Login';
 
 import Home from './containers/tabContainers/Home';
 import Account from './containers/tabContainers/Account';
+import Calculator from './containers/tabContainers/Calculator';
 import ManagePasscode from './containers/passcodeContainers/ManagePasscode';
 
 class RouterComponent extends Component {
@@ -35,6 +36,7 @@ class RouterComponent extends Component {
         <Scene key="main">
           <Scene key="home" component={Home} initial />
           <Scene key="account" component={Account} />
+          <Scene key="calculator" component={Calculator} />
           <Scene key="managePasscode" schema="modal" component={ManagePasscode} direction="horizontal" />
         </Scene>
       </Router>

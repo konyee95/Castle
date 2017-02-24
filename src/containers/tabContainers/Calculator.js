@@ -5,6 +5,9 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Actions } from 'react-native-router-flux';
+
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
@@ -103,6 +106,12 @@ class Calculator extends Component {
     return(
       <View style={[container]}>
         <View style={upperContainer}>
+          <Ionicons
+            name="ios-arrow-round-back"
+            size={50}
+            style={{ color: '#202020', paddingLeft: 20, paddingTop: 20 }}
+            onPress={() => Actions.pop()}
+          />
           <View style={[resultLabel]}>
             <Text style={resultLabelText}>{this.state.inputValue}</Text>
           </View>
@@ -210,7 +219,7 @@ const styles = {
   },
   cellStyle: {
     width: 0.25*deviceWidth,
-    height: (deviceHeight / 7.7), //odd config right? haha
+    height: (deviceHeight / 7),
     borderWidth: 0.5,
     borderColor: '#777777'
   },

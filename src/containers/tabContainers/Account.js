@@ -6,6 +6,8 @@ import {
   Text,
 } from 'react-native';
 
+import Calculator from './Calculator';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { Actions } from 'react-native-router-flux';
@@ -34,7 +36,7 @@ class Account extends Component {
 
   render() {
     const { testShit, centerEverything, container, upperContainer, bottomContainer, helFont, accountPicture, accountText,
-      } = styles;
+      actionButtonContainer, actionButton} = styles;
     return(
       <View style={[centerEverything, container]}>
         <View style={[upperContainer]}>
@@ -53,13 +55,25 @@ class Account extends Component {
             upperLabel="Last Name"
             bottomLabel="Doe"
           />
-          <Button
-            buttonText="SIGN OUT"
-            onPress={() => this.onLogout()}
+        </View>
+        <View style={[centerEverything, actionButtonContainer]}>
+          <Ionicons
+            name="ios-calculator"
+            size={40}
+            style={actionButton}
+            onPress={() => Actions.calculator()}
           />
-          <Button
-            buttonText="MANAGE PASSCODE"
+          <Ionicons
+            name="md-lock"
+            size={40}
+            style={actionButton}
             onPress={() => Actions.managePasscode()}
+          />
+          <Ionicons
+            name="md-log-out"
+            size={40}
+            style={actionButton}
+            onPress={() => this.onLogout()}
           />
         </View>
       </View>
@@ -89,7 +103,7 @@ const styles = {
     paddingLeft: 20
   },
   bottomContainer: {
-    flex: .8
+    flex: .6
   },
   helFont: {
     fontFamily: 'Helvetica Neue',
@@ -103,6 +117,16 @@ const styles = {
     color: '#525760',
     padding: 20
   },
+  actionButtonContainer: {
+    flex: .2,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: deviceWidth,
+    // height: 100%
+  },
+  actionButton: {
+    color: '#202020',
+  }
 }
 
 const mapStateToProps = (state) => {
