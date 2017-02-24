@@ -28,7 +28,8 @@ class Discover extends Component {
             autoplay={true}
             autoplayInterval={2000}
             animationOptions={{ easing: Easing.elastic(1) }}
-            contentContainerCustomStyle={contentContainerCustomStyle}>
+            contentContainerCustomStyle={[contentContainerCustomStyle]}
+            showsHorizontalScrollIndicator={false}>
             <InfoBox featureText="43.29" featureDesc="Daily Average" dollarSign="$ " />
             <InfoBox featureText="Overspent" featureDesc="Analysis" />
             <InfoBox featureText="1080.90" featureDesc="Monthly" dollarSign="$ " />
@@ -56,7 +57,8 @@ const styles = {
     flex: 8
   },
   bottom: {
-    flex: 2
+    flex: 2,
+    marginBottom: 12
   },
   contentContainerCustomStyle: {
     height: 100
