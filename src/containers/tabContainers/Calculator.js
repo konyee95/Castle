@@ -163,7 +163,7 @@ class Cell extends Component {
     return(
       <TouchableHighlight
         onPress={this.props.onPress}
-        underlayColor="#202020"
+        // underlayColor="#202020"
         activeOpacity={0.2}>
         <View style={[centerEverything, cellStyle]}>
           <Text style={keyValueStyle}>{this.props.keyValue}</Text>

@@ -125,7 +125,7 @@ const styles = {
     // height: 100%
   },
   actionButton: {
-    color: '#202020',
+    color: '#232323',
   }
 }
 

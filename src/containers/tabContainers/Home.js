@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Calculator from './Calculator';
+import Discover from './Discover';
 import Account from './Account';
 
 export default class Home extends Component {
@@ -15,7 +15,7 @@ export default class Home extends Component {
   };
 
   state = {
-    index: 1,
+    index: 0,
     routes: [
       { key: '1', icon: 'ios-navigate' },
       { key: '2', icon: 'ios-settings' },
@@ -77,7 +77,7 @@ export default class Home extends Component {
   _renderScene = ({ route }) => {
     switch (route.key) {
     case '1':
-      return <View style={[ styles.page, { backgroundColor: '#F5F5F5' } ]} />;
+      return <Discover />;
     case '2':
       return <Account />
     default:

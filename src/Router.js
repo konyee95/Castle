@@ -11,6 +11,7 @@ import Register from './containers/auth/Register';
 import Login from './containers/auth/Login';
 
 import Home from './containers/tabContainers/Home';
+import Discover from './containers/tabContainers/Discover';
 import Account from './containers/tabContainers/Account';
 import Calculator from './containers/tabContainers/Calculator';
 import ManagePasscode from './containers/passcodeContainers/ManagePasscode';
@@ -35,6 +36,7 @@ class RouterComponent extends Component {
         </Scene>
         <Scene key="main">
           <Scene key="home" component={Home} initial />
+          <Scene key="discover" component={Discover} />
           <Scene key="account" component={Account} />
           <Scene key="calculator" component={Calculator} />
           <Scene key="managePasscode" schema="modal" component={ManagePasscode} direction="horizontal" />
