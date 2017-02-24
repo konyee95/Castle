@@ -85,11 +85,14 @@ export default class Home extends Component {
     }
   };
 
+  _configureTransition = () => null;
+
   render() {
     return (
       <TabViewAnimated
         style={[ styles.container, this.props.style ]}
         navigationState={this.state}
+        configureTransition={this._configureTransition}
         renderScene={this._renderScene}
         renderFooter={this._renderFooter}
         onRequestChangeTab={this._handleChangeTab}
