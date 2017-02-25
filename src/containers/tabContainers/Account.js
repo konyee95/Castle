@@ -36,7 +36,7 @@ class Account extends Component {
 
   render() {
     const { testShit, centerEverything, container, upperContainer, bottomContainer, helFont, accountPicture, accountText,
-      actionButtonContainer, actionButton} = styles;
+      actionButtonContainer, actionButton, labelSizeA, labelSizeB} = styles;
     return(
       <View style={[centerEverything, container]}>
         <View style={[upperContainer]}>
@@ -50,10 +50,14 @@ class Account extends Component {
           <Label
             upperLabel="First Name"
             bottomLabel="John"
+            labelSizeA={labelSizeA}
+            labelSizeB={labelSizeB}
           />
           <Label
             upperLabel="Last Name"
             bottomLabel="Doe"
+            labelSizeA={labelSizeA}
+            labelSizeB={labelSizeB}
           />
         </View>
         <View style={[centerEverything, actionButtonContainer]}>
@@ -114,7 +118,7 @@ const styles = {
     height: deviceWidth*0.25,
   },
   accountText: {
-    fontSize: 18,
+    fontSize: Math.round(deviceWidth*0.05),
     color: '#525760',
     padding: 20
   },
@@ -127,7 +131,13 @@ const styles = {
   },
   actionButton: {
     color: '#232323',
-  }
+  },
+  labelSizeA: {
+    fontSize: Math.round(deviceWidth*0.04)
+  },
+  labelSizeB: {
+    fontSize: Math.round(deviceWidth*0.05)
+  },
 }
 
 const mapStateToProps = (state) => {

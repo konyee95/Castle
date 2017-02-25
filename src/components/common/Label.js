@@ -4,14 +4,14 @@ import { View, Text  } from 'react-native';
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const Label = ({ upperLabel, bottomLabel }) => {
+const Label = ({ upperLabel, bottomLabel, labelSizeA, labelSizeB }) => {
   const { helFont, infoLabel, infoLabelUpperText, infoLabelBottomText } = styles;
   return(
     <View style={infoLabel}>
-      <Text style={[helFont, infoLabelUpperText]}>
+      <Text style={[helFont, infoLabelUpperText, labelSizeA]}>
         {upperLabel}
       </Text>
-      <Text style={[helFont, infoLabelBottomText]}>
+      <Text style={[helFont, infoLabelBottomText, labelSizeB]}>
         {bottomLabel}
       </Text>
     </View>
