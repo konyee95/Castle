@@ -102,7 +102,7 @@ class Login extends Component {
       }
     }
     if (props.auth.error) {
-      Alert.alert('Error', props.auth.error)
+      // Alert.alert('Error', props.auth.error) //no need because Register.js is still alive, will handle for us
       this.setState({
         password: '',
         toggleMode: false
