@@ -62,7 +62,7 @@ const styles = {
     marginBottom: 12
   },
   contentContainerCustomStyle: {
-    height: 80
+    height: deviceWidth*0.2,
   }
 }
 

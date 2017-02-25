@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
+  LayoutAnimation,
   View,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
 
@@ -15,11 +17,41 @@ const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
 class AddExpenses extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      entered: false,
+      spentAmount: ''
+    }
+  }
+
+  componentWillUpdate() {
+    LayoutAnimation.easeInEaseOut();
+  }
+
+  renderSaveButton() {
+    if (this.state.entered && this.state.spentAmount != '') {
+      return (
+        <TouchableOpacity
+          style={[styles.centerEverything, styles.saveButtonStyle]}
+          onPress={() => console.log('sdsd')}>
+          <Ionicons
+            name="md-send"
+            size={22}
+          />
+        </TouchableOpacity>
+      )
+    }
+  }
+
   render() {
-    const { testShit, centerEverything, container, upperContainer, contentContainer, helFont, propViewStyle, propTextInputStyle} = styles;
+    const { testShit, centerEverything, container, upperContainer, contentContainer, helFont,
+      propViewStyle, propTextInputStyle, saveButtonStyle, saveButtonText} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
+
           <View style={[centerEverything, upperContainer]}>
             <ExpensesInput
               propViewStyle={propViewStyle}
@@ -29,7 +61,10 @@ class AddExpenses extends Component {
               placeholderTextColor="#525760"
               textAlign="center"
               iconName="ios-flash"
+              onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
+              value={this.state.spentAmount}
             />
+            {this.renderSaveButton()}
           </View>
           <View style={[contentContainer]}>
 
@@ -71,9 +106,18 @@ const styles = {
     shadowOpacity: 1
   },
   propTextInputStyle: {
-    fontSize: Math.round(deviceWidth*0.04),
-    color: '#D3D3D3',
+    fontSize: Math.round(deviceWidth*0.043),
+    color: '#000',
     backgroundColor: '#fff'
+  },
+  saveButtonStyle: {
+    backgroundColor: 'transparent',
+    paddingLeft: 20
+  },
+  saveButtonText: {
+    fontSize: Math.round(deviceWidth*0.043),
+    fontWeight: 'bold',
+    letterSpacing: 2,
   }
 }
 
