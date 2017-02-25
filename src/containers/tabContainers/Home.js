@@ -6,6 +6,7 @@ import { TabViewAnimated, TabBar, TabViewPagerScroll, TabViewPagerAndroid, TabVi
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Discover from './Discover';
+import AddExpenses from './AddExpenses';
 import Account from './Account';
 
 export default class Home extends Component {
@@ -18,7 +19,8 @@ export default class Home extends Component {
     index: 0,
     routes: [
       { key: '1', icon: 'ios-navigate' },
-      { key: '2', icon: 'ios-settings' },
+      { key: '2', icon: 'md-add' },
+      { key: '3', icon: 'ios-settings' },
     ],
   };
 
@@ -79,7 +81,9 @@ export default class Home extends Component {
     case '1':
       return <Discover />;
     case '2':
-      return <Account />
+      return <AddExpenses />;
+    case '3':
+      return <Account />;
     default:
       return null;
     }

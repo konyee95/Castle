@@ -28,7 +28,7 @@ const styles = {
   },
   boxStyle: {
     backgroundColor: '#FFF',
-    height: 100,
+    height: 80,
     width: deviceWidth*0.45,
     justifyContent: 'center',
     marginLeft: 2

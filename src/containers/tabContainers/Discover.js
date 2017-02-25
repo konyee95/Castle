@@ -26,7 +26,7 @@ class Discover extends Component {
             sliderWidth={deviceWidth}
             inactiveSlideScale={1}
             autoplay={true}
-            autoplayInterval={2000}
+            autoplayInterval={2500}
             animationOptions={{ easing: Easing.elastic(1) }}
             contentContainerCustomStyle={[contentContainerCustomStyle]}
             showsHorizontalScrollIndicator={false}>
@@ -54,14 +54,14 @@ const styles = {
     backgroundColor: '#F5F5F5'
   },
   upper: {
-    flex: 8
+    flex: 8.5
   },
   bottom: {
-    flex: 2,
+    flex: 1.5,
     marginBottom: 12
   },
   contentContainerCustomStyle: {
-    height: 100
+    height: 80
   }
 }
 
