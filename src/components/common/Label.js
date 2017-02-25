@@ -37,7 +37,7 @@ const styles = {
     paddingBottom: 5
   },
   infoLabelBottomText: {
-    color: '#525760',
+    color: '#D3D3D3',
     fontSize: 20,
     fontWeight: '500'
   }

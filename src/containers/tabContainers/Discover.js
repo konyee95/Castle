@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Easing
+  Easing,
+  PixelRatio
 } from 'react-native';
 
 import Carousel from 'react-native-snap-carousel';

@@ -59,19 +59,19 @@ class Account extends Component {
         <View style={[centerEverything, actionButtonContainer]}>
           <Ionicons
             name="ios-calculator"
-            size={40}
+            size={35}
             style={actionButton}
             onPress={() => Actions.calculator()}
           />
           <Ionicons
             name="md-lock"
-            size={40}
+            size={35}
             style={actionButton}
             onPress={() => Actions.managePasscode()}
           />
           <Ionicons
             name="md-log-out"
-            size={40}
+            size={33}
             style={actionButton}
             onPress={() => this.onLogout()}
           />
@@ -93,11 +93,11 @@ const styles = {
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#F5F5F5'
+    backgroundColor: '#F5F5F5',
+    paddingTop: 24,
   },
   upperContainer: {
     flex: .2,
-    marginTop: 24,
     width: deviceWidth,
     // paddingTop: 20,
     justifyContent: 'center',
