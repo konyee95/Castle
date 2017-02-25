@@ -28,7 +28,7 @@ const styles = {
   },
   boxStyle: {
     backgroundColor: '#FFF',
-    height: 80,
+    height: deviceHeight*0.11,
     width: deviceWidth*0.45,
     justifyContent: 'center',
     marginLeft: 2
@@ -44,7 +44,7 @@ const styles = {
   },
   boxTextStyle: {
     color: 'grey',
-    fontSize: 20,
+    fontSize: Math.round(deviceWidth*0.053),
     fontFamily: 'Helvetica Neue',
     letterSpacing: 2
   },
@@ -52,7 +52,7 @@ const styles = {
     color: '#000'
   },
   lessFeature: {
-    fontSize: 16,
+    fontSize: Math.round(deviceWidth*0.04),
     letterSpacing: 0
   }
 }
