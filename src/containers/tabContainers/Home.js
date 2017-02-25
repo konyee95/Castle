@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Animated, View, Text, StyleSheet } from 'react-native';
+import { Animated, View, Text, StyleSheet, Platform } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
-import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import { TabViewAnimated, TabBar, TabViewPagerScroll, TabViewPagerAndroid, TabViewPagerPan } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Discover from './Discover';
@@ -85,6 +85,35 @@ export default class Home extends Component {
     }
   };
 
+  //disable swipe gesture
+  _renderPager = (props) => {
+    switch (Platform.OS) {
+    case 'ios':
+      return (
+        <TabViewPagerScroll
+          {...props}
+          animationEnabled={false}
+          swipeEnabled={false}
+        />
+      );
+    case 'android':
+      return (
+        <TabViewPagerAndroid
+          {...props}
+          animationEnabled={false}
+          swipeEnabled={false}
+        />
+      );
+    default:
+      return (
+        <TabViewPagerPan
+          {...props}
+          swipeEnabled={false}
+        />
+      );
+    }
+  };
+
   _configureTransition = () => null;
 
   render() {
@@ -95,6 +124,7 @@ export default class Home extends Component {
         configureTransition={this._configureTransition}
         renderScene={this._renderScene}
         renderFooter={this._renderFooter}
+        renderPager={this._renderPager}
         onRequestChangeTab={this._handleChangeTab}
       />
     );
