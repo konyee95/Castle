@@ -5,6 +5,7 @@ import {
   REGISTER_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   AUTH_FAIL,
+  CLEAR_ERROR_MESSAGE,
   LOGOUT_USER,
   SET_PASSCODE,
   REMOVE_PASSCODE
@@ -13,7 +14,7 @@ import {
 import { REHYDRATE } from 'redux-persist/constants'
 
 const INITIAL_STATE = { user: null, error: null, passcode: null };
-const EXIST_STATE = { user: {}, error: null, passcode: '' };
+const EXIST_STATE = { user: {}, error: null, passcode: null };
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action);
@@ -39,12 +40,12 @@ export default (state = INITIAL_STATE, action) => {
           uid: action.payload.uid
         },
         error: null,
-        passcode: ''
+        passcode: null
       };
     case AUTH_FAIL:
-      return {
-        error: action.payload.error
-      }
+      return { ...state, error: action.payload.error }
+    case CLEAR_ERROR_MESSAGE:
+      return { ...state, error: action.payload };
     case LOGOUT_USER:
       return INITIAL_STATE;
     case SET_PASSCODE:

@@ -4,6 +4,7 @@ import {
   REGISTER_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   AUTH_FAIL,
+  CLEAR_ERROR_MESSAGE,
   LOGOUT_USER,
   SET_PASSCODE,
   REMOVE_PASSCODE
@@ -30,6 +31,13 @@ const authFail = (dispatch, error) => {
       error: error.message
     }
   });
+};
+
+export function clearErrorMessage() {
+  return {
+    type: CLEAR_ERROR_MESSAGE,
+    payload: null
+  };
 };
 
 export function listenToUser() {
