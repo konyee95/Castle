@@ -99,18 +99,19 @@ const styles = {
     flex: .2,
     marginTop: 24,
     width: deviceWidth,
-    paddingTop: 20,
+    // paddingTop: 20,
+    justifyContent: 'center',
     paddingLeft: 20
   },
   bottomContainer: {
-    flex: .6
+    flex: .65
   },
   helFont: {
     fontFamily: 'Helvetica Neue',
   },
   accountPicture: {
-    width: deviceWidth*0.28,
-    height: deviceWidth*0.28,
+    width: deviceWidth*0.25,
+    height: deviceWidth*0.25,
   },
   accountText: {
     fontSize: 18,
@@ -118,7 +119,7 @@ const styles = {
     padding: 20
   },
   actionButtonContainer: {
-    flex: .2,
+    flex: .15,
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: deviceWidth,

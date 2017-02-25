@@ -96,7 +96,7 @@ class Register extends Component {
   }
 
   processAuth(props) {
-    console.log(props.auth);
+    // console.log(props.auth);
     if (props.auth.user != null) {
       if (props.auth.user.uid) {
         this.setState({ toggleMode: false });

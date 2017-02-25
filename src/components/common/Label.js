@@ -24,7 +24,7 @@ const styles = {
   },
   infoLabel: {
     width: deviceWidth,
-    height: deviceHeight*0.13,
+    height: deviceHeight*0.1,
     backgroundColor: '#FFF',
     borderColor: '#EDEDED',
     borderWidth: 1,
@@ -32,13 +32,13 @@ const styles = {
     paddingLeft: 20
   },
   infoLabelUpperText: {
-    color: '#A4A4AC',
-    fontSize: 18,
-    paddingBottom: 10
+    color: 'grey',
+    fontSize: 16,
+    paddingBottom: 5
   },
   infoLabelBottomText: {
-    color: '#A4A4AC',
-    fontSize: 22,
+    color: '#525760',
+    fontSize: 20,
     fontWeight: '500'
   }
 }
