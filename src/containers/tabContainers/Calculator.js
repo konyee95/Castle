@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -161,14 +161,12 @@ class Cell extends Component {
   render() {
     const { centerEverything, cellStyle, keyValueStyle } = styles;
     return(
-      <TouchableHighlight
+      <TouchableOpacity
         onPress={this.props.onPress}
-        // underlayColor="#202020"
+        style={[centerEverything, cellStyle]}
         activeOpacity={0.2}>
-        <View style={[centerEverything, cellStyle]}>
-          <Text style={keyValueStyle}>{this.props.keyValue}</Text>
-        </View>
-      </TouchableHighlight>
+        <Text style={keyValueStyle}>{this.props.keyValue}</Text>
+      </TouchableOpacity>
     )
   }
 }
