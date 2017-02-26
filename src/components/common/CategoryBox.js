@@ -12,7 +12,7 @@ const CategoryBox = ({ onPress, iconName, categoryName }) => {
   const { bitOfShadow, boxContainer, categoryText } = styles;
   return(
     <TouchableOpacity style={[boxContainer, bitOfShadow]} onPress={onPress}>
-      <Ionicons name={iconName} size={22} color="#FFF" />
+      <Ionicons name={iconName} size={20} color="#FFF" />
       <Text style={categoryText}>{categoryName}</Text>
     </TouchableOpacity>
   )
@@ -35,7 +35,7 @@ const styles = {
     },
     categoryText: {
       color: '#FFF',
-      fontSize: 18,
+      fontSize: Math.round(deviceWidth*0.043),
       fontFamily: 'HelveticaNeue-Medium',
       paddingLeft: 20,
       letterSpacing: 5

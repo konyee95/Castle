@@ -35,6 +35,7 @@ class AddExpenses extends Component {
       entered: false,
       spentAmount: '',
       date: '',
+      time: '',
       dateSelected: false,
       note: ''
     }
@@ -61,31 +62,79 @@ class AddExpenses extends Component {
 
   render() {
     console.log(this.state.date)
-    const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle} = styles;
+    const { testShit, systemFont, centerEverything, container, upperContainer, buttonContainer, helFont,
+      bitOfShadow, propTextInputStyle, saveButtonStyle, datePickerStyle, noteStyle, dateTimeContainer} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-        <View style={container}>
+        <View style={[container, centerEverything]}>
 
-          <View style={[centerEverything, contentContainer]}>
-             <View style={[centerEverything, upperContainer]}>
-                <ExpensesInput
-                  propViewStyle={[bitOfShadow]}
-                  propTextInputStyle={propTextInputStyle}
-                  keyboardType="numeric"
-                  placeholder="How much did you spend ?"
-                  placeholderTextColor="#525760"
-                  textAlign="center"
-                  iconName="ios-card"
-                  onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
-                  value={this.state.spentAmount}
-                />
-                {this.renderSaveButton()}
-            </View>
+          <View style={[centerEverything, upperContainer]}>
+            <ExpensesInput
+              propViewStyle={[bitOfShadow]}
+              propTextInputStyle={[propTextInputStyle, systemFont]}
+              keyboardType="numeric"
+              placeholder="How much did you spend ?"
+              placeholderTextColor="#525760"
+              textAlign="center"
+              iconName="ios-card"
+              onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
+              value={this.state.spentAmount}
+            />
+            {this.renderSaveButton()}
+          </View>
+
+          <View style={[centerEverything]}>
             <CategoryBox iconName="md-pizza" categoryName="FOOD" />
+            <View style={[dateTimeContainer]}>
+              <DatePicker
+                style={[datePickerStyle, centerEverything, bitOfShadow]}
+                date={this.state.date}
+                mode="date"
+                placeholder={this.state.date}
+                format="YYYY-MM-DD"
+                showIcon={false}
+                minDate="2017-01-01"
+                confirmBtnText="Done"
+                cancelBtnText="X"
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0
+                  },
+                  dateText: {
+                    fontSize: Math.round(deviceWidth*0.043),
+                    fontFamily: 'Helvetica',
+                    fontWeight: '400',
+                    letterSpacing: 2
+                  },
+                }}
+                onDateChange={(date) => {this.setState({ date })}}
+              />
+              <DatePicker
+                style={[datePickerStyle, centerEverything, bitOfShadow]}
+                date={this.state.date}
+                mode="time"
+                placeholder={this.state.time}
+                format="hh-mm"
+                showIcon={false}
+                confirmBtnText="Done"
+                cancelBtnText="X"
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0
+                  },
+                  dateText: {
+                    fontSize: Math.round(deviceWidth*0.043),
+                    fontFamily: 'Helvetica',
+                    fontWeight: '400',
+                    letterSpacing: 2
+                  },
+                }}
+                onDateChange={(time) => {this.setState({ time })}}
+              />
+            </View>
             <View>
               <TextInput 
-                style={[noteStyle, bitOfShadow]}
+                style={[noteStyle, bitOfShadow, systemFont]}
                 value={this.state.note}
                 onChangeText={(note) => this.setState({ note })}
                 placeholder="Note"
@@ -95,7 +144,7 @@ class AddExpenses extends Component {
             </View>
           </View>
 
-          <View style={[buttonContainer]}>
+          {/*<View style={[buttonContainer]}>
             <View style={centerEverything}>
               <DatePicker
                 style={[datePickerStyle, centerEverything, bitOfShadow]}
@@ -140,7 +189,7 @@ class AddExpenses extends Component {
               </TouchableOpacity>
               <Text style={buttonText}>GitHub</Text>
             </View>
-          </View>
+          </View>*/}
         </View>
       </TouchableWithoutFeedback>
     )
@@ -151,6 +200,9 @@ const styles = {
   testShit: {
     borderWidth: 2,
     borderColor: 'red'
+  },
+  systemFont: {
+    fontSize: Math.round(deviceWidth*0.043),
   },
   centerEverything: {
     justifyContent: 'center',
@@ -163,10 +215,7 @@ const styles = {
   },
   upperContainer: {
     flexDirection: 'row',
-    paddingBottom: 40
-  },
-  contentContainer: {
-    flex: 7
+    paddingBottom: 40,
   },
   buttonContainer: {
     flex: 3,
@@ -184,7 +233,6 @@ const styles = {
     shadowOpacity: 1
   },
   propTextInputStyle: {
-    fontSize: Math.round(deviceWidth*0.043),
     color: '#000',
     backgroundColor: '#fff'
   },
@@ -192,32 +240,23 @@ const styles = {
     backgroundColor: 'transparent',
     paddingLeft: 20
   },
-  saveButtonText: {
-    fontSize: Math.round(deviceWidth*0.043),
-    fontWeight: 'bold',
-    letterSpacing: 2,
-  },
-  dateIcon: {
-    borderWidth: 0
+  dateTimeContainer: {
+    width: deviceWidth*0.7,
+    height: 50,
+    flexDirection: 'row'
   },
   datePickerStyle: {
-    height: 60,
-    width: 60,
-    borderRadius: 30,
+    height: 50,
+    width: deviceWidth*0.35,
     backgroundColor: '#fff'
   },
-  buttonText: {
-    fontSize: 12,
-    paddingTop: 6,
-    backgroundColor: 'transparent'
-  },
   noteStyle: {
-    fontSize: Math.round(deviceWidth*0.043),
     width: deviceWidth*0.7,
-    height: deviceHeight*0.25,
+    height: deviceHeight*0.4,
     backgroundColor: '#FFF',
     padding: 10
-  }
+  },
+  
 }
 
 export default AddExpenses;

@@ -78004,7 +78004,8 @@ Object.keys(_Button).forEach(function(key){if(key==="default"||key==="__esModule
 Object.keys(_PasscodeComponent).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _PasscodeComponent[key];}});});var _Label=require(519      ); // 519 = ./Label
 Object.keys(_Label).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _Label[key];}});});var _InfoBox=require(520        ); // 520 = ./InfoBox
 Object.keys(_InfoBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _InfoBox[key];}});});var _ExpensesInput=require(521              ); // 521 = ./ExpensesInput
-Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});
+Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});var _CategoryBox=require(712            ); // 712 = ./CategoryBox
+Object.keys(_CategoryBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _CategoryBox[key];}});});
 }, 514, null, "Castle/src/components/common/index.js");
 __d(/* Castle/src/components/common/Spinner.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.Spinner=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
@@ -78291,6 +78292,12 @@ testShit=styles.testShit,container=styles.container,inputStyle=styles.inputStyle
 
 return(
 _react2.default.createElement(_reactNative.View,{style:[container,propViewStyle]},
+_react2.default.createElement(_Ionicons2.default,{
+name:iconName,
+size:22,
+style:actionButton,
+onPress:iconOnPress}),
+
 _react2.default.createElement(_reactNative.TextInput,{
 style:[inputStyle,propTextInputStyle,propHeight,propWidth],
 autoCapitalize:'none',
@@ -78302,13 +78309,7 @@ secureTextEntry:secureTextEntry,
 onChangeText:onChangeText,
 value:value,
 keyboardType:keyboardType,
-textAlign:textAlign}),
-
-_react2.default.createElement(_Ionicons2.default,{
-name:iconName,
-size:22,
-style:actionButton,
-onPress:iconOnPress})));
+textAlign:textAlign})));
 
 
 
@@ -78332,7 +78333,8 @@ borderWidth:1,
 fontSize:14},
 
 actionButton:{
-paddingRight:20}};exports.
+paddingLeft:15}};exports.
+
 
 
 
@@ -83810,6 +83812,52 @@ __d(/* react-native-vector-icons/glyphmaps/Ionicons.json */function(global, requ
 "md-wine":62377,
 "md-woman":62378};
 }, 676, null, "react-native-vector-icons/glyphmaps/Ionicons.json");
+__d(/* Castle/src/components/common/CategoryBox.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.CategoryBox=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
+var _reactNative=require(12            ); // 12 = react-native
+
+var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
+
+var pizza=_react2.default.createElement(_Ionicons2.default,{name:'ios-pizza',size:22});
+
+var deviceWidth=require(101         ).get('window').width; // 101 = Dimensions
+var deviceHeight=require(101         ).get('window').height; // 101 = Dimensions
+
+var CategoryBox=function CategoryBox(_ref){var onPress=_ref.onPress,iconName=_ref.iconName,categoryName=_ref.categoryName;var
+bitOfShadow=styles.bitOfShadow,boxContainer=styles.boxContainer,categoryText=styles.categoryText;
+return(
+_react2.default.createElement(_reactNative.TouchableOpacity,{style:[boxContainer,bitOfShadow],onPress:onPress},
+_react2.default.createElement(_Ionicons2.default,{name:iconName,size:20,color:'#FFF'}),
+_react2.default.createElement(_reactNative.Text,{style:categoryText},categoryName)));
+
+
+};
+
+var styles={
+bitOfShadow:{
+shadowColor:'#1DAFEB',
+shadowRadius:20,
+shadowOffset:{width:1,height:1},
+shadowOpacity:1},
+
+boxContainer:{
+flexDirection:'row',
+width:deviceWidth*0.7,
+height:50,
+backgroundColor:'#1DAFEB',
+alignItems:'center',
+justifyContent:'center'},
+
+categoryText:{
+color:'#FFF',
+fontSize:Math.round(deviceWidth*0.043),
+fontFamily:'HelveticaNeue-Medium',
+paddingLeft:20,
+letterSpacing:5}};exports.
+
+
+
+CategoryBox=CategoryBox;
+}, 712, null, "Castle/src/components/common/CategoryBox.js");
 __d(/* Castle/src/containers/passcodeContainers/LockScreen.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _common=require(514                        ); // 514 = ./../../components/common
@@ -87527,10 +87575,11 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
+
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 var _reactNativeDatepicker=require(704                      );var _reactNativeDatepicker2=babelHelpers.interopRequireDefault(_reactNativeDatepicker); // 704 = react-native-datepicker
 
-var _common=require(514                        );console.disableYellowBox=true; // 514 = ./../../components/common
+var _common=require(514                        ); // 514 = ./../../components/common
 
 var dismissKeyboard=require(61               ); // 61 = dismissKeyboard
 
@@ -87538,7 +87587,12 @@ var deviceWidth=require(101         ).get('window').width; // 101 = Dimensions
 var deviceHeight=require(101         ).get('window').height; // 101 = Dimensions
 
 var mic=_react2.default.createElement(_Ionicons2.default,{name:'ios-mic',size:24,color:'#202020'});
-var done=_react2.default.createElement(_Ionicons2.default,{name:'md-checkmark',size:24,color:'#202020'});var
+var github=_react2.default.createElement(_Ionicons2.default,{name:'logo-github',size:24,color:'#202020'});
+
+var expensesType=[
+[1,'food'],
+[2,'clothes']];var
+
 
 AddExpenses=function(_Component){babelHelpers.inherits(AddExpenses,_Component);
 
@@ -87548,7 +87602,8 @@ _this.state={
 entered:false,
 spentAmount:'',
 date:'',
-dateSelected:false};return _this;
+dateSelected:false,
+note:''};return _this;
 
 }babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate()
 
@@ -87574,7 +87629,7 @@ size:22})));
 {var _this3=this;
 console.log(this.state.date);var
 testShit=
-styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle;
+styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle;
 return(
 _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
 _react2.default.createElement(_reactNative.View,{style:container},
@@ -87584,25 +87639,37 @@ _react2.default.createElement(_common.ExpensesInput,{
 propViewStyle:[bitOfShadow],
 propTextInputStyle:propTextInputStyle,
 keyboardType:'numeric',
-placeholder:'How much did you spend?',
+placeholder:'How much did you spend ?',
 placeholderTextColor:'#525760',
 textAlign:'center',
-iconName:'ios-flash',
-iconOnPress:function iconOnPress(){return _this3.setState({dateSelected:true});},
+iconName:'ios-card',
 onChangeText:function onChangeText(spentAmount){return _this3.setState({entered:true,spentAmount:spentAmount});},
 value:this.state.spentAmount}),
 
 this.renderSaveButton()),
 
-_react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]}),
+
+_react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
+_react2.default.createElement(_common.CategoryBox,{iconName:'md-pizza',categoryName:'FOOD'}),
+_react2.default.createElement(_reactNative.View,null,
+_react2.default.createElement(_reactNative.TextInput,{
+style:[noteStyle,bitOfShadow],
+value:this.state.note,
+onChangeText:function onChangeText(note){return _this3.setState({note:note});},
+placeholder:'Note',
+textAlign:'center',
+multiline:true,
+autoCorrect:false}))),
+
 
 
 _react2.default.createElement(_reactNative.View,{style:[buttonContainer]},
+_react2.default.createElement(_reactNative.View,{style:centerEverything},
 _react2.default.createElement(_reactNativeDatepicker2.default,{
 style:[datePickerStyle,centerEverything,bitOfShadow],
 date:this.state.date,
 mode:'date',
-duration:150,
+duration:250,
 placeholder:this.state.date,
 format:'DD',
 showIcon:false,
@@ -87622,14 +87689,24 @@ letterSpacing:2}},
 
 onDateChange:function onDateChange(date){_this3.setState({date:date});}}),
 
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'Calendar')),
+
+_react2.default.createElement(_reactNative.View,{style:centerEverything},
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[datePickerStyle,centerEverything,bitOfShadow],
 onPress:function onPress(){return console.log('sdsadasd');}},
 mic),
 
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'Voice'),
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'Coming Soon')),
+
+_react2.default.createElement(_reactNative.View,{style:centerEverything},
 _react2.default.createElement(_reactNative.TouchableOpacity,{
-style:[datePickerStyle,centerEverything,bitOfShadow]},
-done)))));
+style:[datePickerStyle,centerEverything,bitOfShadow],
+onPress:function onPress(){return console.log('sdsadasd');}},
+github),
+
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub'))))));
 
 
 
@@ -87653,11 +87730,11 @@ backgroundColor:'#F5F5F5',
 paddingTop:24},
 
 upperContainer:{
-flex:3,
+flex:2,
 flexDirection:'row'},
 
 contentContainer:{
-flex:4},
+flex:5},
 
 buttonContainer:{
 flex:3,
@@ -87695,7 +87772,19 @@ datePickerStyle:{
 height:60,
 width:60,
 borderRadius:30,
-backgroundColor:'#fff'}};exports.default=
+backgroundColor:'#fff'},
+
+buttonText:{
+fontSize:12,
+paddingTop:6,
+backgroundColor:'transparent'},
+
+noteStyle:{
+fontSize:Math.round(deviceWidth*0.043),
+width:deviceWidth*0.7,
+height:deviceHeight*0.25,
+backgroundColor:'#FFF',
+padding:10}};exports.default=
 
 
 
