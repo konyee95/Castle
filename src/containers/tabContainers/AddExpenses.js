@@ -52,8 +52,9 @@ class AddExpenses extends Component {
   }
 
   render() {
+    console.log(this.state.date)
     const { testShit, centerEverything, container, upperContainer, contentContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle} = styles;
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, datePickerStylssse} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
@@ -74,23 +75,7 @@ class AddExpenses extends Component {
             {this.renderSaveButton()}
           </View>
           <View style={[centerEverything, contentContainer]}>
-            <DatePicker
-              style={[centerEverything, datePickerStyle]}
-              customStyles={{
-                dateInput: {
-                  borderWidth: 0,
-                }
-              }}
-              confirmBtnText="Done"
-              cancelBtnText="Cancel"
-              minDate="2017-01-01"
-              maxDate="2017-12-31"
-              showIcon={false}
-              dateIcon={((this.state.dateSelected && this.state.spentAmount != '') ? done : calendar)}
-              date={this.state.date}
-              onDateChange={(date) => {this.setState({ date }) }}
-              onCloseModal={() => this.setState({ dateSelected: true })}
-            />
+            
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -145,11 +130,17 @@ const styles = {
   dateIcon: {
     borderWidth: 0
   },
+  datePickerStylssse: {
+    height: 60,
+    width: 160,
+    borderRadius: 30,
+    backgroundColor: '#fff'
+  },
   datePickerStyle: {
     height: 60,
     width: 60,
     borderRadius: 30,
-    backgroundColor: '#1E1E1E'
+    backgroundColor: '#fff'
   }
 }
 
