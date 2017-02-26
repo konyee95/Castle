@@ -1,3 +1,4 @@
+console.disableYellowBox = true;
 import React, { Component } from 'react';
 import {
   LayoutAnimation,
@@ -54,7 +55,7 @@ class AddExpenses extends Component {
   render() {
     console.log(this.state.date)
     const { testShit, centerEverything, container, upperContainer, contentContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, datePickerStylssse} = styles;
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, } = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
@@ -75,7 +76,29 @@ class AddExpenses extends Component {
             {this.renderSaveButton()}
           </View>
           <View style={[centerEverything, contentContainer]}>
-            
+            <DatePicker
+              style={[datePickerStyle, centerEverything, bitOfShadow]}
+              date={this.state.date}
+              mode="date"
+              placeholder={this.state.date}
+              format="DD"
+              showIcon={false}
+              minDate="2017-01-01"
+              // maxDate="31"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateInput: {
+                  borderWidth: 0
+                },
+                dateText: {
+                  fontSize: 20,
+                  fontFamily: 'Helvetica',
+                  fontWeight: '400'
+                }
+              }}
+              onDateChange={(date) => {this.setState({ date })}}
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -129,12 +152,6 @@ const styles = {
   },
   dateIcon: {
     borderWidth: 0
-  },
-  datePickerStylssse: {
-    height: 60,
-    width: 160,
-    borderRadius: 30,
-    backgroundColor: '#fff'
   },
   datePickerStyle: {
     height: 60,

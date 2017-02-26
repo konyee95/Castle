@@ -77773,9 +77773,9 @@ var _Login=require(688                      );var _Login2=babelHelpers.interopRe
 var _Home=require(689                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 689 = ./containers/tabContainers/Home
 var _Discover=require(700                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 700 = ./containers/tabContainers/Discover
 var _AddExpenses=require(703                                     );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 703 = ./containers/tabContainers/AddExpenses
-var _Account=require(704                                 );var _Account2=babelHelpers.interopRequireDefault(_Account); // 704 = ./containers/tabContainers/Account
-var _Calculator=require(705                                    );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 705 = ./containers/tabContainers/Calculator
-var _ManagePasscode=require(707                                             );var _ManagePasscode2=babelHelpers.interopRequireDefault(_ManagePasscode);var // 707 = ./containers/passcodeContainers/ManagePasscode
+var _Account=require(708                                 );var _Account2=babelHelpers.interopRequireDefault(_Account); // 708 = ./containers/tabContainers/Account
+var _Calculator=require(709                                    );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 709 = ./containers/tabContainers/Calculator
+var _ManagePasscode=require(711                                             );var _ManagePasscode2=babelHelpers.interopRequireDefault(_ManagePasscode);var // 711 = ./containers/passcodeContainers/ManagePasscode
 
 RouterComponent=function(_Component){babelHelpers.inherits(RouterComponent,_Component);function RouterComponent(){babelHelpers.classCallCheck(this,RouterComponent);return babelHelpers.possibleConstructorReturn(this,(RouterComponent.__proto__||Object.getPrototypeOf(RouterComponent)).apply(this,arguments));}babelHelpers.createClass(RouterComponent,[{key:'componentWillMount',value:function componentWillMount()
 
@@ -85346,7 +85346,7 @@ var _Ionicons=require(522                                 );var _Ionicons2=babel
 
 var _Discover=require(700         );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 700 = ./Discover
 var _AddExpenses=require(703            );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 703 = ./AddExpenses
-var _Account=require(704        );var _Account2=babelHelpers.interopRequireDefault(_Account);var // 704 = ./Account
+var _Account=require(708        );var _Account2=babelHelpers.interopRequireDefault(_Account);var // 708 = ./Account
 
 Home=function(_Component){babelHelpers.inherits(Home,_Component);function Home(){var _ref;var _temp,_this,_ret;babelHelpers.classCallCheck(this,Home);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=babelHelpers.possibleConstructorReturn(this,(_ref=Home.__proto__||Object.getPrototypeOf(Home)).call.apply(_ref,[this].concat(args))),_this),_this.
 
@@ -87517,7 +87517,8 @@ this._childSlides()));
 }, 701, null, "react-native-snap-carousel/index.js");
 __d(/* react-addons-shallow-compare/index.js */function(global, require, module, exports) {module.exports=require(387                       ); // 387 = react/lib/shallowCompare
 }, 702, null, "react-addons-shallow-compare/index.js");
-__d(/* Castle/src/containers/tabContainers/AddExpenses.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
+__d(/* Castle/src/containers/tabContainers/AddExpenses.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
+var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
 
@@ -87527,9 +87528,9 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
-var _reactNativeDatepicker=require(708                      );var _reactNativeDatepicker2=babelHelpers.interopRequireDefault(_reactNativeDatepicker); // 708 = react-native-datepicker
+var _reactNativeDatepicker=require(704                      );var _reactNativeDatepicker2=babelHelpers.interopRequireDefault(_reactNativeDatepicker); // 704 = react-native-datepicker
 
-var _common=require(514                        ); // 514 = ./../../components/common
+var _common=require(514                        );console.disableYellowBox=true; // 514 = ./../../components/common
 
 var dismissKeyboard=require(61               ); // 61 = dismissKeyboard
 
@@ -87573,7 +87574,7 @@ size:22})));
 {var _this3=this;
 console.log(this.state.date);var
 testShit=
-styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,datePickerStylssse=styles.datePickerStylssse;
+styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle;
 return(
 _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
 _react2.default.createElement(_reactNative.View,{style:container},
@@ -87593,7 +87594,29 @@ value:this.state.spentAmount}),
 
 this.renderSaveButton()),
 
-_react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]}))));
+_react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
+_react2.default.createElement(_reactNativeDatepicker2.default,{
+style:[datePickerStyle,centerEverything,bitOfShadow],
+date:this.state.date,
+mode:'date',
+placeholder:this.state.date,
+format:'DD',
+showIcon:false,
+minDate:'2017-01-01',
+
+confirmBtnText:'Confirm',
+cancelBtnText:'Cancel',
+customStyles:{
+dateInput:{
+borderWidth:0},
+
+dateText:{
+fontSize:20,
+fontFamily:'Helvetica',
+fontWeight:'400'}},
+
+
+onDateChange:function onDateChange(date){_this3.setState({date:date});}})))));
 
 
 
@@ -87649,12 +87672,6 @@ letterSpacing:2},
 dateIcon:{
 borderWidth:0},
 
-datePickerStylssse:{
-height:60,
-width:160,
-borderRadius:30,
-backgroundColor:'#fff'},
-
 datePickerStyle:{
 height:60,
 width:60,
@@ -87678,8 +87695,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _style=require(709      );var _style2=babelHelpers.interopRequireDefault(_style); // 709 = ./style
-var _moment=require(710     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 710 = moment
+var _style=require(705      );var _style2=babelHelpers.interopRequireDefault(_style); // 705 = ./style
+var _moment=require(706     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 706 = moment
 
 var FORMATS={
 'date':'YYYY-MM-DD',
@@ -88024,7 +88041,7 @@ height:259,
 duration:300,
 confirmBtnText:'确定',
 cancelBtnText:'取消',
-iconSource:require(711              ), // 711 = ./date_icon.png
+iconSource:require(707              ), // 707 = ./date_icon.png
 customStyles:{},
 
 
@@ -88057,7 +88074,7 @@ is24Hour:_react2.default.PropTypes.bool};exports.default=
 
 
 DatePicker;
-}, 708, null, "react-native-datepicker/index.js");
+}, 704, null, "react-native-datepicker/index.js");
 __d(/* react-native-datepicker/style.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require(12            ); // 12 = react-native
 
 var style=_reactNative.StyleSheet.create({
@@ -88134,7 +88151,7 @@ backgroundColor:'#eee'}});exports.default=
 
 
 style;
-}, 709, null, "react-native-datepicker/style.js");
+}, 705, null, "react-native-datepicker/style.js");
 __d(/* moment/moment.js */function(global, require, module, exports) {
 
 
@@ -92436,9 +92453,9 @@ hooks.prototype=proto;
 return hooks;
 
 });
-}, 710, null, "moment/moment.js");
+}, 706, null, "moment/moment.js");
 __d(/* react-native-datepicker/date_icon.png */function(global, require, module, exports) {module.exports = require(171                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-datepicker","width":64,"height":64,"scales":[1],"hash":"1edd5017f455b09c608e175b1285c06d","name":"date_icon","type":"png"}); // 171 = react-native/Libraries/Image/AssetRegistry
-}, 711, null, "react-native-datepicker/date_icon.png");
+}, 707, null, "react-native-datepicker/date_icon.png");
 __d(/* Castle/src/containers/tabContainers/Account.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -92447,7 +92464,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _Calculator=require(705           );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 705 = ./Calculator
+var _Calculator=require(709           );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 709 = ./Calculator
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
@@ -92482,7 +92499,7 @@ return(
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,container]},
 _react2.default.createElement(_reactNative.View,{style:[upperContainer]},
 _react2.default.createElement(_reactNative.Image,{
-source:require(706                             ), // 706 = ./../../img/AccountPicture.png
+source:require(710                             ), // 710 = ./../../img/AccountPicture.png
 style:accountPicture})),
 
 
@@ -92588,7 +92605,7 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(Account);
-}, 704, null, "Castle/src/containers/tabContainers/Account.js");
+}, 708, null, "Castle/src/containers/tabContainers/Account.js");
 __d(/* Castle/src/containers/tabContainers/Calculator.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -92819,9 +92836,9 @@ color:'#FFF'}};exports.default=
 
 
 Calculator;
-}, 705, null, "Castle/src/containers/tabContainers/Calculator.js");
+}, 709, null, "Castle/src/containers/tabContainers/Calculator.js");
 __d(/* Castle/src/img/AccountPicture.png */function(global, require, module, exports) {module.exports = require(171                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/img","width":599,"height":597,"scales":[1],"hash":"c81394d70bb1e03cd3aa0add30d510ea","name":"AccountPicture","type":"png"}); // 171 = react-native/Libraries/Image/AssetRegistry
-}, 706, null, "Castle/src/img/AccountPicture.png");
+}, 710, null, "Castle/src/img/AccountPicture.png");
 __d(/* Castle/src/containers/passcodeContainers/ManagePasscode.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _common=require(514                        ); // 514 = ./../../components/common
@@ -93002,7 +93019,7 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(ManagePasscode);
-}, 707, null, "Castle/src/containers/passcodeContainers/ManagePasscode.js");
+}, 711, null, "Castle/src/containers/passcodeContainers/ManagePasscode.js");
 ;require(215);
 ;require(0);
 //# sourceMappingURL=index.ios.map
