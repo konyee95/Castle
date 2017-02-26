@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import DatePicker from 'react-native-datepicker';
 
 import { ExpensesInput } from './../../components/common';
 
@@ -16,13 +17,18 @@ const dismissKeyboard = require('dismissKeyboard')
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
+const calendar = <Ionicons name="ios-calendar" size={24} color="#FFF" />
+const done = <Ionicons name="md-checkmark" size={24} color="#FFF"/>
+
 class AddExpenses extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       entered: false,
-      spentAmount: ''
+      spentAmount: '',
+      date: '',
+      dateSelected: false
     }
   }
 
@@ -35,7 +41,7 @@ class AddExpenses extends Component {
       return (
         <TouchableOpacity
           style={[styles.centerEverything, styles.saveButtonStyle]}
-          onPress={() => console.log('sdsd')}>
+          onPress={() => console.log(this.state.date)}>
           <Ionicons
             name="md-send"
             size={22}
@@ -47,27 +53,44 @@ class AddExpenses extends Component {
 
   render() {
     const { testShit, centerEverything, container, upperContainer, contentContainer, helFont,
-      propViewStyle, propTextInputStyle, saveButtonStyle, saveButtonText} = styles;
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
 
           <View style={[centerEverything, upperContainer]}>
             <ExpensesInput
-              propViewStyle={propViewStyle}
+              propViewStyle={[bitOfShadow]}
               propTextInputStyle={propTextInputStyle}
               keyboardType="numeric"
               placeholder="How much did you spend?"
               placeholderTextColor="#525760"
               textAlign="center"
               iconName="ios-flash"
+              iconOnPress={() => this.setState({ dateSelected: true })}
               onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
               value={this.state.spentAmount}
             />
             {this.renderSaveButton()}
           </View>
-          <View style={[contentContainer]}>
-
+          <View style={[centerEverything, contentContainer]}>
+            <DatePicker
+              style={[centerEverything, datePickerStyle]}
+              customStyles={{
+                dateInput: {
+                  borderWidth: 0,
+                }
+              }}
+              confirmBtnText="Done"
+              cancelBtnText="Cancel"
+              minDate="2017-01-01"
+              maxDate="2017-12-31"
+              showIcon={false}
+              dateIcon={((this.state.dateSelected && this.state.spentAmount != '') ? done : calendar)}
+              date={this.state.date}
+              onDateChange={(date) => {this.setState({ date }) }}
+              onCloseModal={() => this.setState({ dateSelected: true })}
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -99,7 +122,7 @@ const styles = {
   helFont: {
     fontFamily: 'Helvetica Neue',
   },
-  propViewStyle: {
+  bitOfShadow: {
     shadowColor: '#D3D3D3',
     shadowRadius: 20,
     shadowOffset: { width: 1, height: 1 },
@@ -118,6 +141,15 @@ const styles = {
     fontSize: Math.round(deviceWidth*0.043),
     fontWeight: 'bold',
     letterSpacing: 2,
+  },
+  dateIcon: {
+    borderWidth: 0
+  },
+  datePickerStyle: {
+    height: 60,
+    width: 60,
+    borderRadius: 30,
+    backgroundColor: '#1E1E1E'
   }
 }
 
