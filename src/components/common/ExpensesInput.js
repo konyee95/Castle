@@ -18,6 +18,12 @@ const ExpensesInput = ({ propViewStyle, propTextInputStyle, placeholder, placeho
 
   return(
     <View style={[container, propViewStyle]}>
+      <Ionicons
+        name={iconName}
+        size={22}
+        style={actionButton}
+        onPress={iconOnPress}
+      />
       <TextInput
         style={[inputStyle, propTextInputStyle, propHeight, propWidth]}
         autoCapitalize={'none'}
@@ -30,12 +36,6 @@ const ExpensesInput = ({ propViewStyle, propTextInputStyle, placeholder, placeho
         value={value}
         keyboardType={keyboardType}
         textAlign={textAlign}
-      />
-      <Ionicons
-        name={iconName}
-        size={22}
-        style={actionButton}
-        onPress={iconOnPress}
       />
     </View>
   );
@@ -59,7 +59,8 @@ const styles = {
     fontSize: 14,
   },
   actionButton: {
-    paddingRight: 20
+    paddingLeft: 15,
+    // paddingRight: 5
   }
 }
 

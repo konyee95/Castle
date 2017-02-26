@@ -18,8 +18,8 @@ const dismissKeyboard = require('dismissKeyboard')
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const calendar = <Ionicons name="ios-calendar" size={24} color="#FFF" />
-const done = <Ionicons name="md-checkmark" size={24} color="#FFF"/>
+const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
+const github = <Ionicons name="logo-github" size={24} color="#202020"/>
 
 class AddExpenses extends Component {
 
@@ -54,8 +54,8 @@ class AddExpenses extends Component {
 
   render() {
     console.log(this.state.date)
-    const { testShit, centerEverything, container, upperContainer, contentContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, } = styles;
+    const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
@@ -65,40 +65,65 @@ class AddExpenses extends Component {
               propViewStyle={[bitOfShadow]}
               propTextInputStyle={propTextInputStyle}
               keyboardType="numeric"
-              placeholder="How much did you spend?"
+              placeholder="How much did you spend ?"
               placeholderTextColor="#525760"
               textAlign="center"
-              iconName="ios-flash"
-              iconOnPress={() => this.setState({ dateSelected: true })}
+              iconName="ios-card"
               onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
               value={this.state.spentAmount}
             />
             {this.renderSaveButton()}
           </View>
           <View style={[centerEverything, contentContainer]}>
-            <DatePicker
-              style={[datePickerStyle, centerEverything, bitOfShadow]}
-              date={this.state.date}
-              mode="date"
-              placeholder={this.state.date}
-              format="DD"
-              showIcon={false}
-              minDate="2017-01-01"
-              // maxDate="31"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-                dateInput: {
-                  borderWidth: 0
-                },
-                dateText: {
-                  fontSize: 20,
-                  fontFamily: 'Helvetica',
-                  fontWeight: '400'
-                }
-              }}
-              onDateChange={(date) => {this.setState({ date })}}
-            />
+            <View>
+
+            </View>
+          </View>
+          <View style={[buttonContainer]}>
+            <View style={centerEverything}>
+              <DatePicker
+                style={[datePickerStyle, centerEverything, bitOfShadow]}
+                date={this.state.date}
+                mode="date"
+                duration={150}
+                placeholder={this.state.date}
+                format="DD"
+                showIcon={false}
+                minDate="2017-01-01"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateInput: {
+                    borderWidth: 0
+                  },
+                  dateText: {
+                    fontSize: 22,
+                    fontFamily: 'Helvetica',
+                    fontWeight: '400',
+                    letterSpacing: 2
+                  },
+                }}
+                onDateChange={(date) => {this.setState({ date })}}
+              />
+              <Text style={buttonText}>Calendar</Text>
+            </View>
+            <View style={centerEverything}>
+              <TouchableOpacity
+                style={[datePickerStyle, centerEverything, bitOfShadow]}
+                onPress={() => console.log('sdsadasd')}>
+                {mic}
+              </TouchableOpacity>
+              <Text style={buttonText}>Voice</Text>
+              <Text style={buttonText}>Coming Soon</Text>
+            </View>
+            <View style={centerEverything}>
+              <TouchableOpacity
+                style={[datePickerStyle, centerEverything, bitOfShadow]}
+                onPress={() => console.log('sdsadasd')}>
+                {github}
+              </TouchableOpacity>
+              <Text style={buttonText}>GitHub</Text>
+            </View>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -121,11 +146,17 @@ const styles = {
     paddingTop: 24,
   },
   upperContainer: {
-    flex: 4,
+    flex: 3,
     flexDirection: 'row',
   },
   contentContainer: {
-    flex: 6
+    flex: 4
+  },
+  buttonContainer: {
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
   helFont: {
     fontFamily: 'Helvetica Neue',
@@ -158,6 +189,11 @@ const styles = {
     width: 60,
     borderRadius: 30,
     backgroundColor: '#fff'
+  },
+  buttonText: {
+    fontSize: 12,
+    paddingTop: 6,
+    backgroundColor: 'transparent'
   }
 }
 
