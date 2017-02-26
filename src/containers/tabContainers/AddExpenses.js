@@ -11,7 +11,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DatePicker from 'react-native-datepicker';
 
-import { ExpensesInput } from './../../components/common';
+import { ExpensesInput, CategoryBox } from './../../components/common';
 
 const dismissKeyboard = require('dismissKeyboard')
 
@@ -74,11 +74,12 @@ class AddExpenses extends Component {
             />
             {this.renderSaveButton()}
           </View>
-          <View style={[centerEverything, contentContainer]}>
-            <View>
 
-            </View>
+          <View style={[centerEverything, contentContainer]}>
+            <CategoryBox iconName="md-pizza" categoryName="FOOD" />
+            
           </View>
+
           <View style={[buttonContainer]}>
             <View style={centerEverything}>
               <DatePicker
@@ -146,11 +147,11 @@ const styles = {
     paddingTop: 24,
   },
   upperContainer: {
-    flex: 3,
+    flex: 2,
     flexDirection: 'row',
   },
   contentContainer: {
-    flex: 4
+    flex: 5
   },
   buttonContainer: {
     flex: 3,
