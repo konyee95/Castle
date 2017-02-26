@@ -9,43 +9,36 @@ const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
 const CategoryBox = ({ onPress, iconName, categoryName }) => {
-  const { bitOfShadow, boxContainer, leftContainer, rightContainer, categoryText } = styles;
+  const { bitOfShadow, boxContainer, categoryText } = styles;
   return(
     <TouchableOpacity style={[boxContainer, bitOfShadow]} onPress={onPress}>
-        <Ionicons name={iconName} size={24} color="#FFF" />
-        <Text style={categoryText}>{categoryName}</Text>
+      <Ionicons name={iconName} size={22} color="#FFF" />
+      <Text style={categoryText}>{categoryName}</Text>
     </TouchableOpacity>
   )
 }
 
 const styles = {
     bitOfShadow: {
-        shadowColor: '#1DAFEB',
-        shadowRadius: 20,
-        shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: 1
+      shadowColor: '#1DAFEB',
+      shadowRadius: 20,
+      shadowOffset: { width: 1, height: 1 },
+      shadowOpacity: 1
     },
     boxContainer: {
-        flexDirection: 'row',
-        width: deviceWidth*0.7,
-        height: 50,
-        backgroundColor: '#1DAFEB',
-        alignItems: 'center',
-        justifyContent: 'space-around'
-    },
-    leftContainer: {
-        flex: 2,
-        backgroundColor: '#FFF'
-    },
-    rightContainer: {
-        flex: 8,
-        backgroundColor: '#1DAFEB'
+      flexDirection: 'row',
+      width: deviceWidth*0.7,
+      height: 50,
+      backgroundColor: '#1DAFEB',
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     categoryText: {
-        color: '#FFF',
-        fontSize: 20,
-        fontFamily: 'HelveticaNeue-Medium',
-        letterSpacing: 5
+      color: '#FFF',
+      fontSize: 18,
+      fontFamily: 'HelveticaNeue-Medium',
+      paddingLeft: 20,
+      letterSpacing: 5
     }
 }
 

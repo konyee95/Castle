@@ -4,6 +4,7 @@ import {
   LayoutAnimation,
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
@@ -29,7 +30,8 @@ class AddExpenses extends Component {
       entered: false,
       spentAmount: '',
       date: '',
-      dateSelected: false
+      dateSelected: false,
+      note: ''
     }
   }
 
@@ -55,7 +57,7 @@ class AddExpenses extends Component {
   render() {
     console.log(this.state.date)
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText} = styles;
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
@@ -77,7 +79,16 @@ class AddExpenses extends Component {
 
           <View style={[centerEverything, contentContainer]}>
             <CategoryBox iconName="md-pizza" categoryName="FOOD" />
-            
+            <View>
+              <TextInput 
+                style={[noteStyle, bitOfShadow]}
+                value={this.state.note}
+                onChangeText={(note) => this.setState({ note })}
+                placeholder="Note"
+                textAlign="center"
+                multiline
+                autoCorrect={false} />
+            </View>
           </View>
 
           <View style={[buttonContainer]}>
@@ -195,6 +206,13 @@ const styles = {
     fontSize: 12,
     paddingTop: 6,
     backgroundColor: 'transparent'
+  },
+  noteStyle: {
+    width: deviceWidth*0.7,
+    height: deviceHeight*0.25,
+    backgroundColor: '#FFF',
+    fontSize: 20,
+    padding: 10
   }
 }
 
