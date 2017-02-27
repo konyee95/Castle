@@ -87576,6 +87576,9 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
+
+
+
 var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
@@ -87601,18 +87604,17 @@ AddExpenses=function(_Component){babelHelpers.inherits(AddExpenses,_Component);
 function AddExpenses(props){babelHelpers.classCallCheck(this,AddExpenses);var _this=babelHelpers.possibleConstructorReturn(this,(AddExpenses.__proto__||Object.getPrototypeOf(AddExpenses)).call(this,
 props));
 _this.state={
+calendarOpened:false,
 entered:false,
 spentAmount:'',
-date:'',
+date:new Date(),
 time:'',
-displayDate:(0,_moment2.default)(new Date()).format('DD'),
-dateSelected:false,
 note:''};return _this;
 
 }babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate()
 
 {
-_reactNative.LayoutAnimation.easeInEaseOut();
+_reactNative.LayoutAnimation.spring();
 }},{key:'renderSaveButton',value:function renderSaveButton()
 
 {var _this2=this;
@@ -87628,17 +87630,49 @@ size:22})));
 
 
 }
-}},{key:'render',value:function render()
+}},{key:'openCalendar',value:function openCalendar()
 
 {var _this3=this;
-console.log(this.state.date);
-console.log(this.state.displayDate);var
+var minimumDate=new Date(2016,12,31);var
 testShit=
-styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle;
+styles.testShit,centerEverything=styles.centerEverything,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,pickerTextStyle=styles.pickerTextStyle,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton,confirmText=styles.confirmText;
+if(this.state.calendarOpened){
+if(_reactNative.Platform.OS==='ios'){
+return(
+_react2.default.createElement(_reactNative.View,{style:{flex:1}},
+_react2.default.createElement(_reactNative.View,{style:[datePickerContainer]},
+_react2.default.createElement(_reactNative.View,{style:[datePickerMessageContainer]},
+_react2.default.createElement(_reactNative.Text,{style:datePickerMessage},'Select a Time'),
+_react2.default.createElement(_reactNative.Text,{style:[datePickerMessage,datePickerMessageFeature]},'When did you spend?')),
+
+_react2.default.createElement(_reactNative.DatePickerIOS,{
+date:this.state.date,
+style:[datePickerIOS],
+mode:'datetime',
+minimumDate:minimumDate,
+onDateChange:function onDateChange(date,time){return _this3.setState({date:date,time:(0,_moment2.default)(_this3.state.date).format('h:mm A')});}}),
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[datePickerConfirmButton],
+onPress:function onPress(){return _this3.setState({calendarOpened:!_this3.state.calendarOpened});}},
+_react2.default.createElement(_reactNative.Text,{style:confirmText},'CONFIRM TIME')))));
+
+
+
+
+}else if(_reactNative.Platform.OS==='android'){
+
+}
+}
+}},{key:'render',value:function render()
+
+{var _this4=this;
+console.log(this.state.date);
+console.log(this.state.time);var
+testShit=
+styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable;
 return(
 _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
 _react2.default.createElement(_reactNative.View,{style:container},
-
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,upperContainer]},
 _react2.default.createElement(_common.ExpensesInput,{
@@ -87649,7 +87683,7 @@ placeholder:'How much did you spend ?',
 placeholderTextColor:'#525760',
 textAlign:'center',
 iconName:'ios-card',
-onChangeText:function onChangeText(spentAmount){return _this3.setState({entered:true,spentAmount:spentAmount});},
+onChangeText:function onChangeText(spentAmount){return _this4.setState({entered:true,spentAmount:spentAmount});},
 value:this.state.spentAmount}),
 
 this.renderSaveButton()),
@@ -87659,7 +87693,7 @@ _react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.TextInput,{
 style:[noteStyle,bitOfShadow],
 value:this.state.note,
-onChangeText:function onChangeText(note){return _this3.setState({note:note});},
+onChangeText:function onChangeText(note){return _this4.setState({note:note});},
 placeholder:'Note',
 textAlign:'center',
 multiline:true,
@@ -87669,32 +87703,10 @@ autoCorrect:false}))),
 
 _react2.default.createElement(_reactNative.View,{style:[buttonContainer]},
 _react2.default.createElement(_reactNative.View,{style:centerEverything},
-_react2.default.createElement(_reactNative.TouchableOpacity,{style:[datePickerStyle,centerEverything,bitOfShadow]}),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[datePickerStyle,centerEverything,bitOfShadow],
+onPress:function onPress(){return _this4.setState({calendarOpened:!_this4.state.calendarOpened});}},
+_react2.default.createElement(_reactNative.Text,{style:{fontSize:24,fontWeight:'500'}},(0,_moment2.default)(this.state.date).format('DD'))),
 
 _react2.default.createElement(_reactNative.Text,{style:buttonText},'Calendar')),
 
@@ -87704,8 +87716,7 @@ style:[datePickerStyle,centerEverything,bitOfShadow],
 onPress:function onPress(){return console.log('sdsadasd');}},
 mic),
 
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'Voice'),
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'Coming Soon')),
+_react2.default.createElement(_reactNative.Text,{style:[buttonText,disable]},'Voice')),
 
 _react2.default.createElement(_reactNative.View,{style:centerEverything},
 _react2.default.createElement(_reactNative.TouchableOpacity,{
@@ -87713,9 +87724,10 @@ style:[datePickerStyle,centerEverything,bitOfShadow],
 onPress:function onPress(){return console.log('sdsadasd');}},
 github),
 
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub'))))));
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub'))),
 
 
+this.openCalendar())));
 
 
 
@@ -87791,7 +87803,57 @@ fontSize:Math.round(deviceWidth*0.043),
 width:deviceWidth*0.7,
 height:deviceHeight*0.25,
 backgroundColor:'#FFF',
-padding:10}};exports.default=
+padding:10},
+
+disable:{
+color:'grey'},
+
+datePickerContainer:{
+position:'absolute',
+bottom:0,
+width:deviceWidth,
+height:350,
+backgroundColor:'#FFF'},
+
+datePickerMessageContainer:{
+width:deviceWidth,
+height:60,
+justifyContent:'center',
+paddingLeft:20},
+
+datePickerMessage:{
+fontSize:17},
+
+datePickerMessageFeature:{
+fontWeight:'500'},
+
+datePickerIOS:{
+width:deviceWidth,
+borderTopWidth:1,
+borderBottomWidth:1,
+borderColor:'#EDEDED'},
+
+pickerTextControl:{
+padding:5},
+
+pickerTextStyle:{
+fontWeight:'400'},
+
+datePickerConfirmButton:{
+width:deviceWidth*0.7,
+height:40,
+backgroundColor:'#000',
+justifyContent:'center',
+alignSelf:'center',
+borderRadius:2,
+marginTop:20},
+
+confirmText:{
+color:'#FFF',
+fontSize:18,
+fontWeight:'400',
+letterSpacing:2,
+textAlign:'center'}};exports.default=
 
 
 

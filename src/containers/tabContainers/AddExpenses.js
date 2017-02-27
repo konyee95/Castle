@@ -40,17 +40,14 @@ class AddExpenses extends Component {
       calendarOpened: false,
       entered: false,
       spentAmount: '',
-      dateIOS: new Date(),
-      dateAndroid: '',
+      date: new Date(),
       time: '',
-      displayDate: Moment(new Date()).format('DD'),
-      dateSelected: false,
       note: ''
     }
   }
 
   componentWillUpdate() {
-    LayoutAnimation.easeInEaseOut();
+    LayoutAnimation.spring();
   }
 
   renderSaveButton() {
@@ -69,43 +66,46 @@ class AddExpenses extends Component {
   }
 
   openCalendar() {
-    const { centerEverything, datePickerContainer, datePickerTextContainer, pickerTextControl, pickerTextStyle } = styles;
+    let minimumDate = new Date(2016, 12, 31);
+    const { testShit, centerEverything, datePickerContainer, datePickerMessageContainer, datePickerMessage, 
+      datePickerMessageFeature, pickerTextControl, pickerTextStyle, datePickerIOS, datePickerConfirmButton, confirmText } = styles;
     if(this.state.calendarOpened) {
       if(Platform.OS === 'ios') {
         return(
-          <View style={[datePickerContainer]}>
-            <View style={[datePickerTextContainer]}>
-              <TouchableOpacity 
-                style={[{ paddingLeft: 15, marginTop: 5 }]} 
-                onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
-                <Text style={pickerTextStyle}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity 
-                style={[{ paddingRight: 15, marginTop: 5 }]} 
-                onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
-                <Text style={pickerTextStyle}>Done</Text>
-              </TouchableOpacity>
+          <View style={{ flex: 1 }}>
+            <View style={[datePickerContainer]}>
+              <View style={[datePickerMessageContainer]}>
+                <Text style={datePickerMessage}>Select a Time</Text>
+                <Text style={[datePickerMessage, datePickerMessageFeature]}>When did you spend?</Text>
+              </View>
+              <DatePickerIOS 
+                date={this.state.date}
+                style={[datePickerIOS]}
+                mode="datetime"
+                minimumDate={minimumDate}
+                onDateChange={(date, time) => this.setState({ date, time: Moment(this.state.date).format('h:mm A') })}/>
+                <TouchableOpacity 
+                  style={[datePickerConfirmButton]}
+                  onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
+                  <Text style={confirmText}>CONFIRM TIME</Text>
+                </TouchableOpacity>
             </View>
-            <DatePickerIOS 
-              date={this.state.dateIOS}
-              style={styles.datePickerIOS}
-              mode="date"
-              onDateChange={(dateIOS) => this.setState({ dateIOS })}/>
           </View>
         )
-      } else {
+      } else if (Platform.OS === 'android') {
 
       }
     }
   }
 
   render() {
+    console.log(this.state.date)
+    console.log(this.state.time)
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
       bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
-
           <View style={[centerEverything, contentContainer]}>
              <View style={[centerEverything, upperContainer]}>
                 <ExpensesInput
@@ -139,32 +139,8 @@ class AddExpenses extends Component {
               <TouchableOpacity 
                 style={[datePickerStyle, centerEverything, bitOfShadow]}
                 onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
-                <Text>{this.state.displayDate}</Text>
+                <Text style={{ fontSize: 24, fontWeight: '500' }}>{Moment(this.state.date).format('DD')}</Text>
               </TouchableOpacity>
-              {/*<DatePicker
-                style={[datePickerStyle, centerEverything, bitOfShadow]}
-                date={this.state.date}
-                mode="date"
-                duration={250}
-                placeholder={this.state.date}
-                format="DD"
-                showIcon={false}
-                minDate="2017-01-01"
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                customStyles={{
-                  dateInput: {
-                    borderWidth: 0
-                  },
-                  dateText: {
-                    fontSize: 22,
-                    fontFamily: 'Helvetica',
-                    fontWeight: '400',
-                    letterSpacing: 2
-                  },
-                }}
-                onDateChange={(date) => {this.setState({ date })}}
-              />*/}
               <Text style={buttonText}>Calendar</Text>
             </View>
             <View style={centerEverything}>
@@ -269,25 +245,48 @@ const styles = {
     position: 'absolute',
     bottom: 0,
     width: deviceWidth,
-    height: 220,
+    height: 350,
     backgroundColor: '#FFF'
   },
-  datePickerTextContainer: {
-    paddingBottom: 3,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomWidth: 0.5,
-    borderColor: 'grey'
+  datePickerMessageContainer: {
+    width: deviceWidth,
+    height: 60,
+    justifyContent: 'center',
+    paddingLeft: 20,
+  },
+  datePickerMessage: {
+    fontSize: 17,
+  },
+  datePickerMessageFeature: {
+    fontWeight: '500'
   },
   datePickerIOS: {
     width: deviceWidth,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#EDEDED',
   },
   pickerTextControl: {
     padding: 5,
   },
   pickerTextStyle: {
     fontWeight: '400'
+  },
+  datePickerConfirmButton: {
+    width: deviceWidth*0.7,
+    height: 40,
+    backgroundColor: '#000',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 2,
+    marginTop: 20
+  },
+  confirmText: {
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: '400',
+    letterSpacing: 2,
+    textAlign: 'center'
   }
 }
 
