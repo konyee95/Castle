@@ -1,6 +1,9 @@
 // console.disableYellowBox = true;
 import React, { Component } from 'react';
 import {
+  DatePickerAndroid,
+  DatePickerIOS,
+  Platform,
   LayoutAnimation,
   View,
   Text,
@@ -34,9 +37,11 @@ class AddExpenses extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      calendarOpened: false,
       entered: false,
       spentAmount: '',
-      date: '',
+      dateIOS: new Date(),
+      dateAndroid: '',
       time: '',
       displayDate: Moment(new Date()).format('DD'),
       dateSelected: false,
@@ -63,11 +68,40 @@ class AddExpenses extends Component {
     }
   }
 
+  openCalendar() {
+    const { centerEverything, datePickerContainer, datePickerTextContainer, pickerTextControl, pickerTextStyle } = styles;
+    if(this.state.calendarOpened) {
+      if(Platform.OS === 'ios') {
+        return(
+          <View style={[datePickerContainer]}>
+            <View style={[datePickerTextContainer]}>
+              <TouchableOpacity 
+                style={[{ paddingLeft: 15, marginTop: 5 }]} 
+                onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
+                <Text style={pickerTextStyle}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[{ paddingRight: 15, marginTop: 5 }]} 
+                onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
+                <Text style={pickerTextStyle}>Done</Text>
+              </TouchableOpacity>
+            </View>
+            <DatePickerIOS 
+              date={this.state.dateIOS}
+              style={styles.datePickerIOS}
+              mode="date"
+              onDateChange={(dateIOS) => this.setState({ dateIOS })}/>
+          </View>
+        )
+      } else {
+
+      }
+    }
+  }
+
   render() {
-    console.log(this.state.date)
-    console.log(this.state.displayDate)
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle} = styles;
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable} = styles;
     return(
       <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
         <View style={container}>
@@ -102,7 +136,11 @@ class AddExpenses extends Component {
 
           <View style={[buttonContainer]}>
             <View style={centerEverything}>
-              <TouchableOpacity style={[datePickerStyle, centerEverything, bitOfShadow]} />
+              <TouchableOpacity 
+                style={[datePickerStyle, centerEverything, bitOfShadow]}
+                onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
+                <Text>{this.state.displayDate}</Text>
+              </TouchableOpacity>
               {/*<DatePicker
                 style={[datePickerStyle, centerEverything, bitOfShadow]}
                 date={this.state.date}
@@ -135,8 +173,7 @@ class AddExpenses extends Component {
                 onPress={() => console.log('sdsadasd')}>
                 {mic}
               </TouchableOpacity>
-              <Text style={buttonText}>Voice</Text>
-              <Text style={buttonText}>Coming Soon</Text>
+              <Text style={[buttonText, disable]}>Voice</Text>
             </View>
             <View style={centerEverything}>
               <TouchableOpacity
@@ -147,6 +184,7 @@ class AddExpenses extends Component {
               <Text style={buttonText}>GitHub</Text>
             </View>
           </View>
+          {this.openCalendar()}
         </View>
       </TouchableWithoutFeedback>
     )
@@ -223,6 +261,33 @@ const styles = {
     height: deviceHeight*0.25,
     backgroundColor: '#FFF',
     padding: 10
+  },
+  disable: {
+    color: 'grey'
+  },
+  datePickerContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: deviceWidth,
+    height: 220,
+    backgroundColor: '#FFF'
+  },
+  datePickerTextContainer: {
+    paddingBottom: 3,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+    borderColor: 'grey'
+  },
+  datePickerIOS: {
+    width: deviceWidth,
+  },
+  pickerTextControl: {
+    padding: 5,
+  },
+  pickerTextStyle: {
+    fontWeight: '400'
   }
 }
 
