@@ -87622,7 +87622,13 @@ if(this.state.entered&&this.state.spentAmount!=''){
 return(
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[styles.centerEverything,styles.saveButtonStyle],
-onPress:function onPress(){return console.log(_this2.state.date);}},
+onPress:function onPress(){return _this2.setState({
+entered:!_this2.state.entered,
+spentAmount:'',
+date:new Date(),
+note:''});}},
+
+
 _react2.default.createElement(_Ionicons2.default,{
 name:'md-send',
 size:22})));

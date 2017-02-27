@@ -55,7 +55,13 @@ class AddExpenses extends Component {
       return (
         <TouchableOpacity
           style={[styles.centerEverything, styles.saveButtonStyle]}
-          onPress={() => console.log(this.state.date)}>
+          onPress={() => this.setState({ 
+            entered: !this.state.entered, 
+            spentAmount: '', 
+            date: new Date(),
+            note: ''
+            })
+          }>
           <Ionicons
             name="md-send"
             size={22}
