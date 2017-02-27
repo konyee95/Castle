@@ -87607,10 +87607,9 @@ _this.state={
 calendarOpened:false,
 entered:false,
 spentAmount:'',
-
-
 date:new Date(),
-time:'',
+formattedDate:'',
+formattedTime:'',
 note:''};return _this;
 
 }babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate()
@@ -87658,7 +87657,12 @@ date:this.state.date,
 style:[datePickerIOS],
 mode:'datetime',
 minimumDate:minimumDate,
-onDateChange:function onDateChange(date,time){return _this3.setState({date:(0,_moment2.default)(date).format('YYYY-MM-DD'),time:(0,_moment2.default)(date).format('h:mm A')});}}),
+onDateChange:function onDateChange(date){return _this3.setState({
+date:date,
+formattedDate:(0,_moment2.default)(date).format('YYYY-MM-DD'),
+formattedTime:(0,_moment2.default)(date).format('h:mm A')});}}),
+
+
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[datePickerConfirmButton],
 onPress:function onPress(){return _this3.setState({calendarOpened:!_this3.state.calendarOpened});}},

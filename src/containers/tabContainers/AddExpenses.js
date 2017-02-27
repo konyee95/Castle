@@ -40,10 +40,9 @@ class AddExpenses extends Component {
       calendarOpened: false,
       entered: false,
       spentAmount: '',
-      // date: Moment(new Date()).format('YYYY-MM-DD'),
-      // time: Moment(new Date()).format('h:mm A'),
       date: new Date(),
-      time: '',
+      formattedDate: '',
+      formattedTime: '',
       note: ''
     }
   }
@@ -73,6 +72,25 @@ class AddExpenses extends Component {
     }
   }
 
+  showPicker = async (stateKey, options) => {
+    try {
+      const {action, year, month, day} = await DatePickerAndroid.open({
+        date: new Date()
+      });
+      if (action !== DatePickerAndroid.dismissedAction) {
+        const selectedDate = new Date(year, month, day);
+        this.setState({ 
+          date: selectedDate, 
+          formattedDate: Moment(selectedDate).format('YYYY-MM-DD'),
+          formattedTime: Moment(new Date()).format('h:mm A'),
+          calendarOpened: !this.state.calendarOpened
+        })
+      }
+    } catch ({code, message}) {
+      console.warn('Cannot open date picker', message);
+    }
+  };
+
   openCalendar() {
     let minimumDate = new Date(2016, 12, 31);
     const { testShit, centerEverything, datePickerContainer, datePickerMessageContainer, datePickerMessage, 
@@ -91,7 +109,12 @@ class AddExpenses extends Component {
                 style={[datePickerIOS]}
                 mode="datetime"
                 minimumDate={minimumDate}
-                onDateChange={(date, time) => this.setState({ date: Moment(date).format('YYYY-MM-DD'), time: Moment(date).format('h:mm A') })}/>
+                onDateChange={(date) => this.setState({ 
+                  date, 
+                  formattedDate: Moment(date).format('YYYY-MM-DD'),
+                  formattedTime: Moment(date).format('h:mm A') 
+                  })
+                }/>
                 <TouchableOpacity 
                   style={[datePickerConfirmButton]}
                   onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
@@ -101,14 +124,12 @@ class AddExpenses extends Component {
           </View>
         )
       } else if (Platform.OS === 'android') {
-
+        {this.showPicker()}
       }
     }
   }
 
   render() {
-    console.log(this.state.date)
-    console.log(this.state.time)
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
       bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable} = styles;
     return(
