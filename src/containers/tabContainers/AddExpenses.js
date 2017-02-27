@@ -40,8 +40,10 @@ class AddExpenses extends Component {
       calendarOpened: false,
       entered: false,
       spentAmount: '',
-      date: Moment(new Date()).format('YYYY-MM-DD'),
-      time: Moment(new Date()).format('h:mm A'),
+      // date: Moment(new Date()).format('YYYY-MM-DD'),
+      // time: Moment(new Date()).format('h:mm A'),
+      date: new Date(),
+      time: '',
       note: ''
     }
   }
