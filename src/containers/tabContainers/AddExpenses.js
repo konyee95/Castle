@@ -48,7 +48,7 @@ class AddExpenses extends Component {
   }
 
   componentWillUpdate() {
-    LayoutAnimation.spring();
+    LayoutAnimation.easeInEaseOut();
   }
 
   renderSaveButton() {
@@ -98,7 +98,7 @@ class AddExpenses extends Component {
     if(this.state.calendarOpened) {
       if(Platform.OS === 'ios') {
         return(
-          <View style={{ flex: 1 }}>
+          <View>
             <View style={[datePickerContainer]}>
               <View style={[datePickerMessageContainer]}>
                 <Text style={datePickerMessage}>Select a Time</Text>
@@ -129,12 +129,12 @@ class AddExpenses extends Component {
     }
   }
 
-  render() {
+  renderView() {
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
       bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable} = styles;
-    return(
-      <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-        <View style={container}>
+    if(!this.state.calendarOpened) {
+      return(
+        <View style={[container]}>
           <View style={[centerEverything, contentContainer]}>
              <View style={[centerEverything, upperContainer]}>
                 <ExpensesInput
@@ -189,8 +189,22 @@ class AddExpenses extends Component {
               <Text style={buttonText}>GitHub</Text>
             </View>
           </View>
-          {this.openCalendar()}
+          
         </View>
+      )
+    } else {
+        return(
+          <View style={[styles.container, { backgroundColor: '#424242' }]}>
+            {this.openCalendar()}
+          </View>
+        )
+    }
+  }
+
+  render() {
+    return(
+      <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+        {this.renderView()}
       </TouchableWithoutFeedback>
     )
   }
