@@ -98,7 +98,7 @@ class AddExpenses extends Component {
     if(this.state.calendarOpened) {
       if(Platform.OS === 'ios') {
         return(
-          <View>
+          <View style={centerEverything}>
             <View style={[datePickerContainer]}>
               <View style={[datePickerMessageContainer]}>
                 <Text style={datePickerMessage}>Select a Time</Text>

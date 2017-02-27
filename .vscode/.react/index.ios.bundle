@@ -87654,7 +87654,7 @@ calendarOpened:!_this.state.calendarOpened});
 
 }_context.next=16;break;case 11:_context.prev=11;_context.t0=_context['catch'](0);
 code=_context.t0.code;message=_context.t0.message;
-console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpened:false,entered:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.spring();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'openCalendar',value:function openCalendar()
+console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpened:false,entered:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'openCalendar',value:function openCalendar()
 
 
 
@@ -87665,7 +87665,7 @@ styles.testShit,centerEverything=styles.centerEverything,datePickerContainer=sty
 if(this.state.calendarOpened){
 if(_reactNative.Platform.OS==='ios'){
 return(
-_react2.default.createElement(_reactNative.View,{style:{flex:1}},
+_react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.View,{style:[datePickerContainer]},
 _react2.default.createElement(_reactNative.View,{style:[datePickerMessageContainer]},
 _react2.default.createElement(_reactNative.Text,{style:datePickerMessage},'Select a Time'),
@@ -87694,14 +87694,14 @@ _react2.default.createElement(_reactNative.Text,{style:confirmText},'CONFIRM TIM
 {this.showPicker();}
 }
 }
-}},{key:'render',value:function render()
+}},{key:'renderView',value:function renderView()
 
 {var _this5=this;var
 testShit=
 styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable;
+if(!this.state.calendarOpened){
 return(
-_react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
-_react2.default.createElement(_reactNative.View,{style:container},
+_react2.default.createElement(_reactNative.View,{style:[container]},
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,upperContainer]},
 _react2.default.createElement(_common.ExpensesInput,{
@@ -87753,11 +87753,25 @@ style:[datePickerStyle,centerEverything,bitOfShadow],
 onPress:function onPress(){return console.log('sdsadasd');}},
 github),
 
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub'))),
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub')))));
 
 
-this.openCalendar())));
 
+
+
+}else{
+return(
+_react2.default.createElement(_reactNative.View,{style:[styles.container,{backgroundColor:'#424242'}]},
+this.openCalendar()));
+
+
+}
+}},{key:'render',value:function render()
+
+{
+return(
+_react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
+this.renderView()));
 
 
 }}]);return AddExpenses;}(_react.Component);
