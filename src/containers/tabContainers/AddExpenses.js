@@ -5,6 +5,7 @@ import {
   DatePickerIOS,
   Platform,
   LayoutAnimation,
+  Modal,
   View,
   Text,
   TextInput,
@@ -39,6 +40,7 @@ class AddExpenses extends Component {
     this.state = {
       calendarOpened: false,
       entered: false,
+      modalVisible: false,
       spentAmount: '',
       date: new Date(),
       formattedDate: '',
@@ -129,9 +131,14 @@ class AddExpenses extends Component {
     }
   }
 
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
   renderView() {
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable} = styles;
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable,
+      modalContainer, upperModal, bottomModal} = styles;
     if(!this.state.calendarOpened) {
       return(
         <View style={[container]}>
@@ -150,7 +157,25 @@ class AddExpenses extends Component {
                 />
                 {this.renderSaveButton()}
             </View>
-            <CategoryBox iconName="md-pizza" categoryName="FOOD" />
+            <CategoryBox iconName="md-pizza" categoryName="FOOD" onPress={() => this.setState({ modalVisible: true })}/>
+            <Modal
+              animationType={"fade"}
+              transparent={true}
+              visible={this.state.modalVisible}>
+              <View style={[modalContainer]}>
+                <View style={upperModal}>
+                  <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible) }>
+                    <Text>Cancel</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible) }>
+                    <Text>Done</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={bottomModal}>
+                
+                </View>
+              </View>
+            </Modal>
             <View>
               <TextInput 
                 style={[noteStyle, bitOfShadow]}
@@ -330,6 +355,26 @@ const styles = {
     fontWeight: '400',
     letterSpacing: 2,
     textAlign: 'center'
+  },
+  modalContainer: {
+    width: deviceWidth*0.7,
+    height: deviceHeight*0.4,
+    marginTop: deviceHeight*0.25,
+    marginLeft: deviceWidth*0.15,
+    backgroundColor: '#FFF',
+    borderColor: '#202020',
+    borderWidth: 1,
+    borderRadius: 2
+  },
+  upperModal: {
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10
+  },
+  bottomModal: {
+    
   }
 }
 
