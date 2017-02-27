@@ -40,8 +40,8 @@ class AddExpenses extends Component {
       calendarOpened: false,
       entered: false,
       spentAmount: '',
-      date: new Date(),
-      time: '',
+      date: Moment(new Date()).format('YYYY-MM-DD'),
+      time: Moment(new Date()).format('h:mm A'),
       note: ''
     }
   }
@@ -89,7 +89,7 @@ class AddExpenses extends Component {
                 style={[datePickerIOS]}
                 mode="datetime"
                 minimumDate={minimumDate}
-                onDateChange={(date, time) => this.setState({ date, time: Moment(this.state.date).format('h:mm A') })}/>
+                onDateChange={(date, time) => this.setState({ date: Moment(date).format('YYYY-MM-DD'), time: Moment(date).format('h:mm A') })}/>
                 <TouchableOpacity 
                   style={[datePickerConfirmButton]}
                   onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
