@@ -9,6 +9,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
+import Moment from 'moment';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DatePicker from 'react-native-datepicker';
 
@@ -35,6 +37,8 @@ class AddExpenses extends Component {
       entered: false,
       spentAmount: '',
       date: '',
+      time: '',
+      displayDate: Moment(new Date()).format('DD'),
       dateSelected: false,
       note: ''
     }
@@ -61,6 +65,7 @@ class AddExpenses extends Component {
 
   render() {
     console.log(this.state.date)
+    console.log(this.state.displayDate)
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
       bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle} = styles;
     return(
@@ -97,7 +102,8 @@ class AddExpenses extends Component {
 
           <View style={[buttonContainer]}>
             <View style={centerEverything}>
-              <DatePicker
+              <TouchableOpacity style={[datePickerStyle, centerEverything, bitOfShadow]} />
+              {/*<DatePicker
                 style={[datePickerStyle, centerEverything, bitOfShadow]}
                 date={this.state.date}
                 mode="date"
@@ -120,7 +126,7 @@ class AddExpenses extends Component {
                   },
                 }}
                 onDateChange={(date) => {this.setState({ date })}}
-              />
+              />*/}
               <Text style={buttonText}>Calendar</Text>
             </View>
             <View style={centerEverything}>

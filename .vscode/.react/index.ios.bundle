@@ -77766,16 +77766,16 @@ var _reactRedux=require(409          ); // 409 = react-redux
 var _actions=require(511        );var actions=babelHelpers.interopRequireWildcard(_actions); // 511 = ./actions
 
 var _SplashScreen=require(513                        );var _SplashScreen2=babelHelpers.interopRequireDefault(_SplashScreen); // 513 = ./containers/SplashScreen
-var _LockScreen=require(677                                         );var _LockScreen2=babelHelpers.interopRequireDefault(_LockScreen); // 677 = ./containers/passcodeContainers/LockScreen
-var _Register=require(678                         );var _Register2=babelHelpers.interopRequireDefault(_Register); // 678 = ./containers/auth/Register
-var _Login=require(688                      );var _Login2=babelHelpers.interopRequireDefault(_Login); // 688 = ./containers/auth/Login
+var _LockScreen=require(678                                         );var _LockScreen2=babelHelpers.interopRequireDefault(_LockScreen); // 678 = ./containers/passcodeContainers/LockScreen
+var _Register=require(679                         );var _Register2=babelHelpers.interopRequireDefault(_Register); // 679 = ./containers/auth/Register
+var _Login=require(689                      );var _Login2=babelHelpers.interopRequireDefault(_Login); // 689 = ./containers/auth/Login
 
-var _Home=require(689                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 689 = ./containers/tabContainers/Home
-var _Discover=require(700                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 700 = ./containers/tabContainers/Discover
-var _AddExpenses=require(703                                     );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 703 = ./containers/tabContainers/AddExpenses
-var _Account=require(708                                 );var _Account2=babelHelpers.interopRequireDefault(_Account); // 708 = ./containers/tabContainers/Account
-var _Calculator=require(709                                    );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 709 = ./containers/tabContainers/Calculator
-var _ManagePasscode=require(711                                             );var _ManagePasscode2=babelHelpers.interopRequireDefault(_ManagePasscode);var // 711 = ./containers/passcodeContainers/ManagePasscode
+var _Home=require(690                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 690 = ./containers/tabContainers/Home
+var _Discover=require(701                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 701 = ./containers/tabContainers/Discover
+var _AddExpenses=require(704                                     );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 704 = ./containers/tabContainers/AddExpenses
+var _Account=require(709                                 );var _Account2=babelHelpers.interopRequireDefault(_Account); // 709 = ./containers/tabContainers/Account
+var _Calculator=require(710                                    );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 710 = ./containers/tabContainers/Calculator
+var _ManagePasscode=require(712                                             );var _ManagePasscode2=babelHelpers.interopRequireDefault(_ManagePasscode);var // 712 = ./containers/passcodeContainers/ManagePasscode
 
 RouterComponent=function(_Component){babelHelpers.inherits(RouterComponent,_Component);function RouterComponent(){babelHelpers.classCallCheck(this,RouterComponent);return babelHelpers.possibleConstructorReturn(this,(RouterComponent.__proto__||Object.getPrototypeOf(RouterComponent)).apply(this,arguments));}babelHelpers.createClass(RouterComponent,[{key:'componentWillMount',value:function componentWillMount()
 
@@ -78004,7 +78004,7 @@ Object.keys(_Button).forEach(function(key){if(key==="default"||key==="__esModule
 Object.keys(_PasscodeComponent).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _PasscodeComponent[key];}});});var _Label=require(519      ); // 519 = ./Label
 Object.keys(_Label).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _Label[key];}});});var _InfoBox=require(520        ); // 520 = ./InfoBox
 Object.keys(_InfoBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _InfoBox[key];}});});var _ExpensesInput=require(521              ); // 521 = ./ExpensesInput
-Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});var _CategoryBox=require(712            ); // 712 = ./CategoryBox
+Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});var _CategoryBox=require(677            ); // 677 = ./CategoryBox
 Object.keys(_CategoryBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _CategoryBox[key];}});});
 }, 514, null, "Castle/src/components/common/index.js");
 __d(/* Castle/src/components/common/Spinner.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.Spinner=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -83857,7 +83857,7 @@ letterSpacing:5}};exports.
 
 
 CategoryBox=CategoryBox;
-}, 712, null, "Castle/src/components/common/CategoryBox.js");
+}, 677, null, "Castle/src/components/common/CategoryBox.js");
 __d(/* Castle/src/containers/passcodeContainers/LockScreen.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _common=require(514                        ); // 514 = ./../../components/common
@@ -83990,7 +83990,7 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(LockScreen);
-}, 677, null, "Castle/src/containers/passcodeContainers/LockScreen.js");
+}, 678, null, "Castle/src/containers/passcodeContainers/LockScreen.js");
 __d(/* Castle/src/containers/auth/Register.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -84000,7 +84000,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _reactNativeProgress=require(679                    );var Progress=babelHelpers.interopRequireWildcard(_reactNativeProgress); // 679 = react-native-progress
+var _reactNativeProgress=require(680                    );var Progress=babelHelpers.interopRequireWildcard(_reactNativeProgress); // 680 = react-native-progress
 
 var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
 var _reactRedux=require(409          ); // 409 = react-redux
@@ -84202,12 +84202,12 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(Register);
-}, 678, null, "Castle/src/containers/auth/Register.js");
-__d(/* react-native-progress/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _Bar=require(680    );Object.defineProperty(exports,'Bar',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_Bar).default;}});var _Circle=require(681       );Object.defineProperty(exports,'Circle',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_Circle). // 681 = ./Circle // 680 = ./Bar
-default;}});var _CircleSnail=require(684            );Object.defineProperty(exports,'CircleSnail',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_CircleSnail). // 684 = ./CircleSnail
-default;}});var _Pie=require(685    );Object.defineProperty(exports,'Pie',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_Pie). // 685 = ./Pie
+}, 679, null, "Castle/src/containers/auth/Register.js");
+__d(/* react-native-progress/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _Bar=require(681    );Object.defineProperty(exports,'Bar',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_Bar).default;}});var _Circle=require(682       );Object.defineProperty(exports,'Circle',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_Circle). // 682 = ./Circle // 681 = ./Bar
+default;}});var _CircleSnail=require(685            );Object.defineProperty(exports,'CircleSnail',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_CircleSnail). // 685 = ./CircleSnail
+default;}});var _Pie=require(686    );Object.defineProperty(exports,'Pie',{enumerable:true,get:function get(){return babelHelpers.interopRequireDefault(_Pie). // 686 = ./Pie
 default;}});
-}, 679, null, "react-native-progress/index.js");
+}, 680, null, "react-native-progress/index.js");
 __d(/* react-native-progress/Bar.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 
 
@@ -84357,7 +84357,7 @@ children));
 
 
 }}]);return ProgressBar;}(_react.Component);ProgressBar.propTypes={animated:_react.PropTypes.bool,borderColor:_react.PropTypes.string,borderRadius:_react.PropTypes.number,borderWidth:_react.PropTypes.number,children:_react.PropTypes.node,color:_react.PropTypes.string,height:_react.PropTypes.number,indeterminate:_react.PropTypes.bool,progress:_react.PropTypes.number,style:_reactNative.View.propTypes.style,unfilledColor:_react.PropTypes.string,width:_react.PropTypes.number};ProgressBar.defaultProps={animated:true,borderRadius:4,borderWidth:1,color:'rgba(0, 122, 255, 1)',height:6,indeterminate:false,progress:0,width:150};exports.default=ProgressBar;
-}, 680, null, "react-native-progress/Bar.js");
+}, 681, null, "react-native-progress/Bar.js");
 __d(/* react-native-progress/Circle.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.ProgressCircle=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 
 
@@ -84371,8 +84371,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _Arc=require(682           );var _Arc2=babelHelpers.interopRequireDefault(_Arc); // 682 = ./Shapes/Arc
-var _withAnimation=require(683              );var _withAnimation2=babelHelpers.interopRequireDefault(_withAnimation); // 683 = ./withAnimation
+var _Arc=require(683           );var _Arc2=babelHelpers.interopRequireDefault(_Arc); // 683 = ./Shapes/Arc
+var _withAnimation=require(684              );var _withAnimation2=babelHelpers.interopRequireDefault(_withAnimation); // 684 = ./withAnimation
 
 var CIRCLE=Math.PI*2;
 
@@ -84552,7 +84552,7 @@ children));
 
 
 (0,_withAnimation2.default)(ProgressCircle);
-}, 681, null, "react-native-progress/Circle.js");
+}, 682, null, "react-native-progress/Circle.js");
 __d(/* react-native-progress/Shapes/Arc.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -84647,7 +84647,7 @@ restProps)));
 
 
 }}]);return Arc;}(_react.Component);Arc.propTypes={startAngle:_react.PropTypes.number.isRequired,endAngle:_react.PropTypes.number.isRequired,radius:_react.PropTypes.number.isRequired,offset:_react.PropTypes.shape({top:_react.PropTypes.number,left:_react.PropTypes.number}),strokeWidth:_react.PropTypes.number,direction:_react.PropTypes.oneOf(['clockwise','counter-clockwise'])};Arc.defaultProps={startAngle:0,offset:{top:0,left:0},strokeWidth:0,direction:'clockwise'};exports.default=Arc;
-}, 682, null, "react-native-progress/Shapes/Arc.js");
+}, 683, null, "react-native-progress/Shapes/Arc.js");
 __d(/* react-native-progress/withAnimation.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.default=
 
 
@@ -84764,7 +84764,7 @@ rotation:this.state.rotation})));
 }}]);return AnimatedComponent;}(_react.Component),_class.displayName='withAnimation('+wrappedComponentName+')',_class.propTypes={animated:_react.PropTypes.bool,direction:_react.PropTypes.oneOf(['clockwise','counter-clockwise']),indeterminate:_react.PropTypes.bool,progress:_react.PropTypes.number.isRequired},_class.defaultProps={animated:true,direction:'clockwise',indeterminate:false,progress:0},_temp;
 
 }
-}, 683, null, "react-native-progress/withAnimation.js");
+}, 684, null, "react-native-progress/withAnimation.js");
 __d(/* react-native-progress/CircleSnail.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 
 
@@ -84777,7 +84777,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _Arc=require(682           );var _Arc2=babelHelpers.interopRequireDefault(_Arc); // 682 = ./Shapes/Arc
+var _Arc=require(683           );var _Arc2=babelHelpers.interopRequireDefault(_Arc); // 683 = ./Shapes/Arc
 
 var AnimatedArc=_reactNative.Animated.createAnimatedComponent(_Arc2.default);
 
@@ -84946,7 +84946,7 @@ children));
 
 
 }}]);return CircleSnail;}(_react.Component);CircleSnail.propTypes={animating:_react.PropTypes.bool,color:_react.PropTypes.oneOfType([_react.PropTypes.string,_react.PropTypes.arrayOf(_react.PropTypes.string)]),children:_react.PropTypes.node,direction:_react.PropTypes.oneOf(['clockwise','counter-clockwise']),duration:_react.PropTypes.number,hidesWhenStopped:_react.PropTypes.bool,size:_react.PropTypes.number,spinDuration:_react.PropTypes.number,style:_reactNative.View.propTypes.style,thickness:_react.PropTypes.number};CircleSnail.defaultProps={animating:true,color:'rgba(0, 122, 255, 1)',direction:'counter-clockwise',hidesWhenStopped:false,size:40,thickness:3};exports.default=CircleSnail;
-}, 684, null, "react-native-progress/CircleSnail.js");
+}, 685, null, "react-native-progress/CircleSnail.js");
 __d(/* react-native-progress/Pie.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.ProgressPie=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 
 
@@ -84959,9 +84959,9 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _Circle=require(686              );var _Circle2=babelHelpers.interopRequireDefault(_Circle); // 686 = ./Shapes/Circle
-var _Sector=require(687              );var _Sector2=babelHelpers.interopRequireDefault(_Sector); // 687 = ./Shapes/Sector
-var _withAnimation=require(683              );var _withAnimation2=babelHelpers.interopRequireDefault(_withAnimation); // 683 = ./withAnimation
+var _Circle=require(687              );var _Circle2=babelHelpers.interopRequireDefault(_Circle); // 687 = ./Shapes/Circle
+var _Sector=require(688              );var _Sector2=babelHelpers.interopRequireDefault(_Sector); // 688 = ./Shapes/Sector
+var _withAnimation=require(684              );var _withAnimation2=babelHelpers.interopRequireDefault(_withAnimation); // 684 = ./withAnimation
 
 var CIRCLE=Math.PI*2;
 
@@ -85067,7 +85067,7 @@ children));
 
 
 (0,_withAnimation2.default)(ProgressPie,0.2);
-}, 685, null, "react-native-progress/Pie.js");
+}, 686, null, "react-native-progress/Pie.js");
 __d(/* react-native-progress/Shapes/Circle.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
@@ -85123,7 +85123,7 @@ restProps)));
 
 
 }}]);return Circle;}(_react.Component);Circle.propTypes={radius:_react.PropTypes.number.isRequired,offset:_react.PropTypes.shape({top:_react.PropTypes.number,left:_react.PropTypes.number}),strokeWidth:_react.PropTypes.number,direction:_react.PropTypes.oneOf(['clockwise','counter-clockwise'])};Circle.defaultProps={offset:{top:0,left:0},strokeWidth:0,direction:'clockwise'};exports.default=Circle;
-}, 686, null, "react-native-progress/Shapes/Circle.js");
+}, 687, null, "react-native-progress/Shapes/Circle.js");
 __d(/* react-native-progress/Shapes/Sector.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85183,7 +85183,7 @@ return(
 _react2.default.createElement(_reactNative.ART.Shape,babelHelpers.extends({d:path},restProps)));
 
 }}]);return Sector;}(_react.Component);Sector.propTypes={angle:_react.PropTypes.number.isRequired,radius:_react.PropTypes.number.isRequired,offset:_react.PropTypes.shape({top:_react.PropTypes.number,left:_react.PropTypes.number})};Sector.defaultProps={offset:{top:0,left:0}};exports.default=Sector;
-}, 687, null, "react-native-progress/Shapes/Sector.js");
+}, 688, null, "react-native-progress/Shapes/Sector.js");
 __d(/* Castle/src/containers/auth/Login.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -85193,7 +85193,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _reactNativeProgress=require(679                    );var Progress=babelHelpers.interopRequireWildcard(_reactNativeProgress); // 679 = react-native-progress
+var _reactNativeProgress=require(680                    );var Progress=babelHelpers.interopRequireWildcard(_reactNativeProgress); // 680 = react-native-progress
 
 var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
 var _reactRedux=require(409          ); // 409 = react-redux
@@ -85384,17 +85384,17 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(Login);
-}, 688, null, "Castle/src/containers/auth/Login.js");
+}, 689, null, "Castle/src/containers/auth/Login.js");
 __d(/* Castle/src/containers/tabContainers/Home.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
 var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
-var _reactNativeTabView=require(690                    ); // 690 = react-native-tab-view
+var _reactNativeTabView=require(691                    ); // 691 = react-native-tab-view
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
-var _Discover=require(700         );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 700 = ./Discover
-var _AddExpenses=require(703            );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 703 = ./AddExpenses
-var _Account=require(708        );var _Account2=babelHelpers.interopRequireDefault(_Account);var // 708 = ./Account
+var _Discover=require(701         );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 701 = ./Discover
+var _AddExpenses=require(704            );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 704 = ./AddExpenses
+var _Account=require(709        );var _Account2=babelHelpers.interopRequireDefault(_Account);var // 709 = ./Account
 
 Home=function(_Component){babelHelpers.inherits(Home,_Component);function Home(){var _ref;var _temp,_this,_ret;babelHelpers.classCallCheck(this,Home);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=babelHelpers.possibleConstructorReturn(this,(_ref=Home.__proto__||Object.getPrototypeOf(Home)).call.apply(_ref,[this].concat(args))),_this),_this.
 
@@ -85562,17 +85562,17 @@ page:{
 flex:1,
 alignItems:'center',
 justifyContent:'center'}});
-}, 689, null, "Castle/src/containers/tabContainers/Home.js");
+}, 690, null, "Castle/src/containers/tabContainers/Home.js");
 __d(/* react-native-tab-view/index.js */function(global, require, module, exports) {
 
 
 module.exports={
-get TabViewAnimated(){return require(691                    ).default;}, // 691 = ./src/TabViewAnimated
-get TabViewPagerPan(){return require(696                    ).default;}, // 696 = ./src/TabViewPagerPan
-get TabViewPagerScroll(){return require(695                       ).default;}, // 695 = ./src/TabViewPagerScroll
-get TabViewPagerAndroid(){return require(694                        ).default;}, // 694 = ./src/TabViewPagerAndroid
-get TabBar(){return require(698           ).default;}}; // 698 = ./src/TabBar
-}, 690, null, "react-native-tab-view/index.js");
+get TabViewAnimated(){return require(692                    ).default;}, // 692 = ./src/TabViewAnimated
+get TabViewPagerPan(){return require(697                    ).default;}, // 697 = ./src/TabViewPagerPan
+get TabViewPagerScroll(){return require(696                       ).default;}, // 696 = ./src/TabViewPagerScroll
+get TabViewPagerAndroid(){return require(695                        ).default;}, // 695 = ./src/TabViewPagerAndroid
+get TabBar(){return require(699           ).default;}}; // 699 = ./src/TabBar
+}, 691, null, "react-native-tab-view/index.js");
 __d(/* react-native-tab-view/src/TabViewAnimated.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85581,8 +85581,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewTransitioner=require(692                    );var _TabViewTransitioner2=babelHelpers.interopRequireDefault(_TabViewTransitioner); // 692 = ./TabViewTransitioner
-var _TabViewPropTypes=require(693                 ); // 693 = ./TabViewPropTypes
+var _TabViewTransitioner=require(693                    );var _TabViewTransitioner2=babelHelpers.interopRequireDefault(_TabViewTransitioner); // 693 = ./TabViewTransitioner
+var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
 
 
 
@@ -85613,13 +85613,13 @@ var TabViewPager=void 0;
 
 switch(_reactNative.Platform.OS){
 case'android':
-TabViewPager=require(694                    ).default; // 694 = ./TabViewPagerAndroid
+TabViewPager=require(695                    ).default; // 695 = ./TabViewPagerAndroid
 break;
 case'ios':
-TabViewPager=require(695                   ).default; // 695 = ./TabViewPagerScroll
+TabViewPager=require(696                   ).default; // 696 = ./TabViewPagerScroll
 break;
 default:
-TabViewPager=require(696                ).default; // 696 = ./TabViewPagerPan
+TabViewPager=require(697                ).default; // 697 = ./TabViewPagerPan
 break;}var
 
 
@@ -85713,7 +85713,7 @@ render:this._renderItems})));
 
 
 }}]);return TabViewAnimated;}(_react.PureComponent);TabViewAnimated.propTypes={navigationState:_TabViewPropTypes.NavigationStatePropType.isRequired,renderPager:_react.PropTypes.func.isRequired,renderScene:_react.PropTypes.func.isRequired,renderHeader:_react.PropTypes.func,renderFooter:_react.PropTypes.func,onChangePosition:_react.PropTypes.func,lazy:_react.PropTypes.bool};TabViewAnimated.defaultProps={renderPager:function renderPager(props){return _react2.default.createElement(TabViewPager,props);}};var _initialiseProps=function _initialiseProps(){var _this2=this;this._renderScene=function(props){var _props=_this2.props,renderScene=_props.renderScene,navigationState=_props.navigationState,lazy=_props.lazy;var loaded=_this2.state.loaded;if(lazy){if(loaded.includes(navigationState.routes.indexOf(props.route))){return renderScene(props);}return null;}return renderScene(props);};this._renderItems=function(props){var _props2=_this2.props,renderPager=_props2.renderPager,renderHeader=_props2.renderHeader,renderFooter=_props2.renderFooter;var navigationState=props.navigationState;return _react2.default.createElement(_reactNative.View,{style:styles.container},renderHeader&&renderHeader(props),renderPager(babelHelpers.extends({},props,{children:navigationState.routes.map(function(route,index){return _this2._renderScene(babelHelpers.extends({},props,{route:route,index:index,focused:index===props.navigationState.index}));})})),renderFooter&&renderFooter(props));};this._handleChangePosition=function(value){var _props3=_this2.props,onChangePosition=_props3.onChangePosition,navigationState=_props3.navigationState,lazy=_props3.lazy;if(onChangePosition){onChangePosition(value);}var loaded=_this2.state.loaded;if(lazy){var next=Math.ceil(value);if(next===navigationState.index){next=Math.floor(value);}if(loaded.includes(next)){return;}_this2.setState({loaded:[].concat(babelHelpers.toConsumableArray(loaded),[next])});}};};exports.default=TabViewAnimated;
-}, 691, null, "react-native-tab-view/src/TabViewAnimated.js");
+}, 692, null, "react-native-tab-view/src/TabViewAnimated.js");
 __d(/* react-native-tab-view/src/TabViewTransitioner.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85721,7 +85721,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewPropTypes=require(693                 ); // 693 = ./TabViewPropTypes
+var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
 
 
 
@@ -85934,7 +85934,7 @@ this.props.render(this._buildSceneRendererProps())));
 
 
 }}]);return TabViewTransitioner;}(_react.PureComponent);TabViewTransitioner.propTypes={navigationState:_TabViewPropTypes.NavigationStatePropType.isRequired,render:_react.PropTypes.func.isRequired,configureTransition:_react.PropTypes.func.isRequired,onRequestChangeTab:_react.PropTypes.func.isRequired,onChangePosition:_react.PropTypes.func,initialLayout:_react.PropTypes.shape({height:_react.PropTypes.number.isRequired,width:_react.PropTypes.number.isRequired}),canJumpToTab:_react.PropTypes.func};TabViewTransitioner.defaultProps={configureTransition:function configureTransition(){return DefaultTransitionSpec;},initialLayout:{height:0,width:0}};exports.default=TabViewTransitioner;
-}, 692, null, "react-native-tab-view/src/TabViewTransitioner.js");
+}, 693, null, "react-native-tab-view/src/TabViewTransitioner.js");
 __d(/* react-native-tab-view/src/TabViewPropTypes.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.SceneRendererPropType=exports.NavigationStatePropType=exports.NavigationRoutePropType=undefined;
 
 var _react=require(279    ); // 279 = react
@@ -85961,7 +85961,7 @@ position:_react.PropTypes.instanceOf(_reactNative.Animated.Value).isRequired,
 jumpToIndex:_react.PropTypes.func.isRequired,
 getLastPosition:_react.PropTypes.func.isRequired,
 subscribe:_react.PropTypes.func.isRequired};
-}, 693, null, "react-native-tab-view/src/TabViewPropTypes.js");
+}, 694, null, "react-native-tab-view/src/TabViewPropTypes.js");
 __d(/* react-native-tab-view/src/TabViewPagerAndroid.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85970,7 +85970,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewPropTypes=require(693                 ); // 693 = ./TabViewPropTypes
+var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
 
 
 
@@ -86106,7 +86106,7 @@ child));})));
 
 
 }}]);return TabViewPagerAndroid;}(_react.PureComponent);TabViewPagerAndroid.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{swipeEnabled:_react.PropTypes.bool,animationEnabled:_react.PropTypes.bool,children:_react.PropTypes.node});exports.default=TabViewPagerAndroid;
-}, 694, null, "react-native-tab-view/src/TabViewPagerAndroid.js");
+}, 695, null, "react-native-tab-view/src/TabViewPagerAndroid.js");
 __d(/* react-native-tab-view/src/TabViewPagerScroll.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86115,7 +86115,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewPropTypes=require(693                 ); // 693 = ./TabViewPropTypes
+var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
 
 
 
@@ -86277,7 +86277,7 @@ _react.Children.toArray(children)[navigationState.index])));
 
 
 }}]);return TabViewPagerScroll;}(_react.PureComponent);TabViewPagerScroll.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{swipeEnabled:_react.PropTypes.bool,children:_react.PropTypes.node});exports.default=TabViewPagerScroll;
-}, 695, null, "react-native-tab-view/src/TabViewPagerScroll.js");
+}, 696, null, "react-native-tab-view/src/TabViewPagerScroll.js");
 __d(/* react-native-tab-view/src/TabViewPagerPan.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86288,8 +86288,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewStyleInterpolator=require(697                         );var _TabViewStyleInterpolator2=babelHelpers.interopRequireDefault(_TabViewStyleInterpolator); // 697 = ./TabViewStyleInterpolator
-var _TabViewPropTypes=require(693                 ); // 693 = ./TabViewPropTypes
+var _TabViewStyleInterpolator=require(698                         );var _TabViewStyleInterpolator2=babelHelpers.interopRequireDefault(_TabViewStyleInterpolator); // 698 = ./TabViewStyleInterpolator
+var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
 
 
 
@@ -86456,7 +86456,7 @@ child));})));
 
 
 }}]);return TabViewPagerPan;}(_react.PureComponent);TabViewPagerPan.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{swipeEnabled:_react.PropTypes.bool,swipeDistanceThreshold:_react.PropTypes.number.isRequired,swipeVelocityThreshold:_react.PropTypes.number.isRequired,children:_react.PropTypes.node});TabViewPagerPan.defaultProps={swipeDistanceThreshold:120,swipeVelocityThreshold:0.25};exports.default=TabViewPagerPan;
-}, 696, null, "react-native-tab-view/src/TabViewPagerPan.js");
+}, 697, null, "react-native-tab-view/src/TabViewPagerPan.js");
 __d(/* react-native-tab-view/src/TabViewStyleInterpolator.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
@@ -86483,7 +86483,7 @@ transform:[{translateX:translateX}]};
 
 {
 forHorizontal:forHorizontal};
-}, 697, null, "react-native-tab-view/src/TabViewStyleInterpolator.js");
+}, 698, null, "react-native-tab-view/src/TabViewStyleInterpolator.js");
 __d(/* react-native-tab-view/src/TabBar.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86494,8 +86494,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TouchableItem=require(699              );var _TouchableItem2=babelHelpers.interopRequireDefault(_TouchableItem); // 699 = ./TouchableItem
-var _TabViewPropTypes=require(693                 ); // 693 = ./TabViewPropTypes
+var _TouchableItem=require(700              );var _TouchableItem2=babelHelpers.interopRequireDefault(_TouchableItem); // 700 = ./TouchableItem
+var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
 
 
 var styles=_reactNative.StyleSheet.create({
@@ -86953,7 +86953,7 @@ null)));
 
 
 }}]);return TabBar;}(_react.PureComponent);TabBar.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{scrollEnabled:_react.PropTypes.bool,pressColor:_TouchableItem2.default.propTypes.pressColor,pressOpacity:_TouchableItem2.default.propTypes.pressOpacity,getLabelText:_react.PropTypes.func,renderIcon:_react.PropTypes.func,renderLabel:_react.PropTypes.func,renderIndicator:_react.PropTypes.func,onTabPress:_react.PropTypes.func,tabStyle:_reactNative.View.propTypes.style,indicatorStyle:_reactNative.View.propTypes.style,labelStyle:_reactNative.Text.propTypes.style,style:_react.PropTypes.any});TabBar.defaultProps={getLabelText:function getLabelText(_ref2){var route=_ref2.route;return route.title?route.title.toUpperCase():null;}};exports.default=TabBar;
-}, 698, null, "react-native-tab-view/src/TabBar.js");
+}, 699, null, "react-native-tab-view/src/TabBar.js");
 __d(/* react-native-tab-view/src/TouchableItem.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -87019,7 +87019,7 @@ this.props.children));
 
 }
 }}]);return TouchableItem;}(_react.PureComponent);TouchableItem.propTypes={delayPressIn:_react.PropTypes.number,borderless:_react.PropTypes.bool,pressColor:_react.PropTypes.string,pressOpacity:_react.PropTypes.number,children:_react.PropTypes.node.isRequired,style:_reactNative.View.propTypes.style};TouchableItem.defaultProps={pressColor:'rgba(255, 255, 255, .4)'};exports.default=TouchableItem;
-}, 699, null, "react-native-tab-view/src/TouchableItem.js");
+}, 700, null, "react-native-tab-view/src/TouchableItem.js");
 __d(/* Castle/src/containers/tabContainers/Discover.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -87028,7 +87028,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _reactNativeSnapCarousel=require(701                         );var _reactNativeSnapCarousel2=babelHelpers.interopRequireDefault(_reactNativeSnapCarousel); // 701 = react-native-snap-carousel
+var _reactNativeSnapCarousel=require(702                         );var _reactNativeSnapCarousel2=babelHelpers.interopRequireDefault(_reactNativeSnapCarousel); // 702 = react-native-snap-carousel
 
 var _common=require(514                        ); // 514 = ./../../components/common
 
@@ -87089,10 +87089,10 @@ height:deviceWidth*0.2}};exports.default=
 
 
 Discover;
-}, 700, null, "Castle/src/containers/tabContainers/Discover.js");
+}, 701, null, "Castle/src/containers/tabContainers/Discover.js");
 __d(/* react-native-snap-carousel/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
-var _reactAddonsShallowCompare=require(702                           );var _reactAddonsShallowCompare2=babelHelpers.interopRequireDefault(_reactAddonsShallowCompare);var // 702 = react-addons-shallow-compare
+var _reactAddonsShallowCompare=require(703                           );var _reactAddonsShallowCompare2=babelHelpers.interopRequireDefault(_reactAddonsShallowCompare);var // 703 = react-addons-shallow-compare
 
 Carousel=function(_Component){babelHelpers.inherits(Carousel,_Component);
 
@@ -87562,9 +87562,9 @@ this._childSlides()));
 
 
 }},{key:'_snapEnabled',get:function get(){var _props8=this.props,enableSnap=_props8.enableSnap,snapOnAndroid=_props8.snapOnAndroid;return enableSnap&&(_reactNative.Platform.OS==='ios'||snapOnAndroid);}},{key:'_nextItem',get:function get(){var activeItem=this.state.activeItem;return this._positions[activeItem+1]?activeItem+1:0;}},{key:'currentIndex',get:function get(){return this.state.activeItem;}}]);return Carousel;}(_react.Component);Carousel.propTypes=babelHelpers.extends({},_reactNative.ScrollView.propTypes,{itemWidth:_react.PropTypes.number.isRequired,sliderWidth:_react.PropTypes.number.isRequired,animationFunc:_react.PropTypes.string,animationOptions:_react.PropTypes.object,autoplay:_react.PropTypes.bool,autoplayDelay:_react.PropTypes.number,autoplayInterval:_react.PropTypes.number,containerCustomStyle:_reactNative.ScrollView.propTypes.style,contentContainerCustomStyle:_reactNative.ScrollView.propTypes.style,enableMomentum:_react.PropTypes.bool,enableSnap:_react.PropTypes.bool,firstItem:_react.PropTypes.number,inactiveSlideOpacity:_react.PropTypes.number,inactiveSlideScale:_react.PropTypes.number,slideStyle:_reactNative.Animated.View.propTypes.style,shouldOptimizeUpdates:_react.PropTypes.bool,snapOnAndroid:_react.PropTypes.bool,swipeThreshold:_react.PropTypes.number,onSnapToItem:_react.PropTypes.func});Carousel.defaultProps={animationFunc:'timing',animationOptions:{easing:_reactNative.Easing.elastic(1)},autoplay:false,autoplayDelay:5000,autoplayInterval:3000,containerCustomStyle:{},contentContainerCustomStyle:{},enableMomentum:false,enableSnap:true,firstItem:0,inactiveSlideOpacity:1,inactiveSlideScale:0.9,slideStyle:{},shouldOptimizeUpdates:true,snapOnAndroid:true,swipeThreshold:20};exports.default=Carousel;
-}, 701, null, "react-native-snap-carousel/index.js");
+}, 702, null, "react-native-snap-carousel/index.js");
 __d(/* react-addons-shallow-compare/index.js */function(global, require, module, exports) {module.exports=require(387                       ); // 387 = react/lib/shallowCompare
-}, 702, null, "react-addons-shallow-compare/index.js");
+}, 703, null, "react-addons-shallow-compare/index.js");
 __d(/* Castle/src/containers/tabContainers/AddExpenses.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
@@ -87576,8 +87576,10 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
+var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
+
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
-var _reactNativeDatepicker=require(704                      );var _reactNativeDatepicker2=babelHelpers.interopRequireDefault(_reactNativeDatepicker); // 704 = react-native-datepicker
+var _reactNativeDatepicker=require(706                      );var _reactNativeDatepicker2=babelHelpers.interopRequireDefault(_reactNativeDatepicker); // 706 = react-native-datepicker
 
 var _common=require(514                        ); // 514 = ./../../components/common
 
@@ -87602,6 +87604,8 @@ _this.state={
 entered:false,
 spentAmount:'',
 date:'',
+time:'',
+displayDate:(0,_moment2.default)(new Date()).format('DD'),
 dateSelected:false,
 note:''};return _this;
 
@@ -87627,13 +87631,15 @@ size:22})));
 }},{key:'render',value:function render()
 
 {var _this3=this;
-console.log(this.state.date);var
+console.log(this.state.date);
+console.log(this.state.displayDate);var
 testShit=
 styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle;
 return(
 _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
 _react2.default.createElement(_reactNative.View,{style:container},
 
+_react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,upperContainer]},
 _react2.default.createElement(_common.ExpensesInput,{
 propViewStyle:[bitOfShadow],
@@ -87648,8 +87654,6 @@ value:this.state.spentAmount}),
 
 this.renderSaveButton()),
 
-
-_react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
 _react2.default.createElement(_common.CategoryBox,{iconName:'md-pizza',categoryName:'FOOD'}),
 _react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.TextInput,{
@@ -87665,29 +87669,32 @@ autoCorrect:false}))),
 
 _react2.default.createElement(_reactNative.View,{style:[buttonContainer]},
 _react2.default.createElement(_reactNative.View,{style:centerEverything},
-_react2.default.createElement(_reactNativeDatepicker2.default,{
-style:[datePickerStyle,centerEverything,bitOfShadow],
-date:this.state.date,
-mode:'date',
-duration:250,
-placeholder:this.state.date,
-format:'DD',
-showIcon:false,
-minDate:'2017-01-01',
-confirmBtnText:'Confirm',
-cancelBtnText:'Cancel',
-customStyles:{
-dateInput:{
-borderWidth:0},
-
-dateText:{
-fontSize:22,
-fontFamily:'Helvetica',
-fontWeight:'400',
-letterSpacing:2}},
+_react2.default.createElement(_reactNative.TouchableOpacity,{style:[datePickerStyle,centerEverything,bitOfShadow]}),
 
 
-onDateChange:function onDateChange(date){_this3.setState({date:date});}}),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 _react2.default.createElement(_reactNative.Text,{style:buttonText},'Calendar')),
 
@@ -87730,11 +87737,11 @@ backgroundColor:'#F5F5F5',
 paddingTop:24},
 
 upperContainer:{
-flex:2,
-flexDirection:'row'},
+flexDirection:'row',
+paddingBottom:40},
 
 contentContainer:{
-flex:5},
+flex:7},
 
 buttonContainer:{
 flex:3,
@@ -87789,477 +87796,7 @@ padding:10}};exports.default=
 
 
 AddExpenses;
-}, 703, null, "Castle/src/containers/tabContainers/AddExpenses.js");
-__d(/* react-native-datepicker/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
-var _reactNative=require(12            ); // 12 = react-native
-
-
-
-
-
-
-
-
-
-
-
-var _style=require(705      );var _style2=babelHelpers.interopRequireDefault(_style); // 705 = ./style
-var _moment=require(706     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 706 = moment
-
-var FORMATS={
-'date':'YYYY-MM-DD',
-'datetime':'YYYY-MM-DD HH:mm',
-'time':'HH:mm'};
-
-
-var SUPPORTED_ORIENTATIONS=["portrait","portrait-upside-down","landscape","landscape-left","landscape-right"];var
-
-DatePicker=function(_Component){babelHelpers.inherits(DatePicker,_Component);
-function DatePicker(props){babelHelpers.classCallCheck(this,DatePicker);var _this=babelHelpers.possibleConstructorReturn(this,(DatePicker.__proto__||Object.getPrototypeOf(DatePicker)).call(this,
-props));
-
-_this.state={
-date:_this.getDate(),
-modalVisible:false,
-animatedHeight:new _reactNative.Animated.Value(0)};
-
-
-_this.datePicked=_this.datePicked.bind(_this);
-_this.onPressDate=_this.onPressDate.bind(_this);
-_this.onPressCancel=_this.onPressCancel.bind(_this);
-_this.onPressConfirm=_this.onPressConfirm.bind(_this);
-_this.onDatePicked=_this.onDatePicked.bind(_this);
-_this.onTimePicked=_this.onTimePicked.bind(_this);
-_this.onDatetimePicked=_this.onDatetimePicked.bind(_this);
-_this.onDatetimeTimePicked=_this.onDatetimeTimePicked.bind(_this);
-_this.setModalVisible=_this.setModalVisible.bind(_this);return _this;
-}babelHelpers.createClass(DatePicker,[{key:'componentWillMount',value:function componentWillMount()
-
-{
-
-console.ignoredYellowBox=[
-'Warning: Failed propType'];
-
-
-}},{key:'setModalVisible',value:function setModalVisible(
-
-visible){var _this2=this;var _props=
-this.props,height=_props.height,duration=_props.duration;
-
-
-if(visible){
-this.setState({modalVisible:visible});
-_reactNative.Animated.timing(
-this.state.animatedHeight,
-{
-toValue:height,
-duration:duration}).
-
-start();
-}else{
-_reactNative.Animated.timing(
-this.state.animatedHeight,
-{
-toValue:0,
-duration:duration}).
-
-start(function(){
-_this2.setState({modalVisible:visible});
-});
-}
-}},{key:'onStartShouldSetResponder',value:function onStartShouldSetResponder(
-
-e){
-return true;
-}},{key:'onMoveShouldSetResponder',value:function onMoveShouldSetResponder(
-
-e){
-return true;
-}},{key:'onPressCancel',value:function onPressCancel()
-
-{
-this.setModalVisible(false);
-
-if(typeof this.props.onCloseModal==='function'){
-this.props.onCloseModal();
-}
-}},{key:'onPressConfirm',value:function onPressConfirm()
-
-{
-this.datePicked();
-this.setModalVisible(false);
-
-if(typeof this.props.onCloseModal==='function'){
-this.props.onCloseModal();
-}
-}},{key:'getDate',value:function getDate()
-
-{var date=arguments.length>0&&arguments[0]!==undefined?arguments[0]:this.props.date;var _props2=
-this.props,mode=_props2.mode,minDate=_props2.minDate,maxDate=_props2.maxDate,_props2$format=_props2.format,format=_props2$format===undefined?FORMATS[mode]:_props2$format;
-
-
-if(!date){
-var now=new Date();
-if(minDate){
-var _minDate=this.getDate(minDate);
-
-if(now<_minDate){
-return _minDate;
-}
-}
-
-if(maxDate){
-var _maxDate=this.getDate(maxDate);
-
-if(now>_maxDate){
-return _maxDate;
-}
-}
-
-return now;
-}
-
-if(date instanceof Date){
-return date;
-}
-
-return(0,_moment2.default)(date,format).toDate();
-}},{key:'getDateStr',value:function getDateStr()
-
-{var date=arguments.length>0&&arguments[0]!==undefined?arguments[0]:this.props.date;var _props3=
-this.props,mode=_props3.mode,_props3$format=_props3.format,format=_props3$format===undefined?FORMATS[mode]:_props3$format;
-
-if(date instanceof Date){
-return(0,_moment2.default)(date).format(format);
-}else{
-return(0,_moment2.default)(this.getDate(date)).format(format);
-}
-}},{key:'datePicked',value:function datePicked()
-
-{
-if(typeof this.props.onDateChange==='function'){
-this.props.onDateChange(this.getDateStr(this.state.date),this.state.date);
-}
-}},{key:'getTitleElement',value:function getTitleElement()
-
-{var _props4=
-this.props,date=_props4.date,placeholder=_props4.placeholder,customStyles=_props4.customStyles;
-
-if(!date&&placeholder){
-return _react2.default.createElement(_reactNative.Text,{style:[_style2.default.placeholderText,customStyles.placeholderText]},placeholder);
-}
-return _react2.default.createElement(_reactNative.Text,{style:[_style2.default.dateText,customStyles.dateText]},this.getDateStr());
-}},{key:'onDatePicked',value:function onDatePicked(_ref)
-
-{var action=_ref.action,year=_ref.year,month=_ref.month,day=_ref.day;
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-this.setState({
-date:new Date(year,month,day)});
-
-this.datePicked();
-}
-}},{key:'onTimePicked',value:function onTimePicked(_ref2)
-
-{var action=_ref2.action,hour=_ref2.hour,minute=_ref2.minute;
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-this.setState({
-date:(0,_moment2.default)().hour(hour).minute(minute).toDate()});
-
-this.datePicked();
-}
-}},{key:'onDatetimePicked',value:function onDatetimePicked(_ref3)
-
-{var action=_ref3.action,year=_ref3.year,month=_ref3.month,day=_ref3.day;var _props5=
-this.props,mode=_props5.mode,_props5$format=_props5.format,format=_props5$format===undefined?FORMATS[mode]:_props5$format,_props5$is24Hour=_props5.is24Hour,is24Hour=_props5$is24Hour===undefined?!format.match(/h|a/):_props5$is24Hour;
-
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-var timeMoment=(0,_moment2.default)(this.state.date);
-
-_reactNative.TimePickerAndroid.open({
-hour:timeMoment.hour(),
-minute:timeMoment.minutes(),
-is24Hour:is24Hour}).
-then(this.onDatetimeTimePicked.bind(this,year,month,day));
-}
-}},{key:'onDatetimeTimePicked',value:function onDatetimeTimePicked(
-
-year,month,day,_ref4){var action=_ref4.action,hour=_ref4.hour,minute=_ref4.minute;
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-this.setState({
-date:new Date(year,month,day,hour,minute)});
-
-this.datePicked();
-}
-}},{key:'onPressDate',value:function onPressDate()
-
-{
-if(this.props.disabled){
-return true;
-}
-
-
-this.setState({
-date:this.getDate()});
-
-
-if(_reactNative.Platform.OS==='ios'){
-this.setModalVisible(true);
-}else{var _props6=
-
-this.props,mode=_props6.mode,_props6$format=_props6.format,format=_props6$format===undefined?FORMATS[mode]:_props6$format,minDate=_props6.minDate,maxDate=_props6.maxDate,_props6$is24Hour=_props6.is24Hour,is24Hour=_props6$is24Hour===undefined?!format.match(/h|a/):_props6$is24Hour;
-
-
-if(mode==='date'){
-_reactNative.DatePickerAndroid.open({
-date:this.state.date,
-minDate:minDate&&this.getDate(minDate),
-maxDate:maxDate&&this.getDate(maxDate)}).
-then(this.onDatePicked);
-}else if(mode==='time'){
-
-
-var timeMoment=(0,_moment2.default)(this.state.date);
-
-_reactNative.TimePickerAndroid.open({
-hour:timeMoment.hour(),
-minute:timeMoment.minutes(),
-is24Hour:is24Hour}).
-then(this.onTimePicked);
-}else if(mode==='datetime'){
-
-
-_reactNative.DatePickerAndroid.open({
-date:this.state.date,
-minDate:minDate&&this.getDate(minDate),
-maxDate:maxDate&&this.getDate(maxDate)}).
-then(this.onDatetimePicked);
-}
-}
-
-if(typeof this.props.onOpenModal==='function'){
-this.props.onOpenModal();
-}
-}},{key:'render',value:function render()
-
-{var _this3=this;var _props7=
-
-
-
-
-
-
-
-
-
-
-
-
-
-this.props,mode=_props7.mode,style=_props7.style,customStyles=_props7.customStyles,disabled=_props7.disabled,showIcon=_props7.showIcon,iconSource=_props7.iconSource,minDate=_props7.minDate,maxDate=_props7.maxDate,minuteInterval=_props7.minuteInterval,timeZoneOffsetInMinutes=_props7.timeZoneOffsetInMinutes,cancelBtnText=_props7.cancelBtnText,confirmBtnText=_props7.confirmBtnText;
-
-var dateInputStyle=[
-_style2.default.dateInput,customStyles.dateInput,
-disabled&&_style2.default.disabled,
-disabled&&customStyles.disabled];
-
-
-return(
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-style:[_style2.default.dateTouch,style],
-underlayColor:'transparent',
-onPress:this.onPressDate},
-
-_react2.default.createElement(_reactNative.View,{style:[_style2.default.dateTouchBody,customStyles.dateTouchBody]},
-_react2.default.createElement(_reactNative.View,{style:dateInputStyle},
-this.getTitleElement()),
-
-showIcon&&_react2.default.createElement(_reactNative.Image,{
-style:[_style2.default.dateIcon,customStyles.dateIcon],
-source:iconSource}),
-
-_reactNative.Platform.OS==='ios'&&_react2.default.createElement(_reactNative.Modal,{
-transparent:true,
-animationType:'none',
-visible:this.state.modalVisible,
-supportedOrientations:SUPPORTED_ORIENTATIONS,
-onRequestClose:function onRequestClose(){_this3.setModalVisible(false);}},
-
-_react2.default.createElement(_reactNative.View,{
-style:{flex:1}},
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-style:_style2.default.datePickerMask,
-activeOpacity:1,
-underlayColor:'#00000077',
-onPress:this.onPressCancel},
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-underlayColor:'#fff',
-style:{flex:1}},
-
-_react2.default.createElement(_reactNative.Animated.View,{
-style:[_style2.default.datePickerCon,{height:this.state.animatedHeight},customStyles.datePickerCon]},
-
-_react2.default.createElement(_reactNative.DatePickerIOS,{
-date:this.state.date,
-mode:mode,
-minimumDate:minDate&&this.getDate(minDate),
-maximumDate:maxDate&&this.getDate(maxDate),
-onDateChange:function onDateChange(date){return _this3.setState({date:date});},
-minuteInterval:minuteInterval,
-timeZoneOffsetInMinutes:timeZoneOffsetInMinutes,
-style:[_style2.default.datePicker,customStyles.datePicker]}),
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-underlayColor:'transparent',
-onPress:this.onPressCancel,
-style:[_style2.default.btnText,_style2.default.btnCancel,customStyles.btnCancel]},
-
-_react2.default.createElement(_reactNative.Text,{
-style:[_style2.default.btnTextText,_style2.default.btnTextCancel,customStyles.btnTextCancel]},
-
-cancelBtnText)),
-
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-underlayColor:'transparent',
-onPress:this.onPressConfirm,
-style:[_style2.default.btnText,_style2.default.btnConfirm,customStyles.btnConfirm]},
-
-_react2.default.createElement(_reactNative.Text,{style:[_style2.default.btnTextText,customStyles.btnTextConfirm]},confirmBtnText))))))))));
-
-
-
-
-
-
-
-
-
-}}]);return DatePicker;}(_react.Component);
-
-
-DatePicker.defaultProps={
-mode:'date',
-date:'',
-
-height:259,
-
-
-duration:300,
-confirmBtnText:'确定',
-cancelBtnText:'取消',
-iconSource:require(707              ), // 707 = ./date_icon.png
-customStyles:{},
-
-
-showIcon:true,
-disabled:false,
-placeholder:'',
-modalOnResponderTerminationRequest:function modalOnResponderTerminationRequest(e){return true;}};
-
-
-DatePicker.propTypes={
-mode:_react2.default.PropTypes.oneOf(['date','datetime','time']),
-date:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
-format:_react2.default.PropTypes.string,
-minDate:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
-maxDate:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
-height:_react2.default.PropTypes.number,
-duration:_react2.default.PropTypes.number,
-confirmBtnText:_react2.default.PropTypes.string,
-cancelBtnText:_react2.default.PropTypes.string,
-iconSource:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number,_react2.default.PropTypes.object]),
-customStyles:_react2.default.PropTypes.object,
-showIcon:_react2.default.PropTypes.bool,
-disabled:_react2.default.PropTypes.bool,
-onDateChange:_react2.default.PropTypes.func,
-onOpenModal:_react2.default.PropTypes.func,
-onCloseModal:_react2.default.PropTypes.func,
-placeholder:_react2.default.PropTypes.string,
-modalOnResponderTerminationRequest:_react2.default.PropTypes.func,
-is24Hour:_react2.default.PropTypes.bool};exports.default=
-
-
-DatePicker;
-}, 704, null, "react-native-datepicker/index.js");
-__d(/* react-native-datepicker/style.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require(12            ); // 12 = react-native
-
-var style=_reactNative.StyleSheet.create({
-dateTouch:{
-width:142},
-
-dateTouchBody:{
-flexDirection:'row',
-height:40,
-alignItems:'center',
-justifyContent:'center'},
-
-dateIcon:{
-width:32,
-height:32,
-marginLeft:5,
-marginRight:5},
-
-dateInput:{
-flex:1,
-height:40,
-borderWidth:1,
-borderColor:'#aaa',
-alignItems:'center',
-justifyContent:'center'},
-
-dateText:{
-color:'#333'},
-
-placeholderText:{
-color:'#c9c9c9'},
-
-datePickerMask:{
-flex:1,
-alignItems:'flex-end',
-flexDirection:'row',
-backgroundColor:'#00000077'},
-
-datePickerCon:{
-backgroundColor:'#fff',
-height:0,
-overflow:'hidden'},
-
-btnText:{
-position:'absolute',
-top:0,
-height:42,
-padding:20,
-flexDirection:'row',
-alignItems:'center',
-justifyContent:'center'},
-
-btnTextText:{
-fontSize:16,
-color:'#46cf98'},
-
-btnTextCancel:{
-color:'#666'},
-
-btnCancel:{
-left:0},
-
-btnConfirm:{
-right:0},
-
-datePicker:{
-marginTop:42,
-borderTopColor:'#ccc',
-borderTopWidth:1},
-
-disabled:{
-backgroundColor:'#eee'}});exports.default=
-
-
-
-style;
-}, 705, null, "react-native-datepicker/style.js");
+}, 704, null, "Castle/src/containers/tabContainers/AddExpenses.js");
 __d(/* moment/moment.js */function(global, require, module, exports) {
 
 
@@ -92561,9 +92098,479 @@ hooks.prototype=proto;
 return hooks;
 
 });
-}, 706, null, "moment/moment.js");
+}, 705, null, "moment/moment.js");
+__d(/* react-native-datepicker/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
+var _reactNative=require(12            ); // 12 = react-native
+
+
+
+
+
+
+
+
+
+
+
+var _style=require(707      );var _style2=babelHelpers.interopRequireDefault(_style); // 707 = ./style
+var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
+
+var FORMATS={
+'date':'YYYY-MM-DD',
+'datetime':'YYYY-MM-DD HH:mm',
+'time':'HH:mm'};
+
+
+var SUPPORTED_ORIENTATIONS=["portrait","portrait-upside-down","landscape","landscape-left","landscape-right"];var
+
+DatePicker=function(_Component){babelHelpers.inherits(DatePicker,_Component);
+function DatePicker(props){babelHelpers.classCallCheck(this,DatePicker);var _this=babelHelpers.possibleConstructorReturn(this,(DatePicker.__proto__||Object.getPrototypeOf(DatePicker)).call(this,
+props));
+
+_this.state={
+date:_this.getDate(),
+modalVisible:false,
+animatedHeight:new _reactNative.Animated.Value(0)};
+
+
+_this.datePicked=_this.datePicked.bind(_this);
+_this.onPressDate=_this.onPressDate.bind(_this);
+_this.onPressCancel=_this.onPressCancel.bind(_this);
+_this.onPressConfirm=_this.onPressConfirm.bind(_this);
+_this.onDatePicked=_this.onDatePicked.bind(_this);
+_this.onTimePicked=_this.onTimePicked.bind(_this);
+_this.onDatetimePicked=_this.onDatetimePicked.bind(_this);
+_this.onDatetimeTimePicked=_this.onDatetimeTimePicked.bind(_this);
+_this.setModalVisible=_this.setModalVisible.bind(_this);return _this;
+}babelHelpers.createClass(DatePicker,[{key:'componentWillMount',value:function componentWillMount()
+
+{
+
+console.ignoredYellowBox=[
+'Warning: Failed propType'];
+
+
+}},{key:'setModalVisible',value:function setModalVisible(
+
+visible){var _this2=this;var _props=
+this.props,height=_props.height,duration=_props.duration;
+
+
+if(visible){
+this.setState({modalVisible:visible});
+_reactNative.Animated.timing(
+this.state.animatedHeight,
+{
+toValue:height,
+duration:duration}).
+
+start();
+}else{
+_reactNative.Animated.timing(
+this.state.animatedHeight,
+{
+toValue:0,
+duration:duration}).
+
+start(function(){
+_this2.setState({modalVisible:visible});
+});
+}
+}},{key:'onStartShouldSetResponder',value:function onStartShouldSetResponder(
+
+e){
+return true;
+}},{key:'onMoveShouldSetResponder',value:function onMoveShouldSetResponder(
+
+e){
+return true;
+}},{key:'onPressCancel',value:function onPressCancel()
+
+{
+this.setModalVisible(false);
+
+if(typeof this.props.onCloseModal==='function'){
+this.props.onCloseModal();
+}
+}},{key:'onPressConfirm',value:function onPressConfirm()
+
+{
+this.datePicked();
+this.setModalVisible(false);
+
+if(typeof this.props.onCloseModal==='function'){
+this.props.onCloseModal();
+}
+}},{key:'getDate',value:function getDate()
+
+{var date=arguments.length>0&&arguments[0]!==undefined?arguments[0]:this.props.date;var _props2=
+this.props,mode=_props2.mode,minDate=_props2.minDate,maxDate=_props2.maxDate,_props2$format=_props2.format,format=_props2$format===undefined?FORMATS[mode]:_props2$format;
+
+
+if(!date){
+var now=new Date();
+if(minDate){
+var _minDate=this.getDate(minDate);
+
+if(now<_minDate){
+return _minDate;
+}
+}
+
+if(maxDate){
+var _maxDate=this.getDate(maxDate);
+
+if(now>_maxDate){
+return _maxDate;
+}
+}
+
+return now;
+}
+
+if(date instanceof Date){
+return date;
+}
+
+return(0,_moment2.default)(date,format).toDate();
+}},{key:'getDateStr',value:function getDateStr()
+
+{var date=arguments.length>0&&arguments[0]!==undefined?arguments[0]:this.props.date;var _props3=
+this.props,mode=_props3.mode,_props3$format=_props3.format,format=_props3$format===undefined?FORMATS[mode]:_props3$format;
+
+if(date instanceof Date){
+return(0,_moment2.default)(date).format(format);
+}else{
+return(0,_moment2.default)(this.getDate(date)).format(format);
+}
+}},{key:'datePicked',value:function datePicked()
+
+{
+if(typeof this.props.onDateChange==='function'){
+this.props.onDateChange(this.getDateStr(this.state.date),this.state.date);
+}
+}},{key:'getTitleElement',value:function getTitleElement()
+
+{var _props4=
+this.props,date=_props4.date,placeholder=_props4.placeholder,customStyles=_props4.customStyles;
+
+if(!date&&placeholder){
+return _react2.default.createElement(_reactNative.Text,{style:[_style2.default.placeholderText,customStyles.placeholderText]},placeholder);
+}
+return _react2.default.createElement(_reactNative.Text,{style:[_style2.default.dateText,customStyles.dateText]},this.getDateStr());
+}},{key:'onDatePicked',value:function onDatePicked(_ref)
+
+{var action=_ref.action,year=_ref.year,month=_ref.month,day=_ref.day;
+if(action!==_reactNative.DatePickerAndroid.dismissedAction){
+this.setState({
+date:new Date(year,month,day)});
+
+this.datePicked();
+}
+}},{key:'onTimePicked',value:function onTimePicked(_ref2)
+
+{var action=_ref2.action,hour=_ref2.hour,minute=_ref2.minute;
+if(action!==_reactNative.DatePickerAndroid.dismissedAction){
+this.setState({
+date:(0,_moment2.default)().hour(hour).minute(minute).toDate()});
+
+this.datePicked();
+}
+}},{key:'onDatetimePicked',value:function onDatetimePicked(_ref3)
+
+{var action=_ref3.action,year=_ref3.year,month=_ref3.month,day=_ref3.day;var _props5=
+this.props,mode=_props5.mode,_props5$format=_props5.format,format=_props5$format===undefined?FORMATS[mode]:_props5$format,_props5$is24Hour=_props5.is24Hour,is24Hour=_props5$is24Hour===undefined?!format.match(/h|a/):_props5$is24Hour;
+
+if(action!==_reactNative.DatePickerAndroid.dismissedAction){
+var timeMoment=(0,_moment2.default)(this.state.date);
+
+_reactNative.TimePickerAndroid.open({
+hour:timeMoment.hour(),
+minute:timeMoment.minutes(),
+is24Hour:is24Hour}).
+then(this.onDatetimeTimePicked.bind(this,year,month,day));
+}
+}},{key:'onDatetimeTimePicked',value:function onDatetimeTimePicked(
+
+year,month,day,_ref4){var action=_ref4.action,hour=_ref4.hour,minute=_ref4.minute;
+if(action!==_reactNative.DatePickerAndroid.dismissedAction){
+this.setState({
+date:new Date(year,month,day,hour,minute)});
+
+this.datePicked();
+}
+}},{key:'onPressDate',value:function onPressDate()
+
+{
+if(this.props.disabled){
+return true;
+}
+
+
+this.setState({
+date:this.getDate()});
+
+
+if(_reactNative.Platform.OS==='ios'){
+this.setModalVisible(true);
+}else{var _props6=
+
+this.props,mode=_props6.mode,_props6$format=_props6.format,format=_props6$format===undefined?FORMATS[mode]:_props6$format,minDate=_props6.minDate,maxDate=_props6.maxDate,_props6$is24Hour=_props6.is24Hour,is24Hour=_props6$is24Hour===undefined?!format.match(/h|a/):_props6$is24Hour;
+
+
+if(mode==='date'){
+_reactNative.DatePickerAndroid.open({
+date:this.state.date,
+minDate:minDate&&this.getDate(minDate),
+maxDate:maxDate&&this.getDate(maxDate)}).
+then(this.onDatePicked);
+}else if(mode==='time'){
+
+
+var timeMoment=(0,_moment2.default)(this.state.date);
+
+_reactNative.TimePickerAndroid.open({
+hour:timeMoment.hour(),
+minute:timeMoment.minutes(),
+is24Hour:is24Hour}).
+then(this.onTimePicked);
+}else if(mode==='datetime'){
+
+
+_reactNative.DatePickerAndroid.open({
+date:this.state.date,
+minDate:minDate&&this.getDate(minDate),
+maxDate:maxDate&&this.getDate(maxDate)}).
+then(this.onDatetimePicked);
+}
+}
+
+if(typeof this.props.onOpenModal==='function'){
+this.props.onOpenModal();
+}
+}},{key:'render',value:function render()
+
+{var _this3=this;var _props7=
+
+
+
+
+
+
+
+
+
+
+
+
+
+this.props,mode=_props7.mode,style=_props7.style,customStyles=_props7.customStyles,disabled=_props7.disabled,showIcon=_props7.showIcon,iconSource=_props7.iconSource,minDate=_props7.minDate,maxDate=_props7.maxDate,minuteInterval=_props7.minuteInterval,timeZoneOffsetInMinutes=_props7.timeZoneOffsetInMinutes,cancelBtnText=_props7.cancelBtnText,confirmBtnText=_props7.confirmBtnText;
+
+var dateInputStyle=[
+_style2.default.dateInput,customStyles.dateInput,
+disabled&&_style2.default.disabled,
+disabled&&customStyles.disabled];
+
+
+return(
+_react2.default.createElement(_reactNative.TouchableHighlight,{
+style:[_style2.default.dateTouch,style],
+underlayColor:'transparent',
+onPress:this.onPressDate},
+
+_react2.default.createElement(_reactNative.View,{style:[_style2.default.dateTouchBody,customStyles.dateTouchBody]},
+_react2.default.createElement(_reactNative.View,{style:dateInputStyle},
+this.getTitleElement()),
+
+showIcon&&_react2.default.createElement(_reactNative.Image,{
+style:[_style2.default.dateIcon,customStyles.dateIcon],
+source:iconSource}),
+
+_reactNative.Platform.OS==='ios'&&_react2.default.createElement(_reactNative.Modal,{
+transparent:true,
+animationType:'none',
+visible:this.state.modalVisible,
+supportedOrientations:SUPPORTED_ORIENTATIONS,
+onRequestClose:function onRequestClose(){_this3.setModalVisible(false);}},
+
+_react2.default.createElement(_reactNative.View,{
+style:{flex:1}},
+
+_react2.default.createElement(_reactNative.TouchableHighlight,{
+style:_style2.default.datePickerMask,
+activeOpacity:1,
+underlayColor:'#00000077',
+onPress:this.onPressCancel},
+
+_react2.default.createElement(_reactNative.TouchableHighlight,{
+underlayColor:'#fff',
+style:{flex:1}},
+
+_react2.default.createElement(_reactNative.Animated.View,{
+style:[_style2.default.datePickerCon,{height:this.state.animatedHeight},customStyles.datePickerCon]},
+
+_react2.default.createElement(_reactNative.DatePickerIOS,{
+date:this.state.date,
+mode:mode,
+minimumDate:minDate&&this.getDate(minDate),
+maximumDate:maxDate&&this.getDate(maxDate),
+onDateChange:function onDateChange(date){return _this3.setState({date:date});},
+minuteInterval:minuteInterval,
+timeZoneOffsetInMinutes:timeZoneOffsetInMinutes,
+style:[_style2.default.datePicker,customStyles.datePicker]}),
+
+_react2.default.createElement(_reactNative.TouchableHighlight,{
+underlayColor:'transparent',
+onPress:this.onPressCancel,
+style:[_style2.default.btnText,_style2.default.btnCancel,customStyles.btnCancel]},
+
+_react2.default.createElement(_reactNative.Text,{
+style:[_style2.default.btnTextText,_style2.default.btnTextCancel,customStyles.btnTextCancel]},
+
+cancelBtnText)),
+
+
+_react2.default.createElement(_reactNative.TouchableHighlight,{
+underlayColor:'transparent',
+onPress:this.onPressConfirm,
+style:[_style2.default.btnText,_style2.default.btnConfirm,customStyles.btnConfirm]},
+
+_react2.default.createElement(_reactNative.Text,{style:[_style2.default.btnTextText,customStyles.btnTextConfirm]},confirmBtnText))))))))));
+
+
+
+
+
+
+
+
+
+}}]);return DatePicker;}(_react.Component);
+
+
+DatePicker.defaultProps={
+mode:'date',
+date:'',
+
+height:259,
+
+
+duration:300,
+confirmBtnText:'确定',
+cancelBtnText:'取消',
+iconSource:require(708              ), // 708 = ./date_icon.png
+customStyles:{},
+
+
+showIcon:true,
+disabled:false,
+placeholder:'',
+modalOnResponderTerminationRequest:function modalOnResponderTerminationRequest(e){return true;}};
+
+
+DatePicker.propTypes={
+mode:_react2.default.PropTypes.oneOf(['date','datetime','time']),
+date:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
+format:_react2.default.PropTypes.string,
+minDate:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
+maxDate:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
+height:_react2.default.PropTypes.number,
+duration:_react2.default.PropTypes.number,
+confirmBtnText:_react2.default.PropTypes.string,
+cancelBtnText:_react2.default.PropTypes.string,
+iconSource:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number,_react2.default.PropTypes.object]),
+customStyles:_react2.default.PropTypes.object,
+showIcon:_react2.default.PropTypes.bool,
+disabled:_react2.default.PropTypes.bool,
+onDateChange:_react2.default.PropTypes.func,
+onOpenModal:_react2.default.PropTypes.func,
+onCloseModal:_react2.default.PropTypes.func,
+placeholder:_react2.default.PropTypes.string,
+modalOnResponderTerminationRequest:_react2.default.PropTypes.func,
+is24Hour:_react2.default.PropTypes.bool};exports.default=
+
+
+DatePicker;
+}, 706, null, "react-native-datepicker/index.js");
+__d(/* react-native-datepicker/style.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require(12            ); // 12 = react-native
+
+var style=_reactNative.StyleSheet.create({
+dateTouch:{
+width:142},
+
+dateTouchBody:{
+flexDirection:'row',
+height:40,
+alignItems:'center',
+justifyContent:'center'},
+
+dateIcon:{
+width:32,
+height:32,
+marginLeft:5,
+marginRight:5},
+
+dateInput:{
+flex:1,
+height:40,
+borderWidth:1,
+borderColor:'#aaa',
+alignItems:'center',
+justifyContent:'center'},
+
+dateText:{
+color:'#333'},
+
+placeholderText:{
+color:'#c9c9c9'},
+
+datePickerMask:{
+flex:1,
+alignItems:'flex-end',
+flexDirection:'row',
+backgroundColor:'#00000077'},
+
+datePickerCon:{
+backgroundColor:'#fff',
+height:0,
+overflow:'hidden'},
+
+btnText:{
+position:'absolute',
+top:0,
+height:42,
+padding:20,
+flexDirection:'row',
+alignItems:'center',
+justifyContent:'center'},
+
+btnTextText:{
+fontSize:16,
+color:'#46cf98'},
+
+btnTextCancel:{
+color:'#666'},
+
+btnCancel:{
+left:0},
+
+btnConfirm:{
+right:0},
+
+datePicker:{
+marginTop:42,
+borderTopColor:'#ccc',
+borderTopWidth:1},
+
+disabled:{
+backgroundColor:'#eee'}});exports.default=
+
+
+
+style;
+}, 707, null, "react-native-datepicker/style.js");
 __d(/* react-native-datepicker/date_icon.png */function(global, require, module, exports) {module.exports = require(171                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-datepicker","width":64,"height":64,"scales":[1],"hash":"1edd5017f455b09c608e175b1285c06d","name":"date_icon","type":"png"}); // 171 = react-native/Libraries/Image/AssetRegistry
-}, 707, null, "react-native-datepicker/date_icon.png");
+}, 708, null, "react-native-datepicker/date_icon.png");
 __d(/* Castle/src/containers/tabContainers/Account.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -92572,7 +92579,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _Calculator=require(709           );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 709 = ./Calculator
+var _Calculator=require(710           );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 710 = ./Calculator
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
@@ -92607,7 +92614,7 @@ return(
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,container]},
 _react2.default.createElement(_reactNative.View,{style:[upperContainer]},
 _react2.default.createElement(_reactNative.Image,{
-source:require(710                             ), // 710 = ./../../img/AccountPicture.png
+source:require(711                             ), // 711 = ./../../img/AccountPicture.png
 style:accountPicture})),
 
 
@@ -92713,7 +92720,7 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(Account);
-}, 708, null, "Castle/src/containers/tabContainers/Account.js");
+}, 709, null, "Castle/src/containers/tabContainers/Account.js");
 __d(/* Castle/src/containers/tabContainers/Calculator.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -92944,9 +92951,9 @@ color:'#FFF'}};exports.default=
 
 
 Calculator;
-}, 709, null, "Castle/src/containers/tabContainers/Calculator.js");
+}, 710, null, "Castle/src/containers/tabContainers/Calculator.js");
 __d(/* Castle/src/img/AccountPicture.png */function(global, require, module, exports) {module.exports = require(171                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/img","width":599,"height":597,"scales":[1],"hash":"c81394d70bb1e03cd3aa0add30d510ea","name":"AccountPicture","type":"png"}); // 171 = react-native/Libraries/Image/AssetRegistry
-}, 710, null, "Castle/src/img/AccountPicture.png");
+}, 711, null, "Castle/src/img/AccountPicture.png");
 __d(/* Castle/src/containers/passcodeContainers/ManagePasscode.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _common=require(514                        ); // 514 = ./../../components/common
@@ -93127,7 +93134,7 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(ManagePasscode);
-}, 711, null, "Castle/src/containers/passcodeContainers/ManagePasscode.js");
+}, 712, null, "Castle/src/containers/passcodeContainers/ManagePasscode.js");
 ;require(215);
 ;require(0);
 //# sourceMappingURL=index.ios.map
