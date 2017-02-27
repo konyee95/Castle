@@ -38,9 +38,10 @@ class AddExpenses extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calendarOpened: false,
+      calendarOpenedAndroid: false,
       entered: false,
       modalVisible: false,
+      datePickerModalVisible: false,
       spentAmount: '',
       date: new Date(),
       formattedDate: '',
@@ -85,7 +86,7 @@ class AddExpenses extends Component {
           date: selectedDate, 
           formattedDate: Moment(selectedDate).format('YYYY-MM-DD'),
           formattedTime: Moment(new Date()).format('h:mm A'),
-          calendarOpened: !this.state.calendarOpened
+          calendarOpenedAndroid: !this.state.calendarOpenedAndroid
         })
       }
     } catch ({code, message}) {
@@ -93,14 +94,107 @@ class AddExpenses extends Component {
     }
   };
 
-  openCalendar() {
+  launchCalender() {
+    if(Platform.OS === 'ios') {
+      this.setState({ datePickerModalVisible: true })
+    } else if(Platform.OS === 'android') {
+      this.setState({ calendarOpenedAndroid: true })
+    }
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
+  renderView() {
     let minimumDate = new Date(2016, 12, 31);
-    const { testShit, centerEverything, datePickerContainer, datePickerMessageContainer, datePickerMessage, 
-      datePickerMessageFeature, pickerTextControl, pickerTextStyle, datePickerIOS, datePickerConfirmButton, confirmText } = styles;
-    if(this.state.calendarOpened) {
-      if(Platform.OS === 'ios') {
-        return(
+
+    const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable,
+      modalContainer, upperModal, modalTitle, bottomModal, datePickerModalContainer,  datePickerContainer, datePickerMessageContainer, datePickerMessage, 
+      datePickerMessageFeature, pickerTextControl, pickerTextStyle, datePickerIOS, datePickerConfirmButton} = styles;
+    
+    return(
+      <View style={[container]}>
+        {/*{this.state.calendarOpenedAndroid ? this.showPicker() : console.log('sdasda')}*/}
+        <View style={[centerEverything, contentContainer]}>
+            <View style={[centerEverything, upperContainer]}>
+              <ExpensesInput
+                propViewStyle={[bitOfShadow]}
+                propTextInputStyle={propTextInputStyle}
+                keyboardType="numeric"
+                placeholder="How much did you spend ?"
+                placeholderTextColor="#525760"
+                textAlign="center"
+                iconName="ios-card"
+                onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
+                value={this.state.spentAmount}
+              />
+              {this.renderSaveButton()}
+          </View>
+          <CategoryBox iconName="md-pizza" categoryName="FOOD" onPress={() => this.setState({ modalVisible: true })}/>
+          <View>
+            <TextInput 
+              style={[noteStyle, bitOfShadow]}
+              value={this.state.note}
+              onChangeText={(note) => this.setState({ note })}
+              placeholder="Note"
+              textAlign="center"
+              multiline
+              autoCorrect={false} />
+          </View>
+        </View>
+
+        <View style={[buttonContainer]}>
           <View style={centerEverything}>
+            <TouchableOpacity 
+              style={[datePickerStyle, centerEverything, bitOfShadow]}
+              onPress={() => this.launchCalender() }>
+              <Text style={{ fontSize: 24, fontWeight: '500' }}>{Moment(this.state.date).format('DD')}</Text>
+            </TouchableOpacity>
+            <Text style={buttonText}>Calendar</Text>
+          </View>
+          <View style={centerEverything}>
+            <TouchableOpacity
+              style={[datePickerStyle, centerEverything, bitOfShadow]}
+              onPress={() => console.log('sdsadasd')}>
+              {mic}
+            </TouchableOpacity>
+            <Text style={[buttonText, disable]}>Voice</Text>
+          </View>
+          <View style={centerEverything}>
+            <TouchableOpacity
+              style={[datePickerStyle, centerEverything, bitOfShadow]}
+              onPress={() => console.log('sdsadasd')}>
+              {github}
+            </TouchableOpacity>
+            <Text style={buttonText}>GitHub</Text>
+          </View>
+        </View>
+
+        <Modal
+          animationType={"fade"}
+          transparent={true}
+          onRequestClose={() => this.setModalVisible(!this.state.modalVisible) }
+          visible={this.state.modalVisible}>
+          <View style={[modalContainer]}>
+            <TouchableOpacity 
+                style={[upperModal, centerEverything, bitOfShadow]}
+                onPress={() => this.setModalVisible(!this.state.modalVisible) }>
+                <Text style={[modalTitle]}>SELECT A CATEGORY</Text>
+              </TouchableOpacity>
+            <View style={bottomModal}>
+
+            </View>
+          </View>
+        </Modal>
+
+        <Modal
+          animationType={"slide"}
+          transparent={true}
+          onRequestClose={() => this.setState({ datePickerModalVisible: false }) }
+          visible={this.state.datePickerModalVisible}>
+          <View style={[datePickerModalContainer]}>
             <View style={[datePickerContainer]}>
               <View style={[datePickerMessageContainer]}>
                 <Text style={datePickerMessage}>Select a Time</Text>
@@ -119,111 +213,14 @@ class AddExpenses extends Component {
                 }/>
                 <TouchableOpacity 
                   style={[datePickerConfirmButton]}
-                  onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
-                  <Text style={confirmText}>CONFIRM TIME</Text>
+                  onPress={() => this.setState({ datePickerModalVisible: false })}>
+                  <Text style={modalTitle}>CONFIRM TIME</Text>
                 </TouchableOpacity>
             </View>
           </View>
-        )
-      } else if (Platform.OS === 'android') {
-        {this.showPicker()}
-      }
-    }
-  }
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
-
-  renderView() {
-    const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable,
-      modalContainer, upperModal, bottomModal} = styles;
-    if(!this.state.calendarOpened) {
-      return(
-        <View style={[container]}>
-          <View style={[centerEverything, contentContainer]}>
-             <View style={[centerEverything, upperContainer]}>
-                <ExpensesInput
-                  propViewStyle={[bitOfShadow]}
-                  propTextInputStyle={propTextInputStyle}
-                  keyboardType="numeric"
-                  placeholder="How much did you spend ?"
-                  placeholderTextColor="#525760"
-                  textAlign="center"
-                  iconName="ios-card"
-                  onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
-                  value={this.state.spentAmount}
-                />
-                {this.renderSaveButton()}
-            </View>
-            <CategoryBox iconName="md-pizza" categoryName="FOOD" onPress={() => this.setState({ modalVisible: true })}/>
-            <Modal
-              animationType={"fade"}
-              transparent={true}
-              visible={this.state.modalVisible}>
-              <View style={[modalContainer]}>
-                <View style={upperModal}>
-                  <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible) }>
-                    <Text>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible) }>
-                    <Text>Done</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={bottomModal}>
-                
-                </View>
-              </View>
-            </Modal>
-            <View>
-              <TextInput 
-                style={[noteStyle, bitOfShadow]}
-                value={this.state.note}
-                onChangeText={(note) => this.setState({ note })}
-                placeholder="Note"
-                textAlign="center"
-                multiline
-                autoCorrect={false} />
-            </View>
-          </View>
-
-          <View style={[buttonContainer]}>
-            <View style={centerEverything}>
-              <TouchableOpacity 
-                style={[datePickerStyle, centerEverything, bitOfShadow]}
-                onPress={() => this.setState({ calendarOpened: !this.state.calendarOpened })}>
-                <Text style={{ fontSize: 24, fontWeight: '500' }}>{Moment(this.state.date).format('DD')}</Text>
-              </TouchableOpacity>
-              <Text style={buttonText}>Calendar</Text>
-            </View>
-            <View style={centerEverything}>
-              <TouchableOpacity
-                style={[datePickerStyle, centerEverything, bitOfShadow]}
-                onPress={() => console.log('sdsadasd')}>
-                {mic}
-              </TouchableOpacity>
-              <Text style={[buttonText, disable]}>Voice</Text>
-            </View>
-            <View style={centerEverything}>
-              <TouchableOpacity
-                style={[datePickerStyle, centerEverything, bitOfShadow]}
-                onPress={() => console.log('sdsadasd')}>
-                {github}
-              </TouchableOpacity>
-              <Text style={buttonText}>GitHub</Text>
-            </View>
-          </View>
-          
-        </View>
-      )
-    } else {
-        return(
-          <View style={[styles.container, { backgroundColor: '#424242' }]}>
-            {this.openCalendar()}
-          </View>
-        )
-    }
+        </Modal>
+      </View>
+    )
   }
 
   render() {
@@ -362,19 +359,29 @@ const styles = {
     marginTop: deviceHeight*0.25,
     marginLeft: deviceWidth*0.15,
     backgroundColor: '#FFF',
-    borderColor: '#202020',
-    borderWidth: 1,
-    borderRadius: 2
+    borderRadius: 3
   },
   upperModal: {
     height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10
+    padding: 10,
+    backgroundColor: '#202020'
+  },
+  modalTitle: {
+    color: '#FFF',
+    fontSize: Math.round(deviceWidth*0.035),
+    fontFamily: 'HelveticaNeue-Medium',
+    letterSpacing: 3,
+    textAlign: 'center'
   },
   bottomModal: {
     
+  },
+  datePickerModalContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: deviceWidth,
+    height: 350,
+    backgroundColor: '#FFF',
   }
 }
 

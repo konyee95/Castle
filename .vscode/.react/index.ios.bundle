@@ -87579,6 +87579,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
+
 var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
@@ -87639,6 +87640,8 @@ props));_this.
 
 
 
+
+
 showPicker=function _callee(stateKey,options){var _ref,action,year,month,day,selectedDate,code,message;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.prev=0;_context.next=3;return regeneratorRuntime.awrap(
 
 _reactNative.DatePickerAndroid.open({
@@ -87650,58 +87653,37 @@ _this.setState({
 date:selectedDate,
 formattedDate:(0,_moment2.default)(selectedDate).format('YYYY-MM-DD'),
 formattedTime:(0,_moment2.default)(new Date()).format('h:mm A'),
-calendarOpened:!_this.state.calendarOpened});
+calendarOpenedAndroid:!_this.state.calendarOpenedAndroid});
 
 }_context.next=16;break;case 11:_context.prev=11;_context.t0=_context['catch'](0);
 code=_context.t0.code;message=_context.t0.message;
-console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpened:false,entered:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'openCalendar',value:function openCalendar()
+console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchCalender',value:function launchCalender()
 
 
+
+{
+if(_reactNative.Platform.OS==='ios'){
+this.setState({datePickerModalVisible:true});
+}else if(_reactNative.Platform.OS==='android'){
+this.setState({calendarOpenedAndroid:true});
+}
+}},{key:'setModalVisible',value:function setModalVisible(
+
+visible){
+this.setState({modalVisible:visible});
+}},{key:'renderView',value:function renderView()
 
 {var _this4=this;
 var minimumDate=new Date(2016,12,31);var
+
 testShit=
-styles.testShit,centerEverything=styles.centerEverything,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,pickerTextStyle=styles.pickerTextStyle,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton,confirmText=styles.confirmText;
-if(this.state.calendarOpened){
-if(_reactNative.Platform.OS==='ios'){
-return(
-_react2.default.createElement(_reactNative.View,null,
-_react2.default.createElement(_reactNative.View,{style:[datePickerContainer]},
-_react2.default.createElement(_reactNative.View,{style:[datePickerMessageContainer]},
-_react2.default.createElement(_reactNative.Text,{style:datePickerMessage},'Select a Time'),
-_react2.default.createElement(_reactNative.Text,{style:[datePickerMessage,datePickerMessageFeature]},'When did you spend?')),
-
-_react2.default.createElement(_reactNative.DatePickerIOS,{
-date:this.state.date,
-style:[datePickerIOS],
-mode:'datetime',
-minimumDate:minimumDate,
-onDateChange:function onDateChange(date){return _this4.setState({
-date:date,
-formattedDate:(0,_moment2.default)(date).format('YYYY-MM-DD'),
-formattedTime:(0,_moment2.default)(date).format('h:mm A')});}}),
 
 
-_react2.default.createElement(_reactNative.TouchableOpacity,{
-style:[datePickerConfirmButton],
-onPress:function onPress(){return _this4.setState({calendarOpened:!_this4.state.calendarOpened});}},
-_react2.default.createElement(_reactNative.Text,{style:confirmText},'CONFIRM TIME')))));
+styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable,modalContainer=styles.modalContainer,upperModal=styles.upperModal,modalTitle=styles.modalTitle,bottomModal=styles.bottomModal,datePickerModalContainer=styles.datePickerModalContainer,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,pickerTextStyle=styles.pickerTextStyle,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton,confirmText=styles.confirmText;
 
-
-
-
-}else if(_reactNative.Platform.OS==='android'){
-{this.showPicker();}
-}
-}
-}},{key:'renderView',value:function renderView()
-
-{var _this5=this;var
-testShit=
-styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable;
-if(!this.state.calendarOpened){
 return(
 _react2.default.createElement(_reactNative.View,{style:[container]},
+
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,upperContainer]},
 _react2.default.createElement(_common.ExpensesInput,{
@@ -87712,17 +87694,17 @@ placeholder:'How much did you spend ?',
 placeholderTextColor:'#525760',
 textAlign:'center',
 iconName:'ios-card',
-onChangeText:function onChangeText(spentAmount){return _this5.setState({entered:true,spentAmount:spentAmount});},
+onChangeText:function onChangeText(spentAmount){return _this4.setState({entered:true,spentAmount:spentAmount});},
 value:this.state.spentAmount}),
 
 this.renderSaveButton()),
 
-_react2.default.createElement(_common.CategoryBox,{iconName:'md-pizza',categoryName:'FOOD'}),
+_react2.default.createElement(_common.CategoryBox,{iconName:'md-pizza',categoryName:'FOOD',onPress:function onPress(){return _this4.setState({modalVisible:true});}}),
 _react2.default.createElement(_reactNative.View,null,
 _react2.default.createElement(_reactNative.TextInput,{
 style:[noteStyle,bitOfShadow],
 value:this.state.note,
-onChangeText:function onChangeText(note){return _this5.setState({note:note});},
+onChangeText:function onChangeText(note){return _this4.setState({note:note});},
 placeholder:'Note',
 textAlign:'center',
 multiline:true,
@@ -87734,7 +87716,7 @@ _react2.default.createElement(_reactNative.View,{style:[buttonContainer]},
 _react2.default.createElement(_reactNative.View,{style:centerEverything},
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[datePickerStyle,centerEverything,bitOfShadow],
-onPress:function onPress(){return _this5.setState({calendarOpened:!_this5.state.calendarOpened});}},
+onPress:function onPress(){return _this4.launchCalender();}},
 _react2.default.createElement(_reactNative.Text,{style:{fontSize:24,fontWeight:'500'}},(0,_moment2.default)(this.state.date).format('DD'))),
 
 _react2.default.createElement(_reactNative.Text,{style:buttonText},'Calendar')),
@@ -87753,19 +87735,59 @@ style:[datePickerStyle,centerEverything,bitOfShadow],
 onPress:function onPress(){return console.log('sdsadasd');}},
 github),
 
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub')))));
+_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub'))),
+
+
+
+_react2.default.createElement(_reactNative.Modal,{
+animationType:"fade",
+transparent:true,
+onRequestClose:function onRequestClose(){return _this4.setModalVisible(!_this4.state.modalVisible);},
+visible:this.state.modalVisible},
+_react2.default.createElement(_reactNative.View,{style:[modalContainer]},
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[upperModal,centerEverything,bitOfShadow],
+onPress:function onPress(){return _this4.setModalVisible(!_this4.state.modalVisible);}},
+_react2.default.createElement(_reactNative.Text,{style:[modalTitle]},'SELECT A CATEGORY')),
+
+_react2.default.createElement(_reactNative.View,{style:bottomModal}))),
 
 
 
 
 
-}else{
-return(
-_react2.default.createElement(_reactNative.View,{style:[styles.container,{backgroundColor:'#424242'}]},
-this.openCalendar()));
+_react2.default.createElement(_reactNative.Modal,{
+animationType:"slide",
+transparent:true,
+onRequestClose:function onRequestClose(){return _this4.setState({datePickerModalVisible:false});},
+visible:this.state.datePickerModalVisible},
+_react2.default.createElement(_reactNative.View,{style:[datePickerModalContainer]},
+_react2.default.createElement(_reactNative.View,{style:[datePickerContainer]},
+_react2.default.createElement(_reactNative.View,{style:[datePickerMessageContainer]},
+_react2.default.createElement(_reactNative.Text,{style:datePickerMessage},'Select a Time'),
+_react2.default.createElement(_reactNative.Text,{style:[datePickerMessage,datePickerMessageFeature]},'When did you spend?')),
+
+_react2.default.createElement(_reactNative.DatePickerIOS,{
+date:this.state.date,
+style:[datePickerIOS],
+mode:'datetime',
+minimumDate:minimumDate,
+onDateChange:function onDateChange(date){return _this4.setState({
+date:date,
+formattedDate:(0,_moment2.default)(date).format('YYYY-MM-DD'),
+formattedTime:(0,_moment2.default)(date).format('h:mm A')});}}),
 
 
-}
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[datePickerConfirmButton],
+onPress:function onPress(){return _this4.setState({datePickerModalVisible:false});}},
+_react2.default.createElement(_reactNative.Text,{style:confirmText},'CONFIRM TIME')))))));
+
+
+
+
+
+
 }},{key:'render',value:function render()
 
 {
@@ -87896,7 +87918,36 @@ color:'#FFF',
 fontSize:18,
 fontWeight:'400',
 letterSpacing:2,
-textAlign:'center'}};exports.default=
+textAlign:'center'},
+
+modalContainer:{
+width:deviceWidth*0.7,
+height:deviceHeight*0.4,
+marginTop:deviceHeight*0.25,
+marginLeft:deviceWidth*0.15,
+backgroundColor:'#FFF',
+borderRadius:3},
+
+upperModal:{
+height:50,
+padding:10,
+backgroundColor:'#202020'},
+
+modalTitle:{
+color:'#FFF',
+fontSize:Math.round(deviceWidth*0.035),
+fontFamily:'HelveticaNeue-Medium',
+letterSpacing:3},
+
+bottomModal:{},
+
+
+datePickerModalContainer:{
+position:'absolute',
+bottom:0,
+width:deviceWidth,
+height:350,
+backgroundColor:'#FFF'}};exports.default=
 
 
 
