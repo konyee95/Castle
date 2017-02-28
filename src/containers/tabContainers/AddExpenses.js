@@ -102,9 +102,9 @@ class AddExpenses extends Component {
     let minimumDate = new Date(2016, 12, 31);
 
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, datePickerStyle, buttonText, noteStyle, disable,
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, noteStyle, disable,
       modalContainer, upperModal, modalTitle, bottomModal, datePickerModalContainer,  datePickerContainer, datePickerMessageContainer, datePickerMessage, 
-      datePickerMessageFeature, pickerTextControl, pickerTextStyle, datePickerIOS, datePickerConfirmButton} = styles;
+      datePickerMessageFeature, pickerTextControl, datePickerIOS, datePickerConfirmButton} = styles;
     
     return(
       <View style={[container]}>
@@ -153,9 +153,7 @@ class AddExpenses extends Component {
             actionButtonText="GitHub"
             />
         </View>
-
-        {this.launchAndroidPicker()}
-
+        
         <Modal
           animationType={"fade"}
           transparent={true}
@@ -269,17 +267,6 @@ const styles = {
   dateIcon: {
     borderWidth: 0
   },
-  datePickerStyle: {
-    height: 60,
-    width: 60,
-    borderRadius: 30,
-    backgroundColor: '#fff'
-  },
-  buttonText: {
-    fontSize: 12,
-    paddingTop: 6,
-    backgroundColor: 'transparent'
-  },
   noteStyle: {
     fontSize: Math.round(deviceWidth*0.043),
     width: deviceWidth*0.7,
@@ -317,9 +304,6 @@ const styles = {
   },
   pickerTextControl: {
     padding: 5,
-  },
-  pickerTextStyle: {
-    fontWeight: '400'
   },
   datePickerConfirmButton: {
     width: deviceWidth*0.7,

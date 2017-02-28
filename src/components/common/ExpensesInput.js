@@ -36,6 +36,7 @@ const ExpensesInput = ({ propViewStyle, propTextInputStyle, placeholder, placeho
         value={value}
         keyboardType={keyboardType}
         textAlign={textAlign}
+        underlineColorAndroid='rgba(0,0,0,0)'
       />
     </View>
   );

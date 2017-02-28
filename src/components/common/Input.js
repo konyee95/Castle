@@ -25,6 +25,7 @@ const Input = ({ inputPadding, placeholder, placeholderTextColor, secureTextEntr
         secureTextEntry={secureTextEntry}
         onChangeText={onChangeText}
         value={value}
+        underlineColorAndroid='rgba(0,0,0,0)'
       />
     </View>
   );

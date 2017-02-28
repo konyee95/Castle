@@ -87718,7 +87718,7 @@ var minimumDate=new Date(2016,12,31);var
 testShit=
 
 
-styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable,modalContainer=styles.modalContainer,upperModal=styles.upperModal,modalTitle=styles.modalTitle,bottomModal=styles.bottomModal,datePickerModalContainer=styles.datePickerModalContainer,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,pickerTextStyle=styles.pickerTextStyle,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton;
+styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,noteStyle=styles.noteStyle,disable=styles.disable,modalContainer=styles.modalContainer,upperModal=styles.upperModal,modalTitle=styles.modalTitle,bottomModal=styles.bottomModal,datePickerModalContainer=styles.datePickerModalContainer,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton;
 
 return(
 _react2.default.createElement(_reactNative.View,{style:[container]},
@@ -87765,30 +87765,6 @@ _react2.default.createElement(_common.ActionButton,{
 onPress:function onPress(){return console.log('Voice action button pressed');},
 actionButtonChild:github,
 actionButtonText:'GitHub'})),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -87907,17 +87883,6 @@ letterSpacing:2},
 dateIcon:{
 borderWidth:0},
 
-datePickerStyle:{
-height:60,
-width:60,
-borderRadius:30,
-backgroundColor:'#fff'},
-
-buttonText:{
-fontSize:12,
-paddingTop:6,
-backgroundColor:'transparent'},
-
 noteStyle:{
 fontSize:Math.round(deviceWidth*0.043),
 width:deviceWidth*0.7,
@@ -87955,9 +87920,6 @@ borderColor:'#EDEDED'},
 
 pickerTextControl:{
 padding:5},
-
-pickerTextStyle:{
-fontWeight:'400'},
 
 datePickerConfirmButton:{
 width:deviceWidth*0.7,
