@@ -16,7 +16,6 @@ import {
 import Moment from 'moment';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import DatePicker from 'react-native-datepicker';
 
 import { ExpensesInput, CategoryBox, ActionButton } from './../../components/common';
 
@@ -41,6 +40,7 @@ class AddExpenses extends Component {
       calendarOpenedAndroid: false,
       entered: false,
       modalVisible: false,
+      transparent: false,
       datePickerModalVisible: false,
       spentAmount: '',
       date: new Date(),
@@ -126,7 +126,7 @@ class AddExpenses extends Component {
           <CategoryBox iconName="md-pizza" categoryName="FOOD" onPress={() => this.setState({ modalVisible: true })}/>
           <View>
             <TextInput 
-              style={[noteStyle, bitOfShadow]}
+              style={[noteStyle]}
               value={this.state.note}
               onChangeText={(note) => this.setState({ note })}
               placeholder="Note"
@@ -153,7 +153,7 @@ class AddExpenses extends Component {
             actionButtonText="GitHub"
             />
         </View>
-        
+
         <Modal
           animationType={"fade"}
           transparent={true}
@@ -179,7 +179,7 @@ class AddExpenses extends Component {
           <View style={[datePickerModalContainer]}>
             <View style={[datePickerContainer]}>
               <View style={[datePickerMessageContainer]}>
-                <Text style={datePickerMessage}>Select a Time</Text>
+                <Text style={datePickerMessage}>Select a Date</Text>
                 <Text style={[datePickerMessage, datePickerMessageFeature]}>When did you spend?</Text>
               </View>
               <DatePickerIOS 
@@ -272,10 +272,17 @@ const styles = {
     width: deviceWidth*0.7,
     height: deviceHeight*0.25,
     backgroundColor: '#FFF',
-    padding: 10
+    padding: 10,
+    borderRadius: 2
   },
   disable: {
     color: 'grey'
+  },
+  datePickerModalContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: deviceWidth,
+    height: 350,
   },
   datePickerContainer: {
     position: 'absolute',
@@ -332,7 +339,8 @@ const styles = {
   upperModal: {
     height: 50,
     padding: 10,
-    backgroundColor: '#202020'
+    backgroundColor: '#202020',
+    borderRadius: 2
   },
   modalTitle: {
     color: '#FFF',
@@ -344,13 +352,6 @@ const styles = {
   bottomModal: {
     
   },
-  datePickerModalContainer: {
-    position: 'absolute',
-    bottom: 0,
-    width: deviceWidth,
-    height: 350,
-    backgroundColor: '#FFF',
-  }
 }
 
 export default AddExpenses;

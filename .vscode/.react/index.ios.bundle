@@ -78055,7 +78055,8 @@ placeholder:placeholder,
 placeholderTextColor:placeholderTextColor,
 secureTextEntry:secureTextEntry,
 onChangeText:onChangeText,
-value:value})));
+value:value,
+underlineColorAndroid:'rgba(0,0,0,0)'})));
 
 
 
@@ -78310,7 +78311,8 @@ secureTextEntry:secureTextEntry,
 onChangeText:onChangeText,
 value:value,
 keyboardType:keyboardType,
-textAlign:textAlign})));
+textAlign:textAlign,
+underlineColorAndroid:'rgba(0,0,0,0)'})));
 
 
 
@@ -83846,7 +83848,8 @@ width:deviceWidth*0.7,
 height:50,
 backgroundColor:'#1DAFEB',
 alignItems:'center',
-justifyContent:'center'},
+justifyContent:'center',
+borderRadius:2},
 
 categoryText:{
 color:'#FFF',
@@ -87630,7 +87633,6 @@ var _reactNative=require(12            ); // 12 = react-native
 var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
-var _reactNativeDatepicker=require(706                      );var _reactNativeDatepicker2=babelHelpers.interopRequireDefault(_reactNativeDatepicker); // 706 = react-native-datepicker
 
 var _common=require(514                        ); // 514 = ./../../components/common
 
@@ -87689,6 +87691,7 @@ props));_this.
 
 
 
+
 showPicker=function _callee(stateKey,options){var _ref,action,year,month,day,selectedDate,code,message;return regeneratorRuntime.async(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:_context.prev=0;_context.next=3;return regeneratorRuntime.awrap(
 
 _reactNative.DatePickerAndroid.open({
@@ -87704,7 +87707,7 @@ calendarOpenedAndroid:!_this.state.calendarOpenedAndroid});
 
 }_context.next=16;break;case 11:_context.prev=11;_context.t0=_context['catch'](0);
 code=_context.t0.code;message=_context.t0.message;
-console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchAndroidPicker',value:function launchAndroidPicker()
+console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,transparent:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchAndroidPicker',value:function launchAndroidPicker()
 
 
 
@@ -87768,8 +87771,6 @@ actionButtonText:'GitHub'})),
 
 
 
-this.launchAndroidPicker(),
-
 _react2.default.createElement(_reactNative.Modal,{
 animationType:"fade",
 transparent:true,
@@ -87795,7 +87796,7 @@ visible:this.state.datePickerModalVisible},
 _react2.default.createElement(_reactNative.View,{style:[datePickerModalContainer]},
 _react2.default.createElement(_reactNative.View,{style:[datePickerContainer]},
 _react2.default.createElement(_reactNative.View,{style:[datePickerMessageContainer]},
-_react2.default.createElement(_reactNative.Text,{style:datePickerMessage},'Select a Time'),
+_react2.default.createElement(_reactNative.Text,{style:datePickerMessage},'Select a Date'),
 _react2.default.createElement(_reactNative.Text,{style:[datePickerMessage,datePickerMessageFeature]},'When did you spend?')),
 
 _react2.default.createElement(_reactNative.DatePickerIOS,{
@@ -87893,6 +87894,12 @@ padding:10},
 disable:{
 color:'grey'},
 
+datePickerModalContainer:{
+position:'absolute',
+bottom:0,
+width:deviceWidth,
+height:350},
+
 datePickerContainer:{
 position:'absolute',
 bottom:0,
@@ -87948,7 +87955,8 @@ borderRadius:3},
 upperModal:{
 height:50,
 padding:10,
-backgroundColor:'#202020'},
+backgroundColor:'#202020',
+borderRadius:2},
 
 modalTitle:{
 color:'#FFF',
@@ -87957,15 +87965,8 @@ fontFamily:'HelveticaNeue-Medium',
 letterSpacing:3,
 textAlign:'center'},
 
-bottomModal:{},
+bottomModal:{}};exports.default=
 
-
-datePickerModalContainer:{
-position:'absolute',
-bottom:0,
-width:deviceWidth,
-height:350,
-backgroundColor:'#FFF'}};exports.default=
 
 
 
@@ -92273,478 +92274,6 @@ return hooks;
 
 });
 }, 705, null, "moment/moment.js");
-__d(/* react-native-datepicker/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
-var _reactNative=require(12            ); // 12 = react-native
-
-
-
-
-
-
-
-
-
-
-
-var _style=require(707      );var _style2=babelHelpers.interopRequireDefault(_style); // 707 = ./style
-var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
-
-var FORMATS={
-'date':'YYYY-MM-DD',
-'datetime':'YYYY-MM-DD HH:mm',
-'time':'HH:mm'};
-
-
-var SUPPORTED_ORIENTATIONS=["portrait","portrait-upside-down","landscape","landscape-left","landscape-right"];var
-
-DatePicker=function(_Component){babelHelpers.inherits(DatePicker,_Component);
-function DatePicker(props){babelHelpers.classCallCheck(this,DatePicker);var _this=babelHelpers.possibleConstructorReturn(this,(DatePicker.__proto__||Object.getPrototypeOf(DatePicker)).call(this,
-props));
-
-_this.state={
-date:_this.getDate(),
-modalVisible:false,
-animatedHeight:new _reactNative.Animated.Value(0)};
-
-
-_this.datePicked=_this.datePicked.bind(_this);
-_this.onPressDate=_this.onPressDate.bind(_this);
-_this.onPressCancel=_this.onPressCancel.bind(_this);
-_this.onPressConfirm=_this.onPressConfirm.bind(_this);
-_this.onDatePicked=_this.onDatePicked.bind(_this);
-_this.onTimePicked=_this.onTimePicked.bind(_this);
-_this.onDatetimePicked=_this.onDatetimePicked.bind(_this);
-_this.onDatetimeTimePicked=_this.onDatetimeTimePicked.bind(_this);
-_this.setModalVisible=_this.setModalVisible.bind(_this);return _this;
-}babelHelpers.createClass(DatePicker,[{key:'componentWillMount',value:function componentWillMount()
-
-{
-
-console.ignoredYellowBox=[
-'Warning: Failed propType'];
-
-
-}},{key:'setModalVisible',value:function setModalVisible(
-
-visible){var _this2=this;var _props=
-this.props,height=_props.height,duration=_props.duration;
-
-
-if(visible){
-this.setState({modalVisible:visible});
-_reactNative.Animated.timing(
-this.state.animatedHeight,
-{
-toValue:height,
-duration:duration}).
-
-start();
-}else{
-_reactNative.Animated.timing(
-this.state.animatedHeight,
-{
-toValue:0,
-duration:duration}).
-
-start(function(){
-_this2.setState({modalVisible:visible});
-});
-}
-}},{key:'onStartShouldSetResponder',value:function onStartShouldSetResponder(
-
-e){
-return true;
-}},{key:'onMoveShouldSetResponder',value:function onMoveShouldSetResponder(
-
-e){
-return true;
-}},{key:'onPressCancel',value:function onPressCancel()
-
-{
-this.setModalVisible(false);
-
-if(typeof this.props.onCloseModal==='function'){
-this.props.onCloseModal();
-}
-}},{key:'onPressConfirm',value:function onPressConfirm()
-
-{
-this.datePicked();
-this.setModalVisible(false);
-
-if(typeof this.props.onCloseModal==='function'){
-this.props.onCloseModal();
-}
-}},{key:'getDate',value:function getDate()
-
-{var date=arguments.length>0&&arguments[0]!==undefined?arguments[0]:this.props.date;var _props2=
-this.props,mode=_props2.mode,minDate=_props2.minDate,maxDate=_props2.maxDate,_props2$format=_props2.format,format=_props2$format===undefined?FORMATS[mode]:_props2$format;
-
-
-if(!date){
-var now=new Date();
-if(minDate){
-var _minDate=this.getDate(minDate);
-
-if(now<_minDate){
-return _minDate;
-}
-}
-
-if(maxDate){
-var _maxDate=this.getDate(maxDate);
-
-if(now>_maxDate){
-return _maxDate;
-}
-}
-
-return now;
-}
-
-if(date instanceof Date){
-return date;
-}
-
-return(0,_moment2.default)(date,format).toDate();
-}},{key:'getDateStr',value:function getDateStr()
-
-{var date=arguments.length>0&&arguments[0]!==undefined?arguments[0]:this.props.date;var _props3=
-this.props,mode=_props3.mode,_props3$format=_props3.format,format=_props3$format===undefined?FORMATS[mode]:_props3$format;
-
-if(date instanceof Date){
-return(0,_moment2.default)(date).format(format);
-}else{
-return(0,_moment2.default)(this.getDate(date)).format(format);
-}
-}},{key:'datePicked',value:function datePicked()
-
-{
-if(typeof this.props.onDateChange==='function'){
-this.props.onDateChange(this.getDateStr(this.state.date),this.state.date);
-}
-}},{key:'getTitleElement',value:function getTitleElement()
-
-{var _props4=
-this.props,date=_props4.date,placeholder=_props4.placeholder,customStyles=_props4.customStyles;
-
-if(!date&&placeholder){
-return _react2.default.createElement(_reactNative.Text,{style:[_style2.default.placeholderText,customStyles.placeholderText]},placeholder);
-}
-return _react2.default.createElement(_reactNative.Text,{style:[_style2.default.dateText,customStyles.dateText]},this.getDateStr());
-}},{key:'onDatePicked',value:function onDatePicked(_ref)
-
-{var action=_ref.action,year=_ref.year,month=_ref.month,day=_ref.day;
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-this.setState({
-date:new Date(year,month,day)});
-
-this.datePicked();
-}
-}},{key:'onTimePicked',value:function onTimePicked(_ref2)
-
-{var action=_ref2.action,hour=_ref2.hour,minute=_ref2.minute;
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-this.setState({
-date:(0,_moment2.default)().hour(hour).minute(minute).toDate()});
-
-this.datePicked();
-}
-}},{key:'onDatetimePicked',value:function onDatetimePicked(_ref3)
-
-{var action=_ref3.action,year=_ref3.year,month=_ref3.month,day=_ref3.day;var _props5=
-this.props,mode=_props5.mode,_props5$format=_props5.format,format=_props5$format===undefined?FORMATS[mode]:_props5$format,_props5$is24Hour=_props5.is24Hour,is24Hour=_props5$is24Hour===undefined?!format.match(/h|a/):_props5$is24Hour;
-
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-var timeMoment=(0,_moment2.default)(this.state.date);
-
-_reactNative.TimePickerAndroid.open({
-hour:timeMoment.hour(),
-minute:timeMoment.minutes(),
-is24Hour:is24Hour}).
-then(this.onDatetimeTimePicked.bind(this,year,month,day));
-}
-}},{key:'onDatetimeTimePicked',value:function onDatetimeTimePicked(
-
-year,month,day,_ref4){var action=_ref4.action,hour=_ref4.hour,minute=_ref4.minute;
-if(action!==_reactNative.DatePickerAndroid.dismissedAction){
-this.setState({
-date:new Date(year,month,day,hour,minute)});
-
-this.datePicked();
-}
-}},{key:'onPressDate',value:function onPressDate()
-
-{
-if(this.props.disabled){
-return true;
-}
-
-
-this.setState({
-date:this.getDate()});
-
-
-if(_reactNative.Platform.OS==='ios'){
-this.setModalVisible(true);
-}else{var _props6=
-
-this.props,mode=_props6.mode,_props6$format=_props6.format,format=_props6$format===undefined?FORMATS[mode]:_props6$format,minDate=_props6.minDate,maxDate=_props6.maxDate,_props6$is24Hour=_props6.is24Hour,is24Hour=_props6$is24Hour===undefined?!format.match(/h|a/):_props6$is24Hour;
-
-
-if(mode==='date'){
-_reactNative.DatePickerAndroid.open({
-date:this.state.date,
-minDate:minDate&&this.getDate(minDate),
-maxDate:maxDate&&this.getDate(maxDate)}).
-then(this.onDatePicked);
-}else if(mode==='time'){
-
-
-var timeMoment=(0,_moment2.default)(this.state.date);
-
-_reactNative.TimePickerAndroid.open({
-hour:timeMoment.hour(),
-minute:timeMoment.minutes(),
-is24Hour:is24Hour}).
-then(this.onTimePicked);
-}else if(mode==='datetime'){
-
-
-_reactNative.DatePickerAndroid.open({
-date:this.state.date,
-minDate:minDate&&this.getDate(minDate),
-maxDate:maxDate&&this.getDate(maxDate)}).
-then(this.onDatetimePicked);
-}
-}
-
-if(typeof this.props.onOpenModal==='function'){
-this.props.onOpenModal();
-}
-}},{key:'render',value:function render()
-
-{var _this3=this;var _props7=
-
-
-
-
-
-
-
-
-
-
-
-
-
-this.props,mode=_props7.mode,style=_props7.style,customStyles=_props7.customStyles,disabled=_props7.disabled,showIcon=_props7.showIcon,iconSource=_props7.iconSource,minDate=_props7.minDate,maxDate=_props7.maxDate,minuteInterval=_props7.minuteInterval,timeZoneOffsetInMinutes=_props7.timeZoneOffsetInMinutes,cancelBtnText=_props7.cancelBtnText,confirmBtnText=_props7.confirmBtnText;
-
-var dateInputStyle=[
-_style2.default.dateInput,customStyles.dateInput,
-disabled&&_style2.default.disabled,
-disabled&&customStyles.disabled];
-
-
-return(
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-style:[_style2.default.dateTouch,style],
-underlayColor:'transparent',
-onPress:this.onPressDate},
-
-_react2.default.createElement(_reactNative.View,{style:[_style2.default.dateTouchBody,customStyles.dateTouchBody]},
-_react2.default.createElement(_reactNative.View,{style:dateInputStyle},
-this.getTitleElement()),
-
-showIcon&&_react2.default.createElement(_reactNative.Image,{
-style:[_style2.default.dateIcon,customStyles.dateIcon],
-source:iconSource}),
-
-_reactNative.Platform.OS==='ios'&&_react2.default.createElement(_reactNative.Modal,{
-transparent:true,
-animationType:'none',
-visible:this.state.modalVisible,
-supportedOrientations:SUPPORTED_ORIENTATIONS,
-onRequestClose:function onRequestClose(){_this3.setModalVisible(false);}},
-
-_react2.default.createElement(_reactNative.View,{
-style:{flex:1}},
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-style:_style2.default.datePickerMask,
-activeOpacity:1,
-underlayColor:'#00000077',
-onPress:this.onPressCancel},
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-underlayColor:'#fff',
-style:{flex:1}},
-
-_react2.default.createElement(_reactNative.Animated.View,{
-style:[_style2.default.datePickerCon,{height:this.state.animatedHeight},customStyles.datePickerCon]},
-
-_react2.default.createElement(_reactNative.DatePickerIOS,{
-date:this.state.date,
-mode:mode,
-minimumDate:minDate&&this.getDate(minDate),
-maximumDate:maxDate&&this.getDate(maxDate),
-onDateChange:function onDateChange(date){return _this3.setState({date:date});},
-minuteInterval:minuteInterval,
-timeZoneOffsetInMinutes:timeZoneOffsetInMinutes,
-style:[_style2.default.datePicker,customStyles.datePicker]}),
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-underlayColor:'transparent',
-onPress:this.onPressCancel,
-style:[_style2.default.btnText,_style2.default.btnCancel,customStyles.btnCancel]},
-
-_react2.default.createElement(_reactNative.Text,{
-style:[_style2.default.btnTextText,_style2.default.btnTextCancel,customStyles.btnTextCancel]},
-
-cancelBtnText)),
-
-
-_react2.default.createElement(_reactNative.TouchableHighlight,{
-underlayColor:'transparent',
-onPress:this.onPressConfirm,
-style:[_style2.default.btnText,_style2.default.btnConfirm,customStyles.btnConfirm]},
-
-_react2.default.createElement(_reactNative.Text,{style:[_style2.default.btnTextText,customStyles.btnTextConfirm]},confirmBtnText))))))))));
-
-
-
-
-
-
-
-
-
-}}]);return DatePicker;}(_react.Component);
-
-
-DatePicker.defaultProps={
-mode:'date',
-date:'',
-
-height:259,
-
-
-duration:300,
-confirmBtnText:'确定',
-cancelBtnText:'取消',
-iconSource:require(708              ), // 708 = ./date_icon.png
-customStyles:{},
-
-
-showIcon:true,
-disabled:false,
-placeholder:'',
-modalOnResponderTerminationRequest:function modalOnResponderTerminationRequest(e){return true;}};
-
-
-DatePicker.propTypes={
-mode:_react2.default.PropTypes.oneOf(['date','datetime','time']),
-date:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
-format:_react2.default.PropTypes.string,
-minDate:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
-maxDate:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string,_react2.default.PropTypes.instanceOf(Date)]),
-height:_react2.default.PropTypes.number,
-duration:_react2.default.PropTypes.number,
-confirmBtnText:_react2.default.PropTypes.string,
-cancelBtnText:_react2.default.PropTypes.string,
-iconSource:_react2.default.PropTypes.oneOfType([_react2.default.PropTypes.number,_react2.default.PropTypes.object]),
-customStyles:_react2.default.PropTypes.object,
-showIcon:_react2.default.PropTypes.bool,
-disabled:_react2.default.PropTypes.bool,
-onDateChange:_react2.default.PropTypes.func,
-onOpenModal:_react2.default.PropTypes.func,
-onCloseModal:_react2.default.PropTypes.func,
-placeholder:_react2.default.PropTypes.string,
-modalOnResponderTerminationRequest:_react2.default.PropTypes.func,
-is24Hour:_react2.default.PropTypes.bool};exports.default=
-
-
-DatePicker;
-}, 706, null, "react-native-datepicker/index.js");
-__d(/* react-native-datepicker/style.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNative=require(12            ); // 12 = react-native
-
-var style=_reactNative.StyleSheet.create({
-dateTouch:{
-width:142},
-
-dateTouchBody:{
-flexDirection:'row',
-height:40,
-alignItems:'center',
-justifyContent:'center'},
-
-dateIcon:{
-width:32,
-height:32,
-marginLeft:5,
-marginRight:5},
-
-dateInput:{
-flex:1,
-height:40,
-borderWidth:1,
-borderColor:'#aaa',
-alignItems:'center',
-justifyContent:'center'},
-
-dateText:{
-color:'#333'},
-
-placeholderText:{
-color:'#c9c9c9'},
-
-datePickerMask:{
-flex:1,
-alignItems:'flex-end',
-flexDirection:'row',
-backgroundColor:'#00000077'},
-
-datePickerCon:{
-backgroundColor:'#fff',
-height:0,
-overflow:'hidden'},
-
-btnText:{
-position:'absolute',
-top:0,
-height:42,
-padding:20,
-flexDirection:'row',
-alignItems:'center',
-justifyContent:'center'},
-
-btnTextText:{
-fontSize:16,
-color:'#46cf98'},
-
-btnTextCancel:{
-color:'#666'},
-
-btnCancel:{
-left:0},
-
-btnConfirm:{
-right:0},
-
-datePicker:{
-marginTop:42,
-borderTopColor:'#ccc',
-borderTopWidth:1},
-
-disabled:{
-backgroundColor:'#eee'}});exports.default=
-
-
-
-style;
-}, 707, null, "react-native-datepicker/style.js");
-__d(/* react-native-datepicker/date_icon.png */function(global, require, module, exports) {module.exports = require(171                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-datepicker","width":64,"height":64,"scales":[1],"hash":"1edd5017f455b09c608e175b1285c06d","name":"date_icon","type":"png"}); // 171 = react-native/Libraries/Image/AssetRegistry
-}, 708, null, "react-native-datepicker/date_icon.png");
 __d(/* Castle/src/containers/tabContainers/Account.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 

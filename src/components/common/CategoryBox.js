@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity  } from 'react-native';
+import { View, ListView, Text, TouchableOpacity  } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -21,7 +21,7 @@ const CategoryBox = ({ onPress, iconName, categoryName }) => {
 const styles = {
     bitOfShadow: {
       shadowColor: '#1DAFEB',
-      shadowRadius: 20,
+      shadowRadius: 10,
       shadowOffset: { width: 1, height: 1 },
       shadowOpacity: 1
     },
@@ -31,7 +31,8 @@ const styles = {
       height: 50,
       backgroundColor: '#1DAFEB',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      borderRadius: 2
     },
     categoryText: {
       color: '#FFF',
