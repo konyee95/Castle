@@ -77769,6 +77769,7 @@ var _SplashScreen=require(513                        );var _SplashScreen2=babelH
 var _LockScreen=require(678                                         );var _LockScreen2=babelHelpers.interopRequireDefault(_LockScreen); // 678 = ./containers/passcodeContainers/LockScreen
 var _Register=require(679                         );var _Register2=babelHelpers.interopRequireDefault(_Register); // 679 = ./containers/auth/Register
 var _Login=require(689                      );var _Login2=babelHelpers.interopRequireDefault(_Login); // 689 = ./containers/auth/Login
+var _SetCredentials=require(748                               );var _SetCredentials2=babelHelpers.interopRequireDefault(_SetCredentials); // 748 = ./containers/auth/SetCredentials
 
 var _Home=require(690                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 690 = ./containers/tabContainers/Home
 var _Discover=require(701                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 701 = ./containers/tabContainers/Discover
@@ -77791,6 +77792,7 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'auth',initial:t
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'splash',component:_SplashScreen2.default,initial:true}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'login',component:_Login2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'register',component:_Register2.default}),
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'setCredentials',component:_SetCredentials2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lock',direction:'vertical'},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lockScreen',schema:'modal',component:_LockScreen2.default,panHandlers:null}))),
 
@@ -77940,7 +77942,8 @@ _reactNativeRouterFlux.Actions.lock();
 _reactNativeRouterFlux.Actions.main({type:'reset'});
 }else{
 this.wait(1000);
-_reactNativeRouterFlux.Actions.register({type:'reset'});
+
+_reactNativeRouterFlux.Actions.setCredentials({type:'reset'});
 }
 }
 }},{key:'wait',value:function wait(
@@ -85387,6 +85390,229 @@ auth:state.auth};
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(Login);
 }, 689, null, "Castle/src/containers/auth/Login.js");
+__d(/* Castle/src/containers/auth/SetCredentials.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
+var _reactNative=require(12            ); // 12 = react-native
+
+
+
+
+
+
+
+
+var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
+
+var _reactNativeProgress=require(680                    );var Progress=babelHelpers.interopRequireWildcard(_reactNativeProgress); // 680 = react-native-progress
+
+var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
+var _reactRedux=require(409          ); // 409 = react-redux
+var _actions=require(511              );var actions=babelHelpers.interopRequireWildcard(_actions); // 511 = ./../../actions
+
+var _common=require(514                         ); // 514 = ./../../components/common/
+
+var dismissKeyboard=require(61               ); // 61 = dismissKeyboard
+
+var deviceWidth=require(101         ).get('window').width; // 101 = Dimensions
+var deviceHeight=require(101         ).get('window').height;var // 101 = Dimensions
+
+SetCredentials=function(_Component){babelHelpers.inherits(SetCredentials,_Component);
+
+function SetCredentials(props){babelHelpers.classCallCheck(this,SetCredentials);var _this=babelHelpers.possibleConstructorReturn(this,(SetCredentials.__proto__||Object.getPrototypeOf(SetCredentials)).call(this,
+props));
+_this.state={
+username:'',
+firstName:'',
+lastName:'',
+toggleMode:false,
+progress:0,
+indeterminate:true,
+complete:false};return _this;
+
+}babelHelpers.createClass(SetCredentials,[{key:'componentWillUpdate',value:function componentWillUpdate()
+
+{
+_reactNative.LayoutAnimation.linear();
+}},{key:'componentWillReceiveProps',value:function componentWillReceiveProps(
+
+nextProps){
+this.processAuth(nextProps);
+}},{key:'animateProgressBar',value:function animateProgressBar()
+
+{var _this2=this;
+var progress=0;
+this.setState({progress:progress});
+setTimeout(function(){
+_this2.setState({indeterminate:false});
+setInterval(function(){
+progress+=Math.random()/3;
+if(progress>1){
+progress=1;
+}
+_this2.setState({progress:progress});
+},500);
+},1500);
+}},{key:'toggleMode',value:function toggleMode()
+
+{var _this3=this;
+if(!this.state.toggleMode){
+return(
+_react2.default.createElement(_common.Button,{
+buttonPadding:{paddingTop:25},
+buttonText:'REGISTER FREE',
+onPress:function onPress(){return _this3.onRegisterPress();}}));
+
+
+}else{
+return(
+_react2.default.createElement(Progress.Bar,{
+style:{marginTop:25},
+color:'#FFF',
+animated:true,
+progress:this.state.progress,
+indeterminate:this.state.indeterminate}));
+
+
+}
+}},{key:'processAuth',value:function processAuth(
+
+props){var _this4=this;
+
+if(props.auth.user!=null){
+if(props.auth.user.uid){
+this.setState({toggleMode:false});
+_reactNative.Alert.alert('Welcome!','Good to see you here!',[{text:'OK',onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'reset'});}}]);
+}
+}
+
+if(props.auth.error){
+this.setState({
+email:'',
+password:'',
+toggleMode:false});
+
+_reactNative.Alert.alert('Alert',props.auth.error,
+[
+{text:'OK',onPress:function onPress(){return _this4.props.clearErrorMessage();}}]);
+
+}
+
+}},{key:'renderCheckButton',value:function renderCheckButton()
+
+{var
+centerEverything=styles.centerEverything,checkButton=styles.checkButton,checkButtonText=styles.checkButtonText;
+if(this.state.username!==''){
+return(
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[checkButton,centerEverything]},
+_react2.default.createElement(_reactNative.Text,{style:checkButtonText},'Check Availability')));
+
+
+}
+}},{key:'render',value:function render()
+
+{var _this5=this;var
+testShit=styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,bottomContainer=styles.bottomContainer,appTitle=styles.appTitle,appTitle2=styles.appTitle2;
+return(
+_react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
+_react2.default.createElement(_reactNative.View,{style:[container]},
+_react2.default.createElement(_reactNative.View,{style:[upperContainer]},
+_react2.default.createElement(_reactNative.Text,{style:appTitle},'Hello there!'),
+_react2.default.createElement(_reactNative.Text,{style:[appTitle2]},'Let\'s get you set up!')),
+
+_react2.default.createElement(_reactNative.View,{style:[bottomContainer]},
+_react2.default.createElement(_reactNative.View,{style:[{flexDirection:'row'},centerEverything]},
+_react2.default.createElement(_common.Input,{
+propWidth:{width:deviceWidth*0.5},
+inputPadding:{padding:3},
+placeholder:'Username',
+placeholderTextColor:'white',
+onChangeText:function onChangeText(username){return _this5.setState({username:username});},
+value:this.state.username}),
+
+this.renderCheckButton()),
+
+_react2.default.createElement(_common.Input,{
+propWidth:{width:deviceWidth*0.5},
+inputPadding:{padding:3},
+placeholder:'First name',
+placeholderTextColor:'white',
+onChangeText:function onChangeText(firstName){return _this5.setState({firstName:firstName});},
+value:this.state.firstName}),
+
+_react2.default.createElement(_common.Input,{
+propWidth:{width:deviceWidth*0.5},
+inputPadding:{padding:3},
+placeholder:'Last name',
+placeholderTextColor:'white',
+onChangeText:function onChangeText(lastName){return _this5.setState({lastName:lastName});},
+value:this.state.lastName}),
+
+this.state.complete&&
+_react2.default.createElement(_Ionicons2.default,{name:'ios-arrow-dropright',size:40,color:'#FFF',style:{paddingTop:20}})))));
+
+
+
+
+
+
+}}]);return SetCredentials;}(_react.Component);
+
+
+var styles={
+testShit:{
+borderColor:'white',
+borderWidth:2},
+
+centerEverything:{
+justifyContent:'center',
+alignItems:'center'},
+
+container:{
+flex:1,
+backgroundColor:'#202020'},
+
+upperContainer:{
+flex:4,
+justifyContent:'center',
+paddingLeft:40},
+
+bottomContainer:{
+flex:6,
+alignItems:'center'},
+
+appTitle:{
+color:'#FFF',
+fontSize:Math.round(deviceWidth*0.07),
+fontFamily:'HelveticaNeue-Medium',
+letterSpacing:3},
+
+appTitle2:{
+color:'#FFF',
+fontSize:Math.round(deviceWidth*0.045),
+fontFamily:'HelveticaNeue-Thin',
+letterSpacing:2,
+paddingTop:10},
+
+checkButton:{
+backgroundColor:'#FFF',
+height:40,
+width:90},
+
+checkButtonText:{
+fontSize:14,
+fontFamily:'Helvetica-Bold',
+textAlign:'center'}};
+
+
+
+var mapStateToProps=function mapStateToProps(state){
+return{
+auth:state.auth};
+
+};exports.default=
+
+(0,_reactRedux.connect)(mapStateToProps,actions)(SetCredentials);
+}, 748, null, "Castle/src/containers/auth/SetCredentials.js");
 __d(/* Castle/src/containers/tabContainers/Home.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 

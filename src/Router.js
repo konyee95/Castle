@@ -9,6 +9,7 @@ import SplashScreen from './containers/SplashScreen';
 import LockScreen from './containers/passcodeContainers/LockScreen';
 import Register from './containers/auth/Register';
 import Login from './containers/auth/Login';
+import SetCredentials from './containers/auth/SetCredentials';
 
 import Home from './containers/tabContainers/Home';
 import Discover from './containers/tabContainers/Discover';
@@ -31,6 +32,7 @@ class RouterComponent extends Component {
           <Scene key="splash" component={SplashScreen} initial />
           <Scene key="login" component={Login} />
           <Scene key="register" component={Register}  />
+          <Scene key="setCredentials" component={SetCredentials} />
           <Scene key="lock" direction="vertical" >
             <Scene key="lockScreen" schema="modal" component={LockScreen} panHandlers={null} />
           </Scene>
