@@ -27,7 +27,7 @@ const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
-const github = <Ionicons name="logo-github" size={24} color="#202020"/>
+const income = <Ionicons name="ios-home" size={24} color="#202020"/>
 
 import expensesType from './../../data/ExpensesType';
 
@@ -40,7 +40,6 @@ class AddExpenses extends Component {
       calendarOpenedAndroid: false,
       entered: false,
       modalVisible: false,
-      transparent: false,
       datePickerModalVisible: false,
       spentAmount: '',
       date: new Date(),
@@ -84,11 +83,12 @@ class AddExpenses extends Component {
       return (
         <TouchableOpacity
           style={[styles.centerEverything, styles.saveButtonStyle]}
-          onPress={() => this.setState({ 
-            entered: !this.state.entered, 
-            spentAmount: '', 
-            date: new Date(),
-            note: ''
+          onPress={() => 
+            this.setState({ 
+              entered: !this.state.entered, 
+              spentAmount: '', 
+              date: new Date(),
+              note: ''
             })
           }>
           <Ionicons
@@ -134,19 +134,19 @@ class AddExpenses extends Component {
     return(
       <View style={[container]}>
         <View style={[centerEverything, contentContainer]}>
-            <View style={[centerEverything, upperContainer]}>
-              <ExpensesInput
-                propViewStyle={[bitOfShadow]}
-                propTextInputStyle={propTextInputStyle}
-                keyboardType="numeric"
-                placeholder="How much did you spend ?"
-                placeholderTextColor="#525760"
-                textAlign="center"
-                iconName="ios-card"
-                onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
-                value={this.state.spentAmount}
-              />
-              {this.renderSaveButton()}
+          <View style={[centerEverything, upperContainer]}>
+            <ExpensesInput
+              propViewStyle={[bitOfShadow]}
+              propTextInputStyle={propTextInputStyle}
+              keyboardType="numeric"
+              placeholder="How much did you spend ?"
+              placeholderTextColor="#525760"
+              textAlign="center"
+              iconName="ios-card"
+              onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
+              value={this.state.spentAmount}
+            />
+            {this.renderSaveButton()}
           </View>
           <TouchableOpacity 
             style={[upperModal, centerEverything]}
@@ -178,8 +178,8 @@ class AddExpenses extends Component {
             />
           <ActionButton 
             onPress={() => console.log('Voice action button pressed')}
-            actionButtonChild={github}
-            actionButtonText="GitHub"
+            actionButtonChild={income}
+            actionButtonText="Add Income"
             />
         </View>
 

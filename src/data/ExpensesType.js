@@ -7,9 +7,9 @@ export default expensesType = [
   },
   {
     "categoryID": "002",
-    "category": "BILS",
-    "color": "#666666",
-    "iconName": "md-cash"
+    "category": "ENTERTAINMENT",
+    "color": "#ff4040",
+    "iconName": "logo-youtube"
   },
   {
     "categoryID": "003",
@@ -26,29 +26,23 @@ export default expensesType = [
   {
     "categoryID": "005",
     "category": "PERSONALS",
-    "color": "#ff4040",
-    "iconName": "md-code"
+    "color": "#0099cc",
+    "iconName": "ios-home"
   },
   {
     "categoryID": "006",
-    "category": "ENTERTAINMENT",
-    "color": "#0099cc",
-    "iconName": "ios-musical-note"
+    "category": "BILLS",
+    "color": "#666666",
+    "iconName": "md-cash"
   },
   {
     "categoryID": "007",
-    "category": "PERSONALS",
-    "color": "#8a2be2",
-    "iconName": "ios-shirt"
-  },
-  {
-    "categoryID": "008",
     "category": "EDUCATION",
     "color": "#daa520",
     "iconName": "ios-book"
   },
   {
-    "categoryID": "009",
+    "categoryID": "008",
     "category": "OTHER",
     "color": "#ff7f50",
     "iconName": "ios-notifications"

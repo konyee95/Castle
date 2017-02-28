@@ -6,27 +6,27 @@
     "configurations": [
         
         {
-            "name": "Debug iOS",
+            "name": "Debug iPhone SE",
             "program": "${workspaceRoot}/.vscode/launchReactNative.js",
             "type": "reactnative",
             "request": "launch",
             "platform": "ios",
             "sourceMaps": true,
-            "target": "iPhone 5s",
+            "target": "iPhone SE",
             "outDir": "${workspaceRoot}/.vscode/.react"
         },
         {
-            "name": "Debug iOS 6s",
+            "name": "Debug iPhone 7",
             "program": "${workspaceRoot}/.vscode/launchReactNative.js",
             "type": "reactnative",
             "request": "launch",
             "platform": "ios",
             "sourceMaps": true,
-            "target": "iPhone 6s",
+            "target": "iPhone 7",
             "outDir": "${workspaceRoot}/.vscode/.react"
         },
         {
-            "name": "Debug iOS 7+",
+            "name": "Debug iPhone 7+",
             "program": "${workspaceRoot}/.vscode/launchReactNative.js",
             "type": "reactnative",
             "request": "launch",

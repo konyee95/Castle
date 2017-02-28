@@ -17,7 +17,7 @@ class CategoryBox extends Component {
       <TouchableOpacity 
         style={[boxContainer, { backgroundColor: `${color}` }]} 
         onPress={onPress}>
-        <View style={{ marginLeft: 20, marginRight: 20}}>
+        <View style={{ marginLeft: 20, marginRight: 20 }}>
           <Ionicons name={`${iconName}`} size={20} color="#FFF" />
         </View>
         <Text style={categoryText}>{category}</Text>
@@ -35,9 +35,10 @@ const styles = {
     },
     categoryText: {
       color: '#FFF',
-      fontSize: Math.round(deviceWidth*0.043),
+      alignSelf: 'center',
+      fontSize: Math.round(deviceWidth*0.04),
       fontFamily: 'HelveticaNeue-Medium',
-      letterSpacing: 5
+      letterSpacing: 5,
     }
 }
 
