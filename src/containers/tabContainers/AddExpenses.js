@@ -5,6 +5,7 @@ import {
   DatePickerIOS,
   Platform,
   LayoutAnimation,
+  ListView,
   Modal,
   View,
   Text,
@@ -17,7 +18,8 @@ import Moment from 'moment';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { ExpensesInput, CategoryBox, ActionButton } from './../../components/common';
+import CategoryBox from './../../components/CategoryBox';
+import { ExpensesInput, ActionButton } from './../../components/common';
 
 const dismissKeyboard = require('dismissKeyboard')
 
@@ -27,15 +29,13 @@ const deviceHeight = require('Dimensions').get('window').height;
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
 const github = <Ionicons name="logo-github" size={24} color="#202020"/>
 
-const expensesType = [
-  [1, 'food'],
-  [2, 'clothes']
-]
+import expensesType from './../../data/ExpensesType';
 
 class AddExpenses extends Component {
 
   constructor(props) {
     super(props);
+    this.renderRow = this.renderRow.bind(this); //bind the renderRow() to this
     this.state = {
       calendarOpenedAndroid: false,
       entered: false,
@@ -46,12 +46,37 @@ class AddExpenses extends Component {
       date: new Date(),
       formattedDate: '',
       formattedTime: '',
-      note: ''
-    }
+      selectedCategory: '',
+      note: '',
+    };
+  }
+
+  componentWillMount() {
+    this.createDataSource(expensesType)
   }
 
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
+  }
+
+  createDataSource(expensesType) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+    this.dataSource = ds.cloneWithRows(expensesType);
+  }
+
+  renderRow(data) {
+    return(
+      <CategoryBox 
+        data={data} 
+        onPress={() => this.setState({ 
+          selectedCategory: data.categoryID,
+          modalVisible: false 
+         })
+        }
+      />
+    )
   }
 
   renderSaveButton() {
@@ -102,9 +127,9 @@ class AddExpenses extends Component {
     let minimumDate = new Date(2016, 12, 31);
 
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
-      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, noteStyle, disable,
+      bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, selectCategoryContainer, noteStyle, disable,
       modalContainer, upperModal, modalTitle, bottomModal, datePickerModalContainer,  datePickerContainer, datePickerMessageContainer, datePickerMessage, 
-      datePickerMessageFeature, pickerTextControl, datePickerIOS, datePickerConfirmButton} = styles;
+      datePickerMessageFeature, pickerTextControl, datePickerIOS, datePickerConfirmButton, listViewContainer} = styles;
     
     return(
       <View style={[container]}>
@@ -123,7 +148,11 @@ class AddExpenses extends Component {
               />
               {this.renderSaveButton()}
           </View>
-          <CategoryBox iconName="md-pizza" categoryName="FOOD" onPress={() => this.setState({ modalVisible: true })}/>
+          <TouchableOpacity 
+            style={[upperModal, centerEverything]}
+            onPress={() => this.setState({ modalVisible: true })}>
+            <Text style={modalTitle}>SELECT A CATEGORY</Text>
+          </TouchableOpacity>
           <View>
             <TextInput 
               style={[noteStyle]}
@@ -165,9 +194,10 @@ class AddExpenses extends Component {
                 onPress={() => this.setState({ modalVisible: false }) }>
                 <Text style={[modalTitle]}>SELECT A CATEGORY</Text>
               </TouchableOpacity>
-            <View style={bottomModal}>
-
-            </View>
+            <ListView
+              style={listViewContainer}
+              dataSource={this.dataSource}
+              renderRow={this.renderRow} />
           </View>
         </Modal>
 
@@ -267,6 +297,10 @@ const styles = {
   dateIcon: {
     borderWidth: 0
   },
+  selectCategoryContainer: {
+    width: deviceWidth*0.7,
+    height: 50,
+  },
   noteStyle: {
     fontSize: Math.round(deviceWidth*0.043),
     width: deviceWidth*0.7,
@@ -321,22 +355,16 @@ const styles = {
     borderRadius: 2,
     marginTop: 20
   },
-  confirmText: {
-    color: '#FFF',
-    fontSize: 18,
-    fontWeight: '400',
-    letterSpacing: 2,
-    textAlign: 'center'
-  },
   modalContainer: {
     width: deviceWidth*0.7,
     height: deviceHeight*0.4,
     marginTop: deviceHeight*0.25,
     marginLeft: deviceWidth*0.15,
-    backgroundColor: '#FFF',
+    // backgroundColor: '#FFF',
     borderRadius: 3
   },
   upperModal: {
+    width: deviceWidth*0.7,
     height: 50,
     padding: 10,
     backgroundColor: '#202020',
@@ -349,9 +377,10 @@ const styles = {
     letterSpacing: 3,
     textAlign: 'center'
   },
-  bottomModal: {
-    
-  },
+  listViewContainer: {
+    width: deviceWidth*0.7,
+    height: 300
+  }
 }
 
 export default AddExpenses;
