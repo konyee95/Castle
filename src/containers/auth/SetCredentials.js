@@ -85,24 +85,6 @@ class SetCredentials extends Component {
 
   processAuth(props) {
     // console.log(props.auth);
-    if (props.auth.user != null) {
-      if (props.auth.user.uid) {
-        this.setState({ toggleMode: false });
-        Alert.alert('Welcome!', 'Good to see you here!', [{text: 'OK', onPress: () => Actions.main({ type: 'reset' })}]);
-      }
-    }
-
-    if (props.auth.error) {
-      this.setState({
-        email: '',
-        password: '',
-        toggleMode: false
-      });
-      Alert.alert('Alert', props.auth.error,
-      [
-        {text: 'OK', onPress: () => this.props.clearErrorMessage()},
-      ]);
-    }
 
   }
 

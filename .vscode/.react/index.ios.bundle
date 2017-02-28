@@ -72114,6 +72114,7 @@ var _types=require(508                 ); // 508 = ./../actions/types
 
 
 
+
 var _constants=require(509                      ); // 509 = redux-persist/constants
 
 var INITIAL_STATE={user:null,error:null,passcode:null};
@@ -72155,6 +72156,8 @@ case _types.SET_PASSCODE:
 return babelHelpers.extends({},state,{passcode:action.payload});
 case _types.REMOVE_PASSCODE:
 return babelHelpers.extends({},state,{passcode:null});
+case _types.CHECK_USERNAME:
+return babelHelpers.extends({},state,{userList:action.payload});
 case _constants.REHYDRATE:
 var incoming=action.payload.auth;
 console.log(incoming);
@@ -77755,6 +77758,7 @@ var CLEAR_ERROR_MESSAGE=exports.CLEAR_ERROR_MESSAGE='clear_error_message';
 var LOGOUT_USER=exports.LOGOUT_USER='logout_user';
 var SET_PASSCODE=exports.SET_PASSCODE='set_passcode';
 var REMOVE_PASSCODE=exports.REMOVE_PASSCODE='remove_passcode';
+var CHECK_USERNAME=exports.CHECK_USERNAME='check_username';
 }, 508, null, "Castle/src/actions/types.js");
 __d(/* redux-persist/constants.js */function(global, require, module, exports) {module.exports=require(449              ); // 449 = ./lib/constants
 }, 509, null, "redux-persist/constants.js");
@@ -77849,6 +77853,7 @@ __d(/* Castle/src/actions/AuthAction.js */function(global, require, module, expo
 
 
 
+
 clearErrorMessage=clearErrorMessage;exports.
 
 
@@ -77899,10 +77904,23 @@ setPasscode=setPasscode;exports.
 
 
 
-removePasscode=removePasscode;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );var registerUserSuccess=function registerUserSuccess(dispatch,user){dispatch({type:_types.REGISTER_USER_SUCCESS,payload:user});};var loginUserSuccess=function loginUserSuccess(dispatch,user){dispatch({type:_types.LOGIN_USER_SUCCESS,payload:user});};var authFail=function authFail(dispatch,error){dispatch({type:_types.AUTH_FAIL,payload:{error:error.message}});};function clearErrorMessage(){return{type:_types.CLEAR_ERROR_MESSAGE,payload:null};};function listenToUser(){return function(dispatch){_firebase2.default.auth().onAuthStateChanged(function(user){dispatch({type:_types.LISTEN_TO_USER,payload:user});});};};function registerUser(email,password){return function(dispatch){_firebase2.default.auth().createUserWithEmailAndPassword(email,password).then(function(user){registerUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function loginUser(email,password){return function(dispatch){_firebase2.default.auth().signInWithEmailAndPassword(email,password).then(function(user){return loginUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function logoutUser(){_firebase2.default.auth().signOut();return{type:_types.LOGOUT_USER};};function setPasscode(passcode){return{type:_types.SET_PASSCODE,payload:passcode};};function removePasscode(){ // 508 = ./types // 404 = firebase
-return{
-type:_types.REMOVE_PASSCODE};
+removePasscode=removePasscode;exports.
 
+
+
+
+
+checkUserName=checkUserName;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );var registerUserSuccess=function registerUserSuccess(dispatch,user){dispatch({type:_types.REGISTER_USER_SUCCESS,payload:user});};var loginUserSuccess=function loginUserSuccess(dispatch,user){dispatch({type:_types.LOGIN_USER_SUCCESS,payload:user});};var authFail=function authFail(dispatch,error){dispatch({type:_types.AUTH_FAIL,payload:{error:error.message}});};function clearErrorMessage(){return{type:_types.CLEAR_ERROR_MESSAGE,payload:null};};function listenToUser(){return function(dispatch){_firebase2.default.auth().onAuthStateChanged(function(user){dispatch({type:_types.LISTEN_TO_USER,payload:user});});};};function registerUser(email,password){return function(dispatch){_firebase2.default.auth().createUserWithEmailAndPassword(email,password).then(function(user){registerUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function loginUser(email,password){return function(dispatch){_firebase2.default.auth().signInWithEmailAndPassword(email,password).then(function(user){return loginUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function logoutUser(){_firebase2.default.auth().signOut();return{type:_types.LOGOUT_USER};};function setPasscode(passcode){return{type:_types.SET_PASSCODE,payload:passcode};};function removePasscode(){return{type:_types.REMOVE_PASSCODE};};function checkUserName(){var _firebase$auth= // 508 = ./types // 404 = firebase
+_firebase2.default.auth(),currentUser=_firebase$auth.currentUser;
+return function(dispatch){
+_firebase2.default.database().ref('/ExistingUser').
+on('value',function(snapshot){
+dispatch({
+type:_types.CHECK_USERNAME,
+payload:snapshot.val()});
+
+});
+};
 };
 }, 512, null, "Castle/src/actions/AuthAction.js");
 __d(/* Castle/src/containers/SplashScreen.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85475,26 +85493,8 @@ indeterminate:this.state.indeterminate}));
 }
 }},{key:'processAuth',value:function processAuth(
 
-props){var _this4=this;
+props){
 
-if(props.auth.user!=null){
-if(props.auth.user.uid){
-this.setState({toggleMode:false});
-_reactNative.Alert.alert('Welcome!','Good to see you here!',[{text:'OK',onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'reset'});}}]);
-}
-}
-
-if(props.auth.error){
-this.setState({
-email:'',
-password:'',
-toggleMode:false});
-
-_reactNative.Alert.alert('Alert',props.auth.error,
-[
-{text:'OK',onPress:function onPress(){return _this4.props.clearErrorMessage();}}]);
-
-}
 
 }},{key:'renderCheckButton',value:function renderCheckButton()
 
@@ -85510,7 +85510,7 @@ _react2.default.createElement(_reactNative.Text,{style:checkButtonText},'Check A
 }
 }},{key:'render',value:function render()
 
-{var _this5=this;var
+{var _this4=this;var
 testShit=styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,bottomContainer=styles.bottomContainer,appTitle=styles.appTitle,appTitle2=styles.appTitle2;
 return(
 _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
@@ -85526,7 +85526,7 @@ propWidth:{width:deviceWidth*0.5},
 inputPadding:{padding:3},
 placeholder:'Username',
 placeholderTextColor:'white',
-onChangeText:function onChangeText(username){return _this5.setState({username:username});},
+onChangeText:function onChangeText(username){return _this4.setState({username:username});},
 value:this.state.username}),
 
 this.renderCheckButton()),
@@ -85536,7 +85536,7 @@ propWidth:{width:deviceWidth*0.5},
 inputPadding:{padding:3},
 placeholder:'First name',
 placeholderTextColor:'white',
-onChangeText:function onChangeText(firstName){return _this5.setState({firstName:firstName});},
+onChangeText:function onChangeText(firstName){return _this4.setState({firstName:firstName});},
 value:this.state.firstName}),
 
 _react2.default.createElement(_common.Input,{
@@ -85544,7 +85544,7 @@ propWidth:{width:deviceWidth*0.5},
 inputPadding:{padding:3},
 placeholder:'Last name',
 placeholderTextColor:'white',
-onChangeText:function onChangeText(lastName){return _this5.setState({lastName:lastName});},
+onChangeText:function onChangeText(lastName){return _this4.setState({lastName:lastName});},
 value:this.state.lastName}),
 
 this.state.complete&&

@@ -6,3 +6,4 @@ export const CLEAR_ERROR_MESSAGE = 'clear_error_message';
 export const LOGOUT_USER = 'logout_user';
 export const SET_PASSCODE = 'set_passcode';
 export const REMOVE_PASSCODE = 'remove_passcode';
+export const CHECK_USERNAME = 'check_username';

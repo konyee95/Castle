@@ -7,7 +7,8 @@ import {
   CLEAR_ERROR_MESSAGE,
   LOGOUT_USER,
   SET_PASSCODE,
-  REMOVE_PASSCODE
+  REMOVE_PASSCODE,
+  CHECK_USERNAME
 } from './types';
 
 const registerUserSuccess = (dispatch, user) => {
@@ -86,5 +87,18 @@ export function setPasscode(passcode) {
 export function removePasscode() {
   return {
     type: REMOVE_PASSCODE
+  };
+};
+
+export function checkUserName() {
+  const { currentUser } = firebase.auth();
+  return(dispatch) => {
+    firebase.database().ref(`/ExistingUser`)
+      .on('value', snapshot => {
+        dispatch({
+          type: CHECK_USERNAME,
+          payload: snapshot.val()
+        });
+      });
   };
 };
