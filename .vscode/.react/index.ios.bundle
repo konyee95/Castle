@@ -78005,7 +78005,8 @@ Object.keys(_PasscodeComponent).forEach(function(key){if(key==="default"||key===
 Object.keys(_Label).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _Label[key];}});});var _InfoBox=require(520        ); // 520 = ./InfoBox
 Object.keys(_InfoBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _InfoBox[key];}});});var _ExpensesInput=require(521              ); // 521 = ./ExpensesInput
 Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});var _CategoryBox=require(677            ); // 677 = ./CategoryBox
-Object.keys(_CategoryBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _CategoryBox[key];}});});
+Object.keys(_CategoryBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _CategoryBox[key];}});});var _ActionButton=require(713             ); // 713 = ./ActionButton
+Object.keys(_ActionButton).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ActionButton[key];}});});
 }, 514, null, "Castle/src/components/common/index.js");
 __d(/* Castle/src/components/common/Spinner.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.Spinner=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
@@ -83858,6 +83859,52 @@ letterSpacing:5}};exports.
 
 CategoryBox=CategoryBox;
 }, 677, null, "Castle/src/components/common/CategoryBox.js");
+__d(/* Castle/src/components/common/ActionButton.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.ActionButton=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
+var _reactNative=require(12            ); // 12 = react-native
+
+var deviceWidth=require(101         ).get('window').width; // 101 = Dimensions
+var deviceHeight=require(101         ).get('window').height; // 101 = Dimensions
+
+var ActionButton=function ActionButton(_ref){var onPress=_ref.onPress,actionButtonChild=_ref.actionButtonChild,actionButtonText=_ref.actionButtonText;var
+centerEverything=styles.centerEverything,datePickerStyle=styles.datePickerStyle,bitOfShadow=styles.bitOfShadow,buttonText=styles.buttonText;
+return(
+_react2.default.createElement(_reactNative.View,{style:centerEverything},
+_react2.default.createElement(_reactNative.TouchableOpacity,{
+style:[datePickerStyle,centerEverything,bitOfShadow],
+onPress:onPress},
+actionButtonChild),
+
+_react2.default.createElement(_reactNative.Text,{style:buttonText},actionButtonText)));
+
+
+};
+
+var styles={
+centerEverything:{
+justifyContent:'center',
+alignItems:'center'},
+
+datePickerStyle:{
+height:60,
+width:60,
+borderRadius:30,
+backgroundColor:'#fff'},
+
+bitOfShadow:{
+shadowColor:'#D3D3D3',
+shadowRadius:20,
+shadowOffset:{width:1,height:1},
+shadowOpacity:1},
+
+buttonText:{
+fontSize:12,
+paddingTop:6,
+backgroundColor:'transparent'}};exports.
+
+
+
+ActionButton=ActionButton;
+}, 713, null, "Castle/src/components/common/ActionButton.js");
 __d(/* Castle/src/containers/passcodeContainers/LockScreen.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _common=require(514                        ); // 514 = ./../../components/common
@@ -87657,20 +87704,12 @@ calendarOpenedAndroid:!_this.state.calendarOpenedAndroid});
 
 }_context.next=16;break;case 11:_context.prev=11;_context.t0=_context['catch'](0);
 code=_context.t0.code;message=_context.t0.message;
-console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchCalender',value:function launchCalender()
+console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'renderSaveButton',value:function renderSaveButton(){var _this3=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this3.setState({entered:!_this3.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchAndroidPicker',value:function launchAndroidPicker()
 
 
 
 {
-if(_reactNative.Platform.OS==='ios'){
-this.setState({datePickerModalVisible:true});
-}else if(_reactNative.Platform.OS==='android'){
-this.setState({calendarOpenedAndroid:true});
-}
-}},{key:'setModalVisible',value:function setModalVisible(
 
-visible){
-this.setState({modalVisible:visible});
 }},{key:'renderView',value:function renderView()
 
 {var _this4=this;
@@ -87679,11 +87718,10 @@ var minimumDate=new Date(2016,12,31);var
 testShit=
 
 
-styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable,modalContainer=styles.modalContainer,upperModal=styles.upperModal,modalTitle=styles.modalTitle,bottomModal=styles.bottomModal,datePickerModalContainer=styles.datePickerModalContainer,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,pickerTextStyle=styles.pickerTextStyle,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton,confirmText=styles.confirmText;
+styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,contentContainer=styles.contentContainer,buttonContainer=styles.buttonContainer,helFont=styles.helFont,bitOfShadow=styles.bitOfShadow,propTextInputStyle=styles.propTextInputStyle,saveButtonStyle=styles.saveButtonStyle,saveButtonText=styles.saveButtonText,datePickerStyle=styles.datePickerStyle,buttonText=styles.buttonText,noteStyle=styles.noteStyle,disable=styles.disable,modalContainer=styles.modalContainer,upperModal=styles.upperModal,modalTitle=styles.modalTitle,bottomModal=styles.bottomModal,datePickerModalContainer=styles.datePickerModalContainer,datePickerContainer=styles.datePickerContainer,datePickerMessageContainer=styles.datePickerMessageContainer,datePickerMessage=styles.datePickerMessage,datePickerMessageFeature=styles.datePickerMessageFeature,pickerTextControl=styles.pickerTextControl,pickerTextStyle=styles.pickerTextStyle,datePickerIOS=styles.datePickerIOS,datePickerConfirmButton=styles.datePickerConfirmButton;
 
 return(
 _react2.default.createElement(_reactNative.View,{style:[container]},
-
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,contentContainer]},
 _react2.default.createElement(_reactNative.View,{style:[centerEverything,upperContainer]},
 _react2.default.createElement(_common.ExpensesInput,{
@@ -87713,41 +87751,58 @@ autoCorrect:false}))),
 
 
 _react2.default.createElement(_reactNative.View,{style:[buttonContainer]},
-_react2.default.createElement(_reactNative.View,{style:centerEverything},
-_react2.default.createElement(_reactNative.TouchableOpacity,{
-style:[datePickerStyle,centerEverything,bitOfShadow],
-onPress:function onPress(){return _this4.launchCalender();}},
-_react2.default.createElement(_reactNative.Text,{style:{fontSize:24,fontWeight:'500'}},(0,_moment2.default)(this.state.date).format('DD'))),
+_react2.default.createElement(_common.ActionButton,{
+onPress:function onPress(){return _this4.setState({datePickerModalVisible:true});},
+actionButtonChild:_react2.default.createElement(_reactNative.Text,{style:{fontSize:24,fontWeight:'500'}},(0,_moment2.default)(this.state.date).format('DD')),
+actionButtonText:'Calender'}),
 
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'Calendar')),
+_react2.default.createElement(_common.ActionButton,{
+onPress:function onPress(){return console.log('Voice action button pressed');},
+actionButtonChild:mic,
+actionButtonText:'Voice'}),
 
-_react2.default.createElement(_reactNative.View,{style:centerEverything},
-_react2.default.createElement(_reactNative.TouchableOpacity,{
-style:[datePickerStyle,centerEverything,bitOfShadow],
-onPress:function onPress(){return console.log('sdsadasd');}},
-mic),
-
-_react2.default.createElement(_reactNative.Text,{style:[buttonText,disable]},'Voice')),
-
-_react2.default.createElement(_reactNative.View,{style:centerEverything},
-_react2.default.createElement(_reactNative.TouchableOpacity,{
-style:[datePickerStyle,centerEverything,bitOfShadow],
-onPress:function onPress(){return console.log('sdsadasd');}},
-github),
-
-_react2.default.createElement(_reactNative.Text,{style:buttonText},'GitHub'))),
+_react2.default.createElement(_common.ActionButton,{
+onPress:function onPress(){return console.log('Voice action button pressed');},
+actionButtonChild:github,
+actionButtonText:'GitHub'})),
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+this.launchAndroidPicker(),
 
 _react2.default.createElement(_reactNative.Modal,{
 animationType:"fade",
 transparent:true,
-onRequestClose:function onRequestClose(){return _this4.setModalVisible(!_this4.state.modalVisible);},
+onRequestClose:function onRequestClose(){return _this4.setState({modalVisible:true});},
 visible:this.state.modalVisible},
 _react2.default.createElement(_reactNative.View,{style:[modalContainer]},
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[upperModal,centerEverything,bitOfShadow],
-onPress:function onPress(){return _this4.setModalVisible(!_this4.state.modalVisible);}},
+onPress:function onPress(){return _this4.setState({modalVisible:false});}},
 _react2.default.createElement(_reactNative.Text,{style:[modalTitle]},'SELECT A CATEGORY')),
 
 _react2.default.createElement(_reactNative.View,{style:bottomModal}))),
@@ -87781,7 +87836,7 @@ formattedTime:(0,_moment2.default)(date).format('h:mm A')});}}),
 _react2.default.createElement(_reactNative.TouchableOpacity,{
 style:[datePickerConfirmButton],
 onPress:function onPress(){return _this4.setState({datePickerModalVisible:false});}},
-_react2.default.createElement(_reactNative.Text,{style:confirmText},'CONFIRM TIME')))))));
+_react2.default.createElement(_reactNative.Text,{style:modalTitle},'CONFIRM TIME')))))));
 
 
 
@@ -87937,7 +87992,8 @@ modalTitle:{
 color:'#FFF',
 fontSize:Math.round(deviceWidth*0.035),
 fontFamily:'HelveticaNeue-Medium',
-letterSpacing:3},
+letterSpacing:3,
+textAlign:'center'},
 
 bottomModal:{},
 

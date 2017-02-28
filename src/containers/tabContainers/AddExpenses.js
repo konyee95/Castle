@@ -18,7 +18,7 @@ import Moment from 'moment';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DatePicker from 'react-native-datepicker';
 
-import { ExpensesInput, CategoryBox } from './../../components/common';
+import { ExpensesInput, CategoryBox, ActionButton } from './../../components/common';
 
 const dismissKeyboard = require('dismissKeyboard')
 
@@ -94,16 +94,8 @@ class AddExpenses extends Component {
     }
   };
 
-  launchCalender() {
-    if(Platform.OS === 'ios') {
-      this.setState({ datePickerModalVisible: true })
-    } else if(Platform.OS === 'android') {
-      this.setState({ calendarOpenedAndroid: true })
-    }
-  }
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+  launchAndroidPicker() {
+    
   }
 
   renderView() {
@@ -116,7 +108,6 @@ class AddExpenses extends Component {
     
     return(
       <View style={[container]}>
-        {/*{this.state.calendarOpenedAndroid ? this.showPicker() : console.log('sdasda')}*/}
         <View style={[centerEverything, contentContainer]}>
             <View style={[centerEverything, upperContainer]}>
               <ExpensesInput
@@ -146,41 +137,34 @@ class AddExpenses extends Component {
         </View>
 
         <View style={[buttonContainer]}>
-          <View style={centerEverything}>
-            <TouchableOpacity 
-              style={[datePickerStyle, centerEverything, bitOfShadow]}
-              onPress={() => this.launchCalender() }>
-              <Text style={{ fontSize: 24, fontWeight: '500' }}>{Moment(this.state.date).format('DD')}</Text>
-            </TouchableOpacity>
-            <Text style={buttonText}>Calendar</Text>
-          </View>
-          <View style={centerEverything}>
-            <TouchableOpacity
-              style={[datePickerStyle, centerEverything, bitOfShadow]}
-              onPress={() => console.log('sdsadasd')}>
-              {mic}
-            </TouchableOpacity>
-            <Text style={[buttonText, disable]}>Voice</Text>
-          </View>
-          <View style={centerEverything}>
-            <TouchableOpacity
-              style={[datePickerStyle, centerEverything, bitOfShadow]}
-              onPress={() => console.log('sdsadasd')}>
-              {github}
-            </TouchableOpacity>
-            <Text style={buttonText}>GitHub</Text>
-          </View>
+          <ActionButton 
+            onPress={() => this.setState({ datePickerModalVisible: true })}
+            actionButtonChild={<Text style={{ fontSize: 24, fontWeight: '500' }}>{Moment(this.state.date).format('DD')}</Text>}
+            actionButtonText="Calender" 
+            />
+          <ActionButton 
+            onPress={() => console.log('Voice action button pressed')}
+            actionButtonChild={mic}
+            actionButtonText="Voice"
+            />
+          <ActionButton 
+            onPress={() => console.log('Voice action button pressed')}
+            actionButtonChild={github}
+            actionButtonText="GitHub"
+            />
         </View>
+
+        {this.launchAndroidPicker()}
 
         <Modal
           animationType={"fade"}
           transparent={true}
-          onRequestClose={() => this.setModalVisible(!this.state.modalVisible) }
+          onRequestClose={() => this.setState({ modalVisible: true }) }
           visible={this.state.modalVisible}>
           <View style={[modalContainer]}>
             <TouchableOpacity 
                 style={[upperModal, centerEverything, bitOfShadow]}
-                onPress={() => this.setModalVisible(!this.state.modalVisible) }>
+                onPress={() => this.setState({ modalVisible: false }) }>
                 <Text style={[modalTitle]}>SELECT A CATEGORY</Text>
               </TouchableOpacity>
             <View style={bottomModal}>
