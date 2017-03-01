@@ -23,14 +23,6 @@ class Account extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      firstName: this.props.profile.firstName,
-      lastName: this.props.profile.lastName
-    }
-  }
-
-  componentDidMount() {
-    console.log(this.props.profile)
   }
 
   onLogout() {
@@ -61,13 +53,13 @@ class Account extends Component {
           <Text style={[helFont, accountText]}>Account Information</Text>
           <Label
             upperLabel="First Name"
-            bottomLabel={this.state.firstName}
+            bottomLabel={this.props.firstName}
             labelSizeA={labelSizeA}
             labelSizeB={labelSizeB}
           />
           <Label
             upperLabel="Last Name"
-            bottomLabel={this.state.lastName}
+            bottomLabel={this.props.lastName}
             labelSizeA={labelSizeA}
             labelSizeB={labelSizeB}
           />
@@ -155,7 +147,9 @@ const styles = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    firstName: state.profile.firstName,
+    lastName: state.profile.lastName
   };
 };
 
