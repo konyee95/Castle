@@ -35,8 +35,7 @@ class SplashScreen extends Component {
         Actions.main({ type: 'reset' });
       } else {
         this.wait(1000);
-        // Actions.register({ type: 'reset' });
-        Actions.setCredentials({ type: 'reset' });
+        Actions.register({ type: 'reset' });
       }
     }
   }

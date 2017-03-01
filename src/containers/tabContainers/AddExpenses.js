@@ -14,8 +14,11 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import Moment from 'moment';
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import * as actions from './../../actions';
 
+import Moment from 'moment';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import CategoryBox from './../../components/CategoryBox';
@@ -177,7 +180,7 @@ class AddExpenses extends Component {
             actionButtonText="Voice"
             />
           <ActionButton 
-            onPress={() => console.log('Voice action button pressed')}
+            onPress={() => Actions.setCredentials()}
             actionButtonChild={income}
             actionButtonText="Add Income"
             />
@@ -383,4 +386,10 @@ const styles = {
   }
 }
 
-export default AddExpenses;
+const mapStateToProps = (state) => {
+  return{
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps, actions)(AddExpenses);

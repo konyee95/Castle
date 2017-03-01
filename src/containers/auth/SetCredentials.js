@@ -10,8 +10,6 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import * as Progress from 'react-native-progress';
-
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
@@ -46,46 +44,22 @@ class SetCredentials extends Component {
     this.processAuth(nextProps);
   }
 
-  animateProgressBar() {
-    let progress = 0;
-    this.setState({ progress });
-    setTimeout(() => {
-      this.setState({ indeterminate: false });
-      setInterval(() => {
-        progress += Math.random() / 3;
-        if (progress > 1) {
-          progress = 1;
-        }
-        this.setState({ progress });
-      }, 500);
-    }, 1500);
-  }
-
   toggleMode() {
     if (!this.state.toggleMode) {
       return (
-        <Button
-          buttonPadding={{ paddingTop: 25 }}
-          buttonText="REGISTER FREE"
-          onPress={() => this.onRegisterPress()}
-        />
+        <Text style={styles.checkButtonText}>Check Availability</Text>
       )
     } else {
       return (
-        <Progress.Bar
-          style={{ marginTop: 25}}
-          color="#FFF"
-          animated={true}
-          progress={this.state.progress}
-          indeterminate={this.state.indeterminate}
-        />
+        <Spinner size="small" />
       )
     }
   }
 
   processAuth(props) {
-    // console.log(props.auth);
-
+    if(props.auth.error === 'Username is available') {
+      Alert.alert('Alert', 'OK')
+    }
   }
 
   renderCheckButton() {
@@ -93,11 +67,19 @@ class SetCredentials extends Component {
     if(this.state.username !== '') {
       return (
         <TouchableOpacity
-          style={[checkButton, centerEverything]}>
-          <Text style={checkButtonText}>Check Availability</Text>
+          style={[checkButton, centerEverything]}
+          onPress={() => {
+            this.setState({ toggleMode: true });
+            this.props.checkUserName(this.state.username);
+          }}>
+          {this.toggleMode()}
         </TouchableOpacity>
       )
     }
+  }
+
+  renderProceedButton() {
+    
   }
 
   render() {
@@ -140,7 +122,6 @@ class SetCredentials extends Component {
             { this.state.complete &&
               <Ionicons name="ios-arrow-dropright" size={40} color="#FFF" style={{ paddingTop: 20 }} />
             }
-            
           </View>
         </View>
       </TouchableWithoutFeedback>

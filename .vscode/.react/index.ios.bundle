@@ -72117,8 +72117,8 @@ var _types=require(508                 ); // 508 = ./../actions/types
 
 var _constants=require(509                      ); // 509 = redux-persist/constants
 
-var INITIAL_STATE={user:null,error:null,passcode:null};
-var EXIST_STATE={user:{},error:null,passcode:null};exports.default=
+var INITIAL_STATE={user:null,error:null,passcode:null,message:null};
+var EXIST_STATE={user:{},error:null,passcode:null,message:null};exports.default=
 
 function(){var state=arguments.length>0&&arguments[0]!==undefined?arguments[0]:INITIAL_STATE;var action=arguments[1];
 console.log(action);
@@ -72149,7 +72149,7 @@ passcode:null};
 case _types.AUTH_FAIL:
 return babelHelpers.extends({},state,{error:action.payload.error});
 case _types.CLEAR_ERROR_MESSAGE:
-return babelHelpers.extends({},state,{error:action.payload});
+return babelHelpers.extends({},state,{error:action.payload,message:action.payload});
 case _types.LOGOUT_USER:
 return INITIAL_STATE;
 case _types.SET_PASSCODE:
@@ -72157,7 +72157,7 @@ return babelHelpers.extends({},state,{passcode:action.payload});
 case _types.REMOVE_PASSCODE:
 return babelHelpers.extends({},state,{passcode:null});
 case _types.CHECK_USERNAME:
-return babelHelpers.extends({},state,{userList:action.payload});
+return babelHelpers.extends({},state,{message:action.payload});
 case _constants.REHYDRATE:
 var incoming=action.payload.auth;
 console.log(incoming);
@@ -77910,15 +77910,21 @@ removePasscode=removePasscode;exports.
 
 
 
-checkUserName=checkUserName;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );var registerUserSuccess=function registerUserSuccess(dispatch,user){dispatch({type:_types.REGISTER_USER_SUCCESS,payload:user});};var loginUserSuccess=function loginUserSuccess(dispatch,user){dispatch({type:_types.LOGIN_USER_SUCCESS,payload:user});};var authFail=function authFail(dispatch,error){dispatch({type:_types.AUTH_FAIL,payload:{error:error.message}});};function clearErrorMessage(){return{type:_types.CLEAR_ERROR_MESSAGE,payload:null};};function listenToUser(){return function(dispatch){_firebase2.default.auth().onAuthStateChanged(function(user){dispatch({type:_types.LISTEN_TO_USER,payload:user});});};};function registerUser(email,password){return function(dispatch){_firebase2.default.auth().createUserWithEmailAndPassword(email,password).then(function(user){registerUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function loginUser(email,password){return function(dispatch){_firebase2.default.auth().signInWithEmailAndPassword(email,password).then(function(user){return loginUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function logoutUser(){_firebase2.default.auth().signOut();return{type:_types.LOGOUT_USER};};function setPasscode(passcode){return{type:_types.SET_PASSCODE,payload:passcode};};function removePasscode(){return{type:_types.REMOVE_PASSCODE};};function checkUserName(){var _firebase$auth= // 508 = ./types // 404 = firebase
-_firebase2.default.auth(),currentUser=_firebase$auth.currentUser;
+checkUserName=checkUserName;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );var registerUserSuccess=function registerUserSuccess(dispatch,user){dispatch({type:_types.REGISTER_USER_SUCCESS,payload:user});};var loginUserSuccess=function loginUserSuccess(dispatch,user){dispatch({type:_types.LOGIN_USER_SUCCESS,payload:user});};var authFail=function authFail(dispatch,error){dispatch({type:_types.AUTH_FAIL,payload:{error:error.message}});};function clearErrorMessage(){return{type:_types.CLEAR_ERROR_MESSAGE,payload:null};};function listenToUser(){return function(dispatch){_firebase2.default.auth().onAuthStateChanged(function(user){dispatch({type:_types.LISTEN_TO_USER,payload:user});});};};function registerUser(email,password){return function(dispatch){_firebase2.default.auth().createUserWithEmailAndPassword(email,password).then(function(user){registerUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function loginUser(email,password){return function(dispatch){_firebase2.default.auth().signInWithEmailAndPassword(email,password).then(function(user){return loginUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function logoutUser(){_firebase2.default.auth().signOut();return{type:_types.LOGOUT_USER};};function setPasscode(passcode){return{type:_types.SET_PASSCODE,payload:passcode};};function removePasscode(){return{type:_types.REMOVE_PASSCODE};};function checkUserName(username){ // 508 = ./types // 404 = firebase
 return function(dispatch){
-_firebase2.default.database().ref('/ExistingUser').
-on('value',function(snapshot){
-dispatch({
+_firebase2.default.database().ref('/ExistingUser/').
+once('value',function(snapshot){
+if(snapshot.hasChild(username)){
+return{
 type:_types.CHECK_USERNAME,
-payload:snapshot.val()});
+payload:"Username is taken"};
 
+}else{
+return{
+type:_types.CHECK_USERNAME,
+payload:"Username is available"};
+
+}
 });
 };
 };
@@ -77960,8 +77966,7 @@ _reactNativeRouterFlux.Actions.lock();
 _reactNativeRouterFlux.Actions.main({type:'reset'});
 }else{
 this.wait(1000);
-
-_reactNativeRouterFlux.Actions.setCredentials({type:'reset'});
+_reactNativeRouterFlux.Actions.register({type:'reset'});
 }
 }
 }},{key:'wait',value:function wait(
@@ -84112,11 +84117,12 @@ indeterminate:this.state.indeterminate}));
 }},{key:'processAuth',value:function processAuth(
 
 props){var _this4=this;
-
+console.log(props.auth);
 if(props.auth.user!=null){
 if(props.auth.user.uid){
 this.setState({toggleMode:false});
-_reactNative.Alert.alert('Welcome!','Good to see you here!',[{text:'OK',onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'reset'});}}]);
+_reactNativeRouterFlux.Actions.setCredentials();
+
 }
 }
 
@@ -85420,8 +85426,6 @@ var _reactNative=require(12            ); // 12 = react-native
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
-var _reactNativeProgress=require(680                    );var Progress=babelHelpers.interopRequireWildcard(_reactNativeProgress); // 680 = react-native-progress
-
 var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
 var _reactRedux=require(409          ); // 409 = react-redux
 var _actions=require(511              );var actions=babelHelpers.interopRequireWildcard(_actions); // 511 = ./../../actions
@@ -85454,63 +85458,47 @@ _reactNative.LayoutAnimation.linear();
 
 nextProps){
 this.processAuth(nextProps);
-}},{key:'animateProgressBar',value:function animateProgressBar()
-
-{var _this2=this;
-var progress=0;
-this.setState({progress:progress});
-setTimeout(function(){
-_this2.setState({indeterminate:false});
-setInterval(function(){
-progress+=Math.random()/3;
-if(progress>1){
-progress=1;
-}
-_this2.setState({progress:progress});
-},500);
-},1500);
 }},{key:'toggleMode',value:function toggleMode()
 
-{var _this3=this;
+{
 if(!this.state.toggleMode){
 return(
-_react2.default.createElement(_common.Button,{
-buttonPadding:{paddingTop:25},
-buttonText:'REGISTER FREE',
-onPress:function onPress(){return _this3.onRegisterPress();}}));
-
+_react2.default.createElement(_reactNative.Text,{style:styles.checkButtonText},'Check Availability'));
 
 }else{
 return(
-_react2.default.createElement(Progress.Bar,{
-style:{marginTop:25},
-color:'#FFF',
-animated:true,
-progress:this.state.progress,
-indeterminate:this.state.indeterminate}));
-
+_react2.default.createElement(_common.Spinner,{size:'small'}));
 
 }
 }},{key:'processAuth',value:function processAuth(
 
 props){
-
-
+if(props.auth.error==='Username is available'){
+_reactNative.Alert.alert('Alert','OK');
+}
 }},{key:'renderCheckButton',value:function renderCheckButton()
 
-{var
+{var _this2=this;var
 centerEverything=styles.centerEverything,checkButton=styles.checkButton,checkButtonText=styles.checkButtonText;
 if(this.state.username!==''){
 return(
 _react2.default.createElement(_reactNative.TouchableOpacity,{
-style:[checkButton,centerEverything]},
-_react2.default.createElement(_reactNative.Text,{style:checkButtonText},'Check Availability')));
+style:[checkButton,centerEverything],
+onPress:function onPress(){
+_this2.setState({toggleMode:true});
+_this2.props.checkUserName(_this2.state.username);
+}},
+this.toggleMode()));
 
 
 }
+}},{key:'renderProceedButton',value:function renderProceedButton()
+
+{
+
 }},{key:'render',value:function render()
 
-{var _this4=this;var
+{var _this3=this;var
 testShit=styles.testShit,centerEverything=styles.centerEverything,container=styles.container,upperContainer=styles.upperContainer,bottomContainer=styles.bottomContainer,appTitle=styles.appTitle,appTitle2=styles.appTitle2;
 return(
 _react2.default.createElement(_reactNative.TouchableWithoutFeedback,{onPress:function onPress(){return dismissKeyboard();}},
@@ -85526,7 +85514,7 @@ propWidth:{width:deviceWidth*0.5},
 inputPadding:{padding:3},
 placeholder:'Username',
 placeholderTextColor:'white',
-onChangeText:function onChangeText(username){return _this4.setState({username:username});},
+onChangeText:function onChangeText(username){return _this3.setState({username:username});},
 value:this.state.username}),
 
 this.renderCheckButton()),
@@ -85536,7 +85524,7 @@ propWidth:{width:deviceWidth*0.5},
 inputPadding:{padding:3},
 placeholder:'First name',
 placeholderTextColor:'white',
-onChangeText:function onChangeText(firstName){return _this4.setState({firstName:firstName});},
+onChangeText:function onChangeText(firstName){return _this3.setState({firstName:firstName});},
 value:this.state.firstName}),
 
 _react2.default.createElement(_common.Input,{
@@ -85544,12 +85532,11 @@ propWidth:{width:deviceWidth*0.5},
 inputPadding:{padding:3},
 placeholder:'Last name',
 placeholderTextColor:'white',
-onChangeText:function onChangeText(lastName){return _this4.setState({lastName:lastName});},
+onChangeText:function onChangeText(lastName){return _this3.setState({lastName:lastName});},
 value:this.state.lastName}),
 
 this.state.complete&&
 _react2.default.createElement(_Ionicons2.default,{name:'ios-arrow-dropright',size:40,color:'#FFF',style:{paddingTop:20}})))));
-
 
 
 
@@ -87809,8 +87796,11 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
+var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
+var _reactRedux=require(409          ); // 409 = react-redux
+var _actions=require(511              );var actions=babelHelpers.interopRequireWildcard(_actions); // 511 = ./../../actions
 
+var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
 var _CategoryBox=require(746                             );var _CategoryBox2=babelHelpers.interopRequireDefault(_CategoryBox); // 746 = ./../../components/CategoryBox
@@ -87972,7 +87962,7 @@ actionButtonChild:mic,
 actionButtonText:'Voice'}),
 
 _react2.default.createElement(_common.ActionButton,{
-onPress:function onPress(){return console.log('Voice action button pressed');},
+onPress:function onPress(){return _reactNativeRouterFlux.Actions.setCredentials();},
 actionButtonChild:income,
 actionButtonText:'Add Income'})),
 
@@ -88174,11 +88164,17 @@ textAlign:'center'},
 
 listViewContainer:{
 width:deviceWidth*0.7,
-height:300}};exports.default=
+height:300}};
 
 
 
-AddExpenses;
+var mapStateToProps=function mapStateToProps(state){
+return{
+auth:state.auth};
+
+};exports.default=
+
+(0,_reactRedux.connect)(mapStateToProps,actions)(AddExpenses);
 }, 704, null, "Castle/src/containers/tabContainers/AddExpenses.js");
 __d(/* moment/moment.js */function(global, require, module, exports) {
 

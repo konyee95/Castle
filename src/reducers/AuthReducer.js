@@ -14,8 +14,8 @@ import {
 
 import { REHYDRATE } from 'redux-persist/constants'
 
-const INITIAL_STATE = { user: null, error: null, passcode: null };
-const EXIST_STATE = { user: {}, error: null, passcode: null };
+const INITIAL_STATE = { user: null, error: null, passcode: null, message: null };
+const EXIST_STATE = { user: {}, error: null, passcode: null, message: null };
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action);
@@ -46,7 +46,7 @@ export default (state = INITIAL_STATE, action) => {
     case AUTH_FAIL:
       return { ...state, error: action.payload.error }
     case CLEAR_ERROR_MESSAGE:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, message: action.payload };
     case LOGOUT_USER:
       return INITIAL_STATE;
     case SET_PASSCODE:
@@ -54,7 +54,7 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_PASSCODE:
       return { ...state, passcode: null }
     case CHECK_USERNAME: 
-      return { ...state, userList: action.payload } //revise whether need to persist
+      return { ...state, message: action.payload } 
     case REHYDRATE:
       var incoming = action.payload.auth;
       console.log(incoming);

@@ -90,15 +90,21 @@ export function removePasscode() {
   };
 };
 
-export function checkUserName() {
-  const { currentUser } = firebase.auth();
+export function checkUserName(username) {
   return(dispatch) => {
-    firebase.database().ref(`/ExistingUser`)
-      .on('value', snapshot => {
-        dispatch({
-          type: CHECK_USERNAME,
-          payload: snapshot.val()
-        });
+    firebase.database().ref(`/ExistingUser/`)
+      .once('value', snapshot =>{
+        if(snapshot.hasChild(username)) {
+          return {
+            type: CHECK_USERNAME,
+            payload: "Username is taken"
+          }
+        } else {
+          return {
+            type: CHECK_USERNAME,
+            payload: "Username is available"
+          }
+        }
       });
   };
 };
