@@ -60,6 +60,14 @@ class SetCredentials extends Component {
     } else if(props.auth.message === 'Username is taken') {
       this.setState({ toggleMode: null });
       Alert.alert('Alert', props.auth.message);
+    } else if(props.auth.message === 'User Profile Updated') {
+      Alert.alert('User Profile Updated', 'Thank you!', [
+        {text: 'OK', onPress: () => Actions.main({ type: 'reset'}) },
+      ])
+    } else if(props.auth.message === 'Something went wrong') {
+      Alert.alert('Something went wrong', 'We will look into it!', [
+        {text: 'OK', onPress: () => Actions.main({ type: 'reset'}) },
+      ])
     }
   }
 
@@ -120,7 +128,7 @@ class SetCredentials extends Component {
               (this.state.usernameAvailable && 
               (this.state.firstName !== '') && 
               (this.state.lastName !== '')) && 
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.createUserRef(this.state.username, this.state.firstName, this.state.lastName)}>
                 {proceed} 
               </TouchableOpacity>
             }

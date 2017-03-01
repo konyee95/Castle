@@ -8,7 +8,8 @@ import {
   LOGOUT_USER,
   SET_PASSCODE,
   REMOVE_PASSCODE,
-  CHECK_USERNAME
+  CHECK_USERNAME,
+  CREATE_USER_REF
 } from './types';
 
 const registerUserSuccess = (dispatch, user) => {
@@ -110,3 +111,25 @@ export function checkUserName(username) {
       });
   };
 };
+
+ export function createUserRef(username, firstName, lastName) {
+   const { currentUser } = firebase.auth();
+   return(dispatch) => {
+     firebase.database().ref(`/Users/${currentUser.uid}`).set({
+      email: currentUser.email,
+      username: username,
+      firstName: firstName,
+      lastName: lastName,
+    }).then(() => {
+      dispatch({ type: CREATE_USER_REF, payload: 'User Profile Updated' })
+    })
+      .catch((error) => dispatch({ type: CREATE_USER_REF, payload: 'Something went wrong'}))
+   }
+ };
+
+// function updateExistingUserRoot(username) {
+//   const { currentUser } = firebase.auth();
+//   firebase.database().ref(`/ExistingUser/`).set({
+//     '`${username}`': currentUser.uid
+//   });
+// }

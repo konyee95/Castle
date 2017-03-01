@@ -7,3 +7,4 @@ export const LOGOUT_USER = 'logout_user';
 export const SET_PASSCODE = 'set_passcode';
 export const REMOVE_PASSCODE = 'remove_passcode';
 export const CHECK_USERNAME = 'check_username';
+export const CREATE_USER_REF = 'create_user_ref';

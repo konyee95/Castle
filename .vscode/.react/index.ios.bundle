@@ -72115,6 +72115,7 @@ var _types=require(508                 ); // 508 = ./../actions/types
 
 
 
+
 var _constants=require(509                      ); // 509 = redux-persist/constants
 
 var INITIAL_STATE={user:null,error:null,passcode:null,message:null};
@@ -72157,6 +72158,8 @@ return babelHelpers.extends({},state,{passcode:action.payload});
 case _types.REMOVE_PASSCODE:
 return babelHelpers.extends({},state,{passcode:null});
 case _types.CHECK_USERNAME:
+return babelHelpers.extends({},state,{message:action.payload});
+case _types.CREATE_USER_REF:
 return babelHelpers.extends({},state,{message:action.payload});
 case _constants.REHYDRATE:
 var incoming=action.payload.auth;
@@ -77759,6 +77762,7 @@ var LOGOUT_USER=exports.LOGOUT_USER='logout_user';
 var SET_PASSCODE=exports.SET_PASSCODE='set_passcode';
 var REMOVE_PASSCODE=exports.REMOVE_PASSCODE='remove_passcode';
 var CHECK_USERNAME=exports.CHECK_USERNAME='check_username';
+var CREATE_USER_REF=exports.CREATE_USER_REF='create_user_ref';
 }, 508, null, "Castle/src/actions/types.js");
 __d(/* redux-persist/constants.js */function(global, require, module, exports) {module.exports=require(449              ); // 449 = ./lib/constants
 }, 509, null, "redux-persist/constants.js");
@@ -77773,11 +77777,11 @@ var _SplashScreen=require(513                        );var _SplashScreen2=babelH
 var _LockScreen=require(678                                         );var _LockScreen2=babelHelpers.interopRequireDefault(_LockScreen); // 678 = ./containers/passcodeContainers/LockScreen
 var _Register=require(679                         );var _Register2=babelHelpers.interopRequireDefault(_Register); // 679 = ./containers/auth/Register
 var _Login=require(689                      );var _Login2=babelHelpers.interopRequireDefault(_Login); // 689 = ./containers/auth/Login
-var _SetCredentials=require(748                               );var _SetCredentials2=babelHelpers.interopRequireDefault(_SetCredentials); // 748 = ./containers/auth/SetCredentials
+var _SetCredentials=require(690                               );var _SetCredentials2=babelHelpers.interopRequireDefault(_SetCredentials); // 690 = ./containers/auth/SetCredentials
 
-var _Home=require(690                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 690 = ./containers/tabContainers/Home
-var _Discover=require(701                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 701 = ./containers/tabContainers/Discover
-var _AddExpenses=require(704                                     );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 704 = ./containers/tabContainers/AddExpenses
+var _Home=require(691                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 691 = ./containers/tabContainers/Home
+var _Discover=require(702                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 702 = ./containers/tabContainers/Discover
+var _AddExpenses=require(705                                     );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 705 = ./containers/tabContainers/AddExpenses
 var _Account=require(709                                 );var _Account2=babelHelpers.interopRequireDefault(_Account); // 709 = ./containers/tabContainers/Account
 var _Calculator=require(710                                    );var _Calculator2=babelHelpers.interopRequireDefault(_Calculator); // 710 = ./containers/tabContainers/Calculator
 var _ManagePasscode=require(712                                             );var _ManagePasscode2=babelHelpers.interopRequireDefault(_ManagePasscode);var // 712 = ./containers/passcodeContainers/ManagePasscode
@@ -77796,14 +77800,13 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'auth',initial:t
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'splash',component:_SplashScreen2.default,initial:true}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'login',component:_Login2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'register',component:_Register2.default}),
-
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'setCredentials',component:_SetCredentials2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lock',direction:'vertical'},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lockScreen',schema:'modal',component:_LockScreen2.default,panHandlers:null}))),
 
 
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'main'},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'home',component:_Home2.default,initial:true}),
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'setCredentials',component:_SetCredentials2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'discover',component:_Discover2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'addExpenses',component:_AddExpenses2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'account',component:_Account2.default}),
@@ -77820,6 +77823,14 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'managePasscode'
 __d(/* Castle/src/actions/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _AuthAction=require(512           );Object.keys(_AuthAction).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _AuthAction[key];}});}); // 512 = ./AuthAction
 }, 511, null, "Castle/src/actions/index.js");
 __d(/* Castle/src/actions/AuthAction.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.
+
+
+
+
+
+
+
+
 
 
 
@@ -77911,23 +77922,32 @@ removePasscode=removePasscode;exports.
 
 
 
-checkUserName=checkUserName;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );var registerUserSuccess=function registerUserSuccess(dispatch,user){dispatch({type:_types.REGISTER_USER_SUCCESS,payload:user});};var loginUserSuccess=function loginUserSuccess(dispatch,user){dispatch({type:_types.LOGIN_USER_SUCCESS,payload:user});};var authFail=function authFail(dispatch,error){dispatch({type:_types.AUTH_FAIL,payload:{error:error.message}});};function clearErrorMessage(){return{type:_types.CLEAR_ERROR_MESSAGE,payload:null};};function listenToUser(){return function(dispatch){_firebase2.default.auth().onAuthStateChanged(function(user){dispatch({type:_types.LISTEN_TO_USER,payload:user});});};};function registerUser(email,password){return function(dispatch){_firebase2.default.auth().createUserWithEmailAndPassword(email,password).then(function(user){registerUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function loginUser(email,password){return function(dispatch){_firebase2.default.auth().signInWithEmailAndPassword(email,password).then(function(user){return loginUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function logoutUser(){_firebase2.default.auth().signOut();return{type:_types.LOGOUT_USER};};function setPasscode(passcode){return{type:_types.SET_PASSCODE,payload:passcode};};function removePasscode(){return{type:_types.REMOVE_PASSCODE};};function checkUserName(username){ // 508 = ./types // 404 = firebase
+checkUserName=checkUserName;exports.
+
+
+
+
+
+
+
+
+
+
+
+
+
+createUserRef=createUserRef;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );var registerUserSuccess=function registerUserSuccess(dispatch,user){dispatch({type:_types.REGISTER_USER_SUCCESS,payload:user});};var loginUserSuccess=function loginUserSuccess(dispatch,user){dispatch({type:_types.LOGIN_USER_SUCCESS,payload:user});};var authFail=function authFail(dispatch,error){dispatch({type:_types.AUTH_FAIL,payload:{error:error.message}});};var dispatchUsernameMessage=function dispatchUsernameMessage(dispatch,message){dispatch({type:_types.CHECK_USERNAME,payload:message});};function clearErrorMessage(){return{type:_types.CLEAR_ERROR_MESSAGE,payload:null};};function listenToUser(){return function(dispatch){_firebase2.default.auth().onAuthStateChanged(function(user){dispatch({type:_types.LISTEN_TO_USER,payload:user});});};};function registerUser(email,password){return function(dispatch){_firebase2.default.auth().createUserWithEmailAndPassword(email,password).then(function(user){registerUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function loginUser(email,password){return function(dispatch){_firebase2.default.auth().signInWithEmailAndPassword(email,password).then(function(user){return loginUserSuccess(dispatch,user);}).catch(function(error){return authFail(dispatch,error);});};};function logoutUser(){_firebase2.default.auth().signOut();return{type:_types.LOGOUT_USER};};function setPasscode(passcode){return{type:_types.SET_PASSCODE,payload:passcode};};function removePasscode(){return{type:_types.REMOVE_PASSCODE};};function checkUserName(username){return function(dispatch){_firebase2.default.database().ref('/ExistingUser/').once('value',function(snapshot){console.log(snapshot.val());if(snapshot.hasChild(username)){dispatchUsernameMessage(dispatch,'Username is taken');}else{dispatchUsernameMessage(dispatch,'Username is available');}});};};function createUserRef(username,firstName,lastName){var _firebase$auth= // 508 = ./types // 404 = firebase
+_firebase2.default.auth(),currentUser=_firebase$auth.currentUser;
 return function(dispatch){
-_firebase2.default.database().ref('/ExistingUser/').
-once('value',function(snapshot){
-console.log(snapshot.val());
-if(snapshot.hasChild(username)){
-return{
-type:_types.CHECK_USERNAME,
-payload:"Username is taken"};
-
-}else{
-return{
-type:_types.CHECK_USERNAME,
-payload:"Username is available"};
-
-}
-});
+_firebase2.default.database().ref('/Users/'+currentUser.uid).set({
+email:currentUser.email,
+username:username,
+firstName:firstName,
+lastName:lastName}).
+then(function(){
+dispatch({type:_types.CREATE_USER_REF,payload:'User Profile Updated'});
+}).
+catch(function(error){return dispatch({type:_types.CREATE_USER_REF,payload:'Something went wrong'});});
 };
 };
 }, 512, null, "Castle/src/actions/AuthAction.js");
@@ -78032,7 +78052,7 @@ Object.keys(_Button).forEach(function(key){if(key==="default"||key==="__esModule
 Object.keys(_PasscodeComponent).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _PasscodeComponent[key];}});});var _Label=require(519      ); // 519 = ./Label
 Object.keys(_Label).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _Label[key];}});});var _InfoBox=require(520        ); // 520 = ./InfoBox
 Object.keys(_InfoBox).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _InfoBox[key];}});});var _ExpensesInput=require(521              ); // 521 = ./ExpensesInput
-Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});var _ActionButton=require(713             ); // 713 = ./ActionButton
+Object.keys(_ExpensesInput).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ExpensesInput[key];}});});var _ActionButton=require(677             ); // 677 = ./ActionButton
 Object.keys(_ActionButton).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ActionButton[key];}});});
 }, 514, null, "Castle/src/components/common/index.js");
 __d(/* Castle/src/components/common/Spinner.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.Spinner=undefined;var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -83887,7 +83907,7 @@ backgroundColor:'transparent'}};exports.
 
 
 ActionButton=ActionButton;
-}, 713, null, "Castle/src/components/common/ActionButton.js");
+}, 677, null, "Castle/src/components/common/ActionButton.js");
 __d(/* Castle/src/containers/passcodeContainers/LockScreen.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 var _common=require(514                        ); // 514 = ./../../components/common
@@ -85450,10 +85470,7 @@ username:'',
 firstName:'',
 lastName:'',
 usernameAvailable:false,
-toggleMode:false,
-progress:0,
-indeterminate:true,
-complete:false};return _this;
+toggleMode:null};return _this;
 
 }babelHelpers.createClass(SetCredentials,[{key:'componentWillUpdate',value:function componentWillUpdate()
 
@@ -85466,22 +85483,29 @@ this.processAuth(nextProps);
 }},{key:'toggleMode',value:function toggleMode()
 
 {
-if(!this.state.toggleMode){
+if(this.state.toggleMode===null){
 return _react2.default.createElement(_reactNative.Text,{style:styles.checkButtonText},'Check Availability');
-}else{
+}else if(this.state.toggleMode){
 return _react2.default.createElement(_common.Spinner,{size:'small'});
+}else if(!this.state.toggleMode){
+return _react2.default.createElement(_reactNative.View,{style:{backgroundColor:'transparent'}},done);
 }
 }},{key:'processAuth',value:function processAuth(
 
 props){
-console.log(props.auth);
 if(props.auth.message==='Username is available'){
-_reactNative.Alert.alert('Alert','OK');
+this.setState({toggleMode:false,usernameAvailable:true});
 }else if(props.auth.message==='Username is taken'){
+this.setState({toggleMode:null});
 _reactNative.Alert.alert('Alert',props.auth.message);
-}
-if(props.auth.message===null){
-_reactNative.Alert.alert('Alert','shit');
+}else if(props.auth.message==='User Profile Updated'){
+_reactNative.Alert.alert('User Profile Updated','Thank you!',[
+{text:'OK',onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'reset'});}}]);
+
+}else if(props.auth.message==='Something went wrong'){
+_reactNative.Alert.alert('Something went wrong','We will look into it!',[
+{text:'OK',onPress:function onPress(){return _reactNativeRouterFlux.Actions.main({type:'reset'});}}]);
+
 }
 }},{key:'renderCheckButton',value:function renderCheckButton()
 
@@ -85499,10 +85523,6 @@ this.toggleMode()));
 
 
 }
-}},{key:'renderProceedButton',value:function renderProceedButton()
-
-{
-
 }},{key:'render',value:function render()
 
 {var _this3=this;var
@@ -85542,7 +85562,14 @@ placeholderTextColor:'white',
 onChangeText:function onChangeText(lastName){return _this3.setState({lastName:lastName});},
 value:this.state.lastName}),
 
-this.state.complete&&{proceed:proceed}))));
+
+this.state.usernameAvailable&&
+this.state.firstName!==''&&
+this.state.lastName!==''&&
+_react2.default.createElement(_reactNative.TouchableOpacity,{onPress:function onPress(){return _this3.props.createUserRef(_this3.state.username,_this3.state.firstName,_this3.state.lastName);}},
+proceed)))));
+
+
 
 
 
@@ -85604,16 +85631,16 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(SetCredentials);
-}, 748, null, "Castle/src/containers/auth/SetCredentials.js");
+}, 690, null, "Castle/src/containers/auth/SetCredentials.js");
 __d(/* Castle/src/containers/tabContainers/Home.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
 var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
-var _reactNativeTabView=require(691                    ); // 691 = react-native-tab-view
+var _reactNativeTabView=require(692                    ); // 692 = react-native-tab-view
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
-var _Discover=require(701         );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 701 = ./Discover
-var _AddExpenses=require(704            );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 704 = ./AddExpenses
+var _Discover=require(702         );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 702 = ./Discover
+var _AddExpenses=require(705            );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 705 = ./AddExpenses
 var _Account=require(709        );var _Account2=babelHelpers.interopRequireDefault(_Account);var // 709 = ./Account
 
 Home=function(_Component){babelHelpers.inherits(Home,_Component);function Home(){var _ref;var _temp,_this,_ret;babelHelpers.classCallCheck(this,Home);for(var _len=arguments.length,args=Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}return _ret=(_temp=(_this=babelHelpers.possibleConstructorReturn(this,(_ref=Home.__proto__||Object.getPrototypeOf(Home)).call.apply(_ref,[this].concat(args))),_this),_this.
@@ -85782,17 +85809,17 @@ page:{
 flex:1,
 alignItems:'center',
 justifyContent:'center'}});
-}, 690, null, "Castle/src/containers/tabContainers/Home.js");
+}, 691, null, "Castle/src/containers/tabContainers/Home.js");
 __d(/* react-native-tab-view/index.js */function(global, require, module, exports) {
 
 
 module.exports={
-get TabViewAnimated(){return require(692                    ).default;}, // 692 = ./src/TabViewAnimated
-get TabViewPagerPan(){return require(697                    ).default;}, // 697 = ./src/TabViewPagerPan
-get TabViewPagerScroll(){return require(696                       ).default;}, // 696 = ./src/TabViewPagerScroll
-get TabViewPagerAndroid(){return require(695                        ).default;}, // 695 = ./src/TabViewPagerAndroid
-get TabBar(){return require(699           ).default;}}; // 699 = ./src/TabBar
-}, 691, null, "react-native-tab-view/index.js");
+get TabViewAnimated(){return require(693                    ).default;}, // 693 = ./src/TabViewAnimated
+get TabViewPagerPan(){return require(698                    ).default;}, // 698 = ./src/TabViewPagerPan
+get TabViewPagerScroll(){return require(697                       ).default;}, // 697 = ./src/TabViewPagerScroll
+get TabViewPagerAndroid(){return require(696                        ).default;}, // 696 = ./src/TabViewPagerAndroid
+get TabBar(){return require(700           ).default;}}; // 700 = ./src/TabBar
+}, 692, null, "react-native-tab-view/index.js");
 __d(/* react-native-tab-view/src/TabViewAnimated.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85801,8 +85828,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewTransitioner=require(693                    );var _TabViewTransitioner2=babelHelpers.interopRequireDefault(_TabViewTransitioner); // 693 = ./TabViewTransitioner
-var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
+var _TabViewTransitioner=require(694                    );var _TabViewTransitioner2=babelHelpers.interopRequireDefault(_TabViewTransitioner); // 694 = ./TabViewTransitioner
+var _TabViewPropTypes=require(695                 ); // 695 = ./TabViewPropTypes
 
 
 
@@ -85833,13 +85860,13 @@ var TabViewPager=void 0;
 
 switch(_reactNative.Platform.OS){
 case'android':
-TabViewPager=require(695                    ).default; // 695 = ./TabViewPagerAndroid
+TabViewPager=require(696                    ).default; // 696 = ./TabViewPagerAndroid
 break;
 case'ios':
-TabViewPager=require(696                   ).default; // 696 = ./TabViewPagerScroll
+TabViewPager=require(697                   ).default; // 697 = ./TabViewPagerScroll
 break;
 default:
-TabViewPager=require(697                ).default; // 697 = ./TabViewPagerPan
+TabViewPager=require(698                ).default; // 698 = ./TabViewPagerPan
 break;}var
 
 
@@ -85933,7 +85960,7 @@ render:this._renderItems})));
 
 
 }}]);return TabViewAnimated;}(_react.PureComponent);TabViewAnimated.propTypes={navigationState:_TabViewPropTypes.NavigationStatePropType.isRequired,renderPager:_react.PropTypes.func.isRequired,renderScene:_react.PropTypes.func.isRequired,renderHeader:_react.PropTypes.func,renderFooter:_react.PropTypes.func,onChangePosition:_react.PropTypes.func,lazy:_react.PropTypes.bool};TabViewAnimated.defaultProps={renderPager:function renderPager(props){return _react2.default.createElement(TabViewPager,props);}};var _initialiseProps=function _initialiseProps(){var _this2=this;this._renderScene=function(props){var _props=_this2.props,renderScene=_props.renderScene,navigationState=_props.navigationState,lazy=_props.lazy;var loaded=_this2.state.loaded;if(lazy){if(loaded.includes(navigationState.routes.indexOf(props.route))){return renderScene(props);}return null;}return renderScene(props);};this._renderItems=function(props){var _props2=_this2.props,renderPager=_props2.renderPager,renderHeader=_props2.renderHeader,renderFooter=_props2.renderFooter;var navigationState=props.navigationState;return _react2.default.createElement(_reactNative.View,{style:styles.container},renderHeader&&renderHeader(props),renderPager(babelHelpers.extends({},props,{children:navigationState.routes.map(function(route,index){return _this2._renderScene(babelHelpers.extends({},props,{route:route,index:index,focused:index===props.navigationState.index}));})})),renderFooter&&renderFooter(props));};this._handleChangePosition=function(value){var _props3=_this2.props,onChangePosition=_props3.onChangePosition,navigationState=_props3.navigationState,lazy=_props3.lazy;if(onChangePosition){onChangePosition(value);}var loaded=_this2.state.loaded;if(lazy){var next=Math.ceil(value);if(next===navigationState.index){next=Math.floor(value);}if(loaded.includes(next)){return;}_this2.setState({loaded:[].concat(babelHelpers.toConsumableArray(loaded),[next])});}};};exports.default=TabViewAnimated;
-}, 692, null, "react-native-tab-view/src/TabViewAnimated.js");
+}, 693, null, "react-native-tab-view/src/TabViewAnimated.js");
 __d(/* react-native-tab-view/src/TabViewTransitioner.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -85941,7 +85968,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
+var _TabViewPropTypes=require(695                 ); // 695 = ./TabViewPropTypes
 
 
 
@@ -86154,7 +86181,7 @@ this.props.render(this._buildSceneRendererProps())));
 
 
 }}]);return TabViewTransitioner;}(_react.PureComponent);TabViewTransitioner.propTypes={navigationState:_TabViewPropTypes.NavigationStatePropType.isRequired,render:_react.PropTypes.func.isRequired,configureTransition:_react.PropTypes.func.isRequired,onRequestChangeTab:_react.PropTypes.func.isRequired,onChangePosition:_react.PropTypes.func,initialLayout:_react.PropTypes.shape({height:_react.PropTypes.number.isRequired,width:_react.PropTypes.number.isRequired}),canJumpToTab:_react.PropTypes.func};TabViewTransitioner.defaultProps={configureTransition:function configureTransition(){return DefaultTransitionSpec;},initialLayout:{height:0,width:0}};exports.default=TabViewTransitioner;
-}, 693, null, "react-native-tab-view/src/TabViewTransitioner.js");
+}, 694, null, "react-native-tab-view/src/TabViewTransitioner.js");
 __d(/* react-native-tab-view/src/TabViewPropTypes.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.SceneRendererPropType=exports.NavigationStatePropType=exports.NavigationRoutePropType=undefined;
 
 var _react=require(279    ); // 279 = react
@@ -86181,7 +86208,7 @@ position:_react.PropTypes.instanceOf(_reactNative.Animated.Value).isRequired,
 jumpToIndex:_react.PropTypes.func.isRequired,
 getLastPosition:_react.PropTypes.func.isRequired,
 subscribe:_react.PropTypes.func.isRequired};
-}, 694, null, "react-native-tab-view/src/TabViewPropTypes.js");
+}, 695, null, "react-native-tab-view/src/TabViewPropTypes.js");
 __d(/* react-native-tab-view/src/TabViewPagerAndroid.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86190,7 +86217,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
+var _TabViewPropTypes=require(695                 ); // 695 = ./TabViewPropTypes
 
 
 
@@ -86326,7 +86353,7 @@ child));})));
 
 
 }}]);return TabViewPagerAndroid;}(_react.PureComponent);TabViewPagerAndroid.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{swipeEnabled:_react.PropTypes.bool,animationEnabled:_react.PropTypes.bool,children:_react.PropTypes.node});exports.default=TabViewPagerAndroid;
-}, 695, null, "react-native-tab-view/src/TabViewPagerAndroid.js");
+}, 696, null, "react-native-tab-view/src/TabViewPagerAndroid.js");
 __d(/* react-native-tab-view/src/TabViewPagerScroll.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86335,7 +86362,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
+var _TabViewPropTypes=require(695                 ); // 695 = ./TabViewPropTypes
 
 
 
@@ -86497,7 +86524,7 @@ _react.Children.toArray(children)[navigationState.index])));
 
 
 }}]);return TabViewPagerScroll;}(_react.PureComponent);TabViewPagerScroll.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{swipeEnabled:_react.PropTypes.bool,children:_react.PropTypes.node});exports.default=TabViewPagerScroll;
-}, 696, null, "react-native-tab-view/src/TabViewPagerScroll.js");
+}, 697, null, "react-native-tab-view/src/TabViewPagerScroll.js");
 __d(/* react-native-tab-view/src/TabViewPagerPan.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86508,8 +86535,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TabViewStyleInterpolator=require(698                         );var _TabViewStyleInterpolator2=babelHelpers.interopRequireDefault(_TabViewStyleInterpolator); // 698 = ./TabViewStyleInterpolator
-var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
+var _TabViewStyleInterpolator=require(699                         );var _TabViewStyleInterpolator2=babelHelpers.interopRequireDefault(_TabViewStyleInterpolator); // 699 = ./TabViewStyleInterpolator
+var _TabViewPropTypes=require(695                 ); // 695 = ./TabViewPropTypes
 
 
 
@@ -86676,7 +86703,7 @@ child));})));
 
 
 }}]);return TabViewPagerPan;}(_react.PureComponent);TabViewPagerPan.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{swipeEnabled:_react.PropTypes.bool,swipeDistanceThreshold:_react.PropTypes.number.isRequired,swipeVelocityThreshold:_react.PropTypes.number.isRequired,children:_react.PropTypes.node});TabViewPagerPan.defaultProps={swipeDistanceThreshold:120,swipeVelocityThreshold:0.25};exports.default=TabViewPagerPan;
-}, 697, null, "react-native-tab-view/src/TabViewPagerPan.js");
+}, 698, null, "react-native-tab-view/src/TabViewPagerPan.js");
 __d(/* react-native-tab-view/src/TabViewStyleInterpolator.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 
@@ -86703,7 +86730,7 @@ transform:[{translateX:translateX}]};
 
 {
 forHorizontal:forHorizontal};
-}, 698, null, "react-native-tab-view/src/TabViewStyleInterpolator.js");
+}, 699, null, "react-native-tab-view/src/TabViewStyleInterpolator.js");
 __d(/* react-native-tab-view/src/TabBar.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -86714,8 +86741,8 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _TouchableItem=require(700              );var _TouchableItem2=babelHelpers.interopRequireDefault(_TouchableItem); // 700 = ./TouchableItem
-var _TabViewPropTypes=require(694                 ); // 694 = ./TabViewPropTypes
+var _TouchableItem=require(701              );var _TouchableItem2=babelHelpers.interopRequireDefault(_TouchableItem); // 701 = ./TouchableItem
+var _TabViewPropTypes=require(695                 ); // 695 = ./TabViewPropTypes
 
 
 var styles=_reactNative.StyleSheet.create({
@@ -87173,7 +87200,7 @@ null)));
 
 
 }}]);return TabBar;}(_react.PureComponent);TabBar.propTypes=babelHelpers.extends({},_TabViewPropTypes.SceneRendererPropType,{scrollEnabled:_react.PropTypes.bool,pressColor:_TouchableItem2.default.propTypes.pressColor,pressOpacity:_TouchableItem2.default.propTypes.pressOpacity,getLabelText:_react.PropTypes.func,renderIcon:_react.PropTypes.func,renderLabel:_react.PropTypes.func,renderIndicator:_react.PropTypes.func,onTabPress:_react.PropTypes.func,tabStyle:_reactNative.View.propTypes.style,indicatorStyle:_reactNative.View.propTypes.style,labelStyle:_reactNative.Text.propTypes.style,style:_react.PropTypes.any});TabBar.defaultProps={getLabelText:function getLabelText(_ref2){var route=_ref2.route;return route.title?route.title.toUpperCase():null;}};exports.default=TabBar;
-}, 699, null, "react-native-tab-view/src/TabBar.js");
+}, 700, null, "react-native-tab-view/src/TabBar.js");
 __d(/* react-native-tab-view/src/TouchableItem.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
@@ -87239,7 +87266,7 @@ this.props.children));
 
 }
 }}]);return TouchableItem;}(_react.PureComponent);TouchableItem.propTypes={delayPressIn:_react.PropTypes.number,borderless:_react.PropTypes.bool,pressColor:_react.PropTypes.string,pressOpacity:_react.PropTypes.number,children:_react.PropTypes.node.isRequired,style:_reactNative.View.propTypes.style};TouchableItem.defaultProps={pressColor:'rgba(255, 255, 255, .4)'};exports.default=TouchableItem;
-}, 700, null, "react-native-tab-view/src/TouchableItem.js");
+}, 701, null, "react-native-tab-view/src/TouchableItem.js");
 __d(/* Castle/src/containers/tabContainers/Discover.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -87248,7 +87275,7 @@ var _reactNative=require(12            ); // 12 = react-native
 
 
 
-var _reactNativeSnapCarousel=require(702                         );var _reactNativeSnapCarousel2=babelHelpers.interopRequireDefault(_reactNativeSnapCarousel); // 702 = react-native-snap-carousel
+var _reactNativeSnapCarousel=require(703                         );var _reactNativeSnapCarousel2=babelHelpers.interopRequireDefault(_reactNativeSnapCarousel); // 703 = react-native-snap-carousel
 
 var _common=require(514                        ); // 514 = ./../../components/common
 
@@ -87309,10 +87336,10 @@ height:deviceWidth*0.2}};exports.default=
 
 
 Discover;
-}, 701, null, "Castle/src/containers/tabContainers/Discover.js");
+}, 702, null, "Castle/src/containers/tabContainers/Discover.js");
 __d(/* react-native-snap-carousel/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
-var _reactAddonsShallowCompare=require(703                           );var _reactAddonsShallowCompare2=babelHelpers.interopRequireDefault(_reactAddonsShallowCompare);var // 703 = react-addons-shallow-compare
+var _reactAddonsShallowCompare=require(704                           );var _reactAddonsShallowCompare2=babelHelpers.interopRequireDefault(_reactAddonsShallowCompare);var // 704 = react-addons-shallow-compare
 
 Carousel=function(_Component){babelHelpers.inherits(Carousel,_Component);
 
@@ -87782,9 +87809,9 @@ this._childSlides()));
 
 
 }},{key:'_snapEnabled',get:function get(){var _props8=this.props,enableSnap=_props8.enableSnap,snapOnAndroid=_props8.snapOnAndroid;return enableSnap&&(_reactNative.Platform.OS==='ios'||snapOnAndroid);}},{key:'_nextItem',get:function get(){var activeItem=this.state.activeItem;return this._positions[activeItem+1]?activeItem+1:0;}},{key:'currentIndex',get:function get(){return this.state.activeItem;}}]);return Carousel;}(_react.Component);Carousel.propTypes=babelHelpers.extends({},_reactNative.ScrollView.propTypes,{itemWidth:_react.PropTypes.number.isRequired,sliderWidth:_react.PropTypes.number.isRequired,animationFunc:_react.PropTypes.string,animationOptions:_react.PropTypes.object,autoplay:_react.PropTypes.bool,autoplayDelay:_react.PropTypes.number,autoplayInterval:_react.PropTypes.number,containerCustomStyle:_reactNative.ScrollView.propTypes.style,contentContainerCustomStyle:_reactNative.ScrollView.propTypes.style,enableMomentum:_react.PropTypes.bool,enableSnap:_react.PropTypes.bool,firstItem:_react.PropTypes.number,inactiveSlideOpacity:_react.PropTypes.number,inactiveSlideScale:_react.PropTypes.number,slideStyle:_reactNative.Animated.View.propTypes.style,shouldOptimizeUpdates:_react.PropTypes.bool,snapOnAndroid:_react.PropTypes.bool,swipeThreshold:_react.PropTypes.number,onSnapToItem:_react.PropTypes.func});Carousel.defaultProps={animationFunc:'timing',animationOptions:{easing:_reactNative.Easing.elastic(1)},autoplay:false,autoplayDelay:5000,autoplayInterval:3000,containerCustomStyle:{},contentContainerCustomStyle:{},enableMomentum:false,enableSnap:true,firstItem:0,inactiveSlideOpacity:1,inactiveSlideScale:0.9,slideStyle:{},shouldOptimizeUpdates:true,snapOnAndroid:true,swipeThreshold:20};exports.default=Carousel;
-}, 702, null, "react-native-snap-carousel/index.js");
+}, 703, null, "react-native-snap-carousel/index.js");
 __d(/* react-addons-shallow-compare/index.js */function(global, require, module, exports) {module.exports=require(387                       ); // 387 = react/lib/shallowCompare
-}, 703, null, "react-addons-shallow-compare/index.js");
+}, 704, null, "react-addons-shallow-compare/index.js");
 __d(/* Castle/src/containers/tabContainers/AddExpenses.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});
 var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
@@ -87805,10 +87832,10 @@ var _reactNativeRouterFlux=require(461                       ); // 461 = react-n
 var _reactRedux=require(409          ); // 409 = react-redux
 var _actions=require(511              );var actions=babelHelpers.interopRequireWildcard(_actions); // 511 = ./../../actions
 
-var _moment=require(705     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 705 = moment
+var _moment=require(706     );var _moment2=babelHelpers.interopRequireDefault(_moment); // 706 = moment
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
-var _CategoryBox=require(746                             );var _CategoryBox2=babelHelpers.interopRequireDefault(_CategoryBox); // 746 = ./../../components/CategoryBox
+var _CategoryBox=require(707                             );var _CategoryBox2=babelHelpers.interopRequireDefault(_CategoryBox); // 707 = ./../../components/CategoryBox
 var _common=require(514                        ); // 514 = ./../../components/common
 
 
@@ -87819,12 +87846,16 @@ var _common=require(514                        ); // 514 = ./../../components/co
 
 
 
-var _ExpensesType=require(747                        );var _ExpensesType2=babelHelpers.interopRequireDefault(_ExpensesType);var dismissKeyboard=require(61               );var deviceWidth=require(101         ).get('window').width;var deviceHeight=require(101         ).get('window').height;var mic=_react2.default.createElement(_Ionicons2.default,{name:'ios-mic',size:24,color:'#202020'});var income=_react2.default.createElement(_Ionicons2.default,{name:'ios-home',size:24,color:'#202020'});var // 101 = Dimensions // 101 = Dimensions // 61 = dismissKeyboard // 747 = ./../../data/ExpensesType
+var _ExpensesType=require(708                        );var _ExpensesType2=babelHelpers.interopRequireDefault(_ExpensesType);var dismissKeyboard=require(61               );var deviceWidth=require(101         ).get('window').width;var deviceHeight=require(101         ).get('window').height;var mic=_react2.default.createElement(_Ionicons2.default,{name:'ios-mic',size:24,color:'#202020'});var income=_react2.default.createElement(_Ionicons2.default,{name:'ios-home',size:24,color:'#202020'});var // 101 = Dimensions // 101 = Dimensions // 61 = dismissKeyboard // 708 = ./../../data/ExpensesType
 
 AddExpenses=function(_Component){babelHelpers.inherits(AddExpenses,_Component);
 
 function AddExpenses(props){var _this2=this;babelHelpers.classCallCheck(this,AddExpenses);var _this=babelHelpers.possibleConstructorReturn(this,(AddExpenses.__proto__||Object.getPrototypeOf(AddExpenses)).call(this,
 props));_this.
+
+
+
+
 
 
 
@@ -87905,7 +87936,7 @@ calendarOpenedAndroid:!_this.state.calendarOpenedAndroid});
 
 }_context.next=16;break;case 11:_context.prev=11;_context.t0=_context['catch'](0);
 code=_context.t0.code;message=_context.t0.message;
-console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.renderRow=_this.renderRow.bind(_this);_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',selectedCategory:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillMount',value:function componentWillMount(){this.createDataSource(_ExpensesType2.default);}},{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'createDataSource',value:function createDataSource(expensesType){var ds=new _reactNative.ListView.DataSource({rowHasChanged:function rowHasChanged(r1,r2){return r1!==r2;}});this.dataSource=ds.cloneWithRows(expensesType);}},{key:'renderRow',value:function renderRow(data){var _this3=this;return _react2.default.createElement(_CategoryBox2.default,{data:data,onPress:function onPress(){return _this3.setState({selectedCategory:data.categoryID,modalVisible:false});}});}},{key:'renderSaveButton',value:function renderSaveButton(){var _this4=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this4.setState({entered:!_this4.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchAndroidPicker',value:function launchAndroidPicker()
+console.warn('Cannot open date picker',message);case 16:case'end':return _context.stop();}}},null,_this2,[[0,11]]);};_this.renderRow=_this.renderRow.bind(_this);_this.state={calendarOpenedAndroid:false,entered:false,modalVisible:false,datePickerModalVisible:false,spentAmount:'',date:new Date(),formattedDate:'',formattedTime:'',selectedCategory:'',note:''};return _this;}babelHelpers.createClass(AddExpenses,[{key:'componentWillMount',value:function componentWillMount(){this.createDataSource(_ExpensesType2.default);}},{key:'componentWillReceiveProps',value:function componentWillReceiveProps(nextProps){console.log(nextProps);}},{key:'componentWillUpdate',value:function componentWillUpdate(){_reactNative.LayoutAnimation.easeInEaseOut();}},{key:'createDataSource',value:function createDataSource(expensesType){var ds=new _reactNative.ListView.DataSource({rowHasChanged:function rowHasChanged(r1,r2){return r1!==r2;}});this.dataSource=ds.cloneWithRows(expensesType);}},{key:'renderRow',value:function renderRow(data){var _this3=this;return _react2.default.createElement(_CategoryBox2.default,{data:data,onPress:function onPress(){return _this3.setState({selectedCategory:data.categoryID,modalVisible:false});}});}},{key:'renderSaveButton',value:function renderSaveButton(){var _this4=this;if(this.state.entered&&this.state.spentAmount!=''){return _react2.default.createElement(_reactNative.TouchableOpacity,{style:[styles.centerEverything,styles.saveButtonStyle],onPress:function onPress(){return _this4.setState({entered:!_this4.state.entered,spentAmount:'',date:new Date(),note:''});}},_react2.default.createElement(_Ionicons2.default,{name:'md-send',size:22}));}}},{key:'launchAndroidPicker',value:function launchAndroidPicker()
 
 
 
@@ -88180,7 +88211,7 @@ auth:state.auth};
 };exports.default=
 
 (0,_reactRedux.connect)(mapStateToProps,actions)(AddExpenses);
-}, 704, null, "Castle/src/containers/tabContainers/AddExpenses.js");
+}, 705, null, "Castle/src/containers/tabContainers/AddExpenses.js");
 __d(/* moment/moment.js */function(global, require, module, exports) {
 
 
@@ -92482,7 +92513,7 @@ hooks.prototype=proto;
 return hooks;
 
 });
-}, 705, null, "moment/moment.js");
+}, 706, null, "moment/moment.js");
 __d(/* Castle/src/components/CategoryBox.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -92528,7 +92559,7 @@ letterSpacing:5}};exports.default=
 
 
 CategoryBox;
-}, 746, null, "Castle/src/components/CategoryBox.js");
+}, 707, null, "Castle/src/components/CategoryBox.js");
 __d(/* Castle/src/data/ExpensesType.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.default=expensesType=[
 {
 "categoryID":"001",
@@ -92577,7 +92608,7 @@ __d(/* Castle/src/data/ExpensesType.js */function(global, require, module, expor
 "category":"OTHER",
 "color":"#ff7f50",
 "iconName":"ios-notifications"}];
-}, 747, null, "Castle/src/data/ExpensesType.js");
+}, 708, null, "Castle/src/data/ExpensesType.js");
 __d(/* Castle/src/containers/tabContainers/Account.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 

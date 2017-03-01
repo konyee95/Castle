@@ -9,7 +9,8 @@ import {
   LOGOUT_USER,
   SET_PASSCODE,
   REMOVE_PASSCODE,
-  CHECK_USERNAME
+  CHECK_USERNAME,
+  CREATE_USER_REF
 } from './../actions/types';
 
 import { REHYDRATE } from 'redux-persist/constants'
@@ -54,8 +55,9 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_PASSCODE:
       return { ...state, passcode: null }
     case CHECK_USERNAME: 
-      console.log(action.payload)
       return { ...state, message: action.payload } 
+    case CREATE_USER_REF:
+      return { ...state, message: action.payload }
     case REHYDRATE:
       var incoming = action.payload.auth;
       console.log(incoming);
