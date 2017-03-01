@@ -32,13 +32,14 @@ class RouterComponent extends Component {
           <Scene key="splash" component={SplashScreen} initial />
           <Scene key="login" component={Login} />
           <Scene key="register" component={Register}  />
-          <Scene key="setCredentials" component={SetCredentials} />
+          
           <Scene key="lock" direction="vertical" >
             <Scene key="lockScreen" schema="modal" component={LockScreen} panHandlers={null} />
           </Scene>
         </Scene>
         <Scene key="main">
           <Scene key="home" component={Home} initial />
+          <Scene key="setCredentials" component={SetCredentials} />
           <Scene key="discover" component={Discover} />
           <Scene key="addExpenses" component={AddExpenses} />
           <Scene key="account" component={Account} />

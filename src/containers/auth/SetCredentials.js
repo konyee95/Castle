@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+const proceed = <Ionicons name="ios-arrow-dropright" size={40} color="#FFF" style={{ paddingTop: 20 }} />
+const done = <Ionicons name="ios-checkmark" size={40} color="#000" />
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
 
-import { Spinner, Input, Button } from './../../components/common/';
+import { Spinner, Input } from './../../components/common/';
 
 const dismissKeyboard = require('dismissKeyboard')
 
@@ -29,10 +31,8 @@ class SetCredentials extends Component {
       username: '',
       firstName: '',
       lastName: '',
-      toggleMode: false,
-      progress: 0,
-      indeterminate: true,
-      complete: false
+      usernameAvailable: false,
+      toggleMode: null,
     };
   }
 
@@ -45,20 +45,21 @@ class SetCredentials extends Component {
   }
 
   toggleMode() {
-    if (!this.state.toggleMode) {
-      return (
-        <Text style={styles.checkButtonText}>Check Availability</Text>
-      )
-    } else {
-      return (
-        <Spinner size="small" />
-      )
+    if (this.state.toggleMode === null) {
+      return <Text style={styles.checkButtonText}>Check Availability</Text>;
+    } else if (this.state.toggleMode) {
+      return <Spinner size="small" />;
+    } else if(!this.state.toggleMode) {
+      return <View style={{ backgroundColor: 'transparent' }}>{done}</View>
     }
   }
 
   processAuth(props) {
-    if(props.auth.error === 'Username is available') {
-      Alert.alert('Alert', 'OK')
+    if(props.auth.message === 'Username is available') {
+      this.setState({ toggleMode: false, usernameAvailable: true })
+    } else if(props.auth.message === 'Username is taken') {
+      this.setState({ toggleMode: null });
+      Alert.alert('Alert', props.auth.message);
     }
   }
 
@@ -76,10 +77,6 @@ class SetCredentials extends Component {
         </TouchableOpacity>
       )
     }
-  }
-
-  renderProceedButton() {
-    
   }
 
   render() {
@@ -119,8 +116,13 @@ class SetCredentials extends Component {
               onChangeText={(lastName) => this.setState({ lastName })}
               value={this.state.lastName}
             />
-            { this.state.complete &&
-              <Ionicons name="ios-arrow-dropright" size={40} color="#FFF" style={{ paddingTop: 20 }} />
+            { 
+              (this.state.usernameAvailable && 
+              (this.state.firstName !== '') && 
+              (this.state.lastName !== '')) && 
+              <TouchableOpacity>
+                {proceed} 
+              </TouchableOpacity>
             }
           </View>
         </View>
@@ -170,8 +172,8 @@ const styles = {
     width: 90
   },
   checkButtonText: {
-    fontSize: 14,
-    fontFamily: 'Helvetica-Bold',
+    fontSize: 12,
+    fontFamily: 'Helvetica Neue',
     textAlign: 'center'
   }
 }

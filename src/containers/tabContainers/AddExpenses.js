@@ -57,6 +57,10 @@ class AddExpenses extends Component {
     this.createDataSource(expensesType)
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+  }
+
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
   }

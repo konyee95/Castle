@@ -54,6 +54,7 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_PASSCODE:
       return { ...state, passcode: null }
     case CHECK_USERNAME: 
+      console.log(action.payload)
       return { ...state, message: action.payload } 
     case REHYDRATE:
       var incoming = action.payload.auth;

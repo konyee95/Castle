@@ -77796,13 +77796,14 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'auth',initial:t
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'splash',component:_SplashScreen2.default,initial:true}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'login',component:_Login2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'register',component:_Register2.default}),
-_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'setCredentials',component:_SetCredentials2.default}),
+
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lock',direction:'vertical'},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lockScreen',schema:'modal',component:_LockScreen2.default,panHandlers:null}))),
 
 
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'main'},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'home',component:_Home2.default,initial:true}),
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'setCredentials',component:_SetCredentials2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'discover',component:_Discover2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'addExpenses',component:_AddExpenses2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'account',component:_Account2.default}),
@@ -77914,6 +77915,7 @@ checkUserName=checkUserName;var _firebase=require(404       );var _firebase2=bab
 return function(dispatch){
 _firebase2.default.database().ref('/ExistingUser/').
 once('value',function(snapshot){
+console.log(snapshot.val());
 if(snapshot.hasChild(username)){
 return{
 type:_types.CHECK_USERNAME,
@@ -85426,11 +85428,13 @@ var _reactNative=require(12            ); // 12 = react-native
 
 var _Ionicons=require(522                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 522 = react-native-vector-icons/Ionicons
 
+
+
 var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
 var _reactRedux=require(409          ); // 409 = react-redux
 var _actions=require(511              );var actions=babelHelpers.interopRequireWildcard(_actions); // 511 = ./../../actions
 
-var _common=require(514                         ); // 514 = ./../../components/common/
+var _common=require(514                         );var proceed=_react2.default.createElement(_Ionicons2.default,{name:'ios-arrow-dropright',size:40,color:'#FFF',style:{paddingTop:20}});var done=_react2.default.createElement(_Ionicons2.default,{name:'ios-checkmark',size:40,color:'#000'}); // 514 = ./../../components/common/
 
 var dismissKeyboard=require(61               ); // 61 = dismissKeyboard
 
@@ -85445,6 +85449,7 @@ _this.state={
 username:'',
 firstName:'',
 lastName:'',
+usernameAvailable:false,
 toggleMode:false,
 progress:0,
 indeterminate:true,
@@ -85462,19 +85467,21 @@ this.processAuth(nextProps);
 
 {
 if(!this.state.toggleMode){
-return(
-_react2.default.createElement(_reactNative.Text,{style:styles.checkButtonText},'Check Availability'));
-
+return _react2.default.createElement(_reactNative.Text,{style:styles.checkButtonText},'Check Availability');
 }else{
-return(
-_react2.default.createElement(_common.Spinner,{size:'small'}));
-
+return _react2.default.createElement(_common.Spinner,{size:'small'});
 }
 }},{key:'processAuth',value:function processAuth(
 
 props){
-if(props.auth.error==='Username is available'){
+console.log(props.auth);
+if(props.auth.message==='Username is available'){
 _reactNative.Alert.alert('Alert','OK');
+}else if(props.auth.message==='Username is taken'){
+_reactNative.Alert.alert('Alert',props.auth.message);
+}
+if(props.auth.message===null){
+_reactNative.Alert.alert('Alert','shit');
 }
 }},{key:'renderCheckButton',value:function renderCheckButton()
 
@@ -85535,9 +85542,7 @@ placeholderTextColor:'white',
 onChangeText:function onChangeText(lastName){return _this3.setState({lastName:lastName});},
 value:this.state.lastName}),
 
-this.state.complete&&
-_react2.default.createElement(_Ionicons2.default,{name:'ios-arrow-dropright',size:40,color:'#FFF',style:{paddingTop:20}})))));
-
+this.state.complete&&{proceed:proceed}))));
 
 
 
@@ -85586,8 +85591,8 @@ height:40,
 width:90},
 
 checkButtonText:{
-fontSize:14,
-fontFamily:'Helvetica-Bold',
+fontSize:12,
+fontFamily:'Helvetica Neue',
 textAlign:'center'}};
 
 

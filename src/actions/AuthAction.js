@@ -34,6 +34,13 @@ const authFail = (dispatch, error) => {
   });
 };
 
+const dispatchUsernameMessage = (dispatch, message) => {
+  dispatch({
+    type: CHECK_USERNAME,
+    payload: message
+  });
+};
+
 export function clearErrorMessage() {
   return {
     type: CLEAR_ERROR_MESSAGE,
@@ -94,16 +101,11 @@ export function checkUserName(username) {
   return(dispatch) => {
     firebase.database().ref(`/ExistingUser/`)
       .once('value', snapshot =>{
+        console.log(snapshot.val())
         if(snapshot.hasChild(username)) {
-          return {
-            type: CHECK_USERNAME,
-            payload: "Username is taken"
-          }
+          dispatchUsernameMessage(dispatch, 'Username is taken')
         } else {
-          return {
-            type: CHECK_USERNAME,
-            payload: "Username is available"
-          }
+          dispatchUsernameMessage(dispatch, 'Username is available')
         }
       });
   };
