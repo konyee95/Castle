@@ -4,10 +4,10 @@ import {
   GET_USER_PROFILE
 } from './types';
 
-export function getUserProfile() {
+export function getUserProfile(uid) {
   const { currentUser } = firebase.auth();
   return (dispatch) => {
-    firebase.database().ref(`/Users/` + currentUser.uid)
+    firebase.database().ref(`/Users/${uid}`)
       .once('value', (snapshot) => {
         dispatch({
           type: GET_USER_PROFILE,

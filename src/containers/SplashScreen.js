@@ -7,6 +7,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import * as actions from './../actions';
 import { Spinner } from './../components/common';
 
 class SplashScreen extends Component {
@@ -91,4 +92,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SplashScreen);
+export default connect(mapStateToProps, actions)(SplashScreen);

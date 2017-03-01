@@ -21,6 +21,18 @@ const deviceHeight = require('Dimensions').get('window').height;
 
 class Account extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstName: this.props.profile.firstName,
+      lastName: this.props.profile.lastName
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props.profile)
+  }
+
   onLogout() {
     Alert.alert('Alert', 'Log out?',
       [
@@ -49,13 +61,13 @@ class Account extends Component {
           <Text style={[helFont, accountText]}>Account Information</Text>
           <Label
             upperLabel="First Name"
-            bottomLabel="John"
+            bottomLabel={this.state.firstName}
             labelSizeA={labelSizeA}
             labelSizeB={labelSizeB}
           />
           <Label
             upperLabel="Last Name"
-            bottomLabel="Doe"
+            bottomLabel={this.state.lastName}
             labelSizeA={labelSizeA}
             labelSizeB={labelSizeB}
           />
@@ -142,7 +154,8 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile
   };
 };
 

@@ -6,6 +6,10 @@ import {
   PixelRatio
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import * as actions from './../../actions';
+
 import Carousel from 'react-native-snap-carousel';
 
 import { InfoBox } from './../../components/common';
@@ -14,6 +18,11 @@ const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
 class Discover extends Component {
+
+  componentDidMount() {
+    this.props.getUserProfile(this.props.auth.user.uid)
+  }
+
   render() {
     const { testShit, centerEverything, container, upper, bottom, contentContainerCustomStyle } = styles;
     return(
@@ -66,4 +75,10 @@ const styles = {
   }
 }
 
-export default Discover;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps, actions)(Discover);
