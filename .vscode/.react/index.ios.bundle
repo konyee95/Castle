@@ -72096,10 +72096,12 @@ error:error};
 }, 458, null, "redux-persist/lib/persistStore.js");
 __d(/* Castle/src/reducers/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _redux=require(420    ); // 420 = redux
 
-var _AuthReducer=require(460            );var _AuthReducer2=babelHelpers.interopRequireDefault(_AuthReducer);exports.default= // 460 = ./AuthReducer
+var _AuthReducer=require(460            );var _AuthReducer2=babelHelpers.interopRequireDefault(_AuthReducer); // 460 = ./AuthReducer
+var _ProfileReducer=require(714               );var _ProfileReducer2=babelHelpers.interopRequireDefault(_ProfileReducer);exports.default= // 714 = ./ProfileReducer
 
 (0,_redux.combineReducers)({
-auth:_AuthReducer2.default});
+auth:_AuthReducer2.default,
+profile:_ProfileReducer2.default});
 }, 459, null, "Castle/src/reducers/index.js");
 __d(/* Castle/src/reducers/AuthReducer.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
 
@@ -77763,9 +77765,29 @@ var SET_PASSCODE=exports.SET_PASSCODE='set_passcode';
 var REMOVE_PASSCODE=exports.REMOVE_PASSCODE='remove_passcode';
 var CHECK_USERNAME=exports.CHECK_USERNAME='check_username';
 var CREATE_USER_REF=exports.CREATE_USER_REF='create_user_ref';
+
+var GET_USER_PROFILE=exports.GET_USER_PROFILE='get_user_profile';
 }, 508, null, "Castle/src/actions/types.js");
 __d(/* redux-persist/constants.js */function(global, require, module, exports) {module.exports=require(449              ); // 449 = ./lib/constants
 }, 509, null, "redux-persist/constants.js");
+__d(/* Castle/src/reducers/ProfileReducer.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _types=require(508                 ); // 508 = ./../actions/types
+
+
+
+var _constants=require(509                      ); // 509 = redux-persist/constants
+
+var INITIAL_STATE={username:'',firstName:'',lastName:''};exports.default=
+
+function(){var state=arguments.length>0&&arguments[0]!==undefined?arguments[0]:INITIAL_STATE;var action=arguments[1];
+console.log(action);
+switch(action.type){
+case _types.GET_USER_PROFILE:
+return;
+default:
+return state;}
+
+};
+}, 714, null, "Castle/src/reducers/ProfileReducer.js");
 __d(/* Castle/src/Router.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -77820,7 +77842,8 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'managePasscode'
 
 (0,_reactRedux.connect)(null,actions)(RouterComponent);
 }, 510, null, "Castle/src/Router.js");
-__d(/* Castle/src/actions/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _AuthAction=require(512           );Object.keys(_AuthAction).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _AuthAction[key];}});}); // 512 = ./AuthAction
+__d(/* Castle/src/actions/index.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _AuthAction=require(512           );Object.keys(_AuthAction).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _AuthAction[key];}});});var _ProfileAction=require(713              ); // 713 = ./ProfileAction // 512 = ./AuthAction
+Object.keys(_ProfileAction).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _ProfileAction[key];}});});
 }, 511, null, "Castle/src/actions/index.js");
 __d(/* Castle/src/actions/AuthAction.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.
 
@@ -77944,13 +77967,34 @@ email:currentUser.email,
 username:username,
 firstName:firstName,
 lastName:lastName}).
-then(function(){
-dispatch({type:_types.CREATE_USER_REF,payload:'User Profile Updated'});
-}).
+then(function(){return dispatch({type:_types.CREATE_USER_REF,payload:'User Profile Updated'});}).
 catch(function(error){return dispatch({type:_types.CREATE_USER_REF,payload:'Something went wrong'});});
+_firebase2.default.database().ref('/ExistingUser/'+username).set({
+userID:currentUser.uid}).
+then(function(){return console.log('Set existing user done');}).
+catch(function(error){return console.log(error.message);});
 };
 };
 }, 512, null, "Castle/src/actions/AuthAction.js");
+__d(/* Castle/src/actions/ProfileAction.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});exports.
+
+
+
+
+
+getUserProfile=getUserProfile;var _firebase=require(404       );var _firebase2=babelHelpers.interopRequireDefault(_firebase);var _types=require(508      );function getUserProfile(){var _firebase$auth= // 508 = ./types // 404 = firebase
+_firebase2.default.auth(),currentUser=_firebase$auth.currentUser;
+return function(dispatch){
+_firebase2.default.database().ref('/Users/'+currentUser.uid).
+once('value',function(snapshot){
+dispatch({
+type:_types.GET_USER_PROFILE,
+payload:snapshot.val()});
+
+});
+};
+};
+}, 713, null, "Castle/src/actions/ProfileAction.js");
 __d(/* Castle/src/containers/SplashScreen.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
@@ -87998,7 +88042,7 @@ actionButtonChild:mic,
 actionButtonText:'Voice'}),
 
 _react2.default.createElement(_common.ActionButton,{
-onPress:function onPress(){return _reactNativeRouterFlux.Actions.setCredentials();},
+onPress:function onPress(){return console.log('add income');},
 actionButtonChild:income,
 actionButtonText:'Add Income'})),
 

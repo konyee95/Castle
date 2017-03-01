@@ -120,16 +120,11 @@ export function checkUserName(username) {
       username: username,
       firstName: firstName,
       lastName: lastName,
-    }).then(() => {
-      dispatch({ type: CREATE_USER_REF, payload: 'User Profile Updated' })
-    })
-      .catch((error) => dispatch({ type: CREATE_USER_REF, payload: 'Something went wrong'}))
+     }).then(() => dispatch({ type: CREATE_USER_REF, payload: 'User Profile Updated' }))
+       .catch((error) => dispatch({ type: CREATE_USER_REF, payload: 'Something went wrong'}))
+     firebase.database().ref(`/ExistingUser/${username}`).set({
+       userID: currentUser.uid
+     }).then(() => console.log('Set existing user done'))
+       .catch((error) => console.log(error.message))
    }
  };
-
-// function updateExistingUserRoot(username) {
-//   const { currentUser } = firebase.auth();
-//   firebase.database().ref(`/ExistingUser/`).set({
-//     '`${username}`': currentUser.uid
-//   });
-// }

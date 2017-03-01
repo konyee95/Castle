@@ -184,7 +184,7 @@ class AddExpenses extends Component {
             actionButtonText="Voice"
             />
           <ActionButton 
-            onPress={() => Actions.setCredentials()}
+            onPress={() => console.log('add income')}
             actionButtonChild={income}
             actionButtonText="Add Income"
             />
