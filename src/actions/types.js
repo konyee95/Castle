@@ -10,3 +10,5 @@ export const CHECK_USERNAME = 'check_username';
 export const CREATE_USER_REF = 'create_user_ref';
 
 export const GET_USER_PROFILE = 'get_user_profile';
+
+export const SUBMIT_EXPENSES = 'submit_expenses';

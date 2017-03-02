@@ -46,8 +46,8 @@ class AddExpenses extends Component {
       datePickerModalVisible: false,
       spentAmount: '',
       date: new Date(),
-      formattedDate: '',
-      formattedTime: '',
+      formattedDate: Moment(new Date()).format('YYYY-MM-DD'),
+      formattedTime: Moment(new Date()).format('hh:mm A'),
       selectedCategory: '',
       note: '',
     };
@@ -90,14 +90,7 @@ class AddExpenses extends Component {
       return (
         <TouchableOpacity
           style={[styles.centerEverything, styles.saveButtonStyle]}
-          onPress={() => 
-            this.setState({ 
-              entered: !this.state.entered, 
-              spentAmount: '', 
-              date: new Date(),
-              note: ''
-            })
-          }>
+          onPress={() => this.submitExpenses() }>
           <Ionicons
             name="md-send"
             size={22}
@@ -105,6 +98,32 @@ class AddExpenses extends Component {
         </TouchableOpacity>
       )
     }
+  }
+
+  randomString(length) {
+    return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+  }
+
+  submitExpenses() {
+    const { spentAmount, selectedCategory, formattedDate, formattedTime, note } = this.state;
+
+    var expensesObject = {}
+    expensesObject[this.randomString(20)] = {
+      amount: spentAmount,
+      category: selectedCategory,
+      date: formattedDate,
+      time: formattedTime,
+      note: note
+    }
+
+    this.props.submitExpenses(expensesObject);
+
+    this.setState({ 
+      entered: !this.state.entered, 
+      spentAmount: '', 
+      date: new Date(),
+      note: ''
+    });
   }
 
   showPicker = async (stateKey, options) => {
