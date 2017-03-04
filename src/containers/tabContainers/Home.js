@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { TabViewAnimated, TabBar, TabViewPagerScroll, TabViewPagerAndroid, TabViewPagerPan } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import ExpensesList from './ExpensesList';
 import Discover from './Discover';
 import AddExpenses from './AddExpenses';
 import Account from './Account';
@@ -18,9 +19,10 @@ export default class Home extends Component {
   state = {
     index: 0,
     routes: [
-      { key: '1', icon: 'md-pulse' },
-      { key: '2', icon: 'md-add' },
-      { key: '3', icon: 'ios-settings' },
+      { key: '1', icon: 'ios-stats' },
+      { key: '2', icon: 'md-pulse' },
+      { key: '3', icon: 'md-add' },
+      { key: '4', icon: 'ios-settings' },
     ],
   };
 
@@ -78,11 +80,13 @@ export default class Home extends Component {
 
   _renderScene = ({ route }) => {
     switch (route.key) {
-    case '1':
-      return <Discover />;
+    case '1': 
+      return <ExpensesList />
     case '2':
-      return <AddExpenses />;
+      return <Discover />;
     case '3':
+      return <AddExpenses />;
+    case '4':
       return <Account />;
     default:
       return null;

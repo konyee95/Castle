@@ -12,6 +12,7 @@ import Login from './containers/auth/Login';
 import SetCredentials from './containers/auth/SetCredentials';
 
 import Home from './containers/tabContainers/Home';
+import ExpensesList from './containers/tabContainers/ExpensesList';
 import Discover from './containers/tabContainers/Discover';
 import AddExpenses from './containers/tabContainers/AddExpenses';
 import Account from './containers/tabContainers/Account';
@@ -39,6 +40,7 @@ class RouterComponent extends Component {
         </Scene>
         <Scene key="main">
           <Scene key="home" component={Home} initial />
+          <Scene key="expensesList" component={ExpensesList} />
           <Scene key="discover" component={Discover} />
           <Scene key="addExpenses" component={AddExpenses} />
           <Scene key="account" component={Account} />

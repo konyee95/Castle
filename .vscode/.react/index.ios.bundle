@@ -77842,6 +77842,7 @@ var _Login=require(693                      );var _Login2=babelHelpers.interopRe
 var _SetCredentials=require(694                               );var _SetCredentials2=babelHelpers.interopRequireDefault(_SetCredentials); // 694 = ./containers/auth/SetCredentials
 
 var _Home=require(695                              );var _Home2=babelHelpers.interopRequireDefault(_Home); // 695 = ./containers/tabContainers/Home
+var _ExpensesList=require(717                                      );var _ExpensesList2=babelHelpers.interopRequireDefault(_ExpensesList); // 717 = ./containers/tabContainers/ExpensesList
 var _Discover=require(706                                  );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 706 = ./containers/tabContainers/Discover
 var _AddExpenses=require(709                                     );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 709 = ./containers/tabContainers/AddExpenses
 var _Account=require(713                                 );var _Account2=babelHelpers.interopRequireDefault(_Account); // 713 = ./containers/tabContainers/Account
@@ -77869,6 +77870,7 @@ _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'lockScreen',sch
 
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'main'},
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'home',component:_Home2.default,initial:true}),
+_react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'expensesList',component:_ExpensesList2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'discover',component:_Discover2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'addExpenses',component:_AddExpenses2.default}),
 _react2.default.createElement(_reactNativeRouterFlux.Scene,{key:'account',component:_Account2.default}),
@@ -85738,6 +85740,7 @@ var _reactNativeRouterFlux=require(461                       ); // 461 = react-n
 var _reactNativeTabView=require(696                    ); // 696 = react-native-tab-view
 var _Ionicons=require(526                                 );var _Ionicons2=babelHelpers.interopRequireDefault(_Ionicons); // 526 = react-native-vector-icons/Ionicons
 
+var _ExpensesList=require(717             );var _ExpensesList2=babelHelpers.interopRequireDefault(_ExpensesList); // 717 = ./ExpensesList
 var _Discover=require(706         );var _Discover2=babelHelpers.interopRequireDefault(_Discover); // 706 = ./Discover
 var _AddExpenses=require(709            );var _AddExpenses2=babelHelpers.interopRequireDefault(_AddExpenses); // 709 = ./AddExpenses
 var _Account=require(713        );var _Account2=babelHelpers.interopRequireDefault(_Account);var // 713 = ./Account
@@ -85751,9 +85754,10 @@ Home=function(_Component){babelHelpers.inherits(Home,_Component);function Home()
 state={
 index:0,
 routes:[
-{key:'1',icon:'md-pulse'},
-{key:'2',icon:'md-add'},
-{key:'3',icon:'ios-settings'}]},_this.
+{key:'1',icon:'ios-stats'},
+{key:'2',icon:'md-pulse'},
+{key:'3',icon:'md-add'},
+{key:'4',icon:'ios-settings'}]},_this.
 
 
 
@@ -85812,10 +85816,12 @@ tabStyle:styles.tab})));
 _renderScene=function(_ref4){var route=_ref4.route;
 switch(route.key){
 case'1':
-return _react2.default.createElement(_Discover2.default,null);
+return _react2.default.createElement(_ExpensesList2.default,null);
 case'2':
-return _react2.default.createElement(_AddExpenses2.default,null);
+return _react2.default.createElement(_Discover2.default,null);
 case'3':
+return _react2.default.createElement(_AddExpenses2.default,null);
+case'4':
 return _react2.default.createElement(_Account2.default,null);
 default:
 return null;}
@@ -87366,6 +87372,36 @@ this.props.children));
 }
 }}]);return TouchableItem;}(_react.PureComponent);TouchableItem.propTypes={delayPressIn:_react.PropTypes.number,borderless:_react.PropTypes.bool,pressColor:_react.PropTypes.string,pressOpacity:_react.PropTypes.number,children:_react.PropTypes.node.isRequired,style:_reactNative.View.propTypes.style};TouchableItem.defaultProps={pressColor:'rgba(255, 255, 255, .4)'};exports.default=TouchableItem;
 }, 705, null, "react-native-tab-view/src/TouchableItem.js");
+__d(/* Castle/src/containers/tabContainers/ExpensesList.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
+var _reactNative=require(12            ); // 12 = react-native
+
+
+
+
+var _reactNativeRouterFlux=require(461                       ); // 461 = react-native-router-flux
+var _reactRedux=require(409          ); // 409 = react-redux
+var _actions=require(513              );var actions=babelHelpers.interopRequireWildcard(_actions);var // 513 = ./../../actions
+
+ExpensesList=function(_Component){babelHelpers.inherits(ExpensesList,_Component);function ExpensesList(){babelHelpers.classCallCheck(this,ExpensesList);return babelHelpers.possibleConstructorReturn(this,(ExpensesList.__proto__||Object.getPrototypeOf(ExpensesList)).apply(this,arguments));}babelHelpers.createClass(ExpensesList,[{key:'render',value:function render()
+
+{
+console.log(this.props.expenses);
+return(
+_react2.default.createElement(_reactNative.View,null));
+
+
+
+}}]);return ExpensesList;}(_react.Component);
+
+
+var mapStateToProps=function mapStateToProps(state){
+return{
+expenses:state.expenses};
+
+};exports.default=
+
+(0,_reactRedux.connect)(mapStateToProps,actions)(ExpensesList);
+}, 717, null, "Castle/src/containers/tabContainers/ExpensesList.js");
 __d(/* Castle/src/containers/tabContainers/Discover.js */function(global, require, module, exports) {Object.defineProperty(exports,"__esModule",{value:true});var _react=require(279    );var _react2=babelHelpers.interopRequireDefault(_react); // 279 = react
 var _reactNative=require(12            ); // 12 = react-native
 
