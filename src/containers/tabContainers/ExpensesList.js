@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import {
   ListView,
@@ -21,13 +22,18 @@ class ExpensesList extends Component {
 
   componentWillMount() {
     this.createDataSource(this.props.expenses)
+    this.sortDate(this.props.expenses)
   }
 
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps.expenses)
   }
 
-  createDataSource({ expensesObject }) {
+  sortDate(dateArray) {
+    // console.log(_.sortBy(dateArray, dateArray.date, 'asc'))
+  }
+
+  createDataSource(expensesObject) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
       sectionHeaderHasChanged: (s1, s2) => s1 !== s2
@@ -55,7 +61,6 @@ class ExpensesList extends Component {
   renderSectionHeader(sectionData, date) {
     let today = Moment(new Date()).format("YYYY-MM-DD");
     let yesterday = Moment(today).subtract(1, 'days').format('YYYY-MM-DD');
-    console.log(yesterday)
     if (date === today) {
       return <Text style={styles.sectionHeader}>TODAY</Text>
     } else if(date === yesterday) {
@@ -67,8 +72,7 @@ class ExpensesList extends Component {
 
   render() {
     const { centerEverything, container, empty } = styles;
-
-    if(this.props.expenses.expensesObject.length === 0) {
+    if(this.props.expenses.length === 0) {
       return(
         <View style={[container, centerEverything]}>
           <Text style={empty}>Add some expenses to begin</Text>
@@ -120,8 +124,11 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
+  var sortedExpensesObject = _.sortBy(state.expenses.expensesObject, (item) => {
+    return new Moment(item.exactDate)
+  }).reverse()
   return {
-    expenses: state.expenses
+    expenses: sortedExpensesObject
   }
 }
 

@@ -109,8 +109,9 @@ class AddExpenses extends Component {
       expenseID: this.randomString(20),
       amount: spentAmount,
       category: selectedCategory,
+      exactDate: date,
       date: Moment(date).format('YYYY-MM-DD'),
-      time: Moment(date).format('HH-mm:ss'),
+      time: Moment(date).format('HH:mm:ss'),
       note: note,
     }
     
