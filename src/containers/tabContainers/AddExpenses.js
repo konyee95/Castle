@@ -107,15 +107,16 @@ class AddExpenses extends Component {
   submitExpenses() {
     const { spentAmount, selectedCategory, formattedDate, formattedTime, note } = this.state;
 
-    var expensesObject = {}
-    expensesObject[this.randomString(20)] = {
+    // var expensesObject = {}
+    var expensesObject = {
+      expenseID: this.randomString(20),
       amount: spentAmount,
       category: selectedCategory,
       date: formattedDate,
       time: formattedTime,
-      note: note
+      note: note,
     }
-
+    
     this.props.submitExpenses(expensesObject);
 
     this.setState({ 
