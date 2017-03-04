@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  ListView,
   View,
   Text,
 } from 'react-native';
@@ -9,33 +10,38 @@ import { connect } from 'react-redux';
 import * as actions from './../../actions';
 
 import expensesType from './../../data/ExpensesType';
-import { ExpenseItem } from './../../components/common';
+import ExpenseItem from './../../components/ExpenseItem';
 
 class ExpensesList extends Component {
 
+  componentWillMount() {
+    this.createDataSource(this.props.expenses)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+  }
+
+  createDataSource({ expensesObject }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+    this.dataSource = ds.cloneWithRows(expensesObject);
+  }
+
+  renderRow(expenseItem) {
+    return <ExpenseItem expenseItem={expenseItem} />;
+  }
+
   render() {
     const { testShit, centerEverything, container } = styles;
-    console.log(this.props.expenses)
     return(
       <View style={[container, centerEverything]}>
-        <ExpenseItem 
-          iconName="ios-pizza" 
-          iconColor="#1DAFEB"
-          note="Pizza with friends"
-          category="Food"
-          amount="30" />
-        <ExpenseItem 
-          iconName="ios-pizza" 
-          iconColor="#1DAFEB"
-          note="Pizza with friends"
-          category="Food"
-          amount="30" />
-          <ExpenseItem 
-          iconName="ios-pizza" 
-          iconColor="#1DAFEB"
-          note="Pizza with friends"
-          category="Food"
-          amount="30" />
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
       </View>
     )
   }

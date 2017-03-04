@@ -3,7 +3,7 @@ export default expensesType = [
     "categoryID": "001",
     "category": "FOOD",
     "color": "#1DAFEB",
-    "iconName": "ios-pizza"
+    "iconName": "md-wine"
   },
   {
     "categoryID": "002",
@@ -27,7 +27,7 @@ export default expensesType = [
     "categoryID": "005",
     "category": "PERSONALS",
     "color": "#0099cc",
-    "iconName": "ios-home"
+    "iconName": "ios-shirt"
   },
   {
     "categoryID": "006",
