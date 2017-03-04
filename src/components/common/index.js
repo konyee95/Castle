@@ -6,3 +6,4 @@ export * from './Label';
 export * from './InfoBox';
 export * from './ExpensesInput';
 export * from './ActionButton';
+export * from './ExpenseItem';
