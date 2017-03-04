@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ExpensesList from './ExpensesList';
 import Discover from './Discover';
 import AddExpenses from './AddExpenses';
+import Calendar from './Calendar';
 import Account from './Account';
 
 export default class Home extends Component {
@@ -22,7 +23,8 @@ export default class Home extends Component {
       { key: '1', icon: 'ios-stats' },
       { key: '2', icon: 'md-pulse' },
       { key: '3', icon: 'md-add' },
-      { key: '4', icon: 'ios-settings' },
+      { key: '4', icon: 'ios-calendar' },
+      { key: '5', icon: 'ios-settings' },
     ],
   };
 
@@ -87,6 +89,8 @@ export default class Home extends Component {
     case '3':
       return <AddExpenses />;
     case '4':
+      return <Calendar />;
+    case '5':
       return <Account />;
     default:
       return null;

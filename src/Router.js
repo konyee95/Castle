@@ -15,6 +15,7 @@ import Home from './containers/tabContainers/Home';
 import ExpensesList from './containers/tabContainers/ExpensesList';
 import Discover from './containers/tabContainers/Discover';
 import AddExpenses from './containers/tabContainers/AddExpenses';
+import Calendar from './containers/tabContainers/Calendar';
 import Account from './containers/tabContainers/Account';
 import Calculator from './containers/tabContainers/Calculator';
 import ManagePasscode from './containers/passcodeContainers/ManagePasscode';
@@ -43,6 +44,7 @@ class RouterComponent extends Component {
           <Scene key="expensesList" component={ExpensesList} />
           <Scene key="discover" component={Discover} />
           <Scene key="addExpenses" component={AddExpenses} />
+          <Scene key="calendar" component={Calendar} />
           <Scene key="account" component={Account} />
           <Scene key="calculator" component={Calculator} />
           <Scene key="managePasscode" schema="modal" component={ManagePasscode} direction="horizontal" />
