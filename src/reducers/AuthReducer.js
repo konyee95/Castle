@@ -60,7 +60,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, message: action.payload }
     case REHYDRATE:
       var incoming = action.payload.auth;
-      console.log(incoming);
       if (incoming) {
         return { ...state, ...incoming }
       } else {

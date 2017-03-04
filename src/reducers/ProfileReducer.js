@@ -17,7 +17,6 @@ export default (state = INITIAL_STATE, action) => {
       }
     case REHYDRATE:
       var incoming = action.payload.profile;
-      console.log(incoming);
       if (incoming) {
         return { ...state, ...incoming }
       } else {

@@ -39,7 +39,7 @@ export default expensesType = [
     "categoryID": "007",
     "category": "EDUCATION",
     "color": "#daa520",
-    "iconName": "ios-book"
+    "iconName": "md-book"
   },
   {
     "categoryID": "008",

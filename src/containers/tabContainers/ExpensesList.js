@@ -5,12 +5,17 @@ import {
   Text,
 } from 'react-native';
 
+import Moment from 'moment';
+
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
 
 import expensesType from './../../data/ExpensesType';
 import ExpenseItem from './../../components/ExpenseItem';
+
+const deviceWidth = require('Dimensions').get('window').width;
+const deviceHeight = require('Dimensions').get('window').height;
 
 class ExpensesList extends Component {
 
@@ -24,26 +29,60 @@ class ExpensesList extends Component {
 
   createDataSource({ expensesObject }) {
     const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
+      rowHasChanged: (r1, r2) => r1 !== r2,
+      sectionHeaderHasChanged: (s1, s2) => s1 !== s2
     });
-    this.dataSource = ds.cloneWithRows(expensesObject);
+    this.dataSource = ds.cloneWithRowsAndSections(this.transformDataToList(expensesObject));
   }
 
-  renderRow(expenseItem) {
-    return <ExpenseItem expenseItem={expenseItem} />;
+  transformDataToList(expensesObject) {
+    var expensesMap = {} //create a blank map
+    expensesObject.forEach((expensesItem) => {
+      if(!expensesMap[expensesItem.date]) {
+        //create an empty item in the map if nothing exists yet
+        expensesMap[expensesItem.date] = [];
+      }
+      expensesMap[expensesItem.date].push(expensesItem);
+    })
+
+    return expensesMap;
+  }
+
+  renderRow(expensesItem) {
+    return <ExpenseItem expenseItem={expensesItem} />;
+  }
+
+  renderSectionHeader(sectionData, date) {
+    let currentDate = Moment(new Date()).format("YYYY-MM-DD");
+    if (date === currentDate) {
+      return <Text style={styles.sectionHeader}>TODAY</Text>
+    } else {
+      return <Text style={styles.sectionHeader}>{date}</Text>
+    }
   }
 
   render() {
-    const { testShit, centerEverything, container } = styles;
-    return(
-      <View style={[container, centerEverything]}>
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-        />
-      </View>
-    )
+    console.log(this.props.expenses)
+    const { centerEverything, container, empty } = styles;
+
+    if(this.props.expenses.expensesObject.length === 0) {
+      return(
+        <View style={[container, centerEverything]}>
+          <Text style={empty}>Add some expenses to begin</Text>
+        </View>
+      )
+    } else {
+      return(
+        <View style={[container, centerEverything]}>
+          <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+            renderSectionHeader={this.renderSectionHeader}
+          />
+        </View>
+      )
+    }
   }
 }
 
@@ -60,6 +99,20 @@ const styles = {
     flex: 1,
     backgroundColor: '#F5F5F5',
     paddingTop: 24,
+  },
+  empty: {
+    fontSize: 22,
+    fontWeight: '300',
+  },
+  sectionHeader: {
+    color: '#B5B5B5',
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 0.18*0.95*deviceWidth,
+    fontSize: 15,
+    fontWeight: '400',
+    right: 5,
+    letterSpacing: 2
   }
 }
 

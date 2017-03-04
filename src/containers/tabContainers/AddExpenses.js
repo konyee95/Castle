@@ -46,8 +46,6 @@ class AddExpenses extends Component {
       datePickerModalVisible: false,
       spentAmount: '',
       date: new Date(),
-      formattedDate: Moment(new Date()).format('YYYY-MM-DD'),
-      formattedTime: Moment(new Date()).format('hh:mm A'),
       selectedCategory: '',
       note: '',
     };
@@ -105,15 +103,14 @@ class AddExpenses extends Component {
   }
 
   submitExpenses() {
-    const { spentAmount, selectedCategory, formattedDate, formattedTime, note } = this.state;
+    const { spentAmount, selectedCategory, date, note } = this.state;
 
-    // var expensesObject = {}
     var expensesObject = {
       expenseID: this.randomString(20),
       amount: spentAmount,
       category: selectedCategory,
-      date: formattedDate,
-      time: formattedTime,
+      date: Moment(date).format('YYYY-MM-DD'),
+      time: Moment(date).format('HH-mm:ss'),
       note: note,
     }
     
@@ -135,9 +132,7 @@ class AddExpenses extends Component {
       if (action !== DatePickerAndroid.dismissedAction) {
         const selectedDate = new Date(year, month, day);
         this.setState({ 
-          date: selectedDate, 
-          formattedDate: Moment(selectedDate).format('YYYY-MM-DD'),
-          formattedTime: Moment(new Date()).format('h:mm A'),
+          date: selectedDate,
           calendarOpenedAndroid: !this.state.calendarOpenedAndroid
         })
       }
@@ -244,11 +239,7 @@ class AddExpenses extends Component {
                 style={[datePickerIOS]}
                 mode="datetime"
                 minimumDate={minimumDate}
-                onDateChange={(date) => this.setState({ 
-                  date, 
-                  formattedDate: Moment(date).format('YYYY-MM-DD'),
-                  formattedTime: Moment(date).format('h:mm A') 
-                  })
+                onDateChange={(date) => this.setState({ date })
                 }/>
                 <TouchableOpacity 
                   style={[datePickerConfirmButton]}

@@ -42,7 +42,7 @@ class ExpenseItem extends Component {
         this.setState({ category: 'Bills', iconName: 'md-cash', iconColor: '#666666' });
         break;
       case '007':
-        this.setState({ category: 'Education', iconName: 'ios-book', iconColor: '#daa520' });
+        this.setState({ category: 'Education', iconName: 'md-book', iconColor: '#daa520' });
         break;
       case '008':
         this.setState({ category: 'Others', iconName: 'ios-notifications', iconColor: '#ff7f50' });
@@ -58,7 +58,8 @@ class ExpenseItem extends Component {
 
   render() {
     const { amount, category, date, expenseID, note, time } = this.props.expenseItem;
-    const { testShit, container, centerEverything, iconContainer, contentContainer, headerContainer, amountContainer, noteText, categoryText } = styles;
+    const { testShit, container, centerEverything, iconContainer, contentContainer, headerContainer, amountContainer, 
+      amountText, noteText, categoryText } = styles;
     return(
       <View style={container}>
         <View style={[iconContainer, centerEverything]}>
@@ -68,8 +69,8 @@ class ExpenseItem extends Component {
           <View style={[headerContainer]}>
             <Text style={noteText}>{note}</Text>
             <View style={[amountContainer, centerEverything]}>
-              <Text style={categoryText}>$ </Text>
-              <Text style={[noteText, { fontWeight: '500' }]}>{amount}</Text>
+              <Text style={categoryText}>$</Text>
+              <Text style={[noteText, amountText]}>{amount}</Text>
             </View>
           </View>
           <Text style={categoryText}>{this.state.category}</Text>
@@ -112,9 +113,12 @@ const styles = {
   amountContainer: {
     flexDirection: 'row'
   },
+  amountText: {
+    fontWeight: '500',
+  },
   noteText: {
     color: '#212121',
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: '400'
   },
   categoryText: {
