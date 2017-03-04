@@ -4,6 +4,9 @@ import {
 
 export function submitExpenses(expensesObject) {
   return(dispatch) => {
-    console.log(expensesObject)
+    dispatch({
+      type: SUBMIT_EXPENSES,
+      payload: expensesObject
+    })
   }
 }
