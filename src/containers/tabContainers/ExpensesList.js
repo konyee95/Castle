@@ -24,7 +24,7 @@ class ExpensesList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
+    this.createDataSource(nextProps.expenses)
   }
 
   createDataSource({ expensesObject }) {
@@ -53,16 +53,19 @@ class ExpensesList extends Component {
   }
 
   renderSectionHeader(sectionData, date) {
-    let currentDate = Moment(new Date()).format("YYYY-MM-DD");
-    if (date === currentDate) {
+    let today = Moment(new Date()).format("YYYY-MM-DD");
+    let yesterday = Moment(today).subtract(1, 'days').format('YYYY-MM-DD');
+    console.log(yesterday)
+    if (date === today) {
       return <Text style={styles.sectionHeader}>TODAY</Text>
+    } else if(date === yesterday) {
+      return <Text style={styles.sectionHeader}>YESTERDAY</Text>
     } else {
       return <Text style={styles.sectionHeader}>{date}</Text>
     }
   }
 
   render() {
-    console.log(this.props.expenses)
     const { centerEverything, container, empty } = styles;
 
     if(this.props.expenses.expensesObject.length === 0) {

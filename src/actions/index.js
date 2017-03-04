@@ -1,3 +1,3 @@
 export * from './AuthAction';
 export * from './ProfileAction';
-export * from './Expenses';
+export * from './ExpensesAction';
