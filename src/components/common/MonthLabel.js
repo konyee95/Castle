@@ -18,7 +18,9 @@ const MonthLabel = ({ label }) => {
 const styles = {
   container: {
     width: deviceWidth*0.33,
-    alignItems: 'center'
+    height: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   labelStyle: {
     color: '#1F1F1F',

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  LayoutAnimation,
   View,
   Text,
   Easing,
@@ -42,6 +43,10 @@ class Discover extends Component {
     this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex)
   }
 
+  componentWillUpdate() {
+    LayoutAnimation.linear();
+  }
+
   processExpenses(expensesObject, snapIndex) {
     let integer = 0;  //big amount and small amount
     let daily = 0;
@@ -75,7 +80,7 @@ class Discover extends Component {
       <View style={[centerEverything, container]}>
         <View style={[upper]}>
 
-          <View style={monthCarousel}>
+          <View style={[monthCarousel]}>
             <Text style={monthIndicator}>|</Text>
             <Carousel
               firstItem={this.state.snapIndex}
@@ -102,7 +107,7 @@ class Discover extends Component {
           </View>
 
 
-          <View style={[centerEverything, { paddingTop: 40 } ]}>
+          <View style={[centerEverything, { paddingTop: 30 } ]}>
             <Text style={title}>Total Expenses</Text>
             <View style={[amountContainer, centerEverything]}>
               <Text style={desc}>$ </Text>
@@ -154,7 +159,8 @@ const styles = {
   },
   upper: {
     flex: 3,
-    width: deviceWidth
+    width: deviceWidth,
+    paddingTop: 4
   },
   middle: {
     flex: 5.5,
@@ -166,16 +172,14 @@ const styles = {
   monthCarousel: {
     width: deviceWidth,
     alignItems: 'center',
-    paddingTop: 7
   },
   monthIndicator: {
     fontSize: 11,
     fontWeight: 'bold',
-    paddingBottom: 4
   },
   amountContainer: {
     flexDirection: 'row',
-    paddingTop: 8
+    // paddingTop: 8
   },
   contentContainerCustomStyle: {
     height: deviceWidth*0.2,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity  } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const deviceWidth = require('Dimensions').get('window').width;
@@ -61,7 +63,9 @@ class ExpenseItem extends Component {
     const { testShit, container, centerEverything, iconContainer, contentContainer, headerContainer, amountContainer, 
       amountText, noteText, categoryText } = styles;
     return(
-      <View style={container}>
+      <TouchableOpacity 
+        style={container}
+        onPress={() => Actions.expensesItemDetail(this.props.expenseItem)}>
         <View style={[iconContainer, centerEverything]}>
           {this.renderIcon()}
         </View>
@@ -75,7 +79,7 @@ class ExpenseItem extends Component {
           </View>
           <Text style={categoryText}>{this.state.category}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
