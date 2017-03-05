@@ -20,8 +20,8 @@ export default class Home extends Component {
   state = {
     index: 0,
     routes: [
-      { key: '1', icon: 'ios-stats' },
-      { key: '2', icon: 'md-pulse' },
+      { key: '1', icon: 'md-pulse' },
+      { key: '2', icon: 'ios-stats' },
       { key: '3', icon: 'md-add' },
       { key: '4', icon: 'ios-calendar' },
       { key: '5', icon: 'ios-settings' },
@@ -83,9 +83,9 @@ export default class Home extends Component {
   _renderScene = ({ route }) => {
     switch (route.key) {
     case '1': 
-      return <ExpensesList />
+      return <Discover />
     case '2':
-      return <Discover />;
+      return <ExpensesList />;
     case '3':
       return <AddExpenses />;
     case '4':
