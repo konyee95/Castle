@@ -61,7 +61,7 @@ class ExpensesList extends Component {
     } else if(date === yesterday) {
       return <Text style={styles.sectionHeader}>YESTERDAY</Text>
     } else {
-      return <Text style={styles.sectionHeader}>{date}</Text>
+      return <Text style={styles.sectionHeader}>{Moment(date).format('MMMM D, YYYY')}</Text>
     }
   }
 
