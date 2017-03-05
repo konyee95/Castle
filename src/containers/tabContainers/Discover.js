@@ -13,7 +13,7 @@ import * as actions from './../../actions';
 import Moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
 
-import { InfoBox } from './../../components/common';
+import { InfoBox, MonthLabel } from './../../components/common';
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
@@ -53,13 +53,44 @@ class Discover extends Component {
     this.setState({ bigAmount, smallAmount, dailySpending })
   }
 
+  onSnapToItem(snapIndex) {
+    console.log(snapIndex)
+  }
+
   render() {
-    const { testShit, centerEverything, container, upper, middle, bottom, amountContainer, contentContainerCustomStyle,
-    title, desc, featureLabel } = styles;
+    const { testShit, centerEverything, container, upper, middle, bottom, monthCarousel, monthIndicator, 
+      amountContainer, contentContainerCustomStyle, title, desc, featureLabel } = styles;
     return(
       <View style={[centerEverything, container]}>
-        <View style={[upper, centerEverything]}>
-          <View style={[centerEverything]}>
+        <View style={[upper]}>
+
+          <View style={monthCarousel}>
+            <Text style={monthIndicator}>|</Text>
+            <Carousel
+              itemWidth={deviceWidth*0.33}
+              sliderWidth={deviceWidth}
+              inactiveSlideOpacity={0.4}
+              animationOptions={{ easing: Easing.elastic(1) }}
+              contentContainerCustomStyle={[]}
+              showsHorizontalScrollIndicator={false}
+              onSnapToItem={(snapIndex) => this.onSnapToItem(snapIndex)}>
+              <MonthLabel label="JANUARY" />
+              <MonthLabel label="FEBUARY" />
+              <MonthLabel label="MARCH" />
+              <MonthLabel label="APRIL" />
+              <MonthLabel label="MAY" />
+              <MonthLabel label="JUNE" />
+              <MonthLabel label="JULY" />
+              <MonthLabel label="AUGUST" />
+              <MonthLabel label="SEPTEMBER" />
+              <MonthLabel label="OCTOBER" />
+              <MonthLabel label="NOVEMBER" />
+              <MonthLabel label="DECEMBER" />
+            </Carousel>
+          </View>
+
+
+          <View style={[centerEverything, { paddingTop: 40 } ]}>
             <Text style={title}>Total Expenses</Text>
             <View style={[amountContainer, centerEverything]}>
               <Text style={desc}>$ </Text>
@@ -67,10 +98,13 @@ class Discover extends Component {
               <Text style={desc}>.{this.state.smallAmount}</Text>
             </View>
           </View>
+
         </View>
+
         <View style={[middle]}>
 
         </View>
+
         <View style={[bottom]}>
           <Carousel
             itemWidth={deviceWidth*0.45}
@@ -108,6 +142,7 @@ const styles = {
   },
   upper: {
     flex: 3,
+    width: deviceWidth
   },
   middle: {
     flex: 5.5,
@@ -115,6 +150,16 @@ const styles = {
   bottom: {
     flex: 1.5,
     marginBottom: 12
+  },
+  monthCarousel: {
+    width: deviceWidth,
+    alignItems: 'center',
+    paddingTop: 7
+  },
+  monthIndicator: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    paddingBottom: 4
   },
   amountContainer: {
     flexDirection: 'row',
