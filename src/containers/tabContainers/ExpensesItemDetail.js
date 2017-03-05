@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   View,
   Text
 } from 'react-native';
@@ -47,6 +48,16 @@ class ExpensesItemDetail extends Component {
     })
   }
 
+  deleteExpensesItem() {
+    Alert.alert('Delete Entry', 'Are you sure? This cannot be undone', [
+      {text: 'No', onPress: () => console.log('Cancel')},
+      {text: 'Yes', onPress: () => {
+        this.props.deleteExpensesItem(this.props)
+        Actions.pop()
+      }},
+    ])
+  }
+
   renderCategory(category) {
     switch(category) {
       case '001':
@@ -86,7 +97,7 @@ class ExpensesItemDetail extends Component {
       <View style={[container]}>
         <View style={[buttonsContainer]}>
           <Ionicons name="md-arrow-back" size={25} color="#1F1F1F" onPress={() => Actions.pop()}/>
-          <Ionicons name="md-trash" size={25} color="#1F1F1F" />
+          <Ionicons name="md-trash" size={25} color="#1F1F1F" onPress={() => this.deleteExpensesItem()}/>
         </View>
         <View style={[contentContainer]}>
           <View style={[categoryContainer, { backgroundColor: this.state.themeColor }]}>

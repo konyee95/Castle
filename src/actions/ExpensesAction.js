@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import {
   SUBMIT_EXPENSES,
   SUBMIT_INCOME,
+  DELETE_EXPENSES,
 } from './types';
 
 const updateExpenses = (dispatch, expensesObject) => {
@@ -41,5 +42,14 @@ export function submitIncome(incomeObject) {
   const { currentUser } = firebase.auth();
   return(dispatch) => {
     
+  }
+}
+
+export function deleteExpensesItem(expensesObject) {
+  return(dispatch) => {
+    dispatch({
+      type: DELETE_EXPENSES,
+      payload: expensesObject
+    })
   }
 }

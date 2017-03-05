@@ -13,3 +13,4 @@ export const GET_USER_PROFILE = 'get_user_profile';
 
 export const SUBMIT_EXPENSES = 'submit_expenses';
 export const SUBMIT_INCOME = 'submit_income';
+export const DELETE_EXPENSES = 'delete_expenses';
