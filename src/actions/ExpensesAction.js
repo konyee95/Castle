@@ -1,20 +1,28 @@
 import firebase from 'firebase';
 import {
   SUBMIT_EXPENSES,
+  SUBMIT_INCOME,
 } from './types';
 
-const updateStore = (dispatch, expensesObject) => {
+const updateExpenses = (dispatch, expensesObject) => {
   dispatch({
     type: SUBMIT_EXPENSES,
     payload: expensesObject
-  })
-}
+  });
+};
+
+const updateIncome = (dispatch, incomeObject) => {
+  dispatch({
+    type: SUBMIT_INCOME,
+    payload: incomeObject
+  });
+};
 
 export function submitExpenses(expensesObject) {
   const { currentUser } = firebase.auth();
   const { expenseID, amount, category, exactDate, date, time, note } = expensesObject;
   return(dispatch) => {
-    updateStore(dispatch, expensesObject);
+    updateExpenses(dispatch, expensesObject);
     firebase.database().ref(`/Expenses/${expenseID}`).set({
       ownerID: currentUser.uid,
       expenseID: expenseID,
@@ -26,5 +34,12 @@ export function submitExpenses(expensesObject) {
       note: note
     }).then(() => console.log('Pushed to database'))
       .catch((error) => console.log(error))
+  }
+}
+
+export function submitIncome(incomeObject) {
+  const { currentUser } = firebase.auth();
+  return(dispatch) => {
+    
   }
 }
