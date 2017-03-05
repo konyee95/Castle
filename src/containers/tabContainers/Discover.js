@@ -77,7 +77,8 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    expenses: state.expenses
   };
 };
 

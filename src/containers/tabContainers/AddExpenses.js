@@ -106,7 +106,7 @@ class AddExpenses extends Component {
     const { spentAmount, selectedCategory, date, note } = this.state;
 
     var expensesObject = {
-      expenseID: this.randomString(20),
+      expenseID: this.randomString(28),
       amount: spentAmount,
       category: selectedCategory,
       exactDate: date,

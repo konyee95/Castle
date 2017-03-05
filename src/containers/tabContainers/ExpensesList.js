@@ -22,15 +22,10 @@ class ExpensesList extends Component {
 
   componentWillMount() {
     this.createDataSource(this.props.expenses)
-    this.sortDate(this.props.expenses)
   }
 
   componentWillReceiveProps(nextProps) {
     this.createDataSource(nextProps.expenses)
-  }
-
-  sortDate(dateArray) {
-    // console.log(_.sortBy(dateArray, dateArray.date, 'asc'))
   }
 
   createDataSource(expensesObject) {
