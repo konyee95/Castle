@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  LayoutAnimation,
   View,
   Text,
   Easing,
@@ -27,6 +26,7 @@ class Discover extends Component {
       bigAmount: '0',
       smallAmount: '00',
       dailySpending: '0.00',
+      totalSpending: '0.00',
       snapIndex: Moment().month(),
     }
   }
@@ -43,29 +43,31 @@ class Discover extends Component {
     this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex)
   }
 
-  componentWillUpdate() {
-    LayoutAnimation.linear();
-  }
-
   processExpenses(expensesObject, snapIndex) {
     let integer = 0;  //big amount and small amount
     let daily = 0;
+    let totalSpending = 0;
     let expensesArray = expensesObject;
 
+    //NO UID MATCHING REQUIRED BECAUSE THE APP IS OFFLINE FIRST, ALL TRANSACTION BELONGS TO THIS USER ONLY
     expensesArray.forEach((item) => {
+      //monthly spending
       if(Moment(item.exactDate).month() === snapIndex) { //snapIndex represents month index
         integer += Number(item.amount)
       }
+      //daily spending
       if((Moment(new Date()).format('YYYY-MM-DD')) === Moment(item.exactDate).format('YYYY-MM-DD')) {
         daily += Number(item.amount)
       }
+      //total spending
+      totalSpending += Number(item.amount)
     })
 
     let bigAmount = Math.floor(integer)
     let smallAmount = (integer - bigAmount).toFixed(2).toString().split('.')[1]
     let dailySpending = daily.toFixed(2).toString()
 
-    this.setState({ bigAmount, smallAmount, dailySpending })
+    this.setState({ bigAmount, smallAmount, dailySpending, totalSpending })
   }
 
   onSnapToItem(snapIndex) {
@@ -133,8 +135,8 @@ class Discover extends Component {
             contentContainerCustomStyle={[contentContainerCustomStyle]}
             showsHorizontalScrollIndicator={false}>
             <InfoBox featureText={this.state.dailySpending} featureDesc="Daily Spending" dollarSign="$ " />
-            <InfoBox featureText="Overspent" featureDesc="Analysis" />
-            <InfoBox featureText="1080.90" featureDesc="Monthly" dollarSign="$ " />
+            <InfoBox featureText="1080.90" featureDesc="Balance" dollarSign="$ " />
+            <InfoBox featureText={this.state.totalSpending} featureDesc="Total Spending" dollarSign="$ " />
           </Carousel>
         </View>
       </View>

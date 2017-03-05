@@ -38,13 +38,6 @@ export function submitExpenses(expensesObject) {
   }
 }
 
-export function submitIncome(incomeObject) {
-  const { currentUser } = firebase.auth();
-  return(dispatch) => {
-    
-  }
-}
-
 export function deleteExpensesItem(expensesObject) {
   return(dispatch) => {
     dispatch({

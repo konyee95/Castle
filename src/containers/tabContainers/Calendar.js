@@ -27,10 +27,12 @@ const styles = {
   },
   centerEverything: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    paddingTop: 24,
   }
 }
 

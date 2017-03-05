@@ -44,10 +44,13 @@ class AddExpenses extends Component {
       entered: false,
       modalVisible: false,
       datePickerModalVisible: false,
+      incomeModalVisible: false,
       spentAmount: '',
       date: new Date(),
       selectedCategory: '',
       note: '',
+      incomeAmount: '',
+      incomeNote: '',
     };
   }
 
@@ -132,6 +135,10 @@ class AddExpenses extends Component {
     });
   }
 
+  submitIncome() {
+    // this.setState({ incomeModalVisible: false })
+  }
+
   showPicker = async (stateKey, options) => {
     try {
       const {action, year, month, day} = await DatePickerAndroid.open({
@@ -154,12 +161,14 @@ class AddExpenses extends Component {
   }
 
   renderView() {
+
     let minimumDate = new Date(2016, 12, 31);
 
     const { testShit, centerEverything, container, upperContainer, contentContainer, buttonContainer, helFont,
       bitOfShadow, propTextInputStyle, saveButtonStyle, saveButtonText, selectCategoryContainer, noteStyle, disable,
       modalContainer, upperModal, modalTitle, bottomModal, datePickerModalContainer,  datePickerContainer, datePickerMessageContainer, datePickerMessage, 
-      datePickerMessageFeature, pickerTextControl, datePickerIOS, datePickerConfirmButton, listViewContainer} = styles;
+      datePickerMessageFeature, pickerTextControl, datePickerIOS, datePickerConfirmButton, listViewContainer, incomeModalContainer,
+      incomeTitleContainer, incomeContentContainer, incomeButtonContainer} = styles;
     
     return(
       <View style={[container]}>
@@ -207,7 +216,7 @@ class AddExpenses extends Component {
             actionButtonText="Voice"
             />
           <ActionButton 
-            onPress={() => console.log('add income')}
+            onPress={() => this.setState({incomeModalVisible: true })}
             actionButtonChild={income}
             actionButtonText="Add Income"
             />
@@ -228,6 +237,54 @@ class AddExpenses extends Component {
               style={listViewContainer}
               dataSource={this.dataSource}
               renderRow={this.renderRow} />
+          </View>
+        </Modal>
+
+        <Modal
+          animationType={"slide"}
+          transparent={true}
+          onRequestClose={() => this.setState({ incomeModalVisible: false }) }
+          visible={this.state.incomeModalVisible}>
+          <View style={[incomeModalContainer]}>
+            <View style={[incomeTitleContainer, centerEverything]}>
+              <Text style={modalTitle}>ADD INCOME</Text>
+            </View>
+            <View style={[incomeContentContainer, centerEverything]}>
+              <ExpensesInput
+                propWidth={{ width: deviceWidth*0.6 }}
+                propTextInputStyle={propTextInputStyle}
+                keyboardType="numeric"
+                placeholder="Income amount"
+                placeholderTextColor="#525760"
+                textAlign="center"
+                iconName="ios-card"
+                onChangeText={(incomeAmount) => this.setState({ incomeAmount })}
+                value={this.state.incomeAmount}
+              />
+              <ExpensesInput
+                propWidth={{ width: deviceWidth*0.6 }}
+                propHeight={{ height: 100 }}
+                propTextInputStyle={propTextInputStyle}
+                placeholder="Income note"
+                placeholderTextColor="#525760"
+                textAlign="center"
+                iconName="md-text"
+                onChangeText={(incomeNote) => this.setState({ incomeNote })}
+                value={this.state.incomeNote}
+              />
+            </View>
+            <View style={[incomeTitleContainer, { flexDirection: 'row' }]}>
+              <TouchableOpacity 
+                style={[incomeButtonContainer, centerEverything]}
+                onPress={() => this.setState({ incomeModalVisible: false })}>
+                <Text style={modalTitle}>CANCEL</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[incomeButtonContainer, centerEverything]}
+                onPress={() => this.submitIncome()}>
+                <Text style={modalTitle}>SUBMIT</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
 
@@ -406,6 +463,29 @@ const styles = {
   listViewContainer: {
     width: deviceWidth*0.7,
     height: 300
+  },
+  incomeModalContainer: {
+    position: 'absolute',
+    width: deviceWidth*0.75,
+    height: deviceWidth*0.75,
+    backgroundColor: '#FFF',
+    top: deviceHeight*0.25,
+    left: deviceWidth*0.133
+  },
+  incomeTitleContainer: {
+    width: deviceWidth*0.75,
+    height: 50,
+    backgroundColor: '#202020',
+    borderRadius: 1
+  },
+  incomeContentContainer: {
+    width: deviceWidth*0.75,
+    height: deviceWidth*0.75 - 100,
+  },
+  incomeButtonContainer: {
+    width: deviceWidth*0.75/2,
+    height: 50,
+    backgroundColor: '#202020',
   }
 }
 
