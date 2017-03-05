@@ -88,13 +88,20 @@ class AddExpenses extends Component {
       return (
         <TouchableOpacity
           style={[styles.centerEverything, styles.saveButtonStyle]}
-          onPress={() => this.submitExpenses() }>
+          onPress={() => {
+            dismissKeyboard()
+            this.submitExpenses()
+          }}>
           <Ionicons
             name="md-send"
             size={22}
           />
         </TouchableOpacity>
       )
+    }
+
+    if(this.state.spentAmount === ''){
+      dismissKeyboard()
     }
   }
 
