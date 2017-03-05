@@ -6,7 +6,7 @@ const deviceHeight = require('Dimensions').get('window').height;
 
 const MonthLabel = ({ label }) => {
 
-  const { testShit, container, labelStyle } = styles;
+  const { container, labelStyle } = styles;
 
   return(
     <View style={[container]}>
@@ -16,18 +16,14 @@ const MonthLabel = ({ label }) => {
 }
 
 const styles = {
-  testShit: {
-    borderColor: 'red',
-    borderWidth: 1,
-  },
   container: {
-    // padding: 5
     width: deviceWidth*0.33,
     alignItems: 'center'
   },
   labelStyle: {
+    color: '#1F1F1F',
     fontSize: 13,
-    fontWeight: '500',
+    fontWeight: 'bold',
     letterSpacing: 1
   }
 }

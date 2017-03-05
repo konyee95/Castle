@@ -25,22 +25,32 @@ class Discover extends Component {
     this.state = {
       bigAmount: '0',
       smallAmount: '00',
-      dailySpending: '0.00'
+      dailySpending: '0.00',
+      snapIndex: Moment().month(),
     }
+  }
+
+  componentWillMount() {
+    this.processExpenses(this.props.expenses.expensesObject, this.state.snapIndex)
   }
 
   componentDidMount() {
     this.props.getUserProfile(this.props.auth.user.uid)
-    this.renderAmount()
   }
 
-  renderAmount() {
-    let integer = 0;
+  componentWillReceiveProps(nextProps) {
+    this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex)
+  }
+
+  processExpenses(expensesObject, snapIndex) {
+    let integer = 0;  //big amount and small amount
     let daily = 0;
-    let expensesArray = this.props.expenses.expensesObject;
-    
+    let expensesArray = expensesObject;
+
     expensesArray.forEach((item) => {
-      integer += Number(item.amount)
+      if(Moment(item.exactDate).month() === snapIndex) { //snapIndex represents month index
+        integer += Number(item.amount)
+      }
       if((Moment(new Date()).format('YYYY-MM-DD')) === Moment(item.exactDate).format('YYYY-MM-DD')) {
         daily += Number(item.amount)
       }
@@ -54,7 +64,8 @@ class Discover extends Component {
   }
 
   onSnapToItem(snapIndex) {
-    console.log(snapIndex)
+    this.setState({ snapIndex })
+    this.processExpenses(this.props.expenses.expensesObject, snapIndex)
   }
 
   render() {
@@ -67,9 +78,10 @@ class Discover extends Component {
           <View style={monthCarousel}>
             <Text style={monthIndicator}>|</Text>
             <Carousel
+              firstItem={this.state.snapIndex}
               itemWidth={deviceWidth*0.33}
               sliderWidth={deviceWidth}
-              inactiveSlideOpacity={0.4}
+              inactiveSlideOpacity={0.3}
               animationOptions={{ easing: Easing.elastic(1) }}
               contentContainerCustomStyle={[]}
               showsHorizontalScrollIndicator={false}
@@ -157,7 +169,7 @@ const styles = {
     paddingTop: 7
   },
   monthIndicator: {
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: 'bold',
     paddingBottom: 4
   },
