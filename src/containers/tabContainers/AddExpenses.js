@@ -102,10 +102,6 @@ class AddExpenses extends Component {
         </TouchableOpacity>
       )
     }
-
-    if(this.state.spentAmount === ''){
-      dismissKeyboard()
-    }
   }
 
   randomString(length) {
@@ -136,7 +132,20 @@ class AddExpenses extends Component {
   }
 
   submitIncome() {
-    // this.setState({ incomeModalVisible: false })
+    const { incomeAmount, incomeNote, date } = this.state;
+
+    var incomeObject = {
+      incomeID: this.randomString(28),
+      amount: incomeAmount,
+      exactDate: date,
+      date: Moment(date).format('YYYY-MM-DD'),
+      time: Moment(date).format('HH:mm:ss'),
+      note: incomeNote
+    }
+
+    this.props.submitIncome(incomeObject)
+
+    this.setState({ incomeModalVisible: false })
   }
 
   showPicker = async (stateKey, options) => {
@@ -225,14 +234,14 @@ class AddExpenses extends Component {
         <Modal
           animationType={"fade"}
           transparent={true}
-          onRequestClose={() => this.setState({ modalVisible: true }) }
+          onRequestClose={() => this.setState({ modalVisible: false }) }
           visible={this.state.modalVisible}>
           <View style={[modalContainer]}>
             <TouchableOpacity 
-                style={[upperModal, centerEverything, bitOfShadow]}
-                onPress={() => this.setState({ modalVisible: false }) }>
-                <Text style={[modalTitle]}>SELECT A CATEGORY</Text>
-              </TouchableOpacity>
+              style={[upperModal, centerEverything, bitOfShadow]}
+              onPress={() => this.setState({ modalVisible: false }) }>
+              <Text style={[modalTitle]}>SELECT A CATEGORY</Text>
+            </TouchableOpacity>
             <ListView
               style={listViewContainer}
               dataSource={this.dataSource}

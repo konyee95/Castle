@@ -27,11 +27,14 @@ class Discover extends Component {
       smallAmount: '00',
       dailySpending: '0.00',
       totalSpending: '0.00',
+      balance: '0.00',
+      totalIncome: '0.00',
       snapIndex: Moment().month(),
     }
   }
 
   componentWillMount() {
+    this.processIncome(this.props.income.incomeObject)
     this.processExpenses(this.props.expenses.expensesObject, this.state.snapIndex)
   }
 
@@ -40,17 +43,25 @@ class Discover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.processIncome(nextProps.income.incomeObject)
     this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex)
+  }
+
+  processIncome(incomeObject) {
+    let totalIncome = 0;
+    incomeObject.forEach((item) => {
+      totalIncome += Number(item.amount)
+    })
+    this.setState({ totalIncome })
   }
 
   processExpenses(expensesObject, snapIndex) {
     let integer = 0;  //big amount and small amount
     let daily = 0;
     let totalSpending = 0;
-    let expensesArray = expensesObject;
 
     //NO UID MATCHING REQUIRED BECAUSE THE APP IS OFFLINE FIRST, ALL TRANSACTION BELONGS TO THIS USER ONLY
-    expensesArray.forEach((item) => {
+    expensesObject.forEach((item) => {
       //monthly spending
       if(Moment(item.exactDate).month() === snapIndex) { //snapIndex represents month index
         integer += Number(item.amount)
@@ -136,6 +147,7 @@ class Discover extends Component {
             showsHorizontalScrollIndicator={false}>
             <InfoBox featureText={this.state.dailySpending} featureDesc="Daily Spending" dollarSign="$ " />
             <InfoBox featureText="1080.90" featureDesc="Balance" dollarSign="$ " />
+            <InfoBox featureText={this.state.totalIncome} featureDesc="Total Income" dollarSign="$ " />
             <InfoBox featureText={this.state.totalSpending} featureDesc="Total Spending" dollarSign="$ " />
           </Carousel>
         </View>
@@ -206,7 +218,8 @@ const styles = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    expenses: state.expenses
+    expenses: state.expenses,
+    income: state.income
   };
 };
 
