@@ -169,7 +169,7 @@ class Discover extends Component {
 
   render() {
     const { testShit, centerEverything, container, upper, middle, amountIndicatorContainer, amountIndicator, categoryCarouselContainer,
-      bottom, monthCarousel, monthIndicator, amountContainer, contentContainerCustomStyle, title, desc, featureLabel } = styles;
+      bottom, monthCarousel, monthIndicator, amountContainer, contentContainerCustomStyle, title, desc, featureLabel, empty } = styles;
     return(
       <View style={[centerEverything, container]}>
         <View style={[upper]}>
@@ -212,25 +212,29 @@ class Discover extends Component {
 
         </View>
 
-        <View style={[middle]}>
-          <View style={[amountIndicatorContainer]}>
-            {this.renderCategoryIndicator()}
-          </View>
-          <View style={[categoryCarouselContainer]}>
-            <Carousel
-              firstItem={0}
-              itemWidth={deviceWidth*0.18}
-              sliderWidth={deviceWidth}
-              inactiveSlideOpacity={0.8}
-              inactiveSlideScale={0.98}
-              animationOptions={{ easing: Easing.elastic(1) }}
-              contentContainerCustomStyle={[{ position: 'absolute', top: 42, left: 20 }]}
-              showsHorizontalScrollIndicator={false}
-              onSnapToItem={(categoryIndex) => this.onSnapToCategory(categoryIndex)}>
-              {this.renderCategoryCarousel()}
-            </Carousel>
-          </View>
-        </View>
+         {
+            this.state.groupedCategory.length === 0 ? 
+            <View style={[middle, centerEverything]}><Text style={empty}>Add some expenses to begin</Text></View> :
+            <View style={[middle]}>
+              <View style={[amountIndicatorContainer]}>
+                {this.renderCategoryIndicator()}
+              </View>
+              <View style={[categoryCarouselContainer]}>
+                <Carousel
+                  firstItem={0}
+                  itemWidth={deviceWidth*0.18}
+                  sliderWidth={deviceWidth}
+                  inactiveSlideOpacity={0.8}
+                  inactiveSlideScale={0.98}
+                  animationOptions={{ easing: Easing.elastic(1) }}
+                  contentContainerCustomStyle={[{ position: 'absolute', top: 42, left: 20 }]}
+                  showsHorizontalScrollIndicator={false}
+                  onSnapToItem={(categoryIndex) => this.onSnapToCategory(categoryIndex)}>
+                  {this.renderCategoryCarousel()}
+                </Carousel>
+              </View>
+            </View>
+          }
 
         <View style={[bottom]}>
           <Carousel
@@ -332,6 +336,10 @@ const styles = {
   featureLabel: {
     color: '#000',
     fontSize: 34
+  },
+  empty: {
+    fontSize: 22,
+    fontWeight: '300',
   }
 }
 

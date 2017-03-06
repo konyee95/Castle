@@ -14,19 +14,19 @@ export default expensesType = [
   {
     "categoryID": "003",
     "category": "LOAN",
-    "color": "#3B5998",
+    "color": "#113374",
     "iconName": "ios-aperture"
   },
   {
     "categoryID": "004",
     "category": "TRANSPORT",
-    "color": "#F7923A",
+    "color": "#1DBE8F",
     "iconName": "md-car"
   },
   {
     "categoryID": "005",
     "category": "PERSONALS",
-    "color": "#0099cc",
+    "color": "#FD7C23",
     "iconName": "ios-shirt"
   },
   {

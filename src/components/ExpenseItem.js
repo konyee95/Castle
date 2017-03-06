@@ -32,13 +32,13 @@ class ExpenseItem extends Component {
         this.setState({ category: 'Entertainment', iconName: 'logo-youtube', iconColor: '#ff4040' });
         break;
       case '003':
-        this.setState({ category: 'Loan', iconName: 'ios-aperture', iconColor: '#3B5998' });
+        this.setState({ category: 'Loan', iconName: 'ios-aperture', iconColor: '#113374' });
         break;
       case '004':
-        this.setState({ category: 'Transport', iconName: 'md-car', iconColor: '#F7923A' });
+        this.setState({ category: 'Transport', iconName: 'md-car', iconColor: '#1DBE8F' });
         break;
       case '005':
-        this.setState({ category: 'Personals', iconName: 'ios-shirt', iconColor: '#0099cc' });
+        this.setState({ category: 'Personals', iconName: 'ios-shirt', iconColor: '#FD7C23' });
         break;
       case '006':
         this.setState({ category: 'Bills', iconName: 'md-cash', iconColor: '#666666' });
