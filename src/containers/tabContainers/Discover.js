@@ -25,17 +25,16 @@ class Discover extends Component {
     this.state = {
       bigAmount: '0',
       smallAmount: '00',
-      dailySpending: '0.00',
-      totalSpending: '0.00',
-      balance: '0.00',
-      totalIncome: '0.00',
+      dailySpending: '0',
+      totalSpending: '0',
+      balance: '0',
+      totalIncome: '0',
       snapIndex: Moment().month(),
     }
   }
 
   componentWillMount() {
-    this.processIncome(this.props.income.incomeObject)
-    this.processExpenses(this.props.expenses.expensesObject, this.state.snapIndex)
+    this.processExpenses(this.props.expenses.expensesObject, this.state.snapIndex, this.props.income.incomeObject)
   }
 
   componentDidMount() {
@@ -43,19 +42,10 @@ class Discover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.processIncome(nextProps.income.incomeObject)
-    this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex)
+    this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex, nextProps.income.incomeObject)
   }
 
-  processIncome(incomeObject) {
-    let totalIncome = 0;
-    incomeObject.forEach((item) => {
-      totalIncome += Number(item.amount)
-    })
-    this.setState({ totalIncome })
-  }
-
-  processExpenses(expensesObject, snapIndex) {
+  processExpenses(expensesObject, snapIndex, incomeObject) {
     let integer = 0;  //big amount and small amount
     let daily = 0;
     let totalSpending = 0;
@@ -78,7 +68,22 @@ class Discover extends Component {
     let smallAmount = (integer - bigAmount).toFixed(2).toString().split('.')[1]
     let dailySpending = daily.toFixed(2).toString()
 
-    this.setState({ bigAmount, smallAmount, dailySpending, totalSpending })
+    let totalIncome = 0;
+    incomeObject.forEach((item) => {
+      totalIncome += Number(item.amount)
+    })
+
+
+    let balance = (totalIncome - totalSpending).toFixed(2).toString()
+
+    this.setState({ 
+      bigAmount, 
+      smallAmount, 
+      dailySpending, 
+      totalSpending: totalSpending.toFixed(2).toString(),
+      totalIncome: totalIncome.toFixed(2).toString(),
+      balance
+    });
   }
 
   onSnapToItem(snapIndex) {
@@ -146,7 +151,7 @@ class Discover extends Component {
             contentContainerCustomStyle={[contentContainerCustomStyle]}
             showsHorizontalScrollIndicator={false}>
             <InfoBox featureText={this.state.dailySpending} featureDesc="Daily Spending" dollarSign="$ " />
-            <InfoBox featureText="1080.90" featureDesc="Balance" dollarSign="$ " />
+            <InfoBox featureText={this.state.balance} featureDesc="Balance" dollarSign="$ " />
             <InfoBox featureText={this.state.totalIncome} featureDesc="Total Income" dollarSign="$ " />
             <InfoBox featureText={this.state.totalSpending} featureDesc="Total Spending" dollarSign="$ " />
           </Carousel>
