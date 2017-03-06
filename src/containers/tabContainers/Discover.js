@@ -32,7 +32,8 @@ class Discover extends Component {
       balance: '0.00',
       totalIncome: '0.00',
       snapIndex: Moment().month(),
-      groupedCategory: []
+      groupedCategory: [],
+      categoryIndex: 0
     }
   }
 
@@ -121,17 +122,22 @@ class Discover extends Component {
 
   onSnapToItem(snapIndex) {
     this.setState({ snapIndex })
+    this.groupByCategory(this.props.expenses.expensesObject, snapIndex)
     this.processExpenses(this.props.expenses.expensesObject, snapIndex, this.props.income.incomeObject)
+  }
+
+  onSnapToCategory(categoryIndex) {
+    this.setState({ categoryIndex })
   }
 
   renderCategoryIndicator() {
     let views = [];
     for (var i = 0; i < 10; i++) {
       views.push(
-        <View key={i} style={{ flexDirection: 'row', paddingBottom: 3 }}>
+        <View key={i} style={{ flexDirection: 'row', paddingBottom: 3, }}>
           { 
-            i===0 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.totalSpending)}</Text> : 
-            i===5 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.totalSpending/2)}</Text> : 
+            i===0 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.monthlySpending)}</Text> : 
+            i===5 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.monthlySpending/2)}</Text> : 
             <Text style={styles.amountIndicatorText}></Text>
           }
           <Text style={styles.amountIndicator}>-</Text>
@@ -146,11 +152,14 @@ class Discover extends Component {
     let items = this.state.groupedCategory
     let monthlySpending = this.state.monthlySpending
 
-    items.forEach((item) => {
+    items.forEach((item, i) => {
       views.push(
         <CategoryChart 
           key={item} 
+          id={i}
           percentage={(item.amount/monthlySpending*100).toFixed(0)} 
+          category={item.category}
+          categoryIndex={this.state.categoryIndex}
         />
       )
     })
@@ -159,7 +168,6 @@ class Discover extends Component {
   }
 
   render() {
-    console.log(this.state.groupedCategory)
     const { testShit, centerEverything, container, upper, middle, amountIndicatorContainer, amountIndicator, categoryCarouselContainer,
       bottom, monthCarousel, monthIndicator, amountContainer, contentContainerCustomStyle, title, desc, featureLabel } = styles;
     return(
@@ -213,11 +221,12 @@ class Discover extends Component {
               firstItem={0}
               itemWidth={deviceWidth*0.18}
               sliderWidth={deviceWidth}
-              inactiveSlideOpacity={0.95}
-              inactiveSlideScale={0.95}
+              inactiveSlideOpacity={0.8}
+              inactiveSlideScale={0.98}
               animationOptions={{ easing: Easing.elastic(1) }}
-              contentContainerCustomStyle={[{ position: 'absolute', top: 42 }]}
-              showsHorizontalScrollIndicator={false}>
+              contentContainerCustomStyle={[{ position: 'absolute', top: 42, left: 20 }]}
+              showsHorizontalScrollIndicator={false}
+              onSnapToItem={(categoryIndex) => this.onSnapToCategory(categoryIndex)}>
               {this.renderCategoryCarousel()}
             </Carousel>
           </View>
@@ -270,25 +279,25 @@ const styles = {
     width: deviceWidth,
   },
   amountIndicatorContainer: {
-    flex: 2,
+    flex: 1.8,
     justifyContent: 'center',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   amountIndicatorText: {
     color: '#737373',
     alignSelf: 'center',
     fontSize: 13,
     fontWeight: '400',
-    paddingRight: 10
+    // paddingRight: 10
   },
   amountIndicator: {
     color: '#D6D6D6',
     fontSize: 20
   },
   categoryCarouselContainer: {
-    flex: 8,
+    flex: 8.2,
     alignItems: 'center',
-    paddingLeft: 20
+    marginLeft: 15
   },
   bottom: {
     flex: 1.5,
