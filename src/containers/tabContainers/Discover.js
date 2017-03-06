@@ -13,7 +13,8 @@ import * as actions from './../../actions';
 import Moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
 
-import { InfoBox, MonthLabel, CategoryChart } from './../../components/common';
+import CategoryChart from './../../components/CategoryChart';
+import { InfoBox, MonthLabel } from './../../components/common';
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
@@ -27,9 +28,11 @@ class Discover extends Component {
       smallAmount: '00',
       dailySpending: '0.00',
       totalSpending: '0.00',
+      monthlySpending: '0.00',
       balance: '0.00',
       totalIncome: '0.00',
       snapIndex: Moment().month(),
+      groupedCategory: []
     }
   }
 
@@ -47,6 +50,8 @@ class Discover extends Component {
     this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex, nextProps.income.incomeObject)
   }
 
+  //the category carousel is going to depend on this array
+  //return an array
   groupByCategory(expensesObject, snapIndex) {
     let newExpensesObject = expensesObject.filter(item => Moment(item.exactDate).month() === snapIndex)
     let groupedCategory = newExpensesObject.reduce((accumulator, item) => {
@@ -63,12 +68,16 @@ class Discover extends Component {
         return accumulator;
       }, [])
 
-    return groupedCategory
+      groupedCategory.sort((a, b) => {
+        return b.amount - a.amount
+      })
+
+    this.setState({ groupedCategory })
   }
 
   processExpenses(expensesObject, snapIndex, incomeObject) {
 
-    let integer = 0;  //big amount and small amount
+    let monthlySpending = 0;  //big amount and small amount
     let daily = 0;
     let totalSpending = 0;
 
@@ -76,7 +85,7 @@ class Discover extends Component {
     expensesObject.forEach((item) => {
       //monthly spending
       if(Moment(item.exactDate).month() === snapIndex) { //snapIndex represents month index
-        integer += Number(item.amount)
+        monthlySpending += Number(item.amount)
       }
 
       //daily spending
@@ -88,8 +97,8 @@ class Discover extends Component {
       totalSpending += Number(item.amount)
     })
 
-    let bigAmount = Math.floor(integer)
-    let smallAmount = (integer - bigAmount).toFixed(2).toString().split('.')[1]
+    let bigAmount = Math.floor(monthlySpending)
+    let smallAmount = (monthlySpending - bigAmount).toFixed(2).toString().split('.')[1]
     let dailySpending = daily.toFixed(2).toString()
 
     //calculate totalIncome and balance
@@ -103,6 +112,7 @@ class Discover extends Component {
       bigAmount, 
       smallAmount, 
       dailySpending, 
+      monthlySpending,
       totalSpending,
       totalIncome,
       balance
@@ -120,8 +130,8 @@ class Discover extends Component {
       views.push(
         <View key={i} style={{ flexDirection: 'row', paddingBottom: 3 }}>
           { 
-            i===0 ? <Text style={styles.amountIndicatorText}>{this.state.totalSpending}</Text> : 
-            i===5 ? <Text style={styles.amountIndicatorText}>{this.state.totalSpending/2}</Text> : 
+            i===0 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.totalSpending)}</Text> : 
+            i===5 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.totalSpending/2)}</Text> : 
             <Text style={styles.amountIndicatorText}></Text>
           }
           <Text style={styles.amountIndicator}>-</Text>
@@ -131,7 +141,25 @@ class Discover extends Component {
     return views;
   }
 
+  renderCategoryCarousel() {
+    let views = []
+    let items = this.state.groupedCategory
+    let monthlySpending = this.state.monthlySpending
+
+    items.forEach((item) => {
+      views.push(
+        <CategoryChart 
+          key={item} 
+          percentage={(item.amount/monthlySpending*100).toFixed(0)} 
+        />
+      )
+    })
+
+    return views;
+  }
+
   render() {
+    console.log(this.state.groupedCategory)
     const { testShit, centerEverything, container, upper, middle, amountIndicatorContainer, amountIndicator, categoryCarouselContainer,
       bottom, monthCarousel, monthIndicator, amountContainer, contentContainerCustomStyle, title, desc, featureLabel } = styles;
     return(
@@ -190,9 +218,7 @@ class Discover extends Component {
               animationOptions={{ easing: Easing.elastic(1) }}
               contentContainerCustomStyle={[{ position: 'absolute', top: 42 }]}
               showsHorizontalScrollIndicator={false}>
-              <CategoryChart />
-              <CategoryChart />
-              <CategoryChart />
+              {this.renderCategoryCarousel()}
             </Carousel>
           </View>
         </View>

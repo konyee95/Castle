@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity  } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -6,13 +6,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const CategoryChart = ({ percentage, themeColor }) => {
-  const { testShit, container } = styles;
-  return(
-    <View style={[container, testShit]}>
-      
-    </View>
-  )
+export default class CategoryChart extends Component {
+  render() {
+    const { testShit, container } = styles;
+    const { percentage } = this.props;
+    return( 
+      <View style={[container, testShit]}>
+        <Text>{percentage}%</Text>
+      </View>
+    )
+  }
 }
 
 const styles = {
@@ -25,5 +28,3 @@ const styles = {
     height: deviceHeight*0.38
   }
 }
-
-export { CategoryChart };
