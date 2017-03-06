@@ -25,10 +25,10 @@ class Discover extends Component {
     this.state = {
       bigAmount: '0',
       smallAmount: '00',
-      dailySpending: '0',
-      totalSpending: '0',
-      balance: '0',
-      totalIncome: '0',
+      dailySpending: '0.00',
+      totalSpending: '0.00',
+      balance: '0.00',
+      totalIncome: '0.00',
       snapIndex: Moment().month(),
     }
   }
@@ -46,6 +46,10 @@ class Discover extends Component {
   }
 
   processExpenses(expensesObject, snapIndex, incomeObject) {
+
+    console.log(expensesObject)
+    console.log(incomeObject)
+
     let integer = 0;  //big amount and small amount
     let daily = 0;
     let totalSpending = 0;
@@ -69,26 +73,28 @@ class Discover extends Component {
     let dailySpending = daily.toFixed(2).toString()
 
     let totalIncome = 0;
-    incomeObject.forEach((item) => {
-      totalIncome += Number(item.amount)
-    })
 
-
+    if(incomeObject !== null) {
+      incomeObject.forEach((item) => {
+        totalIncome += Number(item.amount)
+      })
+    }
+    
     let balance = (totalIncome - totalSpending).toFixed(2).toString()
 
     this.setState({ 
       bigAmount, 
       smallAmount, 
       dailySpending, 
-      totalSpending: totalSpending.toFixed(2).toString(),
-      totalIncome: totalIncome.toFixed(2).toString(),
+      totalSpending,
+      totalIncome,
       balance
     });
   }
 
   onSnapToItem(snapIndex) {
     this.setState({ snapIndex })
-    this.processExpenses(this.props.expenses.expensesObject, snapIndex)
+    this.processExpenses(this.props.expenses.expensesObject, snapIndex, this.props.income.incomeObject)
   }
 
   render() {

@@ -476,20 +476,20 @@ const styles = {
   incomeModalContainer: {
     position: 'absolute',
     width: deviceWidth*0.75,
-    height: deviceWidth*0.75,
+    height: deviceWidth*0.7,
     backgroundColor: '#FFF',
-    top: deviceHeight*0.25,
+    top: deviceHeight*0.1,
     left: deviceWidth*0.133
   },
   incomeTitleContainer: {
     width: deviceWidth*0.75,
-    height: 50,
+    height: deviceWidth*0.7*0.2,
     backgroundColor: '#202020',
     borderRadius: 1
   },
   incomeContentContainer: {
     width: deviceWidth*0.75,
-    height: deviceWidth*0.75 - 100,
+    height: deviceWidth*0.7*0.8,
   },
   incomeButtonContainer: {
     width: deviceWidth*0.75/2,
