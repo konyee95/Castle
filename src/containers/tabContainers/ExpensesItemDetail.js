@@ -22,7 +22,7 @@ class ExpensesItemDetail extends Component {
     this.state = {
       category: 'CATEGORY',
       iconName: 'ios-infinite', 
-      themeColor: '#1F1F1F' ,
+      iconColor: '#1F1F1F' ,
       bigAmount: '0',
       smallAmount: '00',
       note: 'Spending note',
@@ -61,28 +61,28 @@ class ExpensesItemDetail extends Component {
   renderCategory(category) {
     switch(category) {
       case '001':
-        this.setState({ category: 'FOOD', iconName: 'md-wine', themeColor: '#1DAFEB' });
+        this.setState({ category: 'FOOD', iconName: 'md-wine', iconColor: '#1DAFEB' });
         break;
       case '002':
-        this.setState({ category: 'ENTERTAINMENT', iconName: 'logo-youtube', themeColor: '#ff4040' });
+        this.setState({ category: 'ENTERTAINMENT', iconName: 'logo-youtube', iconColor: '#ff4040' });
         break;
       case '003':
-        this.setState({ category: 'LOAD', iconName: 'ios-aperture', themeColor: '#3B5998' });
+        this.setState({ category: 'LOAN', iconName: 'ios-aperture', iconColor: '#113374' });
         break;
       case '004':
-        this.setState({ category: 'TRANSPORT', iconName: 'md-car', themeColor: '#F7923A' });
+        this.setState({ category: 'TRANSPORT', iconName: 'md-car', iconColor: '#1DBE8F' });
         break;
       case '005':
-        this.setState({ category: 'PERSONALS', iconName: 'ios-shirt', themeColor: '#0099cc' });
+        this.setState({ category: 'PERSONALS', iconName: 'ios-shirt', iconColor: '#FD7C23' });
         break;
       case '006':
-        this.setState({ category: 'BILLS', iconName: 'md-cash', themeColor: '#666666' });
+        this.setState({ category: 'BILLS', iconName: 'md-cash', iconColor: '#666666' });
         break;
       case '007':
-        this.setState({ category: 'EDUCATION', iconName: 'md-book', themeColor: '#daa520' });
+        this.setState({ category: 'EDUCATION', iconName: 'md-book', iconColor: '#daa520' });
         break;
       case '008':
-        this.setState({ category: 'OTHERS', iconName: 'ios-notifications', themeColor: '#ff7f50' });
+        this.setState({ category: 'OTHERS', iconName: 'ios-notifications', iconColor: '#ff7f50' });
         break;
       default:
         break;
@@ -100,7 +100,7 @@ class ExpensesItemDetail extends Component {
           <Ionicons name="md-trash" size={25} color="#1F1F1F" onPress={() => this.deleteExpensesItem()}/>
         </View>
         <View style={[contentContainer]}>
-          <View style={[categoryContainer, { backgroundColor: this.state.themeColor }]}>
+          <View style={[categoryContainer, { backgroundColor: this.state.iconColor }]}>
             <Ionicons name={this.state.iconName} size ={23} color="#FFF" />
             <Text style={categoryName}>{this.state.category}</Text>
           </View>

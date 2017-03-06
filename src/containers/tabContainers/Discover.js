@@ -49,7 +49,7 @@ class Discover extends Component {
   componentWillReceiveProps(nextProps) {
     this.groupByCategory(nextProps.expenses.expensesObject, this.state.snapIndex)
     this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex, nextProps.income.incomeObject)
-  }
+}
 
   //the category carousel is going to depend on this array
   //return an array
@@ -134,7 +134,7 @@ class Discover extends Component {
     let views = [];
     for (var i = 0; i < 10; i++) {
       views.push(
-        <View key={i} style={{ flexDirection: 'row', paddingBottom: 3, }}>
+        <View key={i} style={{ flexDirection: 'row', paddingBottom: 2, }}>
           { 
             i===0 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.monthlySpending)}</Text> : 
             i===5 ? <Text style={styles.amountIndicatorText}>{Math.ceil(this.state.monthlySpending/2)}</Text> : 
@@ -225,7 +225,7 @@ class Discover extends Component {
                   itemWidth={deviceWidth*0.18}
                   sliderWidth={deviceWidth}
                   inactiveSlideOpacity={0.8}
-                  inactiveSlideScale={0.98}
+                  inactiveSlideScale={1}
                   animationOptions={{ easing: Easing.elastic(1) }}
                   contentContainerCustomStyle={[{ position: 'absolute', top: 42, left: 20 }]}
                   showsHorizontalScrollIndicator={false}
@@ -292,7 +292,7 @@ const styles = {
     alignSelf: 'center',
     fontSize: 13,
     fontWeight: '400',
-    // paddingRight: 10
+    paddingRight: 10
   },
   amountIndicator: {
     color: '#D6D6D6',
@@ -301,7 +301,7 @@ const styles = {
   categoryCarouselContainer: {
     flex: 8.2,
     alignItems: 'center',
-    marginLeft: 15
+    marginLeft: 20,
   },
   bottom: {
     flex: 1.5,

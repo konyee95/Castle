@@ -58,6 +58,7 @@ export default class CategoryChart extends Component {
               name={this.state.iconName} 
               color={this.state.iconColor} 
               size={28}
+              style={{ backgroundColor: 'transparent' }}
               />
   }
 
@@ -84,28 +85,23 @@ export default class CategoryChart extends Component {
         <View style={[ bottomContainer, { backgroundColor: this.state.iconColor, height: deviceHeight*0.38*percentage/100}]}>
           <Text style={text}>{percentage}%</Text>
         </View>
-        
       </View>
     )
   }
 }
 
 const styles = {
-  bitOfShadow: {
-    shadowColor: '#D3D3D3',
-    shadowRadius: 20,
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 1
-  },
   container: {
     width: deviceWidth*0.18,
     height: deviceHeight*0.38,
+    maxHeight: deviceHeight*0.4,
     marginRight: 2,
     backgroundColor: '#FFF'
   },
   containerWithShadow: {
     width: deviceWidth*0.18,
     height: deviceHeight*0.38,
+    maxHeight: deviceHeight*0.4,
     marginRight: 2,
     backgroundColor: '#FFF',
     shadowColor: '#D3D3D3',
@@ -124,7 +120,9 @@ const styles = {
     width: deviceWidth*0.18,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 10
+    paddingTop: 10,
+    zIndex: 1,
+    // backgroundColor: 'transparent'
   },
   bottomContainer: {
     position: 'absolute',
