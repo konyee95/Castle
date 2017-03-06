@@ -7,3 +7,4 @@ export * from './InfoBox';
 export * from './ExpensesInput';
 export * from './ActionButton';
 export * from './MonthLabel';
+export * from './CategoryChart';

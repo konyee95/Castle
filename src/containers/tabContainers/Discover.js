@@ -13,7 +13,7 @@ import * as actions from './../../actions';
 import Moment from 'moment';
 import Carousel from 'react-native-snap-carousel';
 
-import { InfoBox, MonthLabel } from './../../components/common';
+import { InfoBox, MonthLabel, CategoryChart } from './../../components/common';
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
@@ -34,6 +34,7 @@ class Discover extends Component {
   }
 
   componentWillMount() {
+    this.groupByCategory(this.props.expenses.expensesObject, this.state.snapIndex)
     this.processExpenses(this.props.expenses.expensesObject, this.state.snapIndex, this.props.income.incomeObject)
   }
 
@@ -42,13 +43,30 @@ class Discover extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.groupByCategory(nextProps.expenses.expensesObject, this.state.snapIndex)
     this.processExpenses(nextProps.expenses.expensesObject, this.state.snapIndex, nextProps.income.incomeObject)
   }
 
-  processExpenses(expensesObject, snapIndex, incomeObject) {
+  groupByCategory(expensesObject, snapIndex) {
+    let newExpensesObject = expensesObject.filter(item => Moment(item.exactDate).month() === snapIndex)
+    let groupedCategory = newExpensesObject.reduce((accumulator, item) => {
+        let itemCategory = item.category;
+        let matched = accumulator.find((r) => r && r.category === itemCategory);
+        if(matched) {
+          matched.amount += Number(item.amount);
+        } else {
+          accumulator.push({
+            category: itemCategory,
+            amount: +Number(item.amount)
+          });
+        }
+        return accumulator;
+      }, [])
 
-    console.log(expensesObject)
-    console.log(incomeObject)
+    return groupedCategory
+  }
+
+  processExpenses(expensesObject, snapIndex, incomeObject) {
 
     let integer = 0;  //big amount and small amount
     let daily = 0;
@@ -60,10 +78,12 @@ class Discover extends Component {
       if(Moment(item.exactDate).month() === snapIndex) { //snapIndex represents month index
         integer += Number(item.amount)
       }
+
       //daily spending
       if((Moment(new Date()).format('YYYY-MM-DD')) === Moment(item.exactDate).format('YYYY-MM-DD')) {
         daily += Number(item.amount)
       }
+
       //total spending
       totalSpending += Number(item.amount)
     })
@@ -72,14 +92,11 @@ class Discover extends Component {
     let smallAmount = (integer - bigAmount).toFixed(2).toString().split('.')[1]
     let dailySpending = daily.toFixed(2).toString()
 
+    //calculate totalIncome and balance
     let totalIncome = 0;
-
-    if(incomeObject !== null) {
-      incomeObject.forEach((item) => {
-        totalIncome += Number(item.amount)
-      })
-    }
-    
+    incomeObject.forEach((item) => {
+      totalIncome += Number(item.amount)
+    })
     let balance = (totalIncome - totalSpending).toFixed(2).toString()
 
     this.setState({ 
@@ -97,9 +114,26 @@ class Discover extends Component {
     this.processExpenses(this.props.expenses.expensesObject, snapIndex, this.props.income.incomeObject)
   }
 
+  renderCategoryIndicator() {
+    let views = [];
+    for (var i = 0; i < 10; i++) {
+      views.push(
+        <View key={i} style={{ flexDirection: 'row', paddingBottom: 3 }}>
+          { 
+            i===0 ? <Text style={styles.amountIndicatorText}>{this.state.totalSpending}</Text> : 
+            i===5 ? <Text style={styles.amountIndicatorText}>{this.state.totalSpending/2}</Text> : 
+            <Text style={styles.amountIndicatorText}></Text>
+          }
+          <Text style={styles.amountIndicator}>-</Text>
+        </View>
+        )
+    }
+    return views;
+  }
+
   render() {
-    const { testShit, centerEverything, container, upper, middle, bottom, monthCarousel, monthIndicator, 
-      amountContainer, contentContainerCustomStyle, title, desc, featureLabel } = styles;
+    const { testShit, centerEverything, container, upper, middle, amountIndicatorContainer, amountIndicator, categoryCarouselContainer,
+      bottom, monthCarousel, monthIndicator, amountContainer, contentContainerCustomStyle, title, desc, featureLabel } = styles;
     return(
       <View style={[centerEverything, container]}>
         <View style={[upper]}>
@@ -143,7 +177,24 @@ class Discover extends Component {
         </View>
 
         <View style={[middle]}>
-
+          <View style={[amountIndicatorContainer]}>
+            {this.renderCategoryIndicator()}
+          </View>
+          <View style={[categoryCarouselContainer]}>
+            <Carousel
+              firstItem={0}
+              itemWidth={deviceWidth*0.18}
+              sliderWidth={deviceWidth}
+              inactiveSlideOpacity={0.95}
+              inactiveSlideScale={0.95}
+              animationOptions={{ easing: Easing.elastic(1) }}
+              contentContainerCustomStyle={[{ position: 'absolute', top: 42 }]}
+              showsHorizontalScrollIndicator={false}>
+              <CategoryChart />
+              <CategoryChart />
+              <CategoryChart />
+            </Carousel>
+          </View>
         </View>
 
         <View style={[bottom]}>
@@ -183,12 +234,35 @@ const styles = {
     width: deviceWidth
   },
   upper: {
-    flex: 3,
+    flex: 2.5,
     width: deviceWidth,
     paddingTop: 4
   },
   middle: {
-    flex: 5.5,
+    flex: 6,
+    flexDirection: 'row',
+    width: deviceWidth,
+  },
+  amountIndicatorContainer: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'flex-end'
+  },
+  amountIndicatorText: {
+    color: '#737373',
+    alignSelf: 'center',
+    fontSize: 13,
+    fontWeight: '400',
+    paddingRight: 10
+  },
+  amountIndicator: {
+    color: '#D6D6D6',
+    fontSize: 20
+  },
+  categoryCarouselContainer: {
+    flex: 8,
+    alignItems: 'center',
+    paddingLeft: 20
   },
   bottom: {
     flex: 1.5,

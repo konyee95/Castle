@@ -66,7 +66,6 @@ class ExpensesList extends Component {
   }
 
   render() {
-    console.log(this.props.expenses)
     const { centerEverything, container, empty } = styles;
     if(this.props.expenses.length === 0) {
       return(
