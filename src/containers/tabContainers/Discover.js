@@ -223,11 +223,10 @@ class Discover extends Component {
                 <Carousel
                   firstItem={0}
                   itemWidth={deviceWidth*0.18}
-                  sliderWidth={deviceWidth}
+                  sliderWidth={deviceWidth*0.82}
                   inactiveSlideOpacity={0.8}
-                  inactiveSlideScale={1}
-                  animationOptions={{ easing: Easing.elastic(1) }}
-                  contentContainerCustomStyle={[{ position: 'absolute', top: 42, left: 20 }]}
+                  inactiveSlideScale={0.98}
+                  contentContainerCustomStyle={[{ position: 'absolute', top: 42, left: 20, marginLeft: 10 }]}
                   showsHorizontalScrollIndicator={false}
                   onSnapToItem={(categoryIndex) => this.onSnapToCategory(categoryIndex)}>
                   {this.renderCategoryCarousel()}
@@ -300,8 +299,6 @@ const styles = {
   },
   categoryCarouselContainer: {
     flex: 8.2,
-    alignItems: 'center',
-    marginLeft: 20,
   },
   bottom: {
     flex: 1.5,

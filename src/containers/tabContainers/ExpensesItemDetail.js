@@ -96,8 +96,8 @@ class ExpensesItemDetail extends Component {
     return(
       <View style={[container]}>
         <View style={[buttonsContainer]}>
-          <Ionicons name="md-arrow-back" size={25} color="#1F1F1F" onPress={() => Actions.pop()}/>
-          <Ionicons name="md-trash" size={25} color="#1F1F1F" onPress={() => this.deleteExpensesItem()}/>
+          <Ionicons name="md-arrow-back" size={28} color="#1F1F1F" onPress={() => Actions.pop()}/>
+          <Ionicons name="md-trash" size={28} color="#1F1F1F" onPress={() => this.deleteExpensesItem()}/>
         </View>
         <View style={[contentContainer]}>
           <View style={[categoryContainer, { backgroundColor: this.state.iconColor }]}>

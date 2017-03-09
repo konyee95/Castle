@@ -97,7 +97,7 @@ class AddExpenses extends Component {
           }}>
           <Ionicons
             name="md-send"
-            size={22}
+            size={28}
           />
         </TouchableOpacity>
       )
