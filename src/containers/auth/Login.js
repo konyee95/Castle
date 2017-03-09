@@ -119,14 +119,14 @@ class Login extends Component {
             <View style={[centerEverything]}>
               <Text style={[appTitle, fontColorWhite]}>CASTLE</Text>
               <Input
-                propStyle={{ backgroundColor: '#FFF' }}
+                propStyle={{ backgroundColor: '#FFF', color: '#000' }}
                 placeholder="john@gmail.com"
                 placeholderTextColor="#000"
                 onChangeText={(email) => this.setState({ email })}
                 value={this.state.email}
               />
               <Input
-                propStyle={{ backgroundColor: '#FFF' }}
+                propStyle={{ backgroundColor: '#FFF', color: '#000' }}
                 placeholder="password"
                 placeholderTextColor="#000"
                 onChangeText={(password) => this.setState({ password })}

@@ -47,6 +47,7 @@ class AddExpenses extends Component {
       entered: false,
       datePickerModalVisible: false,
       incomeModalVisible: false,
+      voiceVisible: true,
       voiceModalVisible: false,
       spentAmount: '',
       date: new Date(),
@@ -106,6 +107,7 @@ class AddExpenses extends Component {
 
     this.setState({ 
       entered: !this.state.entered, 
+      voiceVisible: !this.state.voiceVisible,
       spentAmount: '', 
       date: new Date(),
       note: ''
@@ -204,6 +206,17 @@ class AddExpenses extends Component {
     }
   }
 
+  renderVoice() {
+    if(this.state.voiceVisible) {
+      return (
+        <ActionButton 
+          propStyle={{ position: 'absolute', bottom: 10, right: 20 }}
+          onPress={() => this.setState({ voiceModalVisible: true, swapVisible: false })}
+          actionButtonChild={mic} />
+      )
+    }
+  }
+
   renderView() {
 
     let minimumDate = new Date(2016, 12, 31);
@@ -217,6 +230,7 @@ class AddExpenses extends Component {
       <View style={[container, centerEverything]}>
         
         {this.renderSwap()}
+        {this.renderVoice()}
 
         <View style={[centerEverything, upperContainer]}>
           <ExpensesInput
@@ -227,7 +241,7 @@ class AddExpenses extends Component {
             placeholderTextColor="#525760"
             textAlign="center"
             iconName="ios-card"
-            onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
+            onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount, voiceVisible: !this.state.voiceVisible })}
             value={this.state.spentAmount} />
         </View>
 
@@ -256,10 +270,6 @@ class AddExpenses extends Component {
 
         {this.renderSaveButton()}
 
-        <ActionButton 
-          propStyle={{ position: 'absolute', bottom: 10, right: 20 }}
-          onPress={() => this.setState({ voiceModalVisible: true, swapVisible: false })}
-          actionButtonChild={mic} />
         <Modal
           animationType={"slide"}
           transparent={true}
@@ -286,7 +296,8 @@ class AddExpenses extends Component {
           transparent={true}
           onRequestClose={() => this.setState({ incomeModalVisible: false }) }
           visible={this.state.incomeModalVisible}>
-          <View style={[incomeModalContainer, bitOfShadow]}>
+          <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <View style={[incomeModalContainer, bitOfShadow]}>
             <View style={[incomeTitleContainer, centerEverything]}>
               <Text style={incomeTitle}>INCOME</Text>
             </View>
@@ -295,7 +306,7 @@ class AddExpenses extends Component {
                 propViewStyle={[bitOfShadow, { width: deviceWidth*0.7 }]}
                 propTextInputStyle={propTextInputStyle}
                 keyboardType="numeric"
-                placeholder="How much is your income ?"
+                placeholder="How much?"
                 placeholderTextColor="#525760"
                 textAlign="center"
                 iconName="ios-card"
@@ -313,7 +324,8 @@ class AddExpenses extends Component {
               onPress={() => this.setState({ incomeModalVisible: false, swapVisible: true })}
               actionButtonChild={close}
               />
-          </View>
+            </View>
+          </TouchableWithoutFeedback>
         </Modal>
 
         <Modal
@@ -375,6 +387,7 @@ const styles = {
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
+    paddingBottom: 20
   },
   upperContainer: {
     flexDirection: 'row',
