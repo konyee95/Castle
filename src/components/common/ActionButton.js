@@ -4,10 +4,10 @@ import { View, Text, TouchableOpacity  } from 'react-native';
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const ActionButton = ({ onPress, actionButtonChild, actionButtonText  }) => {
+const ActionButton = ({ propStyle, onPress, actionButtonChild, actionButtonText  }) => {
   const { centerEverything, datePickerStyle, bitOfShadow, buttonText } = styles;
   return(
-    <View style={centerEverything}>
+    <View style={[centerEverything, propStyle]}>
       <TouchableOpacity 
         style={[datePickerStyle, centerEverything, bitOfShadow]}
         onPress={onPress}>

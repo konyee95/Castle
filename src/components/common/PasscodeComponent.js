@@ -24,6 +24,7 @@ const PasscodeComponent = ({ inputRef, autoFocus, onChangeText, value}) => {
         secureTextEntry={true}
         onChangeText={onChangeText}
         value={value}
+        underlineColorAndroid='rgba(0,0,0,0)'
       />
       <View style={underlineStyle} />
     </View>

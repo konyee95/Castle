@@ -128,16 +128,16 @@ class Register extends Component {
             <View style={centerEverything}>
               <Text style={appTitle}>CASTLE</Text>
               <Input
-                inputPadding={{ padding: 3 }}
+                propStyle={{ backgroundColor: '#FFF' }}
                 placeholder="john@gmail.com"
-                placeholderTextColor="white"
+                placeholderTextColor="#000"
                 onChangeText={(email) => this.setState({ email })}
                 value={this.state.email}
               />
               <Input
-                inputPadding={{ padding: 3 }}
+                propStyle={{ backgroundColor: '#FFF' }}
                 placeholder="password"
-                placeholderTextColor="white"
+                placeholderTextColor="#000"
                 onChangeText={(password) => this.setState({ password })}
                 value={this.state.password}
                 secureTextEntry
