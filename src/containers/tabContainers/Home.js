@@ -18,7 +18,7 @@ export default class Home extends Component {
   };
 
   state = {
-    index: 0,
+    index: 2,
     routes: [
       { key: '1', icon: 'md-pulse' },
       { key: '2', icon: 'ios-stats' },

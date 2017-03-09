@@ -20,6 +20,8 @@ import * as actions from './../../actions';
 
 import Moment from 'moment';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import ActionSheet, { ActionSheetItem } from 'react-native-action-sheet-component';
 
 import CategoryBox from './../../components/CategoryBox';
 import { ExpensesInput, ActionButton } from './../../components/common';
@@ -29,6 +31,7 @@ const dismissKeyboard = require('dismissKeyboard')
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
+const checkedIcon = <Ionicons name="ios-checkmark-outline" size={30} />;
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
 const income = <Ionicons name="ios-home" size={24} color="#202020"/>
 
@@ -38,24 +41,25 @@ class AddExpenses extends Component {
 
   constructor(props) {
     super(props);
-    this.renderRow = this.renderRow.bind(this); //bind the renderRow() to this
     this.state = {
       calendarOpenedAndroid: false,
       entered: false,
-      modalVisible: false,
       datePickerModalVisible: false,
       incomeModalVisible: false,
       spentAmount: '',
       date: new Date(),
       selectedCategory: '',
+      selectedCategoryBackground: '#202020',
+      selectedCategoryText: 'SELECT A CATEGORY',
       note: '',
       incomeAmount: '',
       incomeNote: '',
+      selectedItems: 'item1',
     };
   }
 
   componentWillMount() {
-    this.createDataSource(expensesType)
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -64,26 +68,6 @@ class AddExpenses extends Component {
 
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
-  }
-
-  createDataSource(expensesType) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-    this.dataSource = ds.cloneWithRows(expensesType);
-  }
-
-  renderRow(data) {
-    return(
-      <CategoryBox 
-        data={data} 
-        onPress={() => this.setState({ 
-          selectedCategory: data.categoryID,
-          modalVisible: false 
-         })
-        }
-      />
-    )
   }
 
   renderSaveButton() {
@@ -169,6 +153,48 @@ class AddExpenses extends Component {
     
   }
 
+  onChange = (value, index, values) => {
+    this.setState({ selectedItems: values });
+  }
+
+  onItemPress = (value) => {
+    console.log('Press: value -> ', value);
+  }
+
+  showBottomActionSheet = () => {
+    this.bottomActionSheet.show();
+  }
+
+  marginStyle(id) {
+    if(id === 7) {
+      return {
+        marginBottom: 50
+      }
+    }
+  }
+
+  renderCategorySheet() {
+    let views = [];
+    expensesType.forEach((item, id) => {
+      views.push(
+        <ActionSheetItem 
+          key={id}
+          text={item.category}
+          value={item.categoryID}
+          icon={ <Ionicons name={item.iconName} color={item.color} size={item.iconSize} style={{ marginRight: 30 }} /> }
+          style={[styles.actionIcon, this.marginStyle(id)]}
+          onPress={() => this.setState({
+            selectedCategory: item.categoryID,
+            selectedCategoryBackground: `${item.color}`,
+            selectedCategoryText: item.category
+          })}
+        />
+      )
+    });
+
+    return views;
+  }
+
   renderView() {
 
     let minimumDate = new Date(2016, 12, 31);
@@ -197,9 +223,9 @@ class AddExpenses extends Component {
             {this.renderSaveButton()}
           </View>
           <TouchableOpacity 
-            style={[upperModal, centerEverything]}
-            onPress={() => this.setState({ modalVisible: true })}>
-            <Text style={modalTitle}>SELECT A CATEGORY</Text>
+            style={[upperModal, centerEverything, { backgroundColor: this.state.selectedCategoryBackground }]}
+            onPress={this.showBottomActionSheet}>
+            <Text style={modalTitle}>{this.state.selectedCategoryText}</Text>
           </TouchableOpacity>
           <View>
             <TextInput 
@@ -213,14 +239,14 @@ class AddExpenses extends Component {
           </View>
         </View>
 
-        <View style={[buttonContainer]}>
+        {/*<View style={[buttonContainer]}>
           <ActionButton 
             onPress={() => this.setState({ datePickerModalVisible: true })}
             actionButtonChild={<Text style={{ fontSize: 24, fontWeight: '500' }}>{Moment(this.state.date).format('DD')}</Text>}
             actionButtonText="Calender" 
             />
           <ActionButton 
-            onPress={() => console.log('Voice action button pressed')}
+            onPress={this.showBottomActionSheet}
             actionButtonChild={mic}
             actionButtonText="Voice"
             />
@@ -229,27 +255,9 @@ class AddExpenses extends Component {
             actionButtonChild={income}
             actionButtonText="Add Income"
             />
-        </View>
+        </View>*/}
 
-        <Modal
-          animationType={"fade"}
-          transparent={true}
-          onRequestClose={() => this.setState({ modalVisible: false }) }
-          visible={this.state.modalVisible}>
-          <View style={[modalContainer]}>
-            <TouchableOpacity 
-              style={[upperModal, centerEverything, bitOfShadow]}
-              onPress={() => this.setState({ modalVisible: false }) }>
-              <Text style={[modalTitle]}>SELECT A CATEGORY</Text>
-            </TouchableOpacity>
-            <ListView
-              style={listViewContainer}
-              dataSource={this.dataSource}
-              renderRow={this.renderRow} />
-          </View>
-        </Modal>
-
-        <Modal
+        {/*<Modal
           animationType={"slide"}
           transparent={true}
           onRequestClose={() => this.setState({ incomeModalVisible: false }) }
@@ -322,7 +330,14 @@ class AddExpenses extends Component {
                 </TouchableOpacity>
             </View>
           </View>
-        </Modal>
+        </Modal>*/}
+
+        <ActionSheet
+          ref={(actionSheet) => { this.bottomActionSheet = actionSheet; }}
+          position="bottom"
+          multiple>
+        {this.renderCategorySheet()}
+        </ActionSheet>
       </View>
     )
   }
@@ -495,6 +510,10 @@ const styles = {
     width: deviceWidth*0.75/2,
     height: 50,
     backgroundColor: '#202020',
+  },
+  actionIcon: {
+    paddingTop: 12,
+    paddingBottom: 12,
   }
 }
 
