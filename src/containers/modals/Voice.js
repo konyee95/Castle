@@ -3,8 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
-  LayoutAnimation
+  LayoutAnimation,
+  NativeAppEventEmitter
 } from 'react-native';
+
+var SpeechToText = require('react-native-speech-to-text-ios');
 
 var Spinner = require('react-native-spinkit');
 import { ActionButton } from './../../components/common';
@@ -20,7 +23,28 @@ class Voice extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      spinnerVisible: false
+      spinnerVisible: false,
+      result: '"Today I spend ten dollar on transport"'
+    }
+
+    this.subscription = NativeAppEventEmitter.addListener(
+      'SpeechToText',
+      (result) => {
+
+        if (result.error) {
+          alert(JSON.stringify(result.error));
+        } else {
+          console.log(result.bestTranscription.formattedString);
+          this.setState({ result: result.bestTranscription.formattedString })
+        }
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    if (this.subscription != null) {
+      this.subscription.remove();
+      this.subscription = null;
     }
   }
 
@@ -28,11 +52,22 @@ class Voice extends Component {
     LayoutAnimation.easeInEaseOut();
   }
 
+   _startSpeaking() {
+    SpeechToText.startRecognition("en-US");
+  }
+
+  _stopRecording() {
+    SpeechToText.finishRecognition()
+  }
+
   renderControl() {
     if(!this.state.spinnerVisible) {
       return(
         <ActionButton
-          onPress={() => this.setState({ spinnerVisible: true })}
+          onPress={() => {
+            this._startSpeaking()
+            this.setState({ spinnerVisible: true })
+            }}
           actionButtonChild={mic}
           />
       )
@@ -40,7 +75,10 @@ class Voice extends Component {
       return(
         <TouchableOpacity 
           style={styles.spinnerBox}
-          onPress={() => this.setState({ spinnerVisible: false })}>
+          onPress={() => {
+            this._stopRecording()
+            this.setState({ spinnerVisible: false })
+            }}>
           <Spinner 
           isVisible={this.state.spinnerVisible} 
           size={60} 
@@ -58,10 +96,9 @@ class Voice extends Component {
       <View style={[incomeModalContainer, bitOfShadow]}>
         <View style={[incomeTitleContainer, centerEverything]}>
           <Text style={[incomeTitle]}>INTELLIGENT VOICE</Text>
-          <Text style={[incomeTitleDesc]}>Expense tracking like a boss</Text>
         </View>
         <View style={[incomeContentContainer]}>
-
+          <Text style={[incomeTitleDesc]}>{this.state.result}</Text>
         </View>
         <View style={[spinnerStyle, centerEverything]}>
          {this.renderControl()}
@@ -101,14 +138,15 @@ const styles = {
     textAlign: 'center'
   },
   incomeTitleDesc: {
-    fontSize: Math.floor(deviceWidth*0.04),
+    fontSize: Math.floor(deviceWidth*0.055),
     fontFamily: 'HelveticaNeue-Light',
-    letterSpacing: 2,
+    textAlign: 'center',
     paddingTop: 10
   },
   incomeContentContainer: {
     flex: 6,
     alignItems: 'center',
+    padding: 20
   },
   spinnerBox: {
     height: 70,

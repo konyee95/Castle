@@ -48,7 +48,6 @@ class AddExpenses extends Component {
       datePickerModalVisible: false,
       incomeModalVisible: false,
       voiceVisible: true,
-      voiceModalVisible: false,
       spentAmount: '',
       date: new Date(),
       selectedCategory: '',
