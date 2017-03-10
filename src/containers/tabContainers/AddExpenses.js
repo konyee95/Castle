@@ -275,8 +275,7 @@ class AddExpenses extends Component {
 
         <ActionSheet
           ref={(actionSheet) => { this.bottomActionSheet = actionSheet; }}
-          position="bottom"
-          multiple>
+          position="bottom">
           {this.renderCategorySheet()}
         </ActionSheet>
 
