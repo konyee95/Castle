@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -36,19 +37,22 @@
 		4404D95918644949866C70EC /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 235B7D7FEAA84A58A43D8852 /* MaterialIcons.ttf */; };
 		4A1D8380A1A84F4691EBE18F /* libRNSpeechToTextIos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1B37EC25404EA5AB7D2C1C /* libRNSpeechToTextIos.a */; };
 		4B39BD70B07E46EC9572FA4D /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282AFC69593142ECABC46B97 /* MaterialCommunityIcons.ttf */; };
+		4CD926E79EC54E52B0A1083B /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D027CA301D47C5B0B77920 /* libRNSound.a */; };
 		56687B17C11F444797969BA5 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E4938CC4EC8479EB6B97C35 /* SimpleLineIcons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		61171C8CE4DE44C7AAA1C135 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E39AC90CAC5A49A498E9147F /* FontAwesome.ttf */; };
 		7D7A1B5928AA43A6BC9F84E8 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74EE448377FE4D6C90A0D99B /* libRNVectorIcons.a */; };
 		82222F4AAF914F5191053C35 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73A8B0516FD2456F8A37BC4A /* Zocial.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		849CC6FF1E72E256005796E9 /* siri_off.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849CC6FC1E72E256005796E9 /* siri_off.mp3 */; };
+		849CC7001E72E256005796E9 /* siri_on.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849CC6FD1E72E256005796E9 /* siri_on.mp3 */; };
+		849CC7011E72E256005796E9 /* siri_understood.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849CC6FE1E72E256005796E9 /* siri_understood.mp3 */; };
 		85D461F09041479A858FB5CB /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DF8B9C3E7804225AEC00910 /* EvilIcons.ttf */; };
 		88F8F37D43314BEDAC34380C /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE2652DB11C440359A2F02CB /* Entypo.ttf */; };
 		BE40B845DF234B5CA059FC81 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C28328AAD89481285C3749A /* Ionicons.ttf */; };
 		D6485E4EF2C24C0986AE19D8 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7818EEAA8E8C4FA6B8B4C166 /* libRNSpinkit.a */; };
 		ED61D1B95E1E472193347300 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66D79D30DCFA4D8792004836 /* Octicons.ttf */; };
 		FD38588B357E4BDB92CF160E /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E89051305C4A4E56A123BBD6 /* Foundation.ttf */; };
-		4CD926E79EC54E52B0A1083B /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D027CA301D47C5B0B77920 /* libRNSound.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +266,13 @@
 			remoteGlobalIDString = D42CB3511B2538DE00FD0AE2;
 			remoteInfo = RNSpinkit;
 		};
+		849CC6F71E72E240005796E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 785D61B6ADE64479A0CD9DFE /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -297,16 +308,19 @@
 		73A8B0516FD2456F8A37BC4A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		74EE448377FE4D6C90A0D99B /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		7818EEAA8E8C4FA6B8B4C166 /* libRNSpinkit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpinkit.a; sourceTree = "<group>"; };
+		785D61B6ADE64479A0CD9DFE /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		849CC6FC1E72E256005796E9 /* siri_off.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = siri_off.mp3; path = ../src/sounds/siri_off.mp3; sourceTree = "<group>"; };
+		849CC6FD1E72E256005796E9 /* siri_on.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = siri_on.mp3; path = ../src/sounds/siri_on.mp3; sourceTree = "<group>"; };
+		849CC6FE1E72E256005796E9 /* siri_understood.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = siri_understood.mp3; path = ../src/sounds/siri_understood.mp3; sourceTree = "<group>"; };
+		B5D027CA301D47C5B0B77920 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		CF095DDBE32B4638A6B66CB7 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSpinkit.xcodeproj; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; };
 		D913DE166FEE45ADB361F1F1 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		DA1B37EC25404EA5AB7D2C1C /* libRNSpeechToTextIos.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpeechToTextIos.a; sourceTree = "<group>"; };
 		E39AC90CAC5A49A498E9147F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		E89051305C4A4E56A123BBD6 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		EE2652DB11C440359A2F02CB /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		785D61B6ADE64479A0CD9DFE /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B5D027CA301D47C5B0B77920 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +537,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				849CC6FC1E72E256005796E9 /* siri_off.mp3 */,
+				849CC6FD1E72E256005796E9 /* siri_on.mp3 */,
+				849CC6FE1E72E256005796E9 /* siri_understood.mp3 */,
 				13B07FAE1A68108700A75B9A /* Castle */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* CastleTests */,
@@ -564,6 +581,14 @@
 			isa = PBXGroup;
 			children = (
 				849CC6A11E72857A005796E9 /* libRNSpinkit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		849CC6DB1E72E240005796E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				849CC6F81E72E240005796E9 /* libRNSound.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -742,6 +767,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 849CC6DB1E72E240005796E9 /* Products */;
+					ProjectRef = 785D61B6ADE64479A0CD9DFE /* RNSound.xcodeproj */;
 				},
 				{
 					ProductGroup = 849CC67F1E728579005796E9 /* Products */;
@@ -963,6 +992,13 @@
 			remoteRef = 849CC6A01E72857A005796E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		849CC6F81E72E240005796E9 /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = 849CC6F71E72E240005796E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -982,11 +1018,14 @@
 				88F8F37D43314BEDAC34380C /* Entypo.ttf in Resources */,
 				85D461F09041479A858FB5CB /* EvilIcons.ttf in Resources */,
 				61171C8CE4DE44C7AAA1C135 /* FontAwesome.ttf in Resources */,
+				849CC6FF1E72E256005796E9 /* siri_off.mp3 in Resources */,
 				FD38588B357E4BDB92CF160E /* Foundation.ttf in Resources */,
 				BE40B845DF234B5CA059FC81 /* Ionicons.ttf in Resources */,
 				4B39BD70B07E46EC9572FA4D /* MaterialCommunityIcons.ttf in Resources */,
 				4404D95918644949866C70EC /* MaterialIcons.ttf in Resources */,
+				849CC7001E72E256005796E9 /* siri_on.mp3 in Resources */,
 				ED61D1B95E1E472193347300 /* Octicons.ttf in Resources */,
+				849CC7011E72E256005796E9 /* siri_understood.mp3 in Resources */,
 				56687B17C11F444797969BA5 /* SimpleLineIcons.ttf in Resources */,
 				82222F4AAF914F5191053C35 /* Zocial.ttf in Resources */,
 			);
@@ -1347,7 +1386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1382,7 +1421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

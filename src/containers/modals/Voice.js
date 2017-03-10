@@ -9,6 +9,7 @@ import {
   NetInfo
 } from 'react-native';
 
+const Sound = require('react-native-sound');
 var SpeechToText = require('react-native-speech-to-text-ios');
 
 var Spinner = require('react-native-spinkit');
@@ -39,13 +40,50 @@ class Voice extends Component {
         if (result.error) {
           // alert(JSON.stringify(result.error));
           console.log(result.error)
-          this.setState({ result: 'Intelligent Voice not available. \nPlease try again later', spinnerVisible: false })
+          if(!this.state.isConnected) {
+            this.setState({ result: 'Intelligent Voice not available. \nPlease try again later', spinnerVisible: false })
+          } else {
+            this.setState({ result: '', spinnerVisible: false })
+          }
         } else {
           console.log(result.bestTranscription.formattedString);
           this.setState({ result: result.bestTranscription.formattedString })
         }
       }
     );
+
+    this.activateVoice = () => {
+      const activate = new Sound('siri_on.mp3', Sound.MAIN_BUNDLE, (e) => {
+        if(e) {
+          console.log(e)
+        } else {
+          activate.setSpeed(1)
+          activate.play(() => activate.release())
+        }
+      })
+    };
+
+    this.understoodVoice = () => {
+      const understood = new Sound('siri_understood.mp3', Sound.MAIN_BUNDLE, (e) => {
+        if(e) {
+          console.log(e)
+        } else {
+          understood.setSpeed(1)
+          understood.play(() => understood.release())
+        }
+      })
+    };
+
+    this.terminateVoice = () => {
+      const terminate = new Sound('siri_off.mp3', Sound.MAIN_BUNDLE, (e) => {
+        if(e) {
+          console.log(e)
+        } else {
+          terminate.setSpeed(1)
+          terminate.play(() => terminate.release())
+        }
+      })
+    };
   }
 
   componentDidMount() {
@@ -71,8 +109,8 @@ class Voice extends Component {
     }
 
     NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
+      'change',
+      this._handleConnectivityChange
     );
   }
 
@@ -107,6 +145,7 @@ class Voice extends Component {
         return(
           <ActionButton
             onPress={() => {
+              this.activateVoice()
               this._startSpeaking()
               this.setState({ spinnerVisible: true, result: 'Listening...' })
               }}
@@ -119,6 +158,7 @@ class Voice extends Component {
         <TouchableOpacity 
           style={styles.spinnerBox}
           onPress={() => {
+            this.understoodVoice()
             this._stopRecording()
             this.setState({ spinnerVisible: false })
             }}>
