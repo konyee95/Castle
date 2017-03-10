@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   LayoutAnimation,
-  NativeAppEventEmitter
+  NativeAppEventEmitter,
+  Platform
 } from 'react-native';
 
 var SpeechToText = require('react-native-speech-to-text-ios');
@@ -12,8 +13,11 @@ var SpeechToText = require('react-native-speech-to-text-ios');
 var Spinner = require('react-native-spinkit');
 import { ActionButton } from './../../components/common';
 
+import { Actions } from 'react-native-router-flux';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
+const close = <Ionicons name="md-close" size={40} color="#202020" />
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
@@ -41,6 +45,12 @@ class Voice extends Component {
     );
   }
 
+  componentWillMount() {
+    if(Platform.OS === 'android') {
+      this.setState({ result: 'Coming to Android soon!'})
+    }
+  }
+
   componentWillUnmount() {
     if (this.subscription != null) {
       this.subscription.remove();
@@ -62,15 +72,24 @@ class Voice extends Component {
 
   renderControl() {
     if(!this.state.spinnerVisible) {
-      return(
-        <ActionButton
-          onPress={() => {
-            this._startSpeaking()
-            this.setState({ spinnerVisible: true })
-            }}
-          actionButtonChild={mic}
+      if(Platform.OS === 'android') {
+        return (
+          <ActionButton
+            onPress={() => Actions.pop()}
+            actionButtonChild={close}
           />
-      )
+        )
+      } else {
+        return(
+          <ActionButton
+            onPress={() => {
+              this._startSpeaking()
+              this.setState({ spinnerVisible: true })
+              }}
+            actionButtonChild={mic}
+          />
+        )
+      }
     } else {
       return(
         <TouchableOpacity 
@@ -80,10 +99,10 @@ class Voice extends Component {
             this.setState({ spinnerVisible: false })
             }}>
           <Spinner 
-          isVisible={this.state.spinnerVisible} 
-          size={60} 
-          type="ChasingDots" 
-          color="#202020" />
+            isVisible={this.state.spinnerVisible} 
+            size={60} 
+            type="ChasingDots" 
+            color="#202020" />
         </TouchableOpacity>
       )
     }
