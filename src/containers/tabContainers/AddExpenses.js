@@ -43,7 +43,6 @@ class AddExpenses extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calendarOpenedAndroid: false,
       entered: false,
       datePickerModalVisible: false,
       incomeModalVisible: false,
@@ -139,7 +138,6 @@ class AddExpenses extends Component {
         const selectedDate = new Date(year, month, day);
         this.setState({ 
           date: selectedDate,
-          calendarOpenedAndroid: !this.state.calendarOpenedAndroid
         })
       }
     } catch ({code, message}) {
@@ -147,8 +145,12 @@ class AddExpenses extends Component {
     }
   };
 
-  launchAndroidPicker() {
-    
+  launchCalendar() {
+    if(Platform.OS === 'android') {
+      this.showPicker()
+    } else {
+      this.setState({ datePickerModalVisible: true })
+    }
   }
 
   onChange = (value, index, values) => {
@@ -252,7 +254,7 @@ class AddExpenses extends Component {
 
         <TouchableOpacity 
           style={[upperModal, centerEverything, { backgroundColor: '#FFF' } ]}
-          onPress={() => this.setState({ datePickerModalVisible: true })}>
+          onPress={() => this.launchCalendar()}>
           <Text style={[modalTitle, { color: '#000' }]}>{Moment(this.state.date).format('MMMM Do YYYY')}</Text>
         </TouchableOpacity>
         
