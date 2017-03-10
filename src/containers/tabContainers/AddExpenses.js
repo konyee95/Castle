@@ -20,7 +20,6 @@ import * as actions from './../../actions';
 
 import Moment from 'moment';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import ActionSheet, { ActionSheetItem } from 'react-native-action-sheet-component';
 
 import CategoryBox from './../../components/CategoryBox';
@@ -31,10 +30,7 @@ const dismissKeyboard = require('dismissKeyboard')
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-const checkedIcon = <Ionicons name="ios-checkmark-outline" size={30} />;
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
-const close = <Ionicons name="md-close" size={24} color="#202020" />
-const income = <Ionicons name="ios-home" size={24} color="#202020"/>
 
 import expensesType from './../../data/ExpensesType';
 
@@ -45,7 +41,6 @@ class AddExpenses extends Component {
     this.state = {
       entered: false,
       datePickerModalVisible: false,
-      incomeModalVisible: false,
       voiceVisible: true,
       spentAmount: '',
       date: new Date(),
@@ -53,8 +48,6 @@ class AddExpenses extends Component {
       selectedCategoryBackground: '#202020',
       selectedCategoryText: 'SELECT A CATEGORY',
       note: '',
-      incomeAmount: '',
-      incomeNote: '',
       selectedItems: 'item1',
       swapVisible: true
     };
@@ -76,7 +69,7 @@ class AddExpenses extends Component {
     if (this.state.entered && this.state.spentAmount != '') {
       return (
         <TouchableOpacity 
-          style={[styles.incomeButtonContainer, styles.centerEverything]}
+          style={[styles.buttonContainer, styles.centerEverything]}
           onPress={() => this.submitExpenses()}>
           <Text style={styles.modalTitle}>SUBMIT</Text>
         </TouchableOpacity>
@@ -110,23 +103,6 @@ class AddExpenses extends Component {
       date: new Date(),
       note: ''
     });
-  }
-
-  submitIncome() {
-    const { incomeAmount, incomeNote, date } = this.state;
-
-    var incomeObject = {
-      incomeID: this.randomString(28),
-      amount: incomeAmount,
-      exactDate: date,
-      date: Moment(date).format('YYYY-MM-DD'),
-      time: Moment(date).format('HH:mm:ss'),
-      note: incomeNote
-    }
-
-    this.props.submitIncome(incomeObject)
-
-    this.setState({ incomeModalVisible: false, swapVisible: true, incomeAmount: '' })
   }
 
   showPicker = async (stateKey, options) => {
@@ -200,7 +176,7 @@ class AddExpenses extends Component {
       return (
         <TouchableOpacity 
           style={[ { position: 'absolute', right: 25, top: 30} ]}
-          onPress={() => this.setState({ incomeModalVisible: true , swapVisible: false })}>
+          onPress={() => Actions.incomeModal()}>
           <Ionicons name="md-swap" size={30} />
         </TouchableOpacity>
       )
@@ -222,10 +198,9 @@ class AddExpenses extends Component {
 
     let minimumDate = new Date(2016, 12, 31);
 
-    const { testShit, centerEverything, container, upperContainer, buttonContainer, helFont,
+    const { centerEverything, container, upperContainer, helFont,
       bitOfShadow, propTextInputStyle, noteStyle, upperModal, modalTitle, bottomModal, datePickerModalContainer,  datePickerContainer, datePickerMessageContainer, datePickerMessage, 
-      datePickerMessageFeature, datePickerIOS, datePickerConfirmButton, incomeModalContainer,
-      incomeTitleContainer, incomeContentContainer, incomeButtonContainer, incomeTitle, incomeTitleDesc} = styles;
+      datePickerMessageFeature, datePickerIOS, datePickerConfirmButton, buttonContainer,} = styles;
     
     return(
       <View style={[container, centerEverything]}>
@@ -274,43 +249,6 @@ class AddExpenses extends Component {
         <Modal
           animationType={"slide"}
           transparent={true}
-          onRequestClose={() => this.setState({ incomeModalVisible: false }) }
-          visible={this.state.incomeModalVisible}>
-          <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-            <View style={[incomeModalContainer, bitOfShadow]}>
-            <View style={[incomeTitleContainer, centerEverything]}>
-              <Text style={incomeTitle}>INCOME</Text>
-            </View>
-            <View style={[incomeContentContainer]}>
-              <ExpensesInput
-                propViewStyle={[bitOfShadow, { width: deviceWidth*0.7 }]}
-                propTextInputStyle={propTextInputStyle}
-                keyboardType="numeric"
-                placeholder="How much?"
-                placeholderTextColor="#525760"
-                textAlign="center"
-                iconName="ios-card"
-                onChangeText={(incomeAmount) => this.setState({ incomeAmount })}
-                value={this.state.incomeAmount} />
-
-              <TouchableOpacity 
-                style={[incomeButtonContainer, centerEverything, { marginTop: 50 } ]}
-                onPress={() => this.submitIncome()}>
-                <Text style={modalTitle}>SUBMIT</Text>
-              </TouchableOpacity>
-            </View>
-            <ActionButton 
-              propStyle={{ paddingBottom: 20 }}
-              onPress={() => this.setState({ incomeModalVisible: false, swapVisible: true })}
-              actionButtonChild={close}
-              />
-            </View>
-          </TouchableWithoutFeedback>
-        </Modal>
-
-        <Modal
-          animationType={"slide"}
-          transparent={true}
           onRequestClose={() => this.setState({ datePickerModalVisible: false }) }
           visible={this.state.datePickerModalVisible}>
           <View style={[datePickerModalContainer]}>
@@ -356,10 +294,6 @@ class AddExpenses extends Component {
 }
 
 const styles = {
-  testShit: {
-    borderWidth: 2,
-    borderColor: 'red'
-  },
   centerEverything: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -448,35 +382,7 @@ const styles = {
     letterSpacing: 3,
     textAlign: 'center'
   },
-  incomeModalContainer: {
-    position: 'absolute',
-    width: deviceWidth,
-    height: deviceHeight*0.87,
-    backgroundColor: '#FFF',
-    bottom: 0,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  incomeTitleContainer: {
-    flex: 4
-  },
-  incomeTitle: {
-    fontSize: Math.floor(deviceWidth*0.08),
-    fontFamily: 'HelveticaNeue-Light',
-    letterSpacing: 7,
-    textAlign: 'center'
-  },
-  incomeTitleDesc: {
-    fontSize: Math.floor(deviceWidth*0.04),
-    fontFamily: 'HelveticaNeue-Light',
-    letterSpacing: 2,
-    paddingTop: 10
-  },
-  incomeContentContainer: {
-    flex: 6,
-    alignItems: 'center',
-  },
-  incomeButtonContainer: {
+  buttonContainer: {
     width: deviceWidth*0.7,
     height: 50,
     backgroundColor: '#202020'

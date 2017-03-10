@@ -11,10 +11,10 @@ import * as actions from './../../actions';
 class Calendar extends Component {
 
   render() {
-    const { testShit, centerEverything, container } = styles;
+    const { testShit, centerEverything, container, empty } = styles;
     return(
       <View style={[centerEverything, container]}>
-        <Text>Coming soon</Text>
+        <Text style={empty}>Coming soon</Text>
       </View>
     )
   }
@@ -33,6 +33,10 @@ const styles = {
     flex: 1,
     backgroundColor: '#F5F5F5',
     paddingTop: 24,
+  },
+  empty: {
+    fontSize: 22,
+    fontWeight: '300',
   }
 }
 

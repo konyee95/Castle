@@ -120,7 +120,7 @@ class Voice extends Component {
           <Text style={[incomeTitleDesc]}>{this.state.result}</Text>
         </View>
         <View style={[spinnerStyle, centerEverything]}>
-         {this.renderControl()}
+        {this.renderControl()}
         </View>
       </View>
     )
