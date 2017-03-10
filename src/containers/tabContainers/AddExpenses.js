@@ -211,7 +211,7 @@ class AddExpenses extends Component {
       return (
         <ActionButton 
           propStyle={{ position: 'absolute', bottom: 10, right: 20 }}
-          onPress={() => this.setState({ voiceModalVisible: true, swapVisible: false })}
+          onPress={() => Actions.voiceModal()}
           actionButtonChild={mic} />
       )
     }
@@ -269,27 +269,6 @@ class AddExpenses extends Component {
         </View>
 
         {this.renderSaveButton()}
-
-        <Modal
-          animationType={"slide"}
-          transparent={true}
-          onRequestClose={() => this.setState({ voiceModalVisible: false }) }
-          visible={this.state.voiceModalVisible}>
-          <View style={[incomeModalContainer, bitOfShadow]}>
-            <View style={[incomeTitleContainer, centerEverything]}>
-              <Text style={[incomeTitle]}>INTELLIGENT VOICE</Text>
-              <Text style={[incomeTitleDesc]}>Expense tracking like a boss</Text>
-            </View>
-            <View style={[incomeContentContainer]}>
-
-            </View>
-            <ActionButton 
-              propStyle={{ paddingBottom: 20 }}
-              onPress={() => this.setState({ voiceModalVisible: false, swapVisible: true })}
-              actionButtonChild={close}
-              />
-          </View>
-        </Modal>
           
         <Modal
           animationType={"slide"}
@@ -504,7 +483,7 @@ const styles = {
   actionIcon: {
     paddingTop: 12,
     paddingBottom: 12,
-  }
+  },
 }
 
 const mapStateToProps = (state) => {

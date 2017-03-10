@@ -21,6 +21,8 @@ import Account from './containers/tabContainers/Account';
 import Calculator from './containers/tabContainers/Calculator';
 import ManagePasscode from './containers/passcodeContainers/ManagePasscode';
 
+import Voice from './containers/modals/Voice';
+
 class RouterComponent extends Component {
 
   componentWillMount() {
@@ -50,6 +52,7 @@ class RouterComponent extends Component {
           <Scene key="account" component={Account} />
           <Scene key="calculator" component={Calculator} />
           <Scene key="managePasscode" schema="modal" component={ManagePasscode} direction="horizontal" />
+          <Scene key="voiceModal" schema="modal" component={Voice} direction="vertical" />
         </Scene>
       </Router>
     )
