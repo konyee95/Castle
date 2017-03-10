@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   LayoutAnimation,
   NativeAppEventEmitter,
-  Platform
+  Platform,
+  NetInfo
 } from 'react-native';
 
 var SpeechToText = require('react-native-speech-to-text-ios');
@@ -28,20 +29,32 @@ class Voice extends Component {
     super(props)
     this.state = {
       spinnerVisible: false,
-      result: '"Today I spend ten dollar on transport"'
+      result: '"Today I spend ten dollar on transport"',
+      isConnected: null
     }
 
     this.subscription = NativeAppEventEmitter.addListener(
       'SpeechToText',
       (result) => {
-
         if (result.error) {
-          alert(JSON.stringify(result.error));
+          // alert(JSON.stringify(result.error));
+          console.log(result.error)
+          this.setState({ result: 'Intelligent Voice not available. \nPlease try again later', spinnerVisible: false })
         } else {
           console.log(result.bestTranscription.formattedString);
           this.setState({ result: result.bestTranscription.formattedString })
         }
       }
+    );
+  }
+
+  componentDidMount() {
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => { this.setState({ isConnected }); }
     );
   }
 
@@ -56,11 +69,22 @@ class Voice extends Component {
       this.subscription.remove();
       this.subscription = null;
     }
+
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
   }
 
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
   }
+
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
 
    _startSpeaking() {
     SpeechToText.startRecognition("en-US");
@@ -84,7 +108,7 @@ class Voice extends Component {
           <ActionButton
             onPress={() => {
               this._startSpeaking()
-              this.setState({ spinnerVisible: true })
+              this.setState({ spinnerVisible: true, result: 'Listening...' })
               }}
             actionButtonChild={mic}
           />
@@ -117,7 +141,13 @@ class Voice extends Component {
           <Text style={[incomeTitle]}>INTELLIGENT VOICE</Text>
         </View>
         <View style={[incomeContentContainer]}>
-          <Text style={[incomeTitleDesc]}>{this.state.result}</Text>
+          <Text style={[incomeTitleDesc]}>
+          {
+            this.state.isConnected ? 
+            this.state.result :
+            'Intelligent Voice not available. \nPlease connect to the Internet'
+          }
+          </Text>
         </View>
         <View style={[spinnerStyle, centerEverything]}>
         {this.renderControl()}

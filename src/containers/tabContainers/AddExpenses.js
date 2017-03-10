@@ -376,8 +376,8 @@ const styles = {
   },
   modalTitle: {
     color: '#FFF',
-    fontSize: Math.round(deviceWidth*0.035),
-    fontFamily: 'HelveticaNeue-Medium',
+    fontSize: Math.round(deviceWidth*0.04),
+    fontFamily: 'Helvetica Neue',
     letterSpacing: 3,
     textAlign: 'center'
   },
