@@ -41,7 +41,6 @@ class AddExpenses extends Component {
     this.state = {
       entered: false,
       datePickerModalVisible: false,
-      voiceVisible: true,
       spentAmount: '',
       date: new Date(),
       selectedCategory: '',
@@ -97,11 +96,13 @@ class AddExpenses extends Component {
     this.props.submitExpenses(expensesObject);
 
     this.setState({ 
-      entered: !this.state.entered, 
-      voiceVisible: !this.state.voiceVisible,
+      entered: !this.state.entered,
       spentAmount: '', 
       date: new Date(),
-      note: ''
+      note: '',
+      selectedCategory: '',
+      selectedCategoryBackground: '#202020',
+      selectedCategoryText: 'SELECT A CATEGORY',
     });
   }
 
@@ -184,7 +185,7 @@ class AddExpenses extends Component {
   }
 
   renderVoice() {
-    if(this.state.voiceVisible) {
+    if(!this.state.entered || this.state.spentAmount === '') {
       return (
         <ActionButton 
           propStyle={{ position: 'absolute', bottom: 10, right: 20 }}
@@ -217,7 +218,7 @@ class AddExpenses extends Component {
             placeholderTextColor="#525760"
             textAlign="center"
             iconName="ios-card"
-            onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount, voiceVisible: !this.state.voiceVisible })}
+            onChangeText={(spentAmount) => this.setState({ entered: true, spentAmount })}
             value={this.state.spentAmount} />
         </View>
 
