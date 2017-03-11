@@ -43,24 +43,29 @@ class Income extends Component {
   }
 
   submitIncome() {
-    const { incomeAmount, incomeNote, date } = this.state;
+    if(this.state.incomeAmount !== '') {
+      const { incomeAmount, incomeNote, date } = this.state;
 
-    var incomeObject = {
-      incomeID: this.randomString(28),
-      amount: incomeAmount,
-      exactDate: date,
-      date: Moment(date).format('YYYY-MM-DD'),
-      time: Moment(date).format('HH:mm:ss'),
-      note: incomeNote
+      var incomeObject = {
+        incomeID: this.randomString(28),
+        amount: incomeAmount,
+        exactDate: date,
+        date: Moment(date).format('YYYY-MM-DD'),
+        time: Moment(date).format('HH:mm:ss'),
+        note: incomeNote
+      }
+
+      this.props.submitIncome(incomeObject)
+      this.setState({ incomeAmount: '' })
+
+      Alert.alert('Success', 'Income added!', 
+      [
+        {text: 'OK', onPress: () => Actions.pop()}
+      ])
+    } else {
+      Alert.alert('Alert', 'Amount is empty!')
     }
-
-    this.props.submitIncome(incomeObject)
-    this.setState({ incomeAmount: '' })
-
-    Alert.alert('Success', 'Income added!', 
-    [
-      {text: 'OK', onPress: () => Actions.pop()}
-    ])
+    
   }
 
   render() {
