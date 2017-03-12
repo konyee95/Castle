@@ -135,6 +135,7 @@ class AddExpenses extends Component {
   }
 
   showBottomActionSheet = () => {
+    dismissKeyboard()
     this.bottomActionSheet.show();
   }
 

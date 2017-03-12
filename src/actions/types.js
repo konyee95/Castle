@@ -14,3 +14,9 @@ export const GET_USER_PROFILE = 'get_user_profile';
 export const SUBMIT_EXPENSES = 'submit_expenses';
 export const SUBMIT_INCOME = 'submit_income';
 export const DELETE_EXPENSES = 'delete_expenses';
+
+//Ivy
+export const SUBMIT_VOICE_EXPENSE = 'submit_voice_expenses';
+export const CLEAR_VOICE_MESSAGE = 'clear_voice_message';
+export const TRY_AGAIN = 'try_again';
+export const GREET_USER = 'greet_user';

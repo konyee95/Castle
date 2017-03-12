@@ -38,13 +38,23 @@ var testOptions = {
     headers: headers
 };
 
+var tryAgain = {
+    url: 'https://api.wit.ai/message?v=20170312&q=try%20again',
+    headers: headers
+};
+
+var hello = {
+    url: 'https://api.wit.ai/message?v=20170312&q=hello',
+    headers: headers
+};
+
 class Voice extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       spinnerVisible: false,
-      result: 'Today I spend ten dollar on transport',
+      result: '"Today I spend ten dollar on transport"',
       isConnected: null,
     }
 
@@ -62,7 +72,6 @@ class Voice extends Component {
         } else {
           console.log(result.bestTranscription.formattedString);
           this.setState({ result: result.bestTranscription.formattedString })
-          
         }
       }
     );
@@ -129,6 +138,21 @@ class Voice extends Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.processProps(nextProps)
+  }
+
+  processProps(props) {
+    if(props.expenses.voiceMessage) {
+      this.setState({ result: props.expenses.voiceMessage })
+      this.props.clearVoiceMessage()
+    } else if(props.expenses.voiceMessage === 'Sure! Please say it again') {
+      this.setState({ result: props.expenses.voiceMessage })
+      this._startSpeaking()
+      this.props.clearVoiceMessage()
+    }
+  }
+
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
   }
@@ -141,6 +165,7 @@ class Voice extends Component {
 
    _startSpeaking() {
     SpeechToText.startRecognition("en-US");
+    this.setState({ spinnerVisible: true })
   }
 
   _stopRecording() {
@@ -169,7 +194,7 @@ class Voice extends Component {
             onPress={() => {
               this.activateVoice()
               this._startSpeaking()
-              this.setState({ spinnerVisible: true, result: 'Listening...' })
+              this.setState({ result: 'Listening...' })
               }}
             actionButtonChild={mic}
           />
@@ -200,7 +225,7 @@ class Voice extends Component {
     return(
       <View style={[incomeModalContainer, bitOfShadow]}>
         <View style={[incomeTitleContainer, centerEverything]}>
-          <Text style={[incomeTitle]}>INTELLIGENT VOICE</Text>
+          <Text style={[incomeTitle]}>Hi, I am Ivy!</Text>
         </View>
         <View style={[incomeContentContainer]}>
           <Text style={[incomeTitleDesc]}>
@@ -245,7 +270,7 @@ const styles = {
   incomeTitle: {
     fontSize: Math.floor(deviceWidth*0.08),
     fontFamily: 'HelveticaNeue-Light',
-    letterSpacing: 7,
+    letterSpacing: 3,
     textAlign: 'center'
   },
   incomeTitleDesc: {
@@ -270,7 +295,7 @@ const styles = {
 
 const mapStateToProps = (state) => {
   return{
-    expense: state.expense
+    expenses: state.expenses
   };
 };
 
