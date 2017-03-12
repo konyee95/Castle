@@ -51,11 +51,7 @@ class AddExpenses extends Component {
       swapVisible: true
     };
   }
-
-  componentWillMount() {
-    
-  }
-
+  
   componentWillReceiveProps(nextProps) {
     console.log(nextProps)
   }

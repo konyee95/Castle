@@ -9,6 +9,8 @@ import {
   NetInfo
 } from 'react-native';
 
+import Moment from 'moment';
+
 const Sound = require('react-native-sound');
 var SpeechToText = require('react-native-speech-to-text-ios');
 
@@ -16,6 +18,8 @@ var Spinner = require('react-native-spinkit');
 import { ActionButton } from './../../components/common';
 
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import * as actions from './../../actions';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
@@ -24,14 +28,24 @@ const close = <Ionicons name="md-close" size={40} color="#202020" />
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
+//WIT.AI
+const headers = {
+    'Authorization': 'Bearer VHFHYHACTQNZRGT56QBOVAJBA2FIH32S'
+};
+
+var testOptions = {
+    url: 'https://api.wit.ai/message?v=20170312&q=today%20I%20spend%2010%20dollar%20on%20transport',
+    headers: headers
+};
+
 class Voice extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       spinnerVisible: false,
-      result: '"Today I spend ten dollar on transport"',
-      isConnected: null
+      result: 'Today I spend ten dollar on transport',
+      isConnected: null,
     }
 
     this.subscription = NativeAppEventEmitter.addListener(
@@ -48,6 +62,7 @@ class Voice extends Component {
         } else {
           console.log(result.bestTranscription.formattedString);
           this.setState({ result: result.bestTranscription.formattedString })
+          
         }
       }
     );
@@ -130,6 +145,13 @@ class Voice extends Component {
 
   _stopRecording() {
     SpeechToText.finishRecognition()
+    let currentDate = Moment(new Date()).format('YYYYMMDD').toString()
+    let query = this.state.result.replace(/ /g, '%20')
+    var options = {
+      url: 'https://api.wit.ai/message?v=' + currentDate + '&q=' + query,
+      headers: headers
+    }
+    this.props.fetchWit(options)
   }
 
   renderControl() {
@@ -246,4 +268,10 @@ const styles = {
   }
 }
 
-export default Voice;
+const mapStateToProps = (state) => {
+  return{
+    expense: state.expense
+  };
+};
+
+export default connect(mapStateToProps, actions)(Voice);
