@@ -7,6 +7,7 @@ import * as actions from './actions';
 
 import SplashScreen from './containers/SplashScreen';
 import LockScreen from './containers/passcodeContainers/LockScreen';
+import BackgroundLock from './containers/passcodeContainers/BackgroundLock';
 import Register from './containers/auth/Register';
 import Login from './containers/auth/Login';
 import SetCredentials from './containers/auth/SetCredentials';
@@ -55,6 +56,9 @@ class RouterComponent extends Component {
           <Scene key="managePasscode" schema="modal" component={ManagePasscode} direction="horizontal" />
           <Scene key="voiceModal" schema="modal" component={Voice} direction="vertical" />
           <Scene key="incomeModal" schema="modal" component={Income} direction="vertical" />
+          <Scene key="backgroundLock" direction="vertical" >
+            <Scene key="backgroundLockScreen" schema="modal" component={BackgroundLock} panHandlers={null} />
+          </Scene>
         </Scene>
       </Router>
     )

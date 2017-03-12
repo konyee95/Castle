@@ -9,7 +9,7 @@ import * as actions from './../../actions';
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
 
-class LockScreen extends Component {
+class BackgroundLock extends Component {
 
   constructor() {
     super()
@@ -33,7 +33,7 @@ class LockScreen extends Component {
       Actions.main({ type: 'reset'}); //means its a new user
     } else {
       if (this.props.auth.passcode === passcode) {
-        Actions.main({ type: 'reset'});
+        Actions.pop();
       } else {
         Alert.alert('Error', 'Incorrect passcode!');
         this.setState({
@@ -129,4 +129,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(LockScreen);
+export default connect(mapStateToProps, actions)(BackgroundLock);

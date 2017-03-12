@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Animated, View, Text, StyleSheet, Platform } from 'react-native';
+import { AppState, Animated, View, Text, StyleSheet, Platform } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import { TabViewAnimated, TabBar, TabViewPagerScroll, TabViewPagerAndroid, TabViewPagerPan } from 'react-native-tab-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -11,13 +12,14 @@ import AddExpenses from './AddExpenses';
 import Calendar from './Calendar';
 import Account from './Account';
 
-export default class Home extends Component {
+class Home extends Component {
 
   static propTypes = {
     style: View.propTypes.style,
   };
 
   state = {
+    appState: AppState.currentState,
     index: 2,
     routes: [
       { key: '1', icon: 'md-pulse' },
@@ -27,6 +29,28 @@ export default class Home extends Component {
       { key: '5', icon: 'ios-settings' },
     ],
   };
+
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  _handleAppStateChange = (nextAppState) => {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log()
+      if(this.props.auth.user != null) {
+        if (this.props.auth.user.uid && this.props.auth.passcode != null) {
+          Actions.backgroundLock()
+        }
+      }
+    } else {
+      console.log('app has come to background')
+    }
+    this.setState({appState: nextAppState});
+  }
 
   _handleChangeTab = (index) => {
     this.setState({
@@ -185,3 +209,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const mapStateToProps = (state) => {
+  return{
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps, null)(Home)
