@@ -4,6 +4,7 @@ import {
   GREET_USER,
   CLEAR_VOICE_MESSAGE,
   TRY_AGAIN,
+  IVY_ERROR,
   DELETE_EXPENSES,
 } from './../actions/types';
 
@@ -22,6 +23,8 @@ export default (state = INITIAL_STATE, action) => {
     case TRY_AGAIN:
       return { ...state, voiceMessage: action.payload }
     case CLEAR_VOICE_MESSAGE:
+      return { ...state, voiceMessage: action.payload }
+    case IVY_ERROR:
       return { ...state, voiceMessage: action.payload }
     case DELETE_EXPENSES:
       const expenseID = action.payload.expenseID;

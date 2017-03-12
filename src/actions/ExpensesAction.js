@@ -5,6 +5,7 @@ import {
   CLEAR_VOICE_MESSAGE,
   GREET_USER,
   TRY_AGAIN,
+  IVY_ERROR,
   SUBMIT_INCOME,
   DELETE_EXPENSES,
 } from './types';
@@ -63,6 +64,13 @@ const tryAgain = (dispatch) => {
   });
 };
 
+const ivyError = (dispatch) => {
+  dispatch({
+    type: IVY_ERROR,
+    payload: 'Hmm... Could you say it again?'
+  });
+};
+
 export function clearVoiceMessage() {
   return {
     type: CLEAR_VOICE_MESSAGE,
@@ -107,7 +115,7 @@ export function fetchWit(options) {
       headers: options.headers
     }).then(res => res.json())
       .then(json => categorizeIntent(dispatch, json.entities))
-      .catch(error => console.log(error.json()))
+      .catch(error => ivyError(dispatch))
   }
 }
 
@@ -129,7 +137,13 @@ const categorizeIntent = (dispatch, intentObject) => {
 }
 
 const constructExpenseObject = (object) => {
-  let date = object.datetime[0].value;
+  let date = ''
+  if(object.datetime) {
+    date = object.datetime[0].value;  
+  } else {
+    date = new Date()
+  }
+
   let selectedCategory = '';
 
   expensesType.forEach((item) => {

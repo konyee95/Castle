@@ -143,6 +143,7 @@ class Voice extends Component {
   }
 
   processProps(props) {
+    this.setState({ spinnerVisible: false })
     if(props.expenses.voiceMessage) {
       this.setState({ result: props.expenses.voiceMessage })
       this.props.clearVoiceMessage()
@@ -169,6 +170,7 @@ class Voice extends Component {
   }
 
   _stopRecording() {
+    this.setState({ spinnerVisible: null })
     SpeechToText.finishRecognition()
     let currentDate = Moment(new Date()).format('YYYYMMDD').toString()
     let query = this.state.result.replace(/ /g, '%20')
@@ -192,7 +194,6 @@ class Voice extends Component {
         return(
           <ActionButton
             onPress={() => {
-              this.activateVoice()
               this._startSpeaking()
               this.setState({ result: 'Listening...' })
               }}
@@ -200,14 +201,23 @@ class Voice extends Component {
           />
         )
       }
+    } else if(this.state.spinnerVisible === null){
+      return(
+        <TouchableOpacity 
+          style={styles.spinnerBox}>
+          <Spinner 
+            isVisible={true} 
+            size={60} 
+            type="Bounce" 
+            color="#202020" />
+        </TouchableOpacity>
+      )
     } else {
       return(
         <TouchableOpacity 
           style={styles.spinnerBox}
           onPress={() => {
-            this.understoodVoice()
             this._stopRecording()
-            this.setState({ spinnerVisible: false })
             }}>
           <Spinner 
             isVisible={this.state.spinnerVisible} 

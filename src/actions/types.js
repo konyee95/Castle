@@ -19,4 +19,5 @@ export const DELETE_EXPENSES = 'delete_expenses';
 export const SUBMIT_VOICE_EXPENSE = 'submit_voice_expenses';
 export const CLEAR_VOICE_MESSAGE = 'clear_voice_message';
 export const TRY_AGAIN = 'try_again';
+export const IVY_ERROR = 'ivy_error';
 export const GREET_USER = 'greet_user';
