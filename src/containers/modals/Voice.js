@@ -143,11 +143,10 @@ class Voice extends Component {
   }
 
   processProps(props) {
-    this.setState({ spinnerVisible: false })
     if(props.expenses.voiceMessage) {
-      this.setState({ result: props.expenses.voiceMessage })
+      this.setState({ result: props.expenses.voiceMessage, spinnerVisible: false })
       this.props.clearVoiceMessage()
-    } else if(props.expenses.voiceMessage === 'Sure! Please say it again') {
+    } else if((props.expenses.voiceMessage === 'Sure! Please say it again') || (props.expenses.voiceMessage === 'Hi there! How can I help you?')) {
       this.setState({ result: props.expenses.voiceMessage })
       this._startSpeaking()
       this.props.clearVoiceMessage()
@@ -170,7 +169,6 @@ class Voice extends Component {
   }
 
   _stopRecording() {
-    this.setState({ spinnerVisible: null })
     SpeechToText.finishRecognition()
     let currentDate = Moment(new Date()).format('YYYYMMDD').toString()
     let query = this.state.result.replace(/ /g, '%20')
@@ -179,9 +177,61 @@ class Voice extends Component {
       headers: headers
     }
     this.props.fetchWit(options)
+    this.setState({ spinnerVisible: null })
   }
 
   renderControl() {
+    if(Platform.OS === 'android') {
+      return (
+        <ActionButton
+          onPress={() => Actions.pop()}
+          actionButtonChild={close}
+        />
+      )
+    } else {
+      switch(this.state.spinnerVisible) {
+        case false:
+          return(
+            <ActionButton
+              onPress={() => {
+                this._startSpeaking()
+                this.setState({ result: 'Listening...' })
+                }}
+              actionButtonChild={mic}
+            />
+          );
+        case null:
+          return(
+            <TouchableOpacity 
+              style={styles.spinnerBox}>
+              <Spinner 
+                isVisible={true} 
+                size={60} 
+                type="Bounce" 
+                color="#202020" />
+            </TouchableOpacity>
+          );
+        case true:
+          return(
+            <TouchableOpacity 
+              style={styles.spinnerBox}
+              onPress={() => {
+                this._stopRecording()
+                }}>
+              <Spinner 
+                isVisible={this.state.spinnerVisible} 
+                size={60} 
+                type="ChasingDots" 
+                color="#202020" />
+            </TouchableOpacity>
+          )
+        default:
+          break;
+      }
+    }
+  }
+
+  renderControlAgain() {
     if(!this.state.spinnerVisible) {
       if(Platform.OS === 'android') {
         return (
