@@ -1,3 +1,4 @@
+console.disableYellowBox = true;
 import React, { Component } from 'react';
 import {
   View,
@@ -34,6 +35,7 @@ class SplashScreen extends Component {
         Actions.lock();
       } else if (props.auth.user.uid && props.auth.passcode == null) {
         Actions.main({ type: 'reset' });
+        Actions.voiceModal();
       } else {
         this.wait(1000);
         Actions.register({ type: 'reset' });

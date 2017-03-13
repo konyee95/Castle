@@ -21,32 +21,16 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actions from './../../actions';
 
+const headers = {
+    'Authorization': 'Bearer VHFHYHACTQNZRGT56QBOVAJBA2FIH32S'
+};
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const mic = <Ionicons name="ios-mic" size={24} color="#202020" />
 const close = <Ionicons name="md-close" size={40} color="#202020" />
 
 const deviceWidth = require('Dimensions').get('window').width;
 const deviceHeight = require('Dimensions').get('window').height;
-
-//WIT.AI
-const headers = {
-    'Authorization': 'Bearer VHFHYHACTQNZRGT56QBOVAJBA2FIH32S'
-};
-
-var testOptions = {
-    url: 'https://api.wit.ai/message?v=20170312&q=today%20I%20spend%2010%20dollar%20on%20transport',
-    headers: headers
-};
-
-var tryAgain = {
-    url: 'https://api.wit.ai/message?v=20170312&q=try%20again',
-    headers: headers
-};
-
-var hello = {
-    url: 'https://api.wit.ai/message?v=20170312&q=hello',
-    headers: headers
-};
 
 class Voice extends Component {
 
@@ -228,54 +212,6 @@ class Voice extends Component {
         default:
           break;
       }
-    }
-  }
-
-  renderControlAgain() {
-    if(!this.state.spinnerVisible) {
-      if(Platform.OS === 'android') {
-        return (
-          <ActionButton
-            onPress={() => Actions.pop()}
-            actionButtonChild={close}
-          />
-        )
-      } else {
-        return(
-          <ActionButton
-            onPress={() => {
-              this._startSpeaking()
-              this.setState({ result: 'Listening...' })
-              }}
-            actionButtonChild={mic}
-          />
-        )
-      }
-    } else if(this.state.spinnerVisible === null){
-      return(
-        <TouchableOpacity 
-          style={styles.spinnerBox}>
-          <Spinner 
-            isVisible={true} 
-            size={60} 
-            type="Bounce" 
-            color="#202020" />
-        </TouchableOpacity>
-      )
-    } else {
-      return(
-        <TouchableOpacity 
-          style={styles.spinnerBox}
-          onPress={() => {
-            this._stopRecording()
-            }}>
-          <Spinner 
-            isVisible={this.state.spinnerVisible} 
-            size={60} 
-            type="ChasingDots" 
-            color="#202020" />
-        </TouchableOpacity>
-      )
     }
   }
 

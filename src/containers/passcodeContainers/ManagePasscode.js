@@ -64,6 +64,21 @@ class ManagePasscode extends Component {
     );
   };
 
+  renderPasscodeOption() {
+    if(this.props.auth.user !== null) {
+      if (this.props.auth.user.uid && this.props.auth.passcode != null) {
+        return(
+          <Ionicons
+            name="ios-cog"
+            size={35}
+            style={{ color: '#202020', paddingRight: 20, paddingTop: 10 }}
+            onPress={() => this.removePasscode()}
+          />
+        )
+      }
+    }
+  }
+
   render() {
     const { centerEverything, container, controlContainer, innerContainer, titleContainer, titleStyle,
       passcodeContainer, testShit, textInputStyle, propWidth, propTextStyle } = styles;
@@ -76,12 +91,7 @@ class ManagePasscode extends Component {
             style={{ color: '#202020', paddingLeft: 20 }}
             onPress={() => Actions.pop()}
           />
-          <Ionicons
-            name="ios-cog"
-            size={35}
-            style={{ color: '#202020', paddingRight: 20, paddingTop: 10 }}
-            onPress={() => this.removePasscode()}
-          />
+          {this.renderPasscodeOption()}
         </View>
         <View style={[centerEverything, innerContainer]}>
           <View style={[titleContainer]}>
@@ -137,7 +147,6 @@ const styles = {
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-    // top: 100
   },
   controlContainer: {
     flexDirection: 'row',

@@ -20,7 +20,7 @@ class Home extends Component {
 
   state = {
     appState: AppState.currentState,
-    index: 2,
+    index: 0,
     routes: [
       { key: '1', icon: 'md-pulse' },
       { key: '2', icon: 'ios-stats' },
