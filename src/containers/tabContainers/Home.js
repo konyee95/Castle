@@ -40,14 +40,12 @@ class Home extends Component {
 
   _handleAppStateChange = (nextAppState) => {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      console.log()
+    } else {
       if(this.props.auth.user != null) {
         if (this.props.auth.user.uid && this.props.auth.passcode != null) {
           Actions.backgroundLock()
         }
       }
-    } else {
-      console.log('app has come to background')
     }
     this.setState({appState: nextAppState});
   }
