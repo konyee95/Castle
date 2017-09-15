@@ -12,15 +12,13 @@ import Router from './Router';
 export default class App extends Component {
 
   componentWillMount() {
-    if(!!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: "AIzaSyCmXs-IE0jb12gN2xd8i6IROpKmq8spfhs",
-        authDomain: "castle-a5dcc.firebaseapp.com",
-        databaseURL: "https://castle-a5dcc.firebaseio.com",
-        storageBucket: "castle-a5dcc.appspot.com",
-        messagingSenderId: "745453466159"
-      })
-    }
+    firebase.initializeApp({
+      apiKey: "AIzaSyCmXs-IE0jb12gN2xd8i6IROpKmq8spfhs",
+      authDomain: "castle-a5dcc.firebaseapp.com",
+      databaseURL: "https://castle-a5dcc.firebaseio.com",
+      storageBucket: "castle-a5dcc.appspot.com",
+      messagingSenderId: "745453466159"
+    })
   }
 
   render() {
