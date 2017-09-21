@@ -22,7 +22,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk), autoRehydrate());
     persistStore(store, {storage: AsyncStorage})
     return (

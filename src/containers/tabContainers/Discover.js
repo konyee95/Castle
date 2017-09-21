@@ -77,7 +77,7 @@ class Discover extends Component {
   }
 
   processExpenses(expensesObject, snapIndex, incomeObject) {
-
+    console.log(expensesObject)
     let monthlySpending = 0;  //big amount and small amount
     let daily = 0;
     let totalSpending = 0;
@@ -126,9 +126,7 @@ class Discover extends Component {
     this.processExpenses(this.props.expenses.expensesObject, snapIndex, this.props.income.incomeObject)
   }
 
-  onSnapToCategory(categoryIndex) {
-    this.setState({ categoryIndex })
-  }
+  onSnapToCategory = categoryIndex => this.setState({ categoryIndex })
 
   renderCategoryIndicator() {
     let views = [];

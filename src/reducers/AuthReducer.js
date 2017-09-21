@@ -19,7 +19,6 @@ const INITIAL_STATE = { user: null, error: null, passcode: null, message: null }
 const EXIST_STATE = { user: {}, error: null, passcode: null, message: null };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case LISTEN_TO_USER:
       if (!action.payload) {
