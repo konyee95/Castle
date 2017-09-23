@@ -50,11 +50,7 @@ class Home extends Component {
     this.setState({appState: nextAppState});
   }
 
-  _handleChangeTab = (index) => {
-    this.setState({
-      index,
-    });
-  };
+  _handleChangeTab = index => this.setState({ index })
 
   _renderIndicator = (props) => {
     const { width, position } = props;
