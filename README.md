@@ -1,7 +1,6 @@
-#Castle
-react-native powered middle finger app
+# Castle
 
-##To Use
+## To Use
 ```
 npm install
 raect-native link or rnpm link
